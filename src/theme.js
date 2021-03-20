@@ -3,7 +3,7 @@ import { createGlobalStyle } from "styled-components"
 // app theme
 const theme = {
     background: "#FFFFFF",
-    primary: "#000000",
+    primary: "#FFAAFF",
     // secondary: "#CEBC81",
     // tertiary: "#A16E83",
     // quaternary: "#B19F9E",
@@ -24,16 +24,22 @@ const theme = {
   
     h1, h2, h3, h4, h5, h6 {
       font-family: ${theme.hFont};
-      color: ${theme.primary};
+      //color: ${theme.primary};
     }
   
     p {
       font-family: ${theme.pFont};
-      color: ${theme.primary};
+      //color: ${theme.primary};
     }
   
     code {
         font-family: source-code-pro, Menlo, monospace;
+    }
+
+    .container {
+      margin: 10% auto;
+      padding: 80px 0;
+      text-align: center;
     }
   `
 
