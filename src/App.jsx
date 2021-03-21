@@ -4,7 +4,7 @@ import { theme, GlobalStyle } from "./theme"
 import Footer from "./components/Footer"
 import Search from "./components/Search"
 
-export default function App() {
+function App() {
   return (
     <ThemeProvider theme={theme}>
       <GlobalStyle />
@@ -14,3 +14,5 @@ export default function App() {
     </ThemeProvider>
   );
 }
+
+export default App;
