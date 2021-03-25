@@ -4,6 +4,7 @@ import Search from "./Search";
 import Title from "./Title";
 
 const MyDiv = styled.div`
+    margin: 0;
     text-align: center;
 `;
 

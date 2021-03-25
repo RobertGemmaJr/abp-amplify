@@ -4,7 +4,9 @@ import styled from "styled-components"
 import Button from "./Button"
 
 const MyDiv = styled.div`
-    columns: 3 auto;
+    columns: 3;
+    column-gap: 10px;
+    column-rule-width: 3px;
 `;
 
 export default function Search() {

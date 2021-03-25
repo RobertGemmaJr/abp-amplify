@@ -1,11 +1,13 @@
 import styled from "styled-components";
 
 const Copyright = styled.p`
+    background-color: yellow;
     text-align: center;
     font-size: 1.2em;
+    margin: 0;
 
     * {
-        margin-bottom: 0;
+      margin-bottom: 0;
     }
 `;
 

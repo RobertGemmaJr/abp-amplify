@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 const Keypad = styled.button`
+    display: block;
     width: 50px;
     height: 50px;
     margin: 10px 25px;
@@ -22,6 +23,7 @@ const Keypad = styled.button`
 
 // props.text - the text inside the button
 // props.type - the type of the button
+// TODO: Better error handling for incorrect button type
 export default function Button(props) {
 
     // Determine type of button to render
