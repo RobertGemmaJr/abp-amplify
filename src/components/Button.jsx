@@ -18,9 +18,10 @@ const Keypad = styled.button`
     }
 `;
 
-
+// props.text - the text inside the button
+// props.type - the type of the button
 export default function Button(props) {
     return (
-        <Keypad />
+        <Keypad>{props.text}</Keypad>
     )
 }
