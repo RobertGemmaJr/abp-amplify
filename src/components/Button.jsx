@@ -19,4 +19,8 @@ const Keypad = styled.button`
 `;
 
 
-export default Keypad
+export default function Button(props) {
+    return (
+        <Keypad />
+    )
+}

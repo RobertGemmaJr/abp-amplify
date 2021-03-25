@@ -10,7 +10,7 @@ const MyHeader = styled.header`
 export default function Header(props) {
     return(
         <MyHeader>
-            <h1>Hello, World!</h1>
+            <h1>Apple Blossom Health Check</h1>
         </MyHeader>
     )
 }
