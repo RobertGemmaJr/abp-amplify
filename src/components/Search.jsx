@@ -2,9 +2,9 @@ import { FaSearch } from "react-icons/fa"
 
 import Button from "./Button"
 
-export default function SearchButton() {
+export default function Search() {
   return (
-    <div className="container">
+    <div>
       <Button>A</Button>
       <Button>B</Button>
       <Button>C</Button>

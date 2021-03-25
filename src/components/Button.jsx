@@ -1,7 +1,6 @@
 import styled from "styled-components";
 
-
-export default styled.button`
+const Keypad = styled.button`
     width: 50px; // 10%
     height: 50px;
     margin: 10px 25px;
@@ -18,3 +17,6 @@ export default styled.button`
         color: white;
     }
 `;
+
+
+export default Keypad
