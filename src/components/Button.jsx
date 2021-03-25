@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 const Keypad = styled.button`
-    width: 50px; // 10%
+    width: 50px;
     height: 50px;
     margin: 10px 25px;
 
@@ -10,19 +10,26 @@ const Keypad = styled.button`
 
     border: none;
     border-radius: 5px;
+
     background-color: ${props => props.theme.primary};
+    color: ${props => props.theme.black};
 
     :hover {
         background-color: ${props => props.theme.secondary};
-        color: white;
+        color: ${props => props.theme.white};
     }
 `;
 
 // props.text - the text inside the button
 // props.type - the type of the button
 export default function Button(props) {
-    console.log(props.type)
-    return (
-        <Keypad>{props.text}</Keypad>
-    )
+
+    // Determine type of button to render
+    switch(props.type) {
+        case "Keypad":
+            return <Keypad>{props.text}</Keypad>;
+        default:
+            Error("Invalid button type rendered: " + props.type)
+            return null
+    }
 }
