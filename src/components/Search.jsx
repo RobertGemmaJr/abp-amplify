@@ -3,6 +3,10 @@ import Grid from '@material-ui/core/Grid';
 
 import Button from "./Button"
 
+/**
+ * Body of application while searching for a family/staff
+ * @returns Search component of the application. 
+ */
 export default function Search() {
   const alphabet = []
   'ABC DEF GHI JKL MNO PQR STU VWX YZ'.split(' ').forEach((trio) => {

@@ -8,6 +8,11 @@ const MyDiv = styled.div`
     text-align: center;
 `;
 
+/**
+ * 
+ * @param {*} props 
+ * @returns The central body of the application
+ */
 export default function Body(props) {
     return(
         <MyDiv>

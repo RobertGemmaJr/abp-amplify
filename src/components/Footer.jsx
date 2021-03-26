@@ -11,6 +11,11 @@ const Copyright = styled.p`
     }
 `;
 
+/**
+ * 
+ * @param {*} props 
+ * @returns The application's footer
+ */
 export default function Footer(props) {
   const year = new Date().getFullYear();
 

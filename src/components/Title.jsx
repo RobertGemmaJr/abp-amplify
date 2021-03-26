@@ -2,6 +2,13 @@
 
 import { useState } from "react"
 
+/**
+ * Searches databases for the company title and image.
+ * Clicking on title swaps between morning and afternoon questionnaire
+ * 
+ * @param {*} props 
+ * @returns Title at the top of the body
+ */
 export default function Title(props) {
   // Hook for Morning/Afternoon questions
   const [question, setQuestion] = useState(true)

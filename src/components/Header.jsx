@@ -8,7 +8,11 @@ const MyHeader = styled.header`
     }
 `;
 
-
+/**
+ * 
+ * @param {*} props 
+ * @returns The applications header
+ */
 export default function Header(props) {
     return(
         <MyHeader>

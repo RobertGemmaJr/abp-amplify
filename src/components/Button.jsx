@@ -1,8 +1,6 @@
 import styled from "styled-components";
 
 const Keypad = styled.button`
-    // TODO: Figure out display time for buttons
-    /* display: block; */
     width: 50px;
     height: 50px;
     margin: 5px 10px;
@@ -22,9 +20,13 @@ const Keypad = styled.button`
     }
 `;
 
-// props.text - the text inside the button
-// props.type - the type of the button
-// TODO: Better error handling for incorrect button type
+/**
+ * @TODO Better error handling for incorrect button type
+ * 
+ * @param {string} props.type The type of button, used for styling
+ * @param {string} props.text The text to go inside the button
+ * @returns A styled button component
+ */
 export default function Button(props) {
     const { type, text } = props
     
