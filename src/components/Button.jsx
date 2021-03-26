@@ -1,10 +1,11 @@
 import styled from "styled-components";
 
 const Keypad = styled.button`
-    display: block;
+    // TODO: Figure out display time for buttons
+    /* display: block; */
     width: 50px;
     height: 50px;
-    margin: 10px 25px;
+    margin: 5px 10px;
 
     text-align: center;
     font-size: 2em;
@@ -25,13 +26,14 @@ const Keypad = styled.button`
 // props.type - the type of the button
 // TODO: Better error handling for incorrect button type
 export default function Button(props) {
-
+    const { type, text } = props
+    
     // Determine type of button to render
-    switch(props.type) {
+    switch(type) {
         case "Keypad":
-            return <Keypad>{props.text}</Keypad>;
+            return <Keypad>{text}</Keypad>;
         default:
-            Error("Invalid button type rendered: " + props.type)
+            Error("Invalid button type rendered: " + type)
             return null
     }
 }

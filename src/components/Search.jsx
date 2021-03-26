@@ -1,29 +1,38 @@
 import { FaSearch } from "react-icons/fa"
-import styled from "styled-components"
+import Grid from '@material-ui/core/Grid';
 
 import Button from "./Button"
 
-const MyDiv = styled.div`
-    columns: 3;
-    column-gap: 10px;
-    column-rule-width: 3px;
-`;
-
 export default function Search() {
-  const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
+  const alphabet = []
+  'ABC DEF GHI JKL MNO PQR STU VWX YZ'.split(' ').forEach((trio) => {
+    alphabet.push(trio.split(''));
+  })
 
   return (
-    <MyDiv>
-      {alphabet.map((letter) => {
-        return (
-          <Button 
-            key={letter}
-            text={letter} 
-            type="Keypad"
-          />
-        )
-      })}
-      <Button text={<FaSearch fontSize="0.75em"/>} />
-    </MyDiv>
-    )
+    <div>
+      <Grid container spacing={1} margin="auto">
+        {alphabet.map((trio) => {
+          // Keypad grid
+          return(
+            <Grid container item xs={12} justify="center">
+              <Grid item xs={3}>
+                {trio.map((letter) => {
+                  // Keypad row
+                  return(
+                    <Button key={letter} text={letter} type="Keypad" />
+                  )
+                })}
+                {
+                  // Add search button to last row
+                  (trio.length === 2) && 
+                  <Button type="Keypad" text={<FaSearch fontSize="0.75em"/>} />
+                }
+              </Grid>
+            </Grid>
+          )
+        })}
+      </Grid>
+    </div>
+  )
 }
