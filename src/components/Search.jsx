@@ -1,4 +1,4 @@
-import { FaSearch } from "react-icons/fa"
+import SearchIcon from '@material-ui/icons/Search';
 import Grid from '@material-ui/core/Grid';
 
 import Button from "./Button"
@@ -26,7 +26,7 @@ export default function Search() {
                 {
                   // Add search button to last row
                   (trio.length === 2) && 
-                  <Button type="Keypad" text={<FaSearch fontSize="0.75em"/>} />
+                  <Button type="Keypad" text={<SearchIcon fontSize="medium"/>} />
                 }
               </Grid>
             </Grid>
