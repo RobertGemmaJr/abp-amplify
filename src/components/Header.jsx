@@ -1,7 +1,8 @@
 import styled from "styled-components";
 
 const MyHeader = styled.header`
-    background-color: blue;
+    /* background-color: blue; */
+    background: ${props => props.theme.white};
     margin: 0;
     * {
         margin-top: 0;

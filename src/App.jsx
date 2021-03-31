@@ -17,7 +17,7 @@ import Footer from "./components/Footer"
  * @TODO morning/afternoon questions automatically decided by time?
  * @returns Outermost structure of the React app. Applies theming
  */
-function App() {
+function App(props) {
   return (
     <ThemeProvider theme={theme}>
       <React.Fragment>

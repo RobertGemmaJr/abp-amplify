@@ -1,8 +1,10 @@
-import { createGlobalStyle } from "styled-components"
+import {createGlobalStyle} from "styled-components"
+import backgroundImg from "./media/background.png"
 
 // app theme
 const theme = {
-    background: "#CEBC81",
+    background: backgroundImg,
+
     primary: "#A6A6A6",
     secondary: "#3C3C3C",
 
@@ -13,30 +15,29 @@ const theme = {
     hFont: "'Ubuntu Condensed', sans-serif",
   };
 
-// Global styling
-  const GlobalStyle = createGlobalStyle`
+// Global styling for html
+const GlobalStyle = createGlobalStyle`
+  body {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background: url(${theme.background}) no-repeat center center fixed;;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
 
-    body {
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-      background-color: ${theme.background};
-      margin: 0 !important;
-      padding: 0 !important;
-    }
-  
-    h1, h2, h3, h4, h5, h6 {
-      font-family: ${theme.hFont};
-      color: ${theme.black};
-    }
-  
-    p {
-      font-family: ${theme.pFont};
-      color: ${theme.black};
-    }
-  
-    code {
-        font-family: source-code-pro, Menlo, monospace;
-    }
-  `
+  h1, h2, h3, h4, h5, h6 {
+    font-family: ${theme.hFont};
+    color: ${theme.black};
+  }
+
+  p {
+    font-family: ${theme.pFont};
+    color: ${theme.black};
+  }
+
+  code {
+    font-family: source-code-pro, Menlo, monospace;
+  }
+`
 
 export { theme, GlobalStyle }

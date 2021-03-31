@@ -15,11 +15,11 @@ export default function Search() {
 
   return (
     <div>
-      <Grid container spacing={1} margin="auto">
+      <Grid container margin="auto">
         {alphabet.map((trio) => {
           // Keypad grid
           return(
-            <Grid container item xs={12} justify="center">
+            <Grid container xs={12} justify="center">
               <Grid item xs={3}>
                 {trio.map((letter) => {
                   // Keypad row
