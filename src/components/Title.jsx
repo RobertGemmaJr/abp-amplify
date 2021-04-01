@@ -1,6 +1,20 @@
-// import styled from "styled-components"
+import styled from "styled-components"
 
 import { useState } from "react"
+
+const MyDiv = styled.div`
+  text-align: center;
+  margin: auto 10% auto 10%;
+
+  h1 {
+    margin-bottom: 0.5%;
+  }
+
+  h3 {
+    margin-top: 0;
+    color: green;
+  }
+`;
 
 /**
  * Searches databases for the company title and image.
@@ -15,9 +29,9 @@ export default function Title(props) {
   // Hook for Morning/Afternoon questions
   const [question, setQuestion] = useState(true)
   return (
-    <div onClick={() => setQuestion(!question)} >
-      <h1>Company Name</h1>
+    <MyDiv onClick={() => setQuestion(!question)} >
+      <h1>Apple Blossom Preschool</h1>
       <h3>{question ? "Morning": "Afternoon"} Questions</h3>
-    </div>
+    </MyDiv>
   )
 }

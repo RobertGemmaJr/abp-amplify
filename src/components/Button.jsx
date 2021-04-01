@@ -6,7 +6,7 @@ const Keypad = styled.button`
     margin: 5px 10px;
 
     text-align: center;
-    font-size: 2em;
+    font-size: 1.75em;
 
     border: none;
     border-radius: 5px;
