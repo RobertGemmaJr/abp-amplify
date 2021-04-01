@@ -5,6 +5,9 @@ import Button from "./Button"
 
 /**
  * Body of application while searching for a family/staff
+ * 
+ * @todo Individual rows should scale to fit display
+ * 
  * @returns Search component of the application. 
  */
 export default function Search() {
@@ -15,12 +18,12 @@ export default function Search() {
 
   return (
     <div>
-      <Grid container margin="auto">
+      <Grid container justify="center">
         {alphabet.map((trio) => {
           // Keypad grid
           return(
-            <Grid container xs={12} justify="center">
-              <Grid item xs={3}>
+            <Grid container  justify="center" margin="auto">
+              <Grid item >
                 {trio.map((letter) => {
                   // Keypad row
                   return(
