@@ -1,0 +1,18 @@
+Fever (Temperature of 100.F or more?);N
+Cough?;N
+Shortness of breath or difficulty breathing?;N
+Body Aches?;N
+Chills?;N
+Runny Nose or Stuffy Nose?;N
+Sore throat?;N
+Diarrhea / GI Gastrointestinal Illness?;N
+Has anyone in your household been diagnosed with COVID-19?;N
+Have you had any visitors in your home from out of the state?;N
+Has anyone in your household travelled out of the state?;N
+Have you been asked by any public health authority to self isolate or quarantine in the last 48 hours?;N 
+Has anyone in your household been exposed to anyone testing positive to COVID-19 in the past two weeks?;N
+Have you had a fever in the past 48 hours?;N
+I have not had any fever reducing medication or medications that would suppress signs or symptoms of sickness listed above?;Y
+Has anyone in your household travelled outside the USA in the past two weeks or on a cruise?;N
+Has any one in the home travelled by commercial transportation in the past two weeks?;N
+Your child has been excluded!
