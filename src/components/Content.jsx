@@ -5,8 +5,8 @@ import styled from "styled-components"
  *      Should be able to do this by stretching bottom padding
 */
 const MyContent = styled.div`
-    flex: 1; // main flex, push content to footer
     padding: 2%;
+    margin: auto;
 `;
 
 export default function Content(props) {

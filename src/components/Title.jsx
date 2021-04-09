@@ -4,6 +4,7 @@ import Subtitle from "./Subtitle"
 
 const MyTitle = styled.div`
   text-align: center;
+  padding: 2%;
 
   h1 {
     margin-top: 0;
