@@ -4,7 +4,7 @@ import styled from "styled-components"
 
 import { theme, GlobalStyle } from "./theme"
 import Header from "./components/Header"
-import Body from "./components/Body"
+import Main from "./components/Main"
 import Footer from "./components/Footer"
 
 const Wrapper = styled.div`
@@ -39,7 +39,7 @@ function App(props) {
           menuClick={() => setShowMenu(!showMenu)}
           resetClick={() => reset()}
         />
-        <Body showMenu={showMenu}/>
+        <Main showMenu={showMenu}/>
         <Footer />
       </Wrapper>
     </ThemeProvider>
