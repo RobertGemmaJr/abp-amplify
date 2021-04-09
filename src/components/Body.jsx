@@ -7,7 +7,6 @@ import Search from "./Search";
 
 const MyBody = styled.main`
   padding: 2% 0;
-  text-align: center;
 `;
 
 /**

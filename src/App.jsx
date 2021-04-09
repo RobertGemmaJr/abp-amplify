@@ -7,13 +7,6 @@ import Header from "./components/Header"
 import Body from "./components/Body"
 import Footer from "./components/Footer"
 
-const MyApp = styled.div`
-  /* height: 100%;
-  min-height: 100%;
-  display: flex;
-  flex-direction: column; */
-`;
-
 /**
  * @TODO meta info in index.html
  * @TODO favicon.io and logo images

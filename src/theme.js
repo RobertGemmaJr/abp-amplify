@@ -20,7 +20,7 @@ const GlobalStyle = createGlobalStyle`
   body {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    background: url(${theme.background}) no-repeat center center fixed;;
+    background: url(${theme.background}) no-repeat center center fixed;
     margin: 0;
   }
 
