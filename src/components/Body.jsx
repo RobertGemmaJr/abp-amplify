@@ -5,7 +5,7 @@ import Title from "./Title";
 import Content from "./Content"
 
 const MyDiv = styled.div`
-  padding: 2%;
+  padding: 2% 0;
   text-align: center;
 `;
 

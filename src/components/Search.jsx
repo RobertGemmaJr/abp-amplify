@@ -11,7 +11,7 @@ import Button from "./Button"
  * 
  * @returns Search component of the application. 
  */
-export default function Search() {
+export default function Search(props) {
   const alphabet = []
   'ABC DEF GHI JKL MNO PQR STU VWX YZ'.split(' ').forEach((trio) => {
     alphabet.push(trio.split(''));

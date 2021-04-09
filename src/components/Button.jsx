@@ -50,10 +50,14 @@ export default function Button(props) {
     
     // Determine type of button to render
     switch(type) {
-        case "Keypad":
-            return <Keypad>{text}</Keypad>;
         case "Menu":
             return <Menu>{text}</Menu>
+        case "Keypad":
+            return <Keypad>{text}</Keypad>;
+        case "Name":
+            return null // TEMP
+        case "Question":
+            return null // TEMP
         default:
             Error("Invalid button type rendered: " + type)
             return null
