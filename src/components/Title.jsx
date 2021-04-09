@@ -4,16 +4,10 @@ import Subtitle from "./Subtitle"
 
 const MyTitle = styled.div`
   text-align: center;
-  margin: 0 10%;
 
   h1 {
     margin-top: 0;
     margin-bottom: 0.5%;
-  }
-
-  h3 {
-    margin-top: 0;
-    color: green;
   }
 `;
 

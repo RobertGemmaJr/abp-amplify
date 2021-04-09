@@ -6,8 +6,12 @@ import Content from "./Content"
 import Search from "./Search";
 
 const MyMain = styled.main`
-  padding: 2% 0;
-  flex: 1;
+  padding-top: 2%;
+  flex: 1; // App flex, push footer to bottom of page
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `;
 
 /**
