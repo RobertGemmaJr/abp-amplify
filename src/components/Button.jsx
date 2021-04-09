@@ -20,6 +20,24 @@ const Keypad = styled.button`
     }
 `;
 
+const Menu = styled.button`
+    width: 100px;
+    height: 50px;
+    margin: 0 15px;
+    border: 3px solid ${props => props.theme.black};
+
+    text-align: center;
+    font-size: 1.5em;
+    
+    background-color: ${props => props.theme.primary};
+    color: ${props => props.theme.black};
+
+    :hover {
+        background-color: ${props => props.theme.secondary};
+        color: ${props => props.theme.white};
+    }
+`;
+
 /**
  * @TODO Better error handling for incorrect button type
  * 
@@ -34,6 +52,8 @@ export default function Button(props) {
     switch(type) {
         case "Keypad":
             return <Keypad>{text}</Keypad>;
+        case "Menu":
+            return <Menu>{text}</Menu>
         default:
             Error("Invalid button type rendered: " + type)
             return null

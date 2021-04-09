@@ -1,4 +1,4 @@
-import styled from "styled-components";
+// import styled from "styled-components";
 import SearchIcon from '@material-ui/icons/Search';
 import Grid from '@material-ui/core/Grid';
 
@@ -28,7 +28,7 @@ export default function Search() {
                 {trio.map((letter) => {
                   // Keypad row
                   return(
-                    <Button key={letter} text={letter} type="Keypad" />
+                    <Button type="Keypad" key={letter} text={letter} />
                   )
                 })}
                 {

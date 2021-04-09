@@ -1,15 +1,17 @@
 import styled from "styled-components";
+import SettingsIcon from '@material-ui/icons/Settings';
+//<SettingsIcon fontSize="large"/>
 import Button from "./Button"
 
 const MyHeader = styled.header`
     background: ${props => props.theme.white};
-    /* display: inline-flex; */
-    display: flexbox;
+    display: flex;
+    align-items: center;
+    align-content: space-between;
 
-    * {
-        padding: 10px;
-        margin-top: 0;
-    }
+    /* h1 {
+        margin-left: 10px;
+    } */
 `;
 
 /**
@@ -21,7 +23,8 @@ export default function Header(props) {
     return(
         <MyHeader>
             <h1>Health Check</h1>
-            <Button key="RESET" text="RESET" type="Keypad" />
+            <Button type="Menu" text="RESET" />
+            <Button type="Menu" text="MENU" />
         </MyHeader>
     )
 }
