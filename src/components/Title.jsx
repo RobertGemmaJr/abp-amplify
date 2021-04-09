@@ -28,6 +28,7 @@ const MyDiv = styled.div`
 export default function Title(props) {
   // Hook for Morning/Afternoon questions
   const [question, setQuestion] = useState(true)
+  
   return (
     <MyDiv onClick={() => setQuestion(!question)} >
       <h1>Apple Blossom Preschool</h1>

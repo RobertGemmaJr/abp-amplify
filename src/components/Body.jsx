@@ -4,8 +4,10 @@ import Search from "./Search";
 import Title from "./Title";
 
 const MyDiv = styled.div`
-    margin: 25px auto;
+    margin: 0 auto;
     text-align: center;
+
+    border: 2px solid blue;
 `;
 
 /**

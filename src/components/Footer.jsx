@@ -12,8 +12,8 @@ const MyFooter = styled.footer`
   justify-content: center;
   align-items: center;
 
-  position: absolute;
-  bottom: 0;
+  /* position: absolute;
+  bottom: 0; */
   height: 50px;
   width: 100%;
 `;
