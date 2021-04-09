@@ -27,7 +27,7 @@ const Wrapper = styled.div`
  */
 function App(props) {
   // Hook for showing the menu
-  const [showMenu, setShowMenu] = React.useState(true)
+  const [showMenu, setShowMenu] = React.useState(false)
 
   // Function for reset button
   function reset() {

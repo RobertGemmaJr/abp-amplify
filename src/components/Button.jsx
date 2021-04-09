@@ -61,7 +61,7 @@ export default function Button(props) {
         case "Question":
             return null // TEMP
         default:
-            Error("Invalid button type rendered: " + type)
+            console.log("Invalid button type rendered: " + type)
             return null
     }
 }

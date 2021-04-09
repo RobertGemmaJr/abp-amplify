@@ -25,6 +25,12 @@ export default function Main(props) {
   const [qType, setQType] = useState(true)
   const qText = qType ? "Morning Questions" : "Afternoon Questions"
 
+  // Hook for displayed content based on app state
+  const [component, setComponent] = useState(<Search />)
+  // The current component
+  // Based on program state (search, question, summary, etc.) 
+
+
   return(
     <MyMain >
       <Title 
@@ -32,8 +38,7 @@ export default function Main(props) {
         subtitle={props.showMenu ? "Menu" : qText }
       />
       <Content>
-        {props.showMenu ? <Menu /> : null}
-        <Search />
+        {props.showMenu ?  <Menu /> : component}
       </Content>
     </MyMain>
   )
