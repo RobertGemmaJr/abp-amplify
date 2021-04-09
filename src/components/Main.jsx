@@ -4,6 +4,7 @@ import { useState } from "react"
 import Title from "./Title";
 import Content from "./Content"
 import Search from "./Search";
+import Menu from "./Menu"
 
 const MyMain = styled.main`
   padding-top: 2%;
@@ -28,12 +29,11 @@ export default function Main(props) {
     <MyMain >
       <Title 
         onClick={() => setQType(!qType)}
-        subtitle={props.showMenu ? qText : "Menu" }
+        subtitle={props.showMenu ? "Menu" : qText }
       />
       <Content>
-        {/* Temp - this should be based on the other content pages. */}
-        {/* showMenu will just show the menu on top of whatever page is up */}
-        {props.showMenu ? <Search /> : null}
+        {props.showMenu ? <Menu /> : null}
+        <Search />
       </Content>
     </MyMain>
   )
