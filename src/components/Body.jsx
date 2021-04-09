@@ -23,9 +23,11 @@ export default function Body(props) {
     <MyBody >
       <Title 
         onClick={() => setQType(!qType)}
-        subtitle={qText}
+        subtitle={props.showMenu ? qText : "Menu" }
       />
       <Content>
+        {/* Temp - this should be based on the other content pages. */}
+        {/* showMenu will just show the menu on top of whatever page is up */}
         {props.showMenu ? <Search /> : null}
       </Content>
     </MyBody>
