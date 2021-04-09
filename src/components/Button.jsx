@@ -1,5 +1,6 @@
 import styled from "styled-components";
 
+// Keypad buttons with single letter
 const Keypad = styled.button`
     width: 50px;
     height: 50px;
@@ -20,6 +21,7 @@ const Keypad = styled.button`
     }
 `;
 
+// Menu buttons inside Header
 const Menu = styled.button`
     width: 100px;
     height: 50px;
@@ -46,7 +48,7 @@ const Menu = styled.button`
  * @returns A styled button component
  */
 export default function Button(props) {
-    const { type, text, click} = props
+    const { type, text, click } = props
     
     // Determine type of button to render
     switch(type) {

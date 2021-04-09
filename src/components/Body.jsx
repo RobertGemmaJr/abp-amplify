@@ -5,7 +5,7 @@ import Title from "./Title";
 import Content from "./Content"
 import Search from "./Search";
 
-const MyBody = styled.div`
+const MyBody = styled.main`
   padding: 2% 0;
   text-align: center;
 `;
@@ -17,14 +17,14 @@ const MyBody = styled.div`
  */
 export default function Body(props) {
   // Hook for subtitle text
-  const [question, setQuestion] = useState(true)
-  const txt = question ? "Morning ": "Afternoon "
+  const [qType, setQType] = useState(true)
+  const qText = qType ? "Morning Questions" : "Afternoon Questions"
 
   return(
     <MyBody >
       <Title 
-        onClick={() => setQuestion(!question)}
-        subtitle={txt + "Questions"}
+        onClick={() => setQType(!qType)}
+        subtitle={qText}
       />
       <Content>
         {props.showMenu ? <Search /> : null}

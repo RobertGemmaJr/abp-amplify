@@ -1,10 +1,18 @@
 import React from "react";
 import { ThemeProvider } from "styled-components";
+import styled from "styled-components"
 
 import { theme, GlobalStyle } from "./theme"
 import Header from "./components/Header"
 import Body from "./components/Body"
 import Footer from "./components/Footer"
+
+const MyApp = styled.div`
+  /* height: 100%;
+  min-height: 100%;
+  display: flex;
+  flex-direction: column; */
+`;
 
 /**
  * @TODO meta info in index.html
@@ -15,7 +23,7 @@ import Footer from "./components/Footer"
  * @TODO header with logo, name, reset button, menu, etc.
  * 
  * @TODO morning/afternoon questions automatically decided by time?
- * @returns Outermost structure of the React app. Applies theming
+ * @returns Outermost structure of the React app. Applies theming.
  */
 function App(props) {
   const [showMenu, setShowMenu] = React.useState(true)

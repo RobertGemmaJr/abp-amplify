@@ -21,8 +21,7 @@ const GlobalStyle = createGlobalStyle`
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     background: url(${theme.background}) no-repeat center center fixed;;
-    margin: 0 !important;
-    padding: 0 !important;
+    margin: 0;
   }
 
   h1, h2, h3, h4, h5, h6 {

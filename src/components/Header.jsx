@@ -5,7 +5,7 @@ const MyHeader = styled.header`
     background: ${props => props.theme.white};
     display: flex;
     align-items: center;
-
+    
     h1 {
         margin-left: 10px;
     }
