@@ -1,10 +1,11 @@
 import styled from "styled-components";
+import { useState } from "react"
 
-import Search from "./Search";
 import Title from "./Title";
 import Content from "./Content"
+import Search from "./Search";
 
-const MyDiv = styled.div`
+const MyBody = styled.div`
   padding: 2% 0;
   text-align: center;
 `;
@@ -15,12 +16,18 @@ const MyDiv = styled.div`
  * @returns The central body of the application
  */
 export default function Body(props) {
+  const [question, setQuestion] = useState(true)
+  const txt = question ? "Morning ": "Afternoon "
+
   return(
-    <MyDiv>
-      <Title />
+    <MyBody >
+      <Title 
+        onClick={() => setQuestion(!question)}
+        subtitle={txt + "Questions"}
+      />
       <Content>
         <Search />
       </Content>
-    </MyDiv>
+    </MyBody>
   )
 }

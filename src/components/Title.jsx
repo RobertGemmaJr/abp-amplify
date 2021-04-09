@@ -1,9 +1,8 @@
 import styled from "styled-components"
-import { useState } from "react"
 
 import Subtitle from "./Subtitle"
 
-const MyDiv = styled.div`
+const MyTitle = styled.div`
   text-align: center;
   margin: 0 10%;
 
@@ -27,16 +26,11 @@ const MyDiv = styled.div`
  * @param {*} props 
  * @returns Title at the top of the body
  */
-export default function Title(props) {
-  // Hook for Morning/Afternoon questions
-  const [question, setQuestion] = useState(true)
-
-  const txt = question ? "Morning ": "Afternoon "
-  
+export default function Title(props) { 
   return (
-    <MyDiv onClick={() => setQuestion(!question)} >
+    <MyTitle onClick={props.onClick}>
       <h1>Apple Blossom Preschool</h1>
-      <Subtitle text={txt + "Questions"}/>
-    </MyDiv>
+      <Subtitle text={props.subtitle} />
+    </MyTitle>
   )
 }
