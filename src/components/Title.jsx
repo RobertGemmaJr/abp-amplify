@@ -4,9 +4,10 @@ import { useState } from "react"
 
 const MyDiv = styled.div`
   text-align: center;
-  margin: auto 10% auto 10%;
+  margin: 0 10%;
 
   h1 {
+    margin-top: 0;
     margin-bottom: 0.5%;
   }
 

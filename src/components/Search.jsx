@@ -2,7 +2,6 @@
 import SearchIcon from '@material-ui/icons/Search';
 import Grid from '@material-ui/core/Grid';
 
-import Content from "./Content"
 import Button from "./Button"
 
 /**
@@ -19,29 +18,27 @@ export default function Search() {
   })
 
   return (
-    <Content>
-      <Grid container justify="center">
-        {alphabet.map((trio) => {
-          // Keypad grid
-          return(
-            <Grid container  justify="center" margin="auto">
-              <Grid item >
-                {trio.map((letter) => {
-                  // Keypad row
-                  return(
-                    <Button type="Keypad" key={letter} text={letter} />
-                  )
-                })}
-                {
-                  // Add search button to last row
-                  (trio.length === 2) && 
-                  <Button type="Keypad" text={<SearchIcon fontSize="medium"/>} />
-                }
-              </Grid>
+    <Grid container justify="center">
+      {alphabet.map((trio) => {
+        // Keypad grid
+        return(
+          <Grid container  justify="center" margin="auto">
+            <Grid item >
+              {trio.map((letter) => {
+                // Keypad row
+                return(
+                  <Button type="Keypad" key={letter} text={letter} />
+                )
+              })}
+              {
+                // Add search button to last row
+                (trio.length === 2) && 
+                <Button type="Keypad" text={<SearchIcon fontSize="medium"/>} />
+              }
             </Grid>
-          )
-        })}
-      </Grid>
-    </Content>
+          </Grid>
+        )
+      })}
+    </Grid>
   )
 }
