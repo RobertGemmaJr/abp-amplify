@@ -1,10 +1,13 @@
 import styled from "styled-components";
+import Button from "./Button"
 
 const MyHeader = styled.header`
-    /* background-color: blue; */
     background: ${props => props.theme.white};
-    margin: 0;
+    /* display: inline-flex; */
+    display: flexbox;
+
     * {
+        padding: 10px;
         margin-top: 0;
     }
 `;
@@ -17,7 +20,8 @@ const MyHeader = styled.header`
 export default function Header(props) {
     return(
         <MyHeader>
-            <h1>Apple Blossom Health Check</h1>
+            <h1>Health Check</h1>
+            <Button key="RESET" text="RESET" type="Keypad" />
         </MyHeader>
     )
 }

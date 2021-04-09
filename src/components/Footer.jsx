@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 const Copyright = styled.p`
   font-size: 1.2em;
+  color: ${props => props.theme.white};
 `;
 
 const MyFooter = styled.footer`
