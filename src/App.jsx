@@ -23,13 +23,22 @@ const Wrapper = styled.div`
  * @returns Outermost structure of the React app. Applies theming.
  */
 function App(props) {
+  // Hook for showing the menu
   const [showMenu, setShowMenu] = React.useState(true)
+
+  // Function for reset button
+  function reset() {
+    console.log("Reset")
+  }
 
   return (
     <ThemeProvider theme={theme}>
       <Wrapper>
         <GlobalStyle />
-        <Header menuClick={() => setShowMenu(!showMenu)}/>
+        <Header 
+          menuClick={() => setShowMenu(!showMenu)}
+          resetClick={() => reset()}
+        />
         <Body showMenu={showMenu}/>
         <Footer />
       </Wrapper>

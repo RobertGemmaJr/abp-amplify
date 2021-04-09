@@ -1,4 +1,3 @@
-// import styled from "styled-components";
 import SearchIcon from '@material-ui/icons/Search';
 import Grid from '@material-ui/core/Grid';
 

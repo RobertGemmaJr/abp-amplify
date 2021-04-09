@@ -22,12 +22,13 @@ const MyHeader = styled.header`
  * @returns The applications header
  */
 export default function Header(props) {
+    const { resetClick, menuClick } = props;
     return(
         <MyHeader>
             <h1>Health Check</h1>
             <div>
-                <Button type="Menu" text="RESET" />
-                <Button type="Menu" text="MENU" click={props.menuClick}/>
+                <Button type="Menu" text="RESET" click={resetClick}/>
+                <Button type="Menu" text="MENU" click={menuClick}/>
                 {/* Temp - don't know if we'll keep thermometer */}
                 <Button type="Menu" text="THER." />
             </div>            
