@@ -18,12 +18,14 @@ import Footer from "./components/Footer"
  * @returns Outermost structure of the React app. Applies theming
  */
 function App(props) {
+  const [showMenu, setShowMenu] = React.useState(true)
+
   return (
     <ThemeProvider theme={theme}>
       <React.Fragment>
         <GlobalStyle />
-        <Header />
-        <Body />
+        <Header menuClick={() => setShowMenu(!showMenu)}/>
+        <Body showMenu={showMenu}/>
         <Footer />
       </React.Fragment>
     </ThemeProvider>

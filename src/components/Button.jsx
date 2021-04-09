@@ -46,14 +46,14 @@ const Menu = styled.button`
  * @returns A styled button component
  */
 export default function Button(props) {
-    const { type, text } = props
+    const { type, text, click} = props
     
     // Determine type of button to render
     switch(type) {
         case "Menu":
-            return <Menu>{text}</Menu>
+            return <Menu onClick={click}>{text}</Menu>
         case "Keypad":
-            return <Keypad>{text}</Keypad>;
+            return <Keypad onClick={click}>{text}</Keypad>;
         case "Name":
             return null // TEMP
         case "Question":

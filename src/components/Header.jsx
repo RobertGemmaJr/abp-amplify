@@ -27,7 +27,7 @@ export default function Header(props) {
             <h1>Health Check</h1>
             <div>
                 <Button type="Menu" text="RESET" />
-                <Button type="Menu" text="MENU" />
+                <Button type="Menu" text="MENU" click={props.menuClick}/>
                 {/* Temp - don't know if we'll keep thermometer */}
                 <Button type="Menu" text="THER." />
             </div>            

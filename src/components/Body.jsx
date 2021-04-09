@@ -16,6 +16,7 @@ const MyBody = styled.div`
  * @returns The central body of the application
  */
 export default function Body(props) {
+  // Hook for subtitle text
   const [question, setQuestion] = useState(true)
   const txt = question ? "Morning ": "Afternoon "
 
@@ -26,7 +27,7 @@ export default function Body(props) {
         subtitle={txt + "Questions"}
       />
       <Content>
-        <Search />
+        {props.showMenu ? <Search /> : null}
       </Content>
     </MyBody>
   )
