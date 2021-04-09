@@ -10,7 +10,7 @@ const MyMenu = styled.div`
 export default function Menu(props) {
   return (
     <MyMenu>
-      <h1>Filler</h1>       
+      <h1>Foo Bar</h1>       
     </MyMenu>
   );
 }
