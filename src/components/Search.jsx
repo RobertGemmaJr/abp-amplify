@@ -2,6 +2,7 @@
 import SearchIcon from '@material-ui/icons/Search';
 import Grid from '@material-ui/core/Grid';
 
+import Content from "./Content"
 import Button from "./Button"
 
 /**
@@ -18,7 +19,7 @@ export default function Search() {
   })
 
   return (
-    <div>
+    <Content>
       <Grid container justify="center">
         {alphabet.map((trio) => {
           // Keypad grid
@@ -41,6 +42,6 @@ export default function Search() {
           )
         })}
       </Grid>
-    </div>
+    </Content>
   )
 }
