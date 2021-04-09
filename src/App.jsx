@@ -7,6 +7,10 @@ import Header from "./components/Header"
 import Body from "./components/Body"
 import Footer from "./components/Footer"
 
+const Wrapper = styled.div`
+  height: 100vh;
+`;
+
 /**
  * @TODO meta info in index.html
  * @TODO favicon.io and logo images
@@ -23,12 +27,12 @@ function App(props) {
 
   return (
     <ThemeProvider theme={theme}>
-      <React.Fragment>
+      <Wrapper>
         <GlobalStyle />
         <Header menuClick={() => setShowMenu(!showMenu)}/>
         <Body showMenu={showMenu}/>
         <Footer />
-      </React.Fragment>
+      </Wrapper>
     </ThemeProvider>
   );
 }
