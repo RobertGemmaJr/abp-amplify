@@ -17,6 +17,12 @@ const theme = {
 
 // Global styling for html
 const GlobalStyle = createGlobalStyle`
+
+  // Force app to fill whole page
+  html, body, #root, .App {
+    height: 100%;
+  }
+
   body {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -32,10 +38,6 @@ const GlobalStyle = createGlobalStyle`
   p {
     font-family: ${theme.pFont};
     color: ${theme.black};
-  }
-
-  code {
-    font-family: source-code-pro, Menlo, monospace;
   }
 `
 

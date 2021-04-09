@@ -8,7 +8,10 @@ import Main from "./components/Main"
 import Footer from "./components/Footer"
 
 const Wrapper = styled.div`
-  height: 100vh;
+  /* height: 100vh; */
+  height: 100%;
+  display: flex;
+  flex-flow: column;
 `;
 
 /**

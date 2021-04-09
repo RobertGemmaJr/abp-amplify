@@ -7,6 +7,7 @@ import Search from "./Search";
 
 const MyMain = styled.main`
   padding: 2% 0;
+  flex: 1;
 `;
 
 /**
