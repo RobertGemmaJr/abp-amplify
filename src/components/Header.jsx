@@ -25,7 +25,7 @@ export default function Header(props) {
     const { resetClick, menuClick } = props;
     return(
         <MyHeader>
-            <h1>Health Check</h1>
+            <h1>Apple Blossom Health Check</h1>
             <div>
                 <Button type="Menu" text="RESET" click={resetClick}/>
                 <Button type="Menu" text="MENU" click={menuClick}/>
