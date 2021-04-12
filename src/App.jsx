@@ -8,7 +8,6 @@ import Main from "./components/Main"
 import Footer from "./components/Footer"
 
 const Wrapper = styled.div`
-  /* height: 100vh; */
   height: 100%;
   display: flex;
   flex-flow: column;
@@ -18,9 +17,10 @@ const Wrapper = styled.div`
  * @TODO meta info in index.html
  * @TODO favicon.io and logo images
  * @TODO Theme colors and fonts (black and white)
- * 
- * @TODO buttons should take style (type) and text as props
- * @TODO header with logo, name, reset button, menu, etc.
+
+ * @TODO Menu stuff: temperature (number, checkbox, no). Add/delete/edit questions
+ *   
+ * @TODO Add logo to header
  * 
  * @TODO morning/afternoon questions automatically decided by time?
  * @returns Outermost structure of the React app. Applies theming.
