@@ -1,7 +1,6 @@
-import styled from "styled-components";
-
-import { useTheme, makeStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
+import Box from '@material-ui/core/Box';
 
 const useStyles = makeStyles(theme => ({
   root : {
@@ -19,19 +18,18 @@ const useStyles = makeStyles(theme => ({
 
 
 export default function Header(props) {
-  const classes = useStyles();
   const { resetClick, menuClick } = props;
   
   return(
-    <header className={classes.root}>
+    <Box display="flex" flexDirection="row" bgcolor="background.paper">
       <h1>Apple Blossom Health Check</h1>
-        <div>
+        <Box m={1}>
           <Button color="primary" onClick={resetClick}>RESET</Button>
           <Button color="primary" onClick={menuClick}>Menu</Button>
           
           {/* Temp - don't know if we'll keep thermometer */}
           <Button color="secondary">RESET</Button>
-        </div>            
-    </header >
+        </Box>
+    </Box>
   )
 }
