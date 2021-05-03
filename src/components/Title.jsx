@@ -12,15 +12,6 @@ const MyTitle = styled.div`
   }
 `;
 
-/**
- * Searches databases for the company title and image.
- * Clicking on title swaps between morning and afternoon questionnaire
- * 
- * @todo Title shouldn't take full width
- * 
- * @param {*} props 
- * @returns Title at the top of the body
- */
 export default function Title(props) { 
   return (
     <MyTitle onClick={props.onClick}>

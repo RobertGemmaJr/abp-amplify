@@ -40,13 +40,6 @@ const Menu = styled.button`
     }
 `;
 
-/**
- * @TODO Better error handling for incorrect button type
- * 
- * @param {string} props.type The type of button, used for styling
- * @param {string} props.text The text to go inside the button
- * @returns A styled button component
- */
 export default function Button(props) {
     const { type, text, click } = props
     

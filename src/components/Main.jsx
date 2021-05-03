@@ -15,24 +15,17 @@ const MyMain = styled.main`
   align-items: center;
 `;
 
-/**
- * 
- * @param {*} props 
- * @returns The central body of the application
- */
 export default function Main(props) {
   // Hook for subtitle text
   const [qType, setQType] = useState(true)
   const qText = qType ? "Morning Questions" : "Afternoon Questions"
 
-  // Hook for displayed content based on app state
+  // Hook for displayed component based on app state
   const [component, setComponent] = useState(<Search />)
-  // The current component
-  // Based on program state (search, question, summary, etc.) 
 
 
   return(
-    <MyMain >
+    <MyMain>
       <Title 
         onClick={() => setQType(!qType)}
         subtitle={props.showMenu ? "Menu" : qText }
