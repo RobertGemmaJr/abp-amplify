@@ -6,7 +6,7 @@ import Main from "./components/Main"
 import Footer from "./components/Footer"
 
 /********** MATERIAL UI THEME **********/
-import { createMuiTheme, makeStyles, ThemeProvider } from '@material-ui/core/styles';
+import { makeStyles, ThemeProvider } from '@material-ui/core/styles';
 import theme from "./uitheme"
 
 const useStyles = makeStyles(theme => ({

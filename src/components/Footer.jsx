@@ -1,31 +1,27 @@
-import styled from "styled-components";
+import { makeStyles } from '@material-ui/core/styles';
 
-const Copyright = styled.p`
-  font-size: 1.2em;
-  color: ${props => props.theme.white};
-`;
+const useStyles = makeStyles(theme => ({
+  root: {
+    backgroundColor: theme.secondary,
+    justifyContent: "center",
+    alignItems: "center",
+    height: "50px",
+    width: "100%",
+  },
+  '& p': {
+    fontSize: "1.2em",
+    color: "#FFFFFF"
+  },
+}))
 
-const MyFooter = styled.footer`
-  background-color: ${props => props.theme.secondary};
 
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 50px;
-  width: 100%;
-`;
-
-/**
- * 
- * @param {*} props 
- * @returns The application's footer
- */
 export default function Footer(props) {
+  const classes = useStyles();
   const year = new Date().getFullYear();
 
   return(
-    <MyFooter>
-      <Copyright>Copyright {year} © DisruptWorks Technologies</Copyright>
-    </MyFooter>
-  );
+    <footer className={classes.root}>
+      <p>Copyright {year} © DisruptWorks Technologies</p>
+    </footer>
+  )
 }
