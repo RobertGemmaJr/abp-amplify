@@ -1,7 +1,8 @@
 import SearchIcon from '@material-ui/icons/Search';
 import Grid from '@material-ui/core/Grid';
 
-import Button from "./Button"
+// import Button from "./Button"
+import Button from '@material-ui/core/Button';
 
 /**
  * Body of application while searching for a family/staff
@@ -26,13 +27,15 @@ export default function Search(props) {
               {trio.map((letter) => {
                 // Keypad row
                 return(
-                  <Button type="Keypad" key={letter} text={letter} />
+                  // <Button type="Keypad" key={letter} text={letter} />
+                  <Button variant="contained">{letter}</Button>
                 )
               })}
               {
                 // Add search button to last row
                 (trio.length === 2) && 
-                <Button type="Keypad" text={<SearchIcon fontSize="medium"/>} />
+                // <Button type="Keypad" text={<SearchIcon fontSize="medium"/>} />
+                <Button variant="contained">{<SearchIcon fontSize="medium"/>}</Button>
               }
             </Grid>
           </Grid>
