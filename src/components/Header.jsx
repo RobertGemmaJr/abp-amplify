@@ -24,11 +24,11 @@ export default function Header(props) {
     <Box display="flex" flexDirection="row" bgcolor="background.paper">
       <h1>Apple Blossom Health Check</h1>
         <Box m={1}>
-          <Button color="primary" onClick={resetClick}>RESET</Button>
-          <Button color="primary" onClick={menuClick}>Menu</Button>
+          <Button variant="contained" color="primary" onClick={resetClick}>RESET</Button>
+          <Button variant="contained" color="primary" onClick={menuClick}>Menu</Button>
           
           {/* Temp - don't know if we'll keep thermometer */}
-          <Button color="secondary">RESET</Button>
+          <Button variant="contained" color="secondary">Thermometer</Button>
         </Box>
     </Box>
   )
