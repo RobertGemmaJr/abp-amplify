@@ -1,10 +1,12 @@
 import React from "react";
-import theme from "./theme"
+import Typography from '@material-ui/core/Typography';
 
 function App() {
   return (
     <div>
-      <h1>Hello, World</h1>
+      <Typography variant="h4" component="h1">
+        Hello, World!
+      </Typography>
     </div>
   );
 }
