@@ -1,0 +1,17 @@
+Cough?;N
+Shortness of breath or difficulty breathing?;N
+Body Aches?;N
+Chills?;N
+Runny Nose or Stuffy Nose?;N
+Sore throat?;N
+Diarrhea / GI Gastrointestinal Illness?;N
+Has anyone in your household been diagnosed with COVID-19?;N
+Have you had any visitors in your home from out of the state?;N
+Has anyone in your household travelled to a COVID red state in the past two weeks?;N
+Have you been asked by any public health authority to self isolate or quarantine in the last 48 hours?;N 
+Has anyone in your household been exposed to anyone testing positive to COVID-19 in the past two weeks?;N
+Has your child had a fever in the past 48 hours?;N
+My child hasn’t been given any medications that would suppress signs or symptoms of sickness listed above?;Y
+Has anyone in your household travelled outside the USA in the past two weeks or on a cruise?;N
+Has any one in the home travelled by commercial transportation in the past two weeks?;N
+Your child has been excluded!
