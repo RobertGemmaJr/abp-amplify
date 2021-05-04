@@ -4,7 +4,7 @@ import Typography from '@material-ui/core/Typography';
 
 const useStyles = makeStyles(theme => ({
     header: {
-      padding: theme.spacing(3, 2),
+      padding: theme.spacing(2),
       backgroundColor: theme.palette.grey[500],
     },
 }))
@@ -14,7 +14,7 @@ export default function Header(props) {
     return (
       <header className={classes.header}>
         <Container>
-          <Typography variant="body1">This is the header</Typography>
+          <Typography component="h4" variant="h4">Apple Blossom Health Check</Typography>
         </Container>
       </header>
     )
