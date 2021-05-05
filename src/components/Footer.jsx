@@ -1,6 +1,7 @@
 import { Container } from "@material-ui/core"
 import { makeStyles } from "@material-ui/styles";
 import Typography from '@material-ui/core/Typography';
+import { AutorenewTwoTone } from "@material-ui/icons";
 
 const useStyles = makeStyles(theme => ({
   footer: {
@@ -15,7 +16,10 @@ export default function Footer(props) {
   return (
     <footer className={classes.footer}>
       <Container>
-        <Typography variant="body1">This is the footer</Typography>
+        <Typography variant="body2" color="textSecondary" align="center">
+          {"Copyright © DisruptWorks Technologies "}
+          {new Date().getFullYear()}
+        </Typography>
       </Container>
     </footer>
   )
