@@ -8,16 +8,9 @@ const useStyles = makeStyles(theme => ({
 
   },
   button : {
-    variant: "contained",
-    color: "primary",
     margin: theme.spacing(1, 2),
-
     width: "75%",
     height: "75%",
-
-    '& hover': {
-      color: "secondary",
-    }
   }
 }))
 
@@ -34,14 +27,14 @@ export default function Keypad(props) {
       {alphabet.map((trio) => {
         // Each row
         return (
-          <Grid container justify="center" margin="auto">
+          <Grid container justify="center">
             {trio.map((letter) => {
               return (
                 <Grid item>
                   <Button
-                    size="large"
-                    className={classes.button}
                     variant="contained"
+                    color="primary"
+                    className={classes.button}
                   >
                     {letter}
                   </Button>
@@ -54,8 +47,9 @@ export default function Keypad(props) {
               {
                 (trio.length === 2) && 
                 <Button
-                  className={classes.button}
                   variant="contained"
+                  color="primary"
+                  className={classes.button}
                 >
                   {<SearchIcon fontSize="small"/>}
                 </Button>
