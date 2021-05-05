@@ -19,11 +19,21 @@ const useStyles = makeStyles(theme => ({
 
 function App() {
   const classes = useStyles();
+
+  // Hook for showing the menu
+  const [showMenu, setShowMenu] = React.useState(false)
+
+  // Function for reset button
+  function reset() { console.log("Reset") }
+
   return (
     <div className={classes.root}>
       <CssBaseline />
-      <Header />
-      <Main />
+      <Header 
+        menuClick={() => setShowMenu(!showMenu)}
+        resetClick={() => reset()}
+      />
+      <Main showMenu={showMenu}/>
       <Footer />
     </div>
   );

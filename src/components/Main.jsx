@@ -1,3 +1,4 @@
+import { useState } from "react"
 import { Container } from "@material-ui/core"
 import { makeStyles } from "@material-ui/styles";
 
@@ -16,9 +17,19 @@ const useStyles = makeStyles(theme => ({
 
 export default function Main(props) {
   const classes = useStyles();
+
+  // Hook for subtitle text
+  const [qType, setQType] = useState(true)
+  const qText = qType ? "Morning Questions" : "Afternoon Questions"
+
+  // Hook for displayed content
+
   return (
     <Container component="main" className={classes.main}>
-      <Title />
+      <Title 
+        onClick={() => setQType(!qType)}
+        subtitle={props.showMenu ? "Menu" : qText }
+      />
       <Keypad />
     </Container>
   )

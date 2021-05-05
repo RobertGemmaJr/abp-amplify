@@ -17,18 +17,31 @@ const useStyles = makeStyles(theme => ({
 
 export default function Header(props) {
     const classes = useStyles();
+    const { resetClick, menuClick } = props;
 
     return (
       <header className={classes.header}>
         <AppBar position="static">
             <Toolbar>
-              <Typography component="h4" variant="h4" className={classes.name}>
+              <Typography 
+                component="h4" 
+                variant="h4" 
+                className={classes.name}
+              >
                 Apple Blossom Health Check
               </Typography>
-              <Button variant="contained" className={classes.menuButton}>
+              <Button 
+                variant="contained" 
+                className={classes.menuButton}
+                onClick={resetClick}
+              >
                 Reset
               </Button>
-              <Button variant="contained" className={classes.menuButton}>
+              <Button 
+                variant="contained" 
+                className={classes.menuButton}
+                onClick={menuClick}
+              >
                 Menu
               </Button>
             </Toolbar>
