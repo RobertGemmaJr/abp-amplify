@@ -34,6 +34,7 @@ export default function Header(props) {
                 variant="contained" 
                 className={classes.menuButton}
                 onClick={resetClick}
+                color="secondary"
               >
                 Reset
               </Button>
@@ -41,6 +42,7 @@ export default function Header(props) {
                 variant="contained" 
                 className={classes.menuButton}
                 onClick={menuClick}
+                color="secondary"
               >
                 Menu
               </Button>
