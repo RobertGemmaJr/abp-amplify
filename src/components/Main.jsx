@@ -1,8 +1,8 @@
 import { Container } from "@material-ui/core"
 import { makeStyles } from "@material-ui/styles";
-import Typography from '@material-ui/core/Typography';
 
 import Title from "./Title"
+import Keypad from "./Keypad"
 
 const useStyles = makeStyles(theme => ({
   main: {
@@ -19,7 +19,7 @@ export default function Main(props) {
   return (
     <Container component="main" className={classes.main}>
       <Title />
-      <Typography variant="body1">This is the main</Typography>
+      <Keypad />
     </Container>
   )
 }
