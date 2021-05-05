@@ -5,19 +5,13 @@ import Button from '@material-ui/core/Button';
 
 const useStyles = makeStyles(theme => ({
     header: {
-      // padding: theme.spacing(2),
-      // backgroundColor: theme.palette.grey[500],
-
-      // // display: "flex",
-      // // flexDirection: "row",
-      // flexGrow: 1,
-    },
-    menuButton: {
-      // marginRight: theme.spacing(2),
-      margin: theme.spacing(0, 2),
+      backgroundColor: theme.palette.grey[500],
     },
     title: {
       flexGrow: 1,
+    },
+    menuButton: {
+      margin: theme.spacing(0, 2),
     },
 }))
 
