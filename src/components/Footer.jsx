@@ -1,7 +1,6 @@
 import { Container } from "@material-ui/core"
 import { makeStyles } from "@material-ui/styles";
 import Typography from '@material-ui/core/Typography';
-import { AutorenewTwoTone } from "@material-ui/icons";
 
 const useStyles = makeStyles(theme => ({
   footer: {
