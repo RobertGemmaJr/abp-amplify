@@ -7,7 +7,7 @@ const useStyles = makeStyles(theme => ({
     header: {
       backgroundColor: theme.palette.grey[500],
     },
-    title: {
+    name: {
       flexGrow: 1,
     },
     menuButton: {
@@ -21,9 +21,8 @@ export default function Header(props) {
     return (
       <header className={classes.header}>
         <AppBar position="static">
-          <Container>
             <Toolbar>
-              <Typography component="h4" variant="h4" className={classes.title}>
+              <Typography component="h4" variant="h4" className={classes.name}>
                 Apple Blossom Health Check
               </Typography>
               <Button variant="contained" className={classes.menuButton}>
@@ -33,9 +32,7 @@ export default function Header(props) {
                 Menu
               </Button>
             </Toolbar>
-          </Container>
         </AppBar>
-
       </header>
     )
 }
