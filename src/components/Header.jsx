@@ -21,17 +21,19 @@ export default function Header(props) {
     return (
       <header className={classes.header}>
         <AppBar position="static">
-          <Toolbar>
-            <Typography component="h4" variant="h4" className={classes.title}>
-              Apple Blossom Health Check
-            </Typography>
-            <Button variant="contained" className={classes.menuButton}>
-              Reset
-            </Button>
-            <Button variant="contained" className={classes.menuButton}>
-              Menu
-            </Button>
-          </Toolbar>
+          <Container>
+            <Toolbar>
+              <Typography component="h4" variant="h4" className={classes.title}>
+                Apple Blossom Health Check
+              </Typography>
+              <Button variant="contained" className={classes.menuButton}>
+                Reset
+              </Button>
+              <Button variant="contained" className={classes.menuButton}>
+                Menu
+              </Button>
+            </Toolbar>
+          </Container>
         </AppBar>
 
       </header>
