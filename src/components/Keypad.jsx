@@ -10,11 +10,13 @@ const useStyles = makeStyles(theme => ({
   button : {
     variant: "contained",
     color: "primary",
-    // fontSize: "1.5em", // UI Fontsize?
-    margin: theme.spacing(1),
+    margin: theme.spacing(1, 2),
+
+    width: "75%",
+    height: "75%",
 
     '& hover': {
-
+      color: "secondary",
     }
   }
 }))
@@ -28,15 +30,16 @@ export default function Keypad(props) {
     alphabet.push(trio.split(''));
   })
   return (
-    <Grid container justify="center">
+    <Grid container>
       {alphabet.map((trio) => {
         // Each row
         return (
-          <Grid container item justify="center">
+          <Grid container justify="center" margin="auto">
             {trio.map((letter) => {
               return (
                 <Grid item>
-                  <Button 
+                  <Button
+                    size="large"
                     className={classes.button}
                     variant="contained"
                   >
@@ -47,14 +50,17 @@ export default function Keypad(props) {
             })}
 
             {/* Add search button to last row */}
-            <Grid item>{
-              (trio.length === 2) && 
-              <Button 
-                className={classes.button}
-                variant="contained">
-                {<SearchIcon fontSize="small"/>}
-              </Button>
-            }</Grid>
+            <Grid item>
+              {
+                (trio.length === 2) && 
+                <Button
+                  className={classes.button}
+                  variant="contained"
+                >
+                  {<SearchIcon fontSize="small"/>}
+                </Button>
+              }
+            </Grid>
           </Grid>
         )
       })}
