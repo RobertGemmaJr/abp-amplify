@@ -4,6 +4,7 @@ import { makeStyles } from "@material-ui/styles";
 
 import Title from "./Title"
 import Keypad from "./Keypad"
+import Menu from "./Menu"
 
 const useStyles = makeStyles(theme => ({
   main: {
@@ -20,6 +21,10 @@ const useStyles = makeStyles(theme => ({
   content: {
     padding: theme.spacing(3),
     flexGrow: 1,
+
+    // Resize and center children
+    display: "flex",
+    justifyContent: "center"
   },
 }))
 
@@ -42,7 +47,8 @@ export default function Main(props) {
         <Title subtitle={props.showMenu ? "Menu" : qText } />
       </Container>
       <Container className={classes.content}>
-        <Keypad />
+        {/* <Keypad /> */}
+        <Menu />
       </Container>
     </Container>
   )
