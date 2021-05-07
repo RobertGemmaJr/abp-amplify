@@ -4,9 +4,6 @@ import Button from '@material-ui/core/Button';
 import SearchIcon from '@material-ui/icons/Search';
 
 const useStyles = makeStyles(theme => ({
-  keypad: {
-
-  },
   button : {
     margin: theme.spacing(1, 2),
     width: "75%",

@@ -7,14 +7,15 @@ import Keypad from "./Keypad"
 
 const useStyles = makeStyles(theme => ({
   main: {
-    marginTop: theme.spacing(3),
-    marginBottom: theme.spacing(2),
+    paddingTop: theme.spacing(3),
+    paddingBottom: theme.spacing(2),
+    flexGrow: 1,
   },
   title: {
     marginBottom: theme.spacing(3),
   },
   content: {
-
+    padding: theme.spacing(3),
   },
 }))
 
@@ -30,6 +31,7 @@ export default function Main(props) {
   return (
     <Container component="main" className={classes.main}>
       <Container 
+        disableGutters
         className={classes.title} 
         onClick={() => setQType(!qType)}
       >
