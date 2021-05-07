@@ -10,12 +10,16 @@ const useStyles = makeStyles(theme => ({
     paddingTop: theme.spacing(3),
     paddingBottom: theme.spacing(2),
     flexGrow: 1,
+
+    display: "flex",
+    flexDirection: "column",
   },
   title: {
     marginBottom: theme.spacing(3),
   },
   content: {
     padding: theme.spacing(3),
+    flexGrow: 1,
   },
 }))
 
