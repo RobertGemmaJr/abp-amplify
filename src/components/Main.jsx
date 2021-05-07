@@ -12,7 +12,10 @@ const useStyles = makeStyles(theme => ({
   },
   title: {
     marginBottom: theme.spacing(3),
-  }
+  },
+  content: {
+
+  },
 }))
 
 export default function Main(props) {
@@ -26,11 +29,15 @@ export default function Main(props) {
 
   return (
     <Container component="main" className={classes.main}>
-      <Title 
+      <Container 
+        className={classes.title} 
         onClick={() => setQType(!qType)}
-        subtitle={props.showMenu ? "Menu" : qText }
-      />
-      <Keypad />
+      >
+        <Title subtitle={props.showMenu ? "Menu" : qText } />
+      </Container>
+      <Container className={classes.content}>
+        <Keypad />
+      </Container>
     </Container>
   )
 }

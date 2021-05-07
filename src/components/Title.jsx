@@ -3,9 +3,6 @@ import { makeStyles } from "@material-ui/styles";
 import Typography from '@material-ui/core/Typography';
 
 const useStyles = makeStyles(theme => ({
-  title: {
-    marginBottom: theme.spacing(3),
-  },
   subtitle: {
     color: "green",
   },
@@ -15,7 +12,7 @@ export default function Title(props) {
   const classes = useStyles();
   
   return (
-    <Container className={classes.title} onClick={props.onClick}>
+    <Container>
       <Typography variant="h3" component="h1" align="center">
         Apple Blossom Preschool
       </Typography>
