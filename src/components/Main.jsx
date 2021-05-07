@@ -47,8 +47,8 @@ export default function Main(props) {
         <Title subtitle={props.showMenu ? "Menu" : qText } />
       </Container>
       <Container className={classes.content}>
-        {/* <Keypad /> */}
-        <Menu />
+        <Keypad />
+        {/* <Menu /> */}
       </Container>
     </Container>
   )

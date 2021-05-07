@@ -1,5 +1,5 @@
 import React from "react";
-import { CssBaseline } from "@material-ui/core"
+import { CssBaseline, Box } from "@material-ui/core"
 import { makeStyles } from "@material-ui/styles";
 
 import backgroundImg from "./media/background.png"
@@ -17,7 +17,7 @@ const useStyles = makeStyles(theme => ({
   },
 }))
 
-function App() {
+function App(props) {
   const classes = useStyles();
 
   // Hook for showing the menu
@@ -27,7 +27,7 @@ function App() {
   function reset() { console.log("Reset") }
 
   return (
-    <div className={classes.root}>
+    <Box className={classes.root}>
       <CssBaseline />
       <Header 
         menuClick={() => setShowMenu(!showMenu)}
@@ -35,7 +35,7 @@ function App() {
       />
       <Main showMenu={showMenu}/>
       <Footer />
-    </div>
+    </Box>
   );
 }
 
