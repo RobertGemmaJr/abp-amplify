@@ -29,14 +29,36 @@ const useStyles = makeStyles(theme => ({
   },
 }))
 
+function renderContent(props) {
+  console.log(props.content)
+  switch(props.content) {
+    case "menu":
+      return <Menu />;
+    case "home":
+      // return <Home />;
+      break;
+    case "keypad":
+      return <Keypad content={props.content} setContent={props.setContent}/>;
+    case "people":
+      return <People />;
+    case "questionnaire":
+        // return <Questionnaire />;
+        break;
+    case "summary":
+        // return <Summary />;
+        break;
+    default:
+      console.error("Invalid content code")
+      break;
+  }
+}
+
 export default function Main(props) {
   const classes = useStyles();
 
   // Hook for subtitle text
   const [qType, setQType] = useState(true)
   const qText = qType ? "Morning Questions" : "Afternoon Questions"
-
-  // Hook for displayed content
 
   return (
     <Container component="main" className={classes.main}>
@@ -48,9 +70,7 @@ export default function Main(props) {
         <Title subtitle={props.showMenu ? "Menu" : qText } />
       </Container>
       <Container className={classes.content}>
-        {/* <Keypad /> */}
-        {/* <Menu /> */}
-        <People />
+        {renderContent(props)}
       </Container>
     </Container>
   )

@@ -20,6 +20,21 @@ export default function Keypad(props) {
   'ABC DEF GHI JKL MNO PQR STU VWX YZ'.split(' ').forEach((trio) => {
     alphabet.push(trio.split(''));
   })
+
+  // Seperate button to avoid repeated code
+  function MyButton(text) {
+    return (
+      <Button
+        variant="contained"
+        color="primary"
+        className={classes.button}
+        onClick={() => props.setContent("people")}
+      >
+        {text}
+      </Button> 
+    )
+  }
+  
   return (
     <Grid container>
       {alphabet.map((trio) => {
@@ -29,28 +44,15 @@ export default function Keypad(props) {
             {trio.map((letter) => {
               return (
                 <Grid item>
-                  <Button
-                    variant="contained"
-                    color="primary"
-                    className={classes.button}
-                  >
-                    {letter}
-                  </Button>
+                  {MyButton(letter)}
                 </Grid>
               )
             })}
-
-            {/* Add search button to last row */}
             <Grid item>
               {
+                // Add search button to last row
                 (trio.length === 2) && 
-                <Button
-                  variant="contained"
-                  color="primary"
-                  className={classes.button}
-                >
-                  {<SearchIcon fontSize="small"/>}
-                </Button>
+                MyButton(<SearchIcon fontSize="small"/>)
               }
             </Grid>
           </Grid>

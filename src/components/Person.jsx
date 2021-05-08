@@ -28,7 +28,7 @@ export default function People(props) {
       <Container>
         <Typography 
           align="center" 
-          variant="h7" 
+          variant="" 
           component="h3"
           className={classes.name}
         >

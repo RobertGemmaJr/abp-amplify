@@ -20,20 +20,25 @@ const useStyles = makeStyles(theme => ({
 function App(props) {
   const classes = useStyles();
 
-  // Hook for showing the menu
-  const [showMenu, setShowMenu] = React.useState(false)
+  // Hook for content to be shown
+  const [content, setContent] = React.useState("keypad") // Start as home
 
   // Function for reset button
-  function reset() { console.log("Reset") }
+  function reset() { 
+    setContent("keypad")
+  }
 
   return (
     <Box className={classes.root}>
       <CssBaseline />
       <Header 
-        menuClick={() => setShowMenu(!showMenu)}
+        menuClick={() => setContent("menu")}
         resetClick={() => reset()}
       />
-      <Main showMenu={showMenu}/>
+      <Main 
+        content={content}
+        setContent={setContent}
+      />
       <Footer />
     </Box>
   );
