@@ -20,12 +20,12 @@ const useStyles = makeStyles(theme => ({
     marginBottom: theme.spacing(3),
   },
   content: {
-    padding: theme.spacing(3),
+    padding: theme.spacing(0),
     flexGrow: 1,
 
     // Resize and center children
     display: "flex",
-    justifyContent: "center"
+    justifyContent: "center",
   },
 }))
 
