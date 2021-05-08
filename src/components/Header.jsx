@@ -1,4 +1,4 @@
-import { AppBar, Container, Toolbar } from "@material-ui/core"
+import { AppBar, Container, Paper, Toolbar } from "@material-ui/core"
 import { makeStyles } from "@material-ui/styles";
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
@@ -21,7 +21,7 @@ export default function Header(props) {
 
     return (
       <header className={classes.header}>
-        <AppBar position="static">
+        <AppBar position="fixed">
         <Container>
             <Toolbar>
               <Typography 
@@ -47,10 +47,10 @@ export default function Header(props) {
               >
                 Menu
               </Button>
-              
             </Toolbar>
-            </Container>
+          </Container>
         </AppBar>
+        <Toolbar />
       </header>
     )
 }
