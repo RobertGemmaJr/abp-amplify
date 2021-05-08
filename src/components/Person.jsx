@@ -1,4 +1,4 @@
-import { Button, Container, Card, CardContent, Typography } from "@material-ui/core"
+import { Button, Container, Typography } from "@material-ui/core"
 import { makeStyles } from "@material-ui/styles";
 
 const useStyles = makeStyles(theme => ({
