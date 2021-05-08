@@ -1,4 +1,4 @@
-import { Card, CardContent, Typography } from "@material-ui/core"
+import { Button, Container, Card, CardContent, Typography } from "@material-ui/core"
 import { makeStyles } from "@material-ui/styles";
 
 const useStyles = makeStyles(theme => ({
@@ -8,10 +8,13 @@ const useStyles = makeStyles(theme => ({
     backgroundColor: theme.palette.primary.light,
     "&:hover": {
       backgroundColor: theme.palette.primary.dark,
+    },
+    "& *": {
+      padding: theme.spacing(0),
     }
   },
   name: {
-    marginBottom: theme.spacing(2),
+    marginBottom: theme.spacing(3),
   }
 }))
 
@@ -21,8 +24,8 @@ export default function People(props) {
   const name = "Robert Gemma, Jr."
   const id = 12345
   return (
-    <Card className={classes.person}>
-      <CardContent>
+    <Button className={classes.person}>
+      <Container>
         <Typography 
           align="center" 
           variant="h7" 
@@ -37,7 +40,19 @@ export default function People(props) {
         >
           ID: {id}
         </Typography>
-      </CardContent>
-    </Card>
+        <Typography
+          variant="body1" 
+          component="p" 
+        >
+          ID: {id}
+        </Typography>
+        <Typography
+          variant="body1" 
+          component="p" 
+        >
+          ID: {id}
+        </Typography>
+      </Container>
+    </Button>
   )
 }

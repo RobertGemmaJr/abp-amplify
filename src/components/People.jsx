@@ -1,4 +1,4 @@
-import { Container, GridList, GridListTile } from "@material-ui/core"
+import { Typography, Button, Container, GridList, GridListTile } from "@material-ui/core"
 import { makeStyles } from "@material-ui/styles";
 
 import Person from "./Person"
@@ -14,6 +14,8 @@ export default function People(props) {
   const classes = useStyles();
 
   var temp = []
+  const name = "Robert Gemma, Jr."
+  const id = 12345
   for(var i=0; i < 15; i++) {
     temp.push(
       <GridListTile cols={1}>
