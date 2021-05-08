@@ -23,17 +23,21 @@ function App(props) {
   // Hook for content to be shown
   const [content, setContent] = React.useState("keypad") // Start as home
 
-  // Function for reset button
-  function reset() { 
+
+  function handleResetClick() { 
     setContent("keypad")
+  }
+
+  function handleMenuClick() {
+    setContent("menu")
   }
 
   return (
     <Box className={classes.root}>
       <CssBaseline />
       <Header 
-        menuClick={() => setContent("menu")}
-        resetClick={() => reset()}
+        menuClick={() => handleMenuClick()}
+        resetClick={() => handleResetClick()}
       />
       <Main 
         content={content}

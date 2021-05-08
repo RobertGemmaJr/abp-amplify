@@ -12,7 +12,6 @@ const useStyles = makeStyles(theme => ({
     paddingTop: theme.spacing(3),
     paddingBottom: theme.spacing(2),
     flexGrow: 1,
-
     display: "flex",
     flexDirection: "column",
   },
@@ -22,23 +21,22 @@ const useStyles = makeStyles(theme => ({
   content: {
     padding: theme.spacing(0),
     flexGrow: 1,
-
-    // Resize and center children
     display: "flex",
     justifyContent: "center",
   },
 }))
 
+// Renders the main content based on program state
 function renderContent(props) {
-  console.log(props.content)
-  switch(props.content) {
+  const {content, setContent} = props;
+  switch(content) {
     case "menu":
       return <Menu />;
     case "home":
       // return <Home />;
       break;
     case "keypad":
-      return <Keypad content={props.content} setContent={props.setContent}/>;
+      return <Keypad content={content} setContent={setContent}/>;
     case "people":
       return <People />;
     case "questionnaire":
