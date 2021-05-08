@@ -6,9 +6,12 @@ const useStyles = makeStyles(theme => ({
     width: "100%",
     height: "100%",
     backgroundColor: theme.palette.primary.light,
+    "&:hover": {
+      backgroundColor: theme.palette.primary.dark,
+    }
   },
   name: {
-    // fontSize: 14,
+    marginBottom: theme.spacing(2),
   }
 }))
 
@@ -23,10 +26,16 @@ export default function People(props) {
         <Typography 
           align="center" 
           variant="h7" 
-          component="h3" 
+          component="h3"
           className={classes.name}
         >
           {name}
+        </Typography>
+        <Typography
+          variant="body1" 
+          component="p" 
+        >
+          ID: {id}
         </Typography>
       </CardContent>
     </Card>

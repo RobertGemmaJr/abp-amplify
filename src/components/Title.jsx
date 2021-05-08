@@ -11,10 +11,11 @@ const useStyles = makeStyles(theme => ({
 export default function Title(props) {
   const classes = useStyles();
   
+  const title = "Apple Blossom Preschool"
   return (
     <Container>
       <Typography variant="h3" component="h1" align="center">
-        Apple Blossom Preschool
+        {title}
       </Typography>
       <Typography 
         variant="h5" 
