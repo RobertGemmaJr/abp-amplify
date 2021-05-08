@@ -5,6 +5,7 @@ import { makeStyles } from "@material-ui/styles";
 import Title from "./Title"
 import Keypad from "./Keypad"
 import Menu from "./Menu"
+import People from "./People";
 
 const useStyles = makeStyles(theme => ({
   main: {
@@ -47,8 +48,9 @@ export default function Main(props) {
         <Title subtitle={props.showMenu ? "Menu" : qText } />
       </Container>
       <Container className={classes.content}>
-        <Keypad />
+        {/* <Keypad /> */}
         {/* <Menu /> */}
+        <People />
       </Container>
     </Container>
   )
