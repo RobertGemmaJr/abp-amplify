@@ -54,10 +54,9 @@ function renderContent(props) {
 export default function Main(props) {
   const classes = useStyles();
 
-  // Hook for subtitle text
+  // Hook for question type
   const [qType, setQType] = useState(true)
-  const qText = qType ? "Morning Questions" : "Afternoon Questions"
-
+  
   return (
     <Container component="main" className={classes.main}>
       <Container 
@@ -65,7 +64,7 @@ export default function Main(props) {
         className={classes.title} 
         onClick={() => setQType(!qType)}
       >
-        <Title subtitle={props.showMenu ? "Menu" : qText } />
+        <Title content={props.content} qType={qType} />
       </Container>
       <Container className={classes.content}>
         {renderContent(props)}

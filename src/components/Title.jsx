@@ -10,8 +10,20 @@ const useStyles = makeStyles(theme => ({
 
 export default function Title(props) {
   const classes = useStyles();
+  const {content, qType} = props
   
+  // Get title and subtitle
   const title = "Apple Blossom Preschool"
+  let subtitle = ""
+  if (content === "menu") {
+    subtitle = "Menu"
+  } else if (content === "summary") {
+    subtitle = "Summary"
+  } else {
+    subtitle = qType ? "Morning Questions" : "Afternoon Questions"
+  }
+
+  // subtitle={props.content === "menu" ? "Menu" : qText } 
   return (
     <Container>
       <Typography variant="h3" component="h1" align="center">
@@ -23,7 +35,7 @@ export default function Title(props) {
         align="center" 
         className={classes.subtitle}
       >
-        {props.subtitle}
+        {subtitle}
       </Typography>
     </Container>
   )
