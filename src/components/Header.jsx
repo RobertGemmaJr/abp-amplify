@@ -10,14 +10,29 @@ const useStyles = makeStyles(theme => ({
     name: {
       flexGrow: 1,
     },
-    menuButton: {
-      margin: theme.spacing(0, 2),
+    hButton: {
+      margin: theme.spacing(0, 1),
     },
 }))
 
 export default function Header(props) {
     const classes = useStyles();
-    const { resetClick, menuClick } = props;
+    const { homeClick, resetClick, menuClick } = props;
+
+    function HButton(click, text) {
+      return (
+        <Button 
+        variant="contained" 
+        className={classes.hButton}
+        onClick={click}
+        color="secondary"
+        size="large"
+      >
+        {text}
+      </Button>
+      )
+
+    }
 
     return (
       <header className={classes.header}>
@@ -31,22 +46,9 @@ export default function Header(props) {
               >
                 Apple Blossom Health Check
               </Typography>
-              <Button 
-                variant="contained" 
-                className={classes.menuButton}
-                onClick={resetClick}
-                color="secondary"
-              >
-                Reset
-              </Button>
-              <Button 
-                variant="contained" 
-                className={classes.menuButton}
-                onClick={menuClick}
-                color="secondary"
-              >
-                Menu
-              </Button>
+              {HButton(homeClick, "Home")}
+              {HButton(resetClick, "Reset")}
+              {HButton(menuClick, "Menu")}
             </Toolbar>
           </Container>
         </AppBar>

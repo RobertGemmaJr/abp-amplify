@@ -25,7 +25,9 @@ function App(props) {
   const [content, setContent] = React.useState("keypad")
   const [menuPrev, setMenuPrev] = React.useState("keypad")
 
-  
+  function handleHomeClick() {
+    setContent("keypad")
+  }
   function handleResetClick() { 
     setContent("keypad")
   }
@@ -43,6 +45,7 @@ function App(props) {
     <Box className={classes.root}>
       <CssBaseline />
       <Header 
+        homeClick={() => handleHomeClick()}
         menuClick={() => handleMenuClick()}
         resetClick={() => handleResetClick()}
       />
