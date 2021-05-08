@@ -22,6 +22,7 @@ function App(props) {
 
   // Hook for content to be shown
   const [content, setContent] = React.useState("keypad") // Start as home
+  const [previous, setPrevious] = React.useState("keypad")
 
 
   function handleResetClick() { 
@@ -29,7 +30,12 @@ function App(props) {
   }
 
   function handleMenuClick() {
-    setContent("menu")
+    if (content === "menu") {
+      setContent(previous)
+    } else {
+      setPrevious(content)
+      setContent("menu")
+    }
   }
 
   return (
