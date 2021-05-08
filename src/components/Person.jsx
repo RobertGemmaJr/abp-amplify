@@ -15,14 +15,31 @@ const useStyles = makeStyles(theme => ({
   },
   name: {
     marginBottom: theme.spacing(3),
-  }
+  },
 }))
+
+function Info(text) {
+  return (
+    <Typography 
+      style={{textTransform: "none"}} 
+      align="left" 
+      variant="body2" 
+      component="p"
+    >
+      {text}
+    </Typography>
+  )
+}
+
 
 export default function People(props) {
   const classes = useStyles();
 
-  const name = "Robert Gemma, Jr."
+
+  const name = "Robert M. Gemma"
   const id = 12345
+  const guardian1 = "Foo Bar"
+  const guardian2 = "Foo Bar"
   return (
     <Button className={classes.person}>
       <Container>
@@ -34,24 +51,9 @@ export default function People(props) {
         >
           {name}
         </Typography>
-        <Typography
-          variant="body1" 
-          component="p" 
-        >
-          ID: {id}
-        </Typography>
-        <Typography
-          variant="body1" 
-          component="p" 
-        >
-          ID: {id}
-        </Typography>
-        <Typography
-          variant="body1" 
-          component="p" 
-        >
-          ID: {id}
-        </Typography>
+        {Info("ID: " + id)}
+        {Info("Guardian 1: " + guardian1)}
+        {Info("Guardian 2: " + guardian2)}
       </Container>
     </Button>
   )
