@@ -4,6 +4,7 @@ import { makeStyles } from "@material-ui/styles";
 const useStyles = makeStyles(theme => ({
   menu: {
     width: "100%",
+    backgroundColor: theme.palette.primary.light,
   }
 }))
 

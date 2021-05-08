@@ -4,7 +4,7 @@ import Typography from '@material-ui/core/Typography';
 
 const useStyles = makeStyles(theme => ({
   subtitle: {
-    color: "green",
+    color: theme.palette.secondary.dark,
   },
 }))
 

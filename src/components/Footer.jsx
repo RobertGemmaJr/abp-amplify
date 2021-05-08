@@ -6,8 +6,11 @@ const useStyles = makeStyles(theme => ({
   footer: {
     padding: theme.spacing(3, 2),
     marginTop: 'auto',
-    backgroundColor: theme.palette.grey[500],
+    backgroundColor: theme.palette.primary.main,
   },
+  copyright: {
+    color: theme.palette.common.white,
+  }
 }))
 
 export default function Footer(props) {
@@ -15,7 +18,11 @@ export default function Footer(props) {
   return (
     <footer className={classes.footer}>
       <Container>
-        <Typography variant="body2" color="textSecondary" align="center">
+        <Typography 
+          variant="body2"
+          align="center"
+          className={classes.copyright}
+        >
           {"Copyright © DisruptWorks Technologies "}
           {new Date().getFullYear()}
         </Typography>

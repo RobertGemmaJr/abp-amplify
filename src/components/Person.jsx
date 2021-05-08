@@ -5,6 +5,7 @@ const useStyles = makeStyles(theme => ({
   person: {
     width: "100%",
     height: "100%",
+    backgroundColor: theme.palette.primary.light,
   },
   name: {
     // fontSize: 14,

@@ -5,7 +5,7 @@ import Button from '@material-ui/core/Button';
 
 const useStyles = makeStyles(theme => ({
     header: {
-      backgroundColor: theme.palette.grey[500],
+      backgroundColor: theme.palette.primary.light,
     },
     name: {
       flexGrow: 1,
@@ -24,7 +24,6 @@ export default function Header(props) {
         <AppBar position="static">
         <Container>
             <Toolbar>
-            
               <Typography 
                 component="h4" 
                 variant="h4" 

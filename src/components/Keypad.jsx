@@ -8,6 +8,7 @@ const useStyles = makeStyles(theme => ({
     margin: theme.spacing(1, 2),
     width: "75%",
     height: "75%",
+    backgroundColor: theme.palette.primary.light,
   }
 }))
 
