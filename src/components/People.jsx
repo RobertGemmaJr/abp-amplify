@@ -1,4 +1,4 @@
-import { Container, GridList, GridListTile } from "@material-ui/core"
+import { GridList, GridListTile } from "@material-ui/core"
 import { makeStyles } from "@material-ui/styles";
 
 import Person from "./Person"

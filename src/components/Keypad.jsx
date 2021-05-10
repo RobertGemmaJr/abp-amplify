@@ -1,13 +1,16 @@
-import { makeStyles } from '@material-ui/core';
+import { GridList, GridListTile, makeStyles } from '@material-ui/core';
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
 import SearchIcon from '@material-ui/icons/Search';
 
 const useStyles = makeStyles(theme => ({
-  button : {
-    margin: theme.spacing(1, 2),
-    width: "75%",
-    height: "75%",
+  gridList: {
+    width: "50%",
+    justifyContent: "center",
+  },
+  button: {
+    width: "100%",
+    height: "100%",
     backgroundColor: theme.palette.primary.light,
   }
 }))
@@ -16,48 +19,28 @@ export default function Keypad(props) {
   const classes = useStyles();
 
   // Alphabet for keypad letters
-  const alphabet = []
-  'ABC DEF GHI JKL MNO PQR STU VWX YZ'.split(' ').forEach((trio) => {
-    alphabet.push(trio.split(''));
-  })
-
-  // Seperate button to avoid repeated code
-  function MyButton(text) {
-    return (
-      <Button
-        variant="contained"
-        color="primary"
-        className={classes.button}
-        onClick={() => props.setContent("people")}
-      >
-        {text}
-      </Button> 
-    )
-  }
-  
+  const alphabet = 'ABCDEFGHIJKLMNOPQRTSUVWXYZ'.split('')
   return (
-    <Grid container>
-      {alphabet.map((trio) => {
-        // Each row
+    <GridList
+      cellHeight="auto"
+      cols={4} 
+      spacing={25}
+      className={classes.gridList}
+    >
+      {alphabet.map(letter => {
         return (
-          <Grid container justify="center">
-            {trio.map((letter) => {
-              return (
-                <Grid item>
-                  {MyButton(letter)}
-                </Grid>
-              )
-            })}
-            <Grid item>
-              {
-                // Add search button to last row
-                (trio.length === 2) && 
-                MyButton(<SearchIcon fontSize="small"/>)
-              }
-            </Grid>
-          </Grid>
+          <GridListTile cols={1}>
+            <Button
+              variant="contained"
+              color="primary"
+              className={classes.button}
+              onClick={() => props.setContent("people")}
+            >
+              {letter}
+            </Button>
+          </GridListTile>
         )
       })}
-    </Grid>
+    </GridList>
   )
 }
