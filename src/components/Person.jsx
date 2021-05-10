@@ -4,14 +4,12 @@ import { makeStyles } from "@material-ui/styles";
 const useStyles = makeStyles(theme => ({
   person: {
     width: "100%",
-    height: "100%",
+    height: 150,
+
     backgroundColor: theme.palette.primary.light,
     "&:hover": {
       backgroundColor: theme.palette.primary.dark,
     },
-    "& *": {
-      padding: theme.spacing(0),
-    }
   },
   name: {
     marginBottom: theme.spacing(3),
@@ -42,7 +40,7 @@ export default function People(props) {
   const guardian2 = "Foo Bar"
   return (
     <Button className={classes.person}>
-      <Container>
+      <Container disableGutters>
         <Typography 
           align="center" 
           variant="" 

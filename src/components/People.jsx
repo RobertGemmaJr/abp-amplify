@@ -4,9 +4,9 @@ import { makeStyles } from "@material-ui/styles";
 import Person from "./Person"
 
 const useStyles = makeStyles(theme => ({
-  people: {
-  },
   gridList: {
+    width: "100%",
+    height: "100%",
   },
 }))
 
@@ -14,7 +14,7 @@ export default function People(props) {
   const classes = useStyles();
 
   var temp = []
-  for(var i=0; i < 15; i++) {
+  for(var i=0; i < 16; i++) {
     temp.push(
       <GridListTile cols={1}>
         <Person />
@@ -23,15 +23,13 @@ export default function People(props) {
   }
 
   return (
-    <Container disableGutters className={classes.people}>
-      <GridList 
-        cellHeight={150}
-        cols={4} 
-        spacing={5} 
-        className={classes.gridList}
-      >
-      {temp}
-      </GridList>
-    </Container>
+    <GridList 
+      cellHeight="auto"
+      cols={4} 
+      spacing={5} 
+      className={classes.gridList}
+    >
+    {temp}
+    </GridList>
   )
 }
