@@ -3,6 +3,7 @@ import { Container } from "@material-ui/core"
 import { makeStyles } from "@material-ui/styles";
 
 import Title from "./Title"
+import Home from "./Home"
 import Keypad from "./Keypad"
 import Menu from "./Menu"
 import People from "./People";
@@ -27,16 +28,14 @@ const useStyles = makeStyles(theme => ({
 }))
 
 // Renders the main content based on program state
-function renderContent(props) {
-  const {content, setContent} = props;
+function renderContent(content, setContent) {
   switch(content) {
     case "menu":
       return <Menu />;
     case "home":
-      // return <Home />;
-      break;
+      return <Home setContent={setContent}/>;
     case "keypad":
-      return <Keypad content={content} setContent={setContent}/>;
+      return <Keypad setContent={setContent}/>;
     case "people":
       return <People />;
     case "questionnaire":
@@ -53,6 +52,7 @@ function renderContent(props) {
 
 export default function Main(props) {
   const classes = useStyles();
+  const {content, setContent} = props;
 
   // Hook for question type
   const [qType, setQType] = useState(true)
@@ -64,10 +64,10 @@ export default function Main(props) {
         className={classes.title} 
         onClick={() => setQType(!qType)}
       >
-        <Title content={props.content} qType={qType} />
+        <Title content={content} qType={qType} />
       </Container>
       <Container className={classes.content}>
-        {renderContent(props)}
+        {renderContent(content, setContent)}
       </Container>
     </Container>
   )

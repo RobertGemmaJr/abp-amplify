@@ -1,4 +1,4 @@
-import { AppBar, Container, Paper, Toolbar } from "@material-ui/core"
+import { AppBar, Container, Toolbar } from "@material-ui/core"
 import { makeStyles } from "@material-ui/styles";
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
@@ -52,7 +52,7 @@ export default function Header(props) {
             </Toolbar>
           </Container>
         </AppBar>
-        <Toolbar />
+        <Toolbar /> {/* Forces content below fixed AppBar */}
       </header>
     )
 }

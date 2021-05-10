@@ -22,16 +22,15 @@ function App(props) {
 
   // Hook for content to be shown
   // TODO: Should start as "home"
-  const [content, setContent] = React.useState("keypad")
-  const [menuPrev, setMenuPrev] = React.useState("keypad")
+  const [content, setContent] = React.useState("home")
+  const [menuPrev, setMenuPrev] = React.useState("home")
 
   function handleHomeClick() {
-    setContent("keypad")
+    setContent("home")
   }
   function handleResetClick() { 
     setContent("keypad")
   }
-
   function handleMenuClick() {
     if (content === "menu") {
       setContent(menuPrev)
