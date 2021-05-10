@@ -2,12 +2,14 @@ import { Button, GridList, GridListTile, makeStyles } from '@material-ui/core';
 
 const useStyles = makeStyles(theme => ({
   gridList: {
+    width: "100%",
     maxWidth: 500,
     justifyContent: "center",
     alignContent: "center"
   },
   button: {
     width: "100%",
+    height: "100%",
     backgroundColor: theme.palette.primary.light,
     fontSize: 25,
   }
@@ -22,14 +24,14 @@ export default function Keypad(props) {
   }
   return (
     <GridList
-      cellHeight="auto"
-      cols={4} 
-      spacing={25}
+      cellHeight={50}
+      cols={4}
+      spacing={20}
       className={classes.gridList}
     >
       {alphabet.map(letter => {
         return (
-          <GridListTile cols={1}>
+          <GridListTile>
             <Button
               variant="contained"
               color="primary"

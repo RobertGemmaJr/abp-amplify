@@ -16,7 +16,7 @@ export default function People(props) {
   var temp = []
   for(var i=0; i < 16; i++) {
     temp.push(
-      <GridListTile cols={1}>
+      <GridListTile>
         <Person />
       </GridListTile>
     )
