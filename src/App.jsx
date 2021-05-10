@@ -29,7 +29,9 @@ function App(props) {
     setContent("home")
   }
   function handleResetClick() { 
-    setContent("keypad")
+    if (content !== "home" && content !== "menu") {
+      setContent("keypad")
+    }
   }
   function handleMenuClick() {
     if (content === "menu") {

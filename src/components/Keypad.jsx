@@ -19,8 +19,8 @@ export default function Keypad(props) {
   const classes = useStyles();
   const alphabet = 'ABCDEFGHIJKLMNOPQRTSUVWXYZ'.split('')
 
-  function handleKeypadClick(setContent) {
-    setContent("people")
+  function handleKeypadClick(props) {
+    props.setContent("people")
   }
   return (
     <GridList
@@ -36,7 +36,7 @@ export default function Keypad(props) {
               variant="contained"
               color="primary"
               className={classes.button}
-              onClick={() => handleKeypadClick(props.setContent)}
+              onClick={() => handleKeypadClick(props)}
             >
               {letter}
             </Button>
