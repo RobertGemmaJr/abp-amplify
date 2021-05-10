@@ -15,7 +15,9 @@ export default function Title(props) {
   // Get title and subtitle
   const title = "Apple Blossom Preschool"
   let subtitle = ""
-  if (content === "menu") {
+  if (content === "home") {
+    subtitle = "Home"
+  } else if (content === "menu") {
     subtitle = "Menu"
   } else if (content === "summary") {
     subtitle = "Summary"
@@ -23,7 +25,6 @@ export default function Title(props) {
     subtitle = qType ? "Morning Questions" : "Afternoon Questions"
   }
 
-  // subtitle={props.content === "menu" ? "Menu" : qText } 
   return (
     <Container>
       <Typography variant="h3" component="h1" align="center">

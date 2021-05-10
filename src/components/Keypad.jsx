@@ -1,25 +1,25 @@
-import { GridList, GridListTile, makeStyles } from '@material-ui/core';
-import Grid from '@material-ui/core/Grid';
-import Button from '@material-ui/core/Button';
-import SearchIcon from '@material-ui/icons/Search';
+import { Button, GridList, GridListTile, makeStyles } from '@material-ui/core';
 
 const useStyles = makeStyles(theme => ({
   gridList: {
-    width: "50%",
+    maxWidth: 500,
     justifyContent: "center",
+    alignContent: "center"
   },
   button: {
     width: "100%",
-    height: "100%",
     backgroundColor: theme.palette.primary.light,
+    fontSize: 25,
   }
 }))
 
 export default function Keypad(props) {
   const classes = useStyles();
-
-  // Alphabet for keypad letters
   const alphabet = 'ABCDEFGHIJKLMNOPQRTSUVWXYZ'.split('')
+
+  function handleKeypadClick(setContent) {
+    setContent("people")
+  }
   return (
     <GridList
       cellHeight="auto"
@@ -34,7 +34,7 @@ export default function Keypad(props) {
               variant="contained"
               color="primary"
               className={classes.button}
-              onClick={() => props.setContent("people")}
+              onClick={() => handleKeypadClick(props.setContent)}
             >
               {letter}
             </Button>
