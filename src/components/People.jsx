@@ -13,15 +13,13 @@ const useStyles = makeStyles(theme => ({
 export default function People(props) {
   const classes = useStyles();
 
+  // Temporary People
   var temp = []
   const id = 12345
   for(var i=0; i < 16; i++) {
     temp.push(
       <GridListTile>
-        <Person 
-          setContent={props.setContent}
-          id={id}
-        />
+        <Person setContent={props.setContent} id={id} />
       </GridListTile>
     )
   }

@@ -19,21 +19,6 @@ export default function Header(props) {
     const classes = useStyles();
     const { homeClick, resetClick, menuClick } = props;
 
-    function HButton(click, text) {
-      return (
-        <Button 
-          variant="contained" 
-          className={classes.hButton}
-          onClick={click}
-          color="secondary"
-          size="large"
-        >
-          {text}
-        </Button>
-      )
-
-    }
-
     return (
       <header className={classes.header}>
         <AppBar position="fixed">
@@ -46,10 +31,8 @@ export default function Header(props) {
               >
                 Apple Blossom Health Check
               </Typography>
-              {/* {HButton(homeClick, "Home")}
-              {HButton(resetClick, "Reset")}
-              {HButton(menuClick, "Menu")} */}
-
+              
+              {/* Home Button */}
               <Button 
                 variant="contained" 
                 className={classes.hButton}
@@ -61,6 +44,7 @@ export default function Header(props) {
                 Home
               </Button>
 
+              {/* Reset Button */}
               <Button 
                 variant="contained" 
                 className={classes.hButton}
@@ -72,6 +56,7 @@ export default function Header(props) {
                 Reset
               </Button>
 
+              {/* Menu Button */}
               <Button 
                 variant="contained" 
                 className={classes.hButton}

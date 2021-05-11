@@ -5,6 +5,7 @@ import Typography from '@material-ui/core/Typography';
 const useStyles = makeStyles(theme => ({
   subtitle: {
     color: theme.palette.secondary.dark,
+    fontWeight: "bold",
   },
 }))
 

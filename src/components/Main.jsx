@@ -53,7 +53,6 @@ export default function Main(props) {
         break;
     }
   }
-  
 
   // Hook for question type
   const [qType, setQType] = useState(true)
@@ -67,9 +66,7 @@ export default function Main(props) {
       >
         <Title content={content} qType={qType} />
       </Container>
-      <Container className={classes.content}>
-        {renderContent()}
-      </Container>
+      <Container className={classes.content}> {renderContent()} </Container>
     </Container>
   )
 }

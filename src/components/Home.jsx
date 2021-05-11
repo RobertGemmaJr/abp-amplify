@@ -16,8 +16,7 @@ export default function Home(props) {
   const classes = useStyles();
 
   return (
-    <Box 
-      className={classes.home} 
+    <Box
       width="100%" 
       display="flex" 
       alignItems="center"
@@ -25,15 +24,18 @@ export default function Home(props) {
     >
       <HomeCard 
         setContent={props.setContent} 
-        image={familyLogo} text="Child Form"
+        image={familyLogo} 
+        text="Child Form"
       />
       <HomeCard 
         setContent={props.setContent} 
-        image={thermometerGuy} text="Staff Form"
+        image={thermometerGuy} 
+        text="Staff Form"
       />
       <HomeCard 
         setContent={props.setContent} 
-        image={logo} text="Manual Entry"
+        image={logo} 
+        text="Manual Entry"
       />
     </Box>
 

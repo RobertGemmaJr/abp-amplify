@@ -2,8 +2,6 @@ import React from "react";
 import { CssBaseline, Box } from "@material-ui/core"
 import { makeStyles } from "@material-ui/styles";
 
-// import backgroundImg from "./media/background.png"
-
 import Header from "./components/Header"
 import Main from "./components/Main"
 import Footer from "./components/Footer"
@@ -13,7 +11,6 @@ const useStyles = makeStyles(theme => ({
     display: "flex",
     flexDirection: "column",
     minHeight: "100vh",
-    // backgroundImage: `url(${backgroundImg})`,
   },
 }))
 
@@ -28,9 +25,7 @@ function App(props) {
     setContent("home")
   }
   function handleResetClick() { 
-    if (content !== "home" && content !== "menu") {
-      setContent("keypad")
-    }
+    setContent("keypad")
   }
   function handleMenuClick() {
     if (content === "menu") {

@@ -29,15 +29,10 @@ export default function HomeCard(props) {
         />
       </CardActionArea>
       <CardContent>
-        <Typography 
-            align="center"
-            variant="" 
-            component="h3"
-          >
-            {props.text}
-          </Typography>
+        <Typography align="center" variant="" component="h3">
+          {props.text}
+        </Typography>
       </CardContent>
-      
     </Card>    
   )
 }

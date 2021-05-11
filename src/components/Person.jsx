@@ -6,7 +6,6 @@ const useStyles = makeStyles(theme => ({
     width: "100%",
     height: 150,
     padding: theme.spacing(3, 1),
-
     backgroundColor: theme.palette.primary.light,
     "&:hover": {
       backgroundColor: theme.palette.primary.dark,
@@ -16,18 +15,6 @@ const useStyles = makeStyles(theme => ({
     marginBottom: theme.spacing(3),
   },
 }))
-
-function Info(text) {
-  return (
-    <Typography 
-      align="left" 
-      variant="body2" 
-      component="p"
-    >
-      {text}
-    </Typography>
-  )
-}
 
 
 export default function Person(props) {
@@ -56,9 +43,16 @@ export default function Person(props) {
         >
           {name}
         </Typography>
-        {Info("ID: " + props.id)}
-        {Info("Guardian 1: " + guardian1)}
-        {Info("Guardian 2: " + guardian2)} 
+
+        <Typography align="left" variant="body2" component="p"> 
+          {"ID: "}{props.id} 
+        </Typography>
+        <Typography align="left" variant="body2" component="p"> 
+          {"Guardian 1: "}{guardian1} 
+        </Typography>
+        <Typography align="left" variant="body2" component="p"> 
+          {"Guardian 2: "}{guardian2}
+        </Typography>
       </CardActionArea>
     </Card>
   )
