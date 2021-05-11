@@ -22,14 +22,14 @@ export default function Header(props) {
     function HButton(click, text) {
       return (
         <Button 
-        variant="contained" 
-        className={classes.hButton}
-        onClick={click}
-        color="secondary"
-        size="large"
-      >
-        {text}
-      </Button>
+          variant="contained" 
+          className={classes.hButton}
+          onClick={click}
+          color="secondary"
+          size="large"
+        >
+          {text}
+        </Button>
       )
 
     }
@@ -46,9 +46,41 @@ export default function Header(props) {
               >
                 Apple Blossom Health Check
               </Typography>
-              {HButton(homeClick, "Home")}
+              {/* {HButton(homeClick, "Home")}
               {HButton(resetClick, "Reset")}
-              {HButton(menuClick, "Menu")}
+              {HButton(menuClick, "Menu")} */}
+
+              <Button 
+                variant="contained" 
+                className={classes.hButton}
+                onClick={homeClick}
+                color="secondary"
+                size="large"
+                disabled={props.content === "menu" ? true: false}
+              >
+                Home
+              </Button>
+
+              <Button 
+                variant="contained" 
+                className={classes.hButton}
+                onClick={resetClick}
+                color="secondary"
+                size="large"
+                disabled={props.content === "home" || props.content === "menu" ? true: false}
+              >
+                Reset
+              </Button>
+
+              <Button 
+                variant="contained" 
+                className={classes.hButton}
+                onClick={menuClick}
+                color="secondary"
+                size="large"
+              >
+                Menu
+              </Button>
             </Toolbar>
           </Container>
         </AppBar>

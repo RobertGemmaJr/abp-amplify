@@ -48,6 +48,7 @@ function App(props) {
         homeClick={() => handleHomeClick()}
         menuClick={() => handleMenuClick()}
         resetClick={() => handleResetClick()}
+        content={content}
       />
       <Main 
         content={content}
