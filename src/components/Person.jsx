@@ -32,21 +32,21 @@ function Info(text) {
 
 export default function Person(props) {
   const classes = useStyles();
-
+  
   function handlePersonClick(id) {
     console.log(id)
     props.setContent("questionnaire")
   }
 
+  // Will search for this with props.id
   const name = "Robert M. Gemma"
-  const id = 12345
   const guardian1 = "Foo Bar"
   const guardian2 = "Foo Bar"
   return (
     <Card>
       <CardActionArea 
         className={classes.person}
-        onClick={() => handlePersonClick(id)}
+        onClick={() => handlePersonClick(props.id)}
       >
         <Typography 
           align="center" 
@@ -56,7 +56,7 @@ export default function Person(props) {
         >
           {name}
         </Typography>
-        {Info("ID: " + id)}
+        {Info("ID: " + props.id)}
         {Info("Guardian 1: " + guardian1)}
         {Info("Guardian 2: " + guardian2)} 
       </CardActionArea>

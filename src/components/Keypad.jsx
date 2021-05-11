@@ -10,8 +10,8 @@ const useStyles = makeStyles(theme => ({
   button: {
     width: "100%",
     height: "100%",
-    backgroundColor: theme.palette.primary.light,
     fontSize: 25,
+    backgroundColor: theme.palette.primary.light,
   }
 }))
 
@@ -23,6 +23,7 @@ export default function Keypad(props) {
     console.log(letter) // temp
     props.setContent("people")
   }
+
   return (
     <GridList
       cellHeight={50}

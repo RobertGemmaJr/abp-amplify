@@ -14,10 +14,14 @@ export default function People(props) {
   const classes = useStyles();
 
   var temp = []
+  const id = 12345
   for(var i=0; i < 16; i++) {
     temp.push(
       <GridListTile>
-        <Person setContent={props.setContent}/>
+        <Person 
+          setContent={props.setContent}
+          id={id}
+        />
       </GridListTile>
     )
   }
