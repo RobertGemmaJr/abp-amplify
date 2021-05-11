@@ -7,6 +7,9 @@ import logo from "../media/logos/Apple Blossom logo solid color.png"
 import HomeCard from "./HomeCard"
 
 const useStyles = makeStyles(theme => ({
+  home: {
+    
+  }
 }))
 
 export default function Home(props) {

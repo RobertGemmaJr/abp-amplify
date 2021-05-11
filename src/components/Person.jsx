@@ -30,9 +30,12 @@ function Info(text) {
 }
 
 
-export default function People(props) {
+export default function Person(props) {
   const classes = useStyles();
 
+  function handlePersonClick() {
+    props.setContent("questionnaire")
+  }
 
   const name = "Robert M. Gemma"
   const id = 12345
@@ -40,7 +43,10 @@ export default function People(props) {
   const guardian2 = "Foo Bar"
   return (
     <Card>
-      <CardActionArea className={classes.person}>
+      <CardActionArea 
+        className={classes.person}
+        onClick={() => handlePersonClick(props)}
+      >
         <Typography 
           align="center" 
           variant="" 
@@ -54,20 +60,5 @@ export default function People(props) {
         {Info("Guardian 2: " + guardian2)} 
       </CardActionArea>
     </Card>
-    // <Button className={classes.person}>
-    //   <Container disableGutters>
-    //     <Typography 
-    //       align="center" 
-    //       variant="" 
-    //       component="h3"
-    //       className={classes.name}
-    //     >
-    //       {name}
-    //     </Typography>
-    //     {Info("ID: " + id)}
-    //     {Info("Guardian 1: " + guardian1)}
-    //     {Info("Guardian 2: " + guardian2)}
-    //   </Container>
-    // </Button>
   )
 }

@@ -28,32 +28,32 @@ const useStyles = makeStyles(theme => ({
   },
 }))
 
-// Renders the main content based on program state
-function renderContent(content, setContent) {
-  // content = "questionnaire"
-  switch(content) {
-    case "menu":
-      return <Menu />;
-    case "home":
-      return <Home setContent={setContent}/>;
-    case "keypad":
-      return <Keypad setContent={setContent}/>;
-    case "people":
-      return <People />;
-    case "questionnaire":
-        return <Questionnaire />;
-    case "summary":
-        // return <Summary />;
-        break;
-    default:
-      console.error("Invalid content code")
-      break;
-  }
-}
-
 export default function Main(props) {
   const classes = useStyles();
+
+  // Hook for rendering the main content based on program state
   const {content, setContent} = props;
+  function renderContent() {
+    switch(content) {
+      case "menu":
+        return <Menu />;
+      case "home":
+        return <Home setContent={setContent}/>;
+      case "keypad":
+        return <Keypad setContent={setContent}/>;
+      case "people":
+        return <People setContent={setContent}/>;
+      case "questionnaire":
+          return <Questionnaire />;
+      case "summary":
+          // return <Summary />;
+          break;
+      default:
+        console.error("Invalid content code")
+        break;
+    }
+  }
+  
 
   // Hook for question type
   const [qType, setQType] = useState(true)
@@ -68,7 +68,7 @@ export default function Main(props) {
         <Title content={content} qType={qType} />
       </Container>
       <Container className={classes.content}>
-        {renderContent(content, setContent)}
+        {renderContent()}
       </Container>
     </Container>
   )

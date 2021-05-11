@@ -17,7 +17,7 @@ export default function People(props) {
   for(var i=0; i < 16; i++) {
     temp.push(
       <GridListTile>
-        <Person />
+        <Person setContent={props.setContent}/>
       </GridListTile>
     )
   }
