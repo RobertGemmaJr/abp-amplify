@@ -19,7 +19,8 @@ export default function Keypad(props) {
   const classes = useStyles();
   const alphabet = 'ABCDEFGHIJKLMNOPQRTSUVWXYZ'.split('')
 
-  function handleKeypadClick(props) {
+  function handleKeypadClick(letter) {
+    console.log(letter) // temp
     props.setContent("people")
   }
   return (
@@ -36,7 +37,7 @@ export default function Keypad(props) {
               variant="contained"
               color="primary"
               className={classes.button}
-              onClick={() => handleKeypadClick(props)}
+              onClick={() => handleKeypadClick(letter)}
             >
               {letter}
             </Button>

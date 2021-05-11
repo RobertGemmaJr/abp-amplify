@@ -33,7 +33,8 @@ function Info(text) {
 export default function Person(props) {
   const classes = useStyles();
 
-  function handlePersonClick() {
+  function handlePersonClick(id) {
+    console.log(id)
     props.setContent("questionnaire")
   }
 
@@ -45,7 +46,7 @@ export default function Person(props) {
     <Card>
       <CardActionArea 
         className={classes.person}
-        onClick={() => handlePersonClick(props)}
+        onClick={() => handlePersonClick(id)}
       >
         <Typography 
           align="center" 
