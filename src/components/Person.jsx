@@ -1,10 +1,11 @@
-import { Button, Container, Typography } from "@material-ui/core"
+import { Button, Card, CardActionArea, CardActions, Container, Typography } from "@material-ui/core"
 import { makeStyles } from "@material-ui/styles";
 
 const useStyles = makeStyles(theme => ({
   person: {
     width: "100%",
     height: 150,
+    padding: theme.spacing(3, 1),
 
     backgroundColor: theme.palette.primary.light,
     "&:hover": {
@@ -19,7 +20,6 @@ const useStyles = makeStyles(theme => ({
 function Info(text) {
   return (
     <Typography 
-      style={{textTransform: "none"}} 
       align="left" 
       variant="body2" 
       component="p"
@@ -39,8 +39,8 @@ export default function People(props) {
   const guardian1 = "Foo Bar"
   const guardian2 = "Foo Bar"
   return (
-    <Button className={classes.person}>
-      <Container disableGutters>
+    <Card>
+      <CardActionArea className={classes.person}>
         <Typography 
           align="center" 
           variant="" 
@@ -51,8 +51,23 @@ export default function People(props) {
         </Typography>
         {Info("ID: " + id)}
         {Info("Guardian 1: " + guardian1)}
-        {Info("Guardian 2: " + guardian2)}
-      </Container>
-    </Button>
+        {Info("Guardian 2: " + guardian2)} 
+      </CardActionArea>
+    </Card>
+    // <Button className={classes.person}>
+    //   <Container disableGutters>
+    //     <Typography 
+    //       align="center" 
+    //       variant="" 
+    //       component="h3"
+    //       className={classes.name}
+    //     >
+    //       {name}
+    //     </Typography>
+    //     {Info("ID: " + id)}
+    //     {Info("Guardian 1: " + guardian1)}
+    //     {Info("Guardian 2: " + guardian2)}
+    //   </Container>
+    // </Button>
   )
 }

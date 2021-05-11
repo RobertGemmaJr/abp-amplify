@@ -21,7 +21,6 @@ function App(props) {
   const classes = useStyles();
 
   // Hook for content to be shown
-  // TODO: Should start as "home"
   const [content, setContent] = React.useState("home")
   const [menuPrev, setMenuPrev] = React.useState("home")
 

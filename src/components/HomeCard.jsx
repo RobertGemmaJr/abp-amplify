@@ -6,7 +6,6 @@ const useStyles = makeStyles(theme => ({
     flexGrow: 1,
     alignContent: "center",
     margin: theme.spacing(1),
-    // height: "75%",
   },
   media: {
     height: 300,
