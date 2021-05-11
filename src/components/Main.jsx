@@ -7,6 +7,7 @@ import Home from "./Home"
 import Keypad from "./Keypad"
 import Menu from "./Menu"
 import People from "./People";
+import Questionnaire from "./Questionnaire"
 
 const useStyles = makeStyles(theme => ({
   main: {
@@ -29,6 +30,7 @@ const useStyles = makeStyles(theme => ({
 
 // Renders the main content based on program state
 function renderContent(content, setContent) {
+  // content = "questionnaire"
   switch(content) {
     case "menu":
       return <Menu />;
@@ -39,8 +41,7 @@ function renderContent(content, setContent) {
     case "people":
       return <People />;
     case "questionnaire":
-        // return <Questionnaire />;
-        break;
+        return <Questionnaire />;
     case "summary":
         // return <Summary />;
         break;
