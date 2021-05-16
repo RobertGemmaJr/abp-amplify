@@ -21,6 +21,7 @@ export default function Home(props) {
       display="flex" 
       alignItems="center"
       justifyContent="center"
+      className={classes.home}
     >
       <HomeCard 
         setContent={props.setContent} 

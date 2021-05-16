@@ -21,6 +21,7 @@ function App(props) {
   const [content, setContent] = React.useState("home")
   const [menuPrev, setMenuPrev] = React.useState("home")
 
+  // HandleClick functions
   function handleHomeClick() {
     setContent("home")
   }
