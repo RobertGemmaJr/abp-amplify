@@ -1,25 +1,29 @@
 import React from "react"
-import { Paper, Typography, Container, TextField, Box, Button, Grid } from "@material-ui/core"
+import { Paper, TextField, Box, Button } from "@material-ui/core"
+import CloudUploadIcon from '@material-ui/icons/CloudUpload';
 import { makeStyles } from "@material-ui/styles";
+
+// Returns date as a "yyyy-mm-dd" format
+function getDate() {
+  const today = new Date()
+  return (
+    today.getFullYear() + "-" + 
+    String(today.getMonth()+1).padStart(2, "0") + "-" + 
+    String(today.getDate()).padStart(2, "0")
+  );
+}
 
 const useStyles = makeStyles(theme => ({
   menu: {
     width: "75%",
   },
+  hideInput: {
+    display: "none"
+  },
   save: {
     marginTop: theme.spacing(3)
   }
 }))
-
-// Temporary spacing for scroll
-const temp = []
-for(var i = 0; i < 50; i++) {
-  temp.push(
-    <Box>
-      <Typography align="center">Test</Typography>
-    </Box>
-  )
-}
 
 export default function Menu(props) {
   const classes = useStyles();
@@ -30,7 +34,21 @@ export default function Menu(props) {
     setNewTitle(event.target.value)
   }
 
-  // Handles save button clicked
+  // Handle import child button clicked
+  function handleImportChildClick() {
+
+  }
+
+  // Handle import staff button clicked
+  function handleImportStaffClick() {
+
+  }
+
+  function handleExportClick() {
+    
+  }
+
+  // Handle save button clicked
   function handleSaveClick() {
     // Save newTitle to actual title
     window.location.reload();
@@ -38,12 +56,78 @@ export default function Menu(props) {
 
   return (
     <Paper className={classes.menu}>
-      {/* Import/Export Buttons */}
+    
+    <Box m={2} display="flex" justifyContent="space-evenly">
+      {/* Import Child List */}
+      <input
+        className={classes.hideInput}
+        id="import-child-list"
+        single
+        type="file"
+        accept=".csv, .xlsx, .xls"
+      />
+      <label htmlFor="import-child-list">
+        <Button 
+          startIcon={<CloudUploadIcon />}
+          variant="contained"
+          color="secondary"
+          component="span"
+          onClick={() => handleImportChildClick()}
+        >
+          Import Child List
+        </Button>
+      </label>
+
+      {/* Import Staff List */}
+      <input
+        className={classes.hideInput}
+        id="import-staff-list"
+        single
+        type="file"
+        accept=".csv, .xlsx, .xls"
+      />
+      <label htmlFor="import-staff-list">
+        <Button 
+          startIcon={<CloudUploadIcon />}
+          variant="contained"
+          color="secondary"
+          component="span"
+          onClick={() => handleImportStaffClick()}
+        >
+          Import Staff List
+        </Button>
+      </label>
+    </Box>
+
+      {/* Export Answers */}
+      <Box m={2} display="flex" justifyContent="space-evenly">
+        <TextField
+          id="start-date"
+          label="Start Date" 
+          type="date"
+          defaultValue="2020-01-01"
+        />
+
+        <TextField
+          id="end-date"
+          label="End Date" 
+          type="date"
+          defaultValue={getDate()}
+        />
+
+        <Button 
+          variant="contained"
+          color="secondary"
+          onClick={() => handleExportClick()}
+        >
+          Export Answers
+        </Button>
+      </Box>
 
       {/* Update Title */}
-      <Box m={2}>
+      <Box m={3} component="form">
         <TextField 
-          id="newTitle" 
+          id="new-title" 
           label="Update Title" 
           value={newTitle}
           onChange={handleNewTitleChange}
@@ -51,9 +135,6 @@ export default function Menu(props) {
           noValidate fullWidth
         />
       </Box>
-
-
-      {temp}
 
       {/* Save Button */}
       <Box m={2} align="center" className={classes.save}>
