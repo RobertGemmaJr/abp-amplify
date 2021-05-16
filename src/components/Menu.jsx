@@ -1,7 +1,9 @@
 import React from "react"
-import { Paper, TextField, Box, Button, Checkbox, FormGroup, FormControlLabel } from "@material-ui/core"
+import { Paper, TextField, Box, Button, Checkbox, FormGroup, FormControlLabel, Typography } from "@material-ui/core"
 import CloudUploadIcon from '@material-ui/icons/CloudUpload';
 import { makeStyles } from "@material-ui/styles";
+
+import AddQButton from "./AddQButton"
 
 // Returns date as a "yyyy-mm-dd" format
 function getDate() {
@@ -52,20 +54,15 @@ export default function Menu(props) {
   function handleImportChildClick() {
 
   }
-
   // Handle import staff button clicked
   function handleImportStaffClick() {
 
   }
-
+  // Handle export button clicked
   function handleExportClick() {
     
   }
 
-  // Handle edit questions button clicked
-  function handleEditQuestionsClicked() {
-    
-  }
   // Handle save button clicked
   function handleSaveClick(settings) {
     console.log(settings);
@@ -160,15 +157,15 @@ export default function Menu(props) {
     </Box>
 
     {/* Edit Questions */}
+    <Typography align="center" variant="h4" underline>
+      Questions
+    </Typography>
     <Box m={boxMargin} display="flex" justifyContent="space-evenly">
-      <Button
-        variant="contained"
-        color="secondary"
-        size="large"
-        onClick={() => handleEditQuestionsClicked()}
-      >
-        Edit Questions
-      </Button>
+
+      {/* Add question */}
+      <AddQButton/>
+
+      {/* Randomize Questions */}
       <FormGroup row>
         <FormControlLabel
           control={
