@@ -5,7 +5,7 @@ import { makeStyles } from "@material-ui/styles";
 import Title from "./Title"
 import Home from "./Home"
 import Keypad from "./Keypad"
-import Menu from "./Menu"
+import Menu from "./menu/Menu"
 import People from "./People";
 import Questionnaire from "./Questionnaire"
 
