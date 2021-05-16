@@ -1,5 +1,5 @@
 import React from "react"
-import { Paper, TextField, Box, Button, Checkbox, Typography, FormGroup, FormControlLabel } from "@material-ui/core"
+import { Paper, TextField, Box, Button, Checkbox, FormGroup, FormControlLabel } from "@material-ui/core"
 import CloudUploadIcon from '@material-ui/icons/CloudUpload';
 import { makeStyles } from "@material-ui/styles";
 
@@ -28,10 +28,24 @@ const useStyles = makeStyles(theme => ({
 export default function Menu(props) {
   const classes = useStyles();
 
-  // Hook for new title
-  const [newTitle, setNewTitle] = React.useState("Apple Blossom Preschool")
+  // Hook for menu settings
+  // TODO: start newTitle from current title (API call)
+  const [settings, setSettings] = React.useState({
+    newTitle: "Apple Blossom Preschool",
+    startDate: "2020-01-01",
+    endDate: getDate(),
+    randomized: true,
+  })
+
+  // Handle newTitle change
   const handleNewTitleChange = (event) => {
-    setNewTitle(event.target.value)
+    setSettings({...settings, [event.target.name]: event.target.value })
+    console.log(settings)
+  }
+
+  // Handle randomized change
+  const handleRandomizedChange = (event) => {
+    setSettings({...settings, [event.target.name]: event.target.checked})
   }
 
   // Handle import child button clicked
@@ -53,8 +67,8 @@ export default function Menu(props) {
     
   }
   // Handle save button clicked
-  function handleSaveClick() {
-    // Save newTitle to actual title
+  function handleSaveClick(settings) {
+    console.log(settings);
     window.location.reload();
   }
 
@@ -109,15 +123,19 @@ export default function Menu(props) {
     <Box m={boxMargin} display="flex" justifyContent="space-evenly">
       <TextField
         id="start-date"
+        name="startDate"
         label="Start Date" 
         type="date"
-        defaultValue="2020-01-01"
+        value={settings.startDate}
+        onChange={handleNewTitleChange}
       />
       <TextField
         id="end-date"
+        name="endDate"
         label="End Date" 
         type="date"
-        defaultValue={getDate()}
+        value={settings.endDate}
+        onChange={handleNewTitleChange}
       />
       <Button 
         variant="contained"
@@ -132,8 +150,9 @@ export default function Menu(props) {
     <Box m={boxMargin} display="flex" justifyContent="space-evenly" component="form">
       <TextField 
         id="new-title" 
-        label="Update Title" 
-        value={newTitle}
+        name="newTitle"
+        label="App Title" 
+        value={settings.newTitle}
         onChange={handleNewTitleChange}
         variant="outlined"
         noValidate fullWidth
@@ -141,7 +160,7 @@ export default function Menu(props) {
     </Box>
 
     {/* Edit Questions */}
-    <Box m={2} display="flex" justifyContent="space-evenly">
+    <Box m={boxMargin} display="flex" justifyContent="space-evenly">
       <Button
         variant="contained"
         color="secondary"
@@ -152,7 +171,14 @@ export default function Menu(props) {
       </Button>
       <FormGroup row>
         <FormControlLabel
-          control={<Checkbox color="secondary" />}
+          control={
+            <Checkbox 
+              color="secondary" 
+              checked={settings.randomized}
+              onChange={handleRandomizedChange}
+              name="randomized"
+            />
+          }
           label="Randomize Questions?"
           labelPlacement="start"
         />
@@ -160,12 +186,12 @@ export default function Menu(props) {
     </Box>
 
     {/* Save Button */}
-    <Box m={2} align="center" className={classes.save}>
+    <Box m={boxMargin} align="center" className={classes.save}>
       <Button 
         variant="contained"
         color="secondary"
         size="large"
-        onClick={() => handleSaveClick()}
+        onClick={() => handleSaveClick(settings)}
       >
         Save
       </Button>

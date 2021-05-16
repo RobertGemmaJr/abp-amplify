@@ -36,8 +36,7 @@ export default function Person(props) {
         onClick={() => handlePersonClick(props.id)}
       >
         <Typography 
-          align="center" 
-          variant="" 
+          align="center"
           component="h3"
           className={classes.name}
         >
