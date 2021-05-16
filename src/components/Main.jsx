@@ -31,7 +31,7 @@ const useStyles = makeStyles(theme => ({
 export default function Main(props) {
   const classes = useStyles();
 
-  // Hook for rendering the main content based on program state
+  // Render the main content based on program state
   const {content, setContent} = props;
   function renderContent() {
     switch(content) {

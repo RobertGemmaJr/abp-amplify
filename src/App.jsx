@@ -29,9 +29,8 @@ function App(props) {
     setContent("keypad")
   }
   function handleMenuClick() {
-    if (content === "menu") {
-      setContent(menuPrev)
-    } else {
+    if (content === "menu") setContent(menuPrev)
+    else {
       setMenuPrev(content)
       setContent("menu")
     }
