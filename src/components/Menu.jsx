@@ -181,9 +181,9 @@ export default function Menu(props) {
             control={
               <Checkbox 
                 color="secondary" 
-                checked={settings.randomized}
-                onChange={handleRandomizedChange}
                 name="randomized"
+                checked={settings.randomized}
+                onChange={handleRandomizedChange} 
               />
             }
             label="Randomize Questions?"
