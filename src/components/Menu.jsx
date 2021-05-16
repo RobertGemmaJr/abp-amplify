@@ -1,5 +1,5 @@
 import React from "react"
-import { Paper, TextField, Box, Button } from "@material-ui/core"
+import { Paper, TextField, Box, Button, Checkbox, Typography, FormGroup, FormControlLabel } from "@material-ui/core"
 import CloudUploadIcon from '@material-ui/icons/CloudUpload';
 import { makeStyles } from "@material-ui/styles";
 
@@ -21,7 +21,7 @@ const useStyles = makeStyles(theme => ({
     display: "none"
   },
   save: {
-    marginTop: theme.spacing(3)
+    marginTop: theme.spacing(5)
   }
 }))
 
@@ -48,16 +48,22 @@ export default function Menu(props) {
     
   }
 
+  // Handle edit questions button clicked
+  function handleEditQuestionsClicked() {
+    
+  }
   // Handle save button clicked
   function handleSaveClick() {
     // Save newTitle to actual title
     window.location.reload();
   }
 
+  const boxMargin = 3
   return (
     <Paper className={classes.menu}>
     
-    <Box m={2} display="flex" justifyContent="space-evenly">
+    {/* Import Buttons */}
+    <Box m={boxMargin} display="flex" justifyContent="space-evenly">
       {/* Import Child List */}
       <input
         className={classes.hideInput}
@@ -99,54 +105,71 @@ export default function Menu(props) {
       </label>
     </Box>
 
-      {/* Export Answers */}
-      <Box m={2} display="flex" justifyContent="space-evenly">
-        <TextField
-          id="start-date"
-          label="Start Date" 
-          type="date"
-          defaultValue="2020-01-01"
+    {/* Export Answers */}
+    <Box m={boxMargin} display="flex" justifyContent="space-evenly">
+      <TextField
+        id="start-date"
+        label="Start Date" 
+        type="date"
+        defaultValue="2020-01-01"
+      />
+      <TextField
+        id="end-date"
+        label="End Date" 
+        type="date"
+        defaultValue={getDate()}
+      />
+      <Button 
+        variant="contained"
+        color="secondary"
+        onClick={() => handleExportClick()}
+      >
+        Export Answers
+      </Button>
+    </Box>
+
+    {/* Update Title */}
+    <Box m={boxMargin} display="flex" justifyContent="space-evenly" component="form">
+      <TextField 
+        id="new-title" 
+        label="Update Title" 
+        value={newTitle}
+        onChange={handleNewTitleChange}
+        variant="outlined"
+        noValidate fullWidth
+      />
+    </Box>
+
+    {/* Edit Questions */}
+    <Box m={2} display="flex" justifyContent="space-evenly">
+      <Button
+        variant="contained"
+        color="secondary"
+        size="large"
+        onClick={() => handleEditQuestionsClicked()}
+      >
+        Edit Questions
+      </Button>
+      <FormGroup row>
+        <FormControlLabel
+          control={<Checkbox color="secondary" />}
+          label="Randomize Questions?"
+          labelPlacement="start"
         />
+      </FormGroup>
+    </Box>
 
-        <TextField
-          id="end-date"
-          label="End Date" 
-          type="date"
-          defaultValue={getDate()}
-        />
-
-        <Button 
-          variant="contained"
-          color="secondary"
-          onClick={() => handleExportClick()}
-        >
-          Export Answers
-        </Button>
-      </Box>
-
-      {/* Update Title */}
-      <Box m={3} component="form">
-        <TextField 
-          id="new-title" 
-          label="Update Title" 
-          value={newTitle}
-          onChange={handleNewTitleChange}
-          variant="outlined"
-          noValidate fullWidth
-        />
-      </Box>
-
-      {/* Save Button */}
-      <Box m={2} align="center" className={classes.save}>
-        <Button 
-          variant="contained"
-          color="secondary"
-          size="large"
-          onClick={() => handleSaveClick()}
-        >
-          Save
-        </Button>
-      </Box>
+    {/* Save Button */}
+    <Box m={2} align="center" className={classes.save}>
+      <Button 
+        variant="contained"
+        color="secondary"
+        size="large"
+        onClick={() => handleSaveClick()}
+      >
+        Save
+      </Button>
+    </Box>
 
     </Paper>
   )
