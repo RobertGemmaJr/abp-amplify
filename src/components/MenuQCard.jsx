@@ -1,8 +1,31 @@
-import { FormGroup, FormControlLabel, Card, TextField, Box, Checkbox } from "@material-ui/core"
+import React from "react"
+import { Button, FormGroup, FormControlLabel, Card, TextField, Box, Checkbox, ButtonGroup } from "@material-ui/core"
 import DeleteIcon from "@material-ui/icons/Delete"
+import { ArrowDropDown, ArrowDropUp } from "@material-ui/icons"
+
 
 export default function MenuQCard(props) {
-  // Change return if T/F question or text response
+  // Change return if T/F question or text response?
+
+  // Hook for question state
+  // TODO: Set everything from questions database (API call)
+  const [state, setState] = React.useState({
+    type: "bool",
+    question: "Question State",
+    expectedResponse: "Yes",
+    childMorning: true,
+    childAfternoon: true,
+    staffMorning: true,
+    staffAfternoon: true,
+    manual: true,
+  })
+
+  const handleCheckboxChange = (event) => {
+    setState({...state, [event.target.name]: event.target.checked})
+  }
+  
+
+
   return (
     <Card m={1}>
       <Box 
@@ -11,29 +34,54 @@ export default function MenuQCard(props) {
         justifyContent="space-evenly" 
         alignItems="center"
       >
-        {/* Button Group
-          Up and down arrows that move the cards up/down the order
-        */}
+
+        {/* Up and Down Arrows */}
+        <ButtonGroup orientation="vertical" color="secondary">
+          <Button 
+            variant="contained"
+            // onClick={}
+          >
+            <ArrowDropUp />
+          </Button>
+          <Button
+            variant="contained"
+            // onClick={}
+          >
+            <ArrowDropDown />
+          </Button>
+        </ButtonGroup>
+
+        {/* Question */}
         <TextField 
           id="question" 
           name="question"
           label="Question" 
-          value="This is My Question"
+          value={state.question}
           // onChange={}
           variant="outlined"
           noValidate fullWidth
         />
 
-        {/* Expected Answer */}
+        {/* Expected Response */}
+        <TextField 
+          id="expected-response" 
+          name="expectedResponse"
+          label="Response" 
+          value={state.expectedResponse}
+          // onChange={}
+          variant="outlined"
+          noValidate
+        />
 
+        {/* Checkboxes */}
         <FormGroup row>
           <FormControlLabel
             control={
               <Checkbox 
                 color="secondary" 
-                name="morningCheck"
-                // checked={}
-                // onChange={} 
+                name="childMorning"
+                checked={state.childMorning}
+                onChange={handleCheckboxChange} 
               />
             }
             label="Morning"
@@ -46,16 +94,21 @@ export default function MenuQCard(props) {
             control={
               <Checkbox 
                 color="secondary" 
-                name="afternoonCheck"
-                // checked={}
-                // onChange={} 
+                name="childAfternoon"
+                checked={state.childAfternoon}
+                onChange={handleCheckboxChange} 
               />
             }
             label="Afternoon"
             labelPlacement="bottom"
           />
         </FormGroup>
-        <DeleteIcon color="secondary" />
+        
+        {/* Delete button */}
+        <Button>
+          <DeleteIcon color="secondary" />
+        </Button>
+        
       </Box>
   </Card>
   )

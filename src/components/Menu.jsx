@@ -31,9 +31,9 @@ const useStyles = makeStyles(theme => ({
 export default function Menu(props) {
   const classes = useStyles();
 
-  // Hook for menu settings
+  // Hook for menu state
   // TODO: start newTitle from current title (API call)
-  const [settings, setSettings] = React.useState({
+  const [state, setState] = React.useState({
     newTitle: "Apple Blossom Preschool",
     startDate: "2020-01-01",
     endDate: getDate(),
@@ -42,13 +42,13 @@ export default function Menu(props) {
 
   // Handle newTitle change
   const handleNewTitleChange = (event) => {
-    setSettings({...settings, [event.target.name]: event.target.value })
-    console.log(settings)
+    setState({...state, [event.target.name]: event.target.value })
+    console.log(state)
   }
 
   // Handle randomized change
   const handleRandomizedChange = (event) => {
-    setSettings({...settings, [event.target.name]: event.target.checked})
+    setState({...state, [event.target.name]: event.target.checked})
   }
 
   // Handle import child button clicked
@@ -65,8 +65,8 @@ export default function Menu(props) {
   }
 
   // Handle save button clicked
-  function handleSaveClick(settings) {
-    console.log(settings);
+  function handleSaveClick(state) {
+    console.log(state);
     window.location.reload();
   }
 
@@ -131,7 +131,7 @@ export default function Menu(props) {
           name="startDate"
           label="Start Date" 
           type="date"
-          value={settings.startDate}
+          value={state.startDate}
           onChange={handleNewTitleChange}
         />
         <TextField
@@ -139,7 +139,7 @@ export default function Menu(props) {
           name="endDate"
           label="End Date" 
           type="date"
-          value={settings.endDate}
+          value={state.endDate}
           onChange={handleNewTitleChange}
         />
         <Button 
@@ -157,7 +157,7 @@ export default function Menu(props) {
           id="new-title" 
           name="newTitle"
           label="App Title" 
-          value={settings.newTitle}
+          value={state.newTitle}
           onChange={handleNewTitleChange}
           variant="outlined"
           noValidate fullWidth
@@ -182,7 +182,7 @@ export default function Menu(props) {
               <Checkbox 
                 color="secondary" 
                 name="randomized"
-                checked={settings.randomized}
+                checked={state.randomized}
                 onChange={handleRandomizedChange} 
               />
             }
@@ -198,7 +198,7 @@ export default function Menu(props) {
           variant="contained"
           color="secondary"
           size="large"
-          onClick={() => handleSaveClick(settings)}
+          onClick={() => handleSaveClick(state)}
         >
           Save
         </Button>
