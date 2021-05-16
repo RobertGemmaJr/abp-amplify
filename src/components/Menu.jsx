@@ -1,9 +1,9 @@
 import React from "react"
-import { Card, Paper, TextField, Box, Button, Checkbox, FormGroup, FormControlLabel, Typography } from "@material-ui/core"
+import { Paper, TextField, Box, Button, Checkbox, FormGroup, FormControlLabel, Typography } from "@material-ui/core"
 import CloudUploadIcon from '@material-ui/icons/CloudUpload';
 import { makeStyles } from "@material-ui/styles";
-import DeleteIcon from "@material-ui/icons/Delete"
 
+import MenuQCard from "./MenuQCard"
 import AddQButton from "./AddQButton"
 
 // Returns date as a "yyyy-mm-dd" format
@@ -75,23 +75,7 @@ export default function Menu(props) {
   // TEMP
   const tempQuestions = []
   for (var i = 0; i < 3; i++) {
-    tempQuestions.push(
-      <Card m={1}>
-        <Box 
-          p={2}
-          display="flex" 
-          justifyContent="space-evenly" 
-          alignItems="center"
-        >
-          <TextField 
-            variant="outlined"
-          />
-          <Checkbox color="secondary" />
-          <Checkbox color="secondary" />
-          <DeleteIcon color="secondary" />
-        </Box>
-      </Card>
-    )
+    tempQuestions.push(<MenuQCard />)
   }
 
   return (
