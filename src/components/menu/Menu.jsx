@@ -18,7 +18,7 @@ function getDate() {
 
 const useStyles = makeStyles(theme => ({
   menu: {
-    width: "75%",
+    width: "100%",
   },
   hideInput: {
     display: "none"
