@@ -19,3 +19,8 @@ type Settings @model {
   question: String!
   response: String!
  }
+
+ type Response @model {
+  id: ID!
+  date: string
+ }
