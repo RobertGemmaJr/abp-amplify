@@ -1,21 +1,27 @@
-type Settings @model {
+type Settings @auth @model {
   title: String!
   randomized: Boolean!
 }
 
- type Person @model {
+ type Person @auth @model {
   id: ID!
   name: String!
  }
 
- type QuestionBool @model {
+ type QuestionBool @auth @model {
   id: ID!
   question: String!
   response: Boolean!
  }
 
- type QuestionStr @model {
+ type QuestionStr @auth @model {
   id: ID!
   question: String!
   response: String!
  }
+
+ type Todo @model {
+  id: ID!
+  name: String!
+  description: String
+}
