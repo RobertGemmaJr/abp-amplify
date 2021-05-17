@@ -50,10 +50,11 @@ function App(props) {
         content={content}
         setContent={setContent}
       />
+      <AmplifySignOut />  {/* Logout of Amplify. Temp - move somewhere else */}
       <Footer />
-      <AmplifySignOut /> {/* Logout of amplify on exit */} 
     </Box>
   );
 }
 
-export default withAuthenticator(App);
+// export default withAuthenticator(App); // Adds amplify authentication
+export default App;
