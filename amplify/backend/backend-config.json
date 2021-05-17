@@ -1,0 +1,10 @@
+{
+  "auth": {
+    "appleblossom0c21a6ed": {
+      "service": "Cognito",
+      "providerPlugin": "awscloudformation",
+      "dependsOn": [],
+      "customAuth": false
+    }
+  }
+}
