@@ -56,5 +56,4 @@ function App(props) {
   );
 }
 
-// export default withAuthenticator(App); // Adds amplify authentication
-export default App;
+export default withAuthenticator(App); // Adds amplify authentication
