@@ -51,10 +51,7 @@ export default function Header(props) {
                 onClick={resetClick}
                 color="secondary"
                 size="large"
-                disabled={
-                  props.content === "home" || props.content === "menu" 
-                  ? true : false
-                }
+                disabled={props.content === "home" || props.content === "menu" ? true: false}
               >
                 Reset
               </Button>
