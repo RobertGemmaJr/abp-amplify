@@ -1,3 +1,5 @@
 import { API, graphqlOperation } from 'aws-amplify';
 
-import { createPerson as createPersonMutation, deletePerson as deletePersonMutation } from './graphql/mutations';
+import * as mutations from "./graphql/mutations"
+import * as subscriptions from "./graphql/subscriptions"
+import * as queries from "./graphql/queries"

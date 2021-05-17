@@ -19,9 +19,3 @@ type Settings @auth @model {
   question: String!
   response: String!
  }
-
- type Todo @model {
-  id: ID!
-  name: String!
-  description: String
-}
