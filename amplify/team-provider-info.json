@@ -10,6 +10,11 @@
       "StackName": "amplify-appleblossom-dev-161612",
       "StackId": "arn:aws:cloudformation:us-east-1:494214532833:stack/amplify-appleblossom-dev-161612/baee9ed0-b74c-11eb-b6d2-0a679f4064a3",
       "AmplifyAppId": "d3a32t1vo2flre"
+    },
+    "categories": {
+      "auth": {
+        "appleblossome1cb7369": {}
+      }
     }
   }
 }
