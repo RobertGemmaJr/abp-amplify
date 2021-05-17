@@ -1,7 +1,6 @@
 import React from "react";
 import { CssBaseline, Box } from "@material-ui/core"
 import { makeStyles } from "@material-ui/styles";
-import { withAuthenticator, AmplifySignOut } from '@aws-amplify/ui-react'
 
 import Header from "./components/Header"
 import Main from "./components/Main"
@@ -51,10 +50,9 @@ function App(props) {
         content={content}
         setContent={setContent}
       />
-      <AmplifySignOut />  {/* Logout of Amplify. Temp - move somewhere else */}
       <Footer />
     </Box>
   );
 }
 
-export default withAuthenticator(App); // Adds amplify authentication
+export default App;
