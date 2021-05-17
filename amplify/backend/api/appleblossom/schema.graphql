@@ -22,5 +22,5 @@ type Settings @model {
 
  type Response @model {
   id: ID!
-  date: string
+  date: String
  }
