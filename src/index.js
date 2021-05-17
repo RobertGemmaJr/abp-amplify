@@ -6,9 +6,6 @@ import reportWebVitals from './testing/reportWebVitals';
 
 import theme from "./theme"
 
-// Configure amplify for project
-Amplify.configure(config);
-
 ReactDOM.render(
   <React.StrictMode>
     <ThemeProvider theme={theme}>
