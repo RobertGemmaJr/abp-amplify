@@ -2,8 +2,3 @@ type person @model {
   id: ID!
   name: String!
 }
-
-type settings {
-  title: String!
-  randomizeQuestions: Boolean!
-}
