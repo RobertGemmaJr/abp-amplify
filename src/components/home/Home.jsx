@@ -25,20 +25,23 @@ export default function Home(props) {
     >
       <HomeCard 
         setContent={props.setContent} 
+        key="family"
         image={familyLogo} 
         text="Child Form"
+        
       />
       <HomeCard 
         setContent={props.setContent} 
+        key="staff"
         image={thermometerGuy} 
         text="Staff Form"
       />
       <HomeCard 
         setContent={props.setContent} 
+        key="manual"
         image={logo} 
         text="Manual Entry"
       />
     </Box>
-
   )
 }

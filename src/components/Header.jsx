@@ -29,7 +29,7 @@ export default function Header(props) {
                 variant="h4" 
                 className={classes.name}
               >
-                Apple Blossom Health Check
+                Apple Blossom Health Check App
               </Typography>
               
               {/* Home Button */}

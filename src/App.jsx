@@ -15,6 +15,19 @@ const useStyles = makeStyles(theme => ({
   },
 }))
 
+/**
+ * @Amplify
+ * This application uses AWS Amplify with GitHub for hosting. Changes made to 
+ * the git branch will automatically be reflected on the live website. It uses 
+ * a GraphQl database for the backend and React.js on the front end.
+ * 
+ * 
+ * @TODO Miscellaneous
+ * Header(text and buttons) and title should scale down on xs devices
+ * Images on <Home> page are cropped.
+ * Put menu button on the <Home> page instead of the header? 
+ * 
+ */
 function App(props) {
   const classes = useStyles();
 

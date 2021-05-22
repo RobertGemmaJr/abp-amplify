@@ -15,21 +15,21 @@ const useStyles = makeStyles(theme => ({
 export default function HomeCard(props) {
   const classes = useStyles();
 
-  function handleCardClick() {
+  function handleCardClick(form) {
+    console.log(form) // TEMP
     props.setContent("keypad")
   }
 
   return (
     <Card className={classes.card}>
-      <CardActionArea onClick={() => handleCardClick()}>
+      <CardActionArea onClick={() => handleCardClick(props.text)}>
         <CardMedia 
           className={classes.media}
           image={props.image}
-          title="Family Logo"
         />
       </CardActionArea>
       <CardContent>
-        <Typography align="center" variant="" component="h3">
+        <Typography align="center" component="h3">
           {props.text}
         </Typography>
       </CardContent>
