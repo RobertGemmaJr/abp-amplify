@@ -35,7 +35,7 @@ export default function Menu(props) {
   // Hook for menu state
   // TODO: start newTitle from current title (API call)
   const [state, setState] = React.useState({
-    newTitle: "Apple Blossom Preschool",
+    newTitle: props.title,
     startDate: "2020-01-01",
     endDate: getDate(),
     randomized: true,
@@ -44,7 +44,6 @@ export default function Menu(props) {
   // Handle newTitle change
   const handleNewTitleChange = (event) => {
     setState({...state, [event.target.name]: event.target.value })
-    console.log(state)
   }
 
   // Handle randomized change
@@ -67,13 +66,14 @@ export default function Menu(props) {
 
   // Handle save button clicked
   function handleSaveClick(state) {
-    console.log(state);
-    window.location.reload();
+    props.setTitle(state.newTitle);
+    // window.location.reload();
   }
 
   const boxMargin = 3
 
-  // TEMP
+  // TEMP - display example questions
+  // Need to read questions from a database
   const tempQuestions = []
   for (var i = 0; i < 3; i++) {
     tempQuestions.push(<MenuQCard key={i}/>)

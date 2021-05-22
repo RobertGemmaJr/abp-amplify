@@ -11,10 +11,9 @@ const useStyles = makeStyles(theme => ({
 
 export default function Title(props) {
   const classes = useStyles();
-  const {content, qType} = props
+  const {content, title, qType} = props
   
-  // Get title and subtitle
-  const title = "Apple Blossom Preschool" // TEMP
+  // Get Subtitle
   let subtitle = ""
   if (content === "home") subtitle = "Home"
   else if (content === "menu") subtitle = "Menu"

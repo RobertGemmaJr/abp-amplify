@@ -31,12 +31,19 @@ const useStyles = makeStyles(theme => ({
 export default function Main(props) {
   const classes = useStyles();
 
+    // Hook for title
+    // TEMP - this should be saved in a database not a hook
+    const [title, setTitle] = useState("Company Title")
+
+    // Hook for question type
+    const [qType, setQType] = useState(true)
+
   // Hook for rendering the main content based on program state
   const {content, setContent} = props;
   function renderContent() {
     switch(content) {
       case "menu":
-        return <Menu />;
+        return <Menu title={title} setTitle={setTitle}/>;
       case "home":
         return <Home setContent={setContent}/>;
       case "keypad":
@@ -54,9 +61,6 @@ export default function Main(props) {
         break;
     }
   }
-
-  // Hook for question type
-  const [qType, setQType] = useState(true)
   
   return (
     <Container component="main" className={classes.main}>
@@ -65,7 +69,7 @@ export default function Main(props) {
         className={classes.title} 
         onClick={() => setQType(!qType)}
       >
-        <Title content={content} qType={qType} />
+        <Title content={content} title={title} qType={qType} />
       </Container>
       <Container className={classes.content}> {renderContent()} </Container>
     </Container>
