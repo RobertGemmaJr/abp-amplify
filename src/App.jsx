@@ -21,9 +21,14 @@ const useStyles = makeStyles(theme => ({
  * the git branch will automatically be reflected on the live website. It uses 
  * a GraphQl database for the backend and React.js on the front end.
  * 
+ * @TODO Menu
+ * Write a description of what the Home and Reset buttons do in <Menu>
+ * Ability to view children and staff in <Menu> - this would use a material-ui <DataGrid>
+ * Import buttons should display the file name after being selected
+ * 
  * 
  * @TODO Miscellaneous
- * Header(text and buttons) and title should scale down on xs devices
+ * Header(text and buttons), title, subtitle, etc. should scale down on xs devices
  * Images on <Home> page are cropped.
  * Put menu button on the <Home> page instead of the header? 
  * 
