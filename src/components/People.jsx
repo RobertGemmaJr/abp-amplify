@@ -13,13 +13,13 @@ const useStyles = makeStyles(theme => ({
 export default function People(props) {
   const classes = useStyles();
 
-  // Temporary People
-  var temp = []
-  const id = 12345
+  // TEMP
+  var people = []
+  const id = 12345 // Will be ID from database
   for(var i=0; i < 16; i++) {
-    temp.push(
+    people.push(
       <GridListTile>
-        <Person setContent={props.setContent} id={id} />
+        <Person setContent={props.setContent} key={i} id={id} />
       </GridListTile>
     )
   }
@@ -31,7 +31,7 @@ export default function People(props) {
       spacing={5} 
       className={classes.gridList}
     >
-    {temp}
+      {people}
     </GridList>
   )
 }

@@ -20,21 +20,25 @@ const useStyles = makeStyles(theme => ({
 export default function Person(props) {
   const classes = useStyles();
   
+
   function handlePersonClick(id) {
+    // Select person and display questions
+
     console.log(id)
     props.setContent("questionnaire")
   }
 
-  // Will search for this with props.id
-  const name = "Robert M. Gemma"
-  const guardian1 = "Foo Bar"
-  const guardian2 = "Foo Bar"
+  // Will search for this info with props.id (from <People>)
+  const name = "Robert M. Gemma" // TEMP
+  const guardian1 = "Foo Bar" // TEMP
+  const guardian2 = "Foo Bar" // TEMP
   return (
     <Card>
       <CardActionArea 
         className={classes.person}
         onClick={() => handlePersonClick(props.id)}
       >
+        {/* Name */}
         <Typography 
           align="center"
           component="h3"
@@ -43,9 +47,12 @@ export default function Person(props) {
           {name}
         </Typography>
 
+        {/* ID */}
         <Typography align="left" variant="body2" component="p"> 
           {"ID: "}{props.id} 
         </Typography>
+
+        {/* These will change */}
         <Typography align="left" variant="body2" component="p"> 
           {"Guardian 1: "}{guardian1} 
         </Typography>

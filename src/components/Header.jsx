@@ -4,15 +4,15 @@ import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 
 const useStyles = makeStyles(theme => ({
-    header: {
-      backgroundColor: theme.palette.primary.light,
-    },
-    name: {
-      flexGrow: 1,
-    },
-    hButton: {
-      margin: theme.spacing(0, 1),
-    },
+  header: {
+    backgroundColor: theme.palette.primary.light,
+  },
+  name: {
+    flexGrow: 1,
+  },
+  hButton: {
+    margin: theme.spacing(0, 1),
+  },
 }))
 
 export default function Header(props) {
@@ -24,6 +24,7 @@ export default function Header(props) {
         <AppBar position="fixed">
         <Container>
             <Toolbar>
+              {/* Program Name */}
               <Typography 
                 component="h4" 
                 variant="h4" 
@@ -38,7 +39,6 @@ export default function Header(props) {
                 className={classes.hButton}
                 onClick={homeClick}
                 color="secondary"
-                size="large"
                 disabled={props.content === "menu" ? true: false}
               >
                 Home
@@ -50,7 +50,6 @@ export default function Header(props) {
                 className={classes.hButton}
                 onClick={resetClick}
                 color="secondary"
-                size="large"
                 disabled={props.content === "home" || props.content === "menu" ? true: false}
               >
                 Reset
@@ -62,7 +61,6 @@ export default function Header(props) {
                 className={classes.hButton}
                 onClick={menuClick}
                 color="secondary"
-                size="large"
               >
                 Menu
               </Button>

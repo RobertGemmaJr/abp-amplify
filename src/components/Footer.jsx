@@ -15,6 +15,7 @@ const useStyles = makeStyles(theme => ({
 
 export default function Footer(props) {
   const classes = useStyles();
+  const copyright = "Copyright © DisruptWorks Technologies "
   return (
     <footer className={classes.footer}>
       <Container>
@@ -23,7 +24,7 @@ export default function Footer(props) {
           align="center"
           className={classes.copyright}
         >
-          {"Copyright © DisruptWorks Technologies "}
+          {copyright}
           {new Date().getFullYear()}
         </Typography>
       </Container>

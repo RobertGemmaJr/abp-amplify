@@ -7,11 +7,12 @@ const useStyles = makeStyles(theme => ({
   },
 }))
 
+// Questions should be displayed on at a time
+// Questions given through Azure chatbot?
 export default function Questionnaire(props) {
     const classes = useStyles(0);
     return (
       <Paper className={classes.questionnaire}>
-        
       </Paper>
     )
 }

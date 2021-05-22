@@ -53,7 +53,6 @@ export default function MenuQCard(props) {
 
         {/* Question */}
         <TextField 
-          id="question" 
           name="question"
           label="Question" 
           value={state.question}
@@ -64,7 +63,6 @@ export default function MenuQCard(props) {
 
         {/* Expected Response */}
         <TextField 
-          id="expected-response" 
           name="expectedResponse"
           label="Response" 
           value={state.expectedResponse}

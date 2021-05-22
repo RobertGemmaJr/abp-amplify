@@ -46,6 +46,7 @@ export default function Main(props) {
       case "questionnaire":
           return <Questionnaire />;
       case "summary":
+          // This will be the summary page with questions and responses
           // return <Summary />;
           break;
       default:
