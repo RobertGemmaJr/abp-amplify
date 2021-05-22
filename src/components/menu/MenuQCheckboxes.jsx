@@ -26,7 +26,6 @@ export default function MenuQCheckboxes(props) {
 
   const handleChange = (event) => {
     setState({...state, [event.target.name]: event.target.checked});
-    console.log(state)
   }
 
   return (
