@@ -170,27 +170,28 @@ export default function Menu(props) {
         Questions
       </Typography>
 
+      {/* Randomize Questions */}
+      <FormGroup row>
+        <FormControlLabel
+          control={
+            <Checkbox 
+              color="secondary" 
+              name="randomized"
+              checked={state.randomized}
+              onChange={handleRandomizedChange} 
+            />
+          }
+          label="Randomize Questions?"
+          labelPlacement="start"
+        />
+      </FormGroup>
+
       {/* Display Questions */}
       {tempQuestions}
       
       {/* Question buttons */}
       <Box m={boxMargin} display="flex" justifyContent="space-evenly">
         <AddQButton/>
-        {/* Randomize Questions */}
-        <FormGroup row>
-          <FormControlLabel
-            control={
-              <Checkbox 
-                color="secondary" 
-                name="randomized"
-                checked={state.randomized}
-                onChange={handleRandomizedChange} 
-              />
-            }
-            label="Randomize Questions?"
-            labelPlacement="start"
-          />
-        </FormGroup>
       </Box>
 
       {/* Save Button */}

@@ -4,9 +4,11 @@ import { Button, FormGroup, FormControlLabel, Card, TextField, Box, Checkbox, Bu
 import DeleteIcon from "@material-ui/icons/Delete"
 import { ArrowDropDown, ArrowDropUp } from "@material-ui/icons"
 
+import MenuQCheckboxes from "./MenuQCheckboxes"
+
 const useStyles = makeStyles(theme => ({
   card: {
-    
+
   }
 }))
 
@@ -79,7 +81,9 @@ export default function MenuQCard(props) {
         />
 
         {/* Checkboxes */}
-        <FormGroup row>
+        <MenuQCheckboxes state={state} setState={setState}/>
+
+        {/* <FormGroup row>
           <FormControlLabel
             control={
               <Checkbox 
@@ -107,7 +111,7 @@ export default function MenuQCard(props) {
             label="Afternoon"
             labelPlacement="bottom"
           />
-        </FormGroup>
+        </FormGroup> */}
         
         {/* Delete button */}
         <Button>

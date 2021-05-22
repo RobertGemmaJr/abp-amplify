@@ -14,6 +14,7 @@ export default function AddQButton() {
   const options = [
     "Add T/F Question",
     "Add Text Question",
+    "Add Temperature Question",
   ];
   
   const [open, setOpen] = React.useState(false);
