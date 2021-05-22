@@ -1,10 +1,18 @@
 import React from "react"
+import { makeStyles } from "@material-ui/styles";
 import { Button, FormGroup, FormControlLabel, Card, TextField, Box, Checkbox, ButtonGroup } from "@material-ui/core"
 import DeleteIcon from "@material-ui/icons/Delete"
 import { ArrowDropDown, ArrowDropUp } from "@material-ui/icons"
 
+const useStyles = makeStyles(theme => ({
+  card: {
+    
+  }
+}))
 
 export default function MenuQCard(props) {
+  const classes = useStyles()
+
   // Change return if T/F question or text response?
 
   // Hook for question state
@@ -25,9 +33,8 @@ export default function MenuQCard(props) {
   }
   
 
-
   return (
-    <Card m={1}>
+    <Card m={1} className={classes.card}>
       <Box 
         p={2}
         display="flex" 

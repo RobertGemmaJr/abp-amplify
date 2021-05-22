@@ -1,8 +1,16 @@
 import React from "react"
+import { makeStyles } from "@material-ui/styles";
 import { Box, ButtonGroup, Button, Popper, Grow, Paper, ClickAwayListener, MenuList, MenuItem } from "@material-ui/core";
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
 
-export default function SplitButton() {
+const useStyles = makeStyles(theme => ({
+  bGroup: {
+    
+  }
+}))
+
+export default function AddQButton() {
+  const classes = useStyles();
   const options = [
     "Add T/F Question",
     "Add Text Question",
@@ -42,10 +50,14 @@ export default function SplitButton() {
           color="secondary" 
           ref={anchorRef} 
           aria-label="split button"
+          className={classes.bGroup}
         >
+          {/* Button */}
           <Button onClick={() => handleClick()}>
             {options[selectedIndex]}
           </Button>
+
+          {/* Drop Down button */}
           <Button
             color="secondary"
             size="small"
@@ -58,6 +70,8 @@ export default function SplitButton() {
             <ArrowDropDownIcon />
           </Button>
         </ButtonGroup>
+
+        {/* Drop down */}
         <Popper 
           open={open} 
           anchorEl={anchorRef.current} 
