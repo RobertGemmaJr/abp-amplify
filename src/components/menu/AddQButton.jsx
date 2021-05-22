@@ -4,9 +4,12 @@ import { Box, ButtonGroup, Button, Popper, Grow, Paper, ClickAwayListener, MenuL
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
 
 const useStyles = makeStyles(theme => ({
-  bGroup: {
-    
-  }
+  transformTop: {
+    transformOrigin: "center top",
+  },
+  transformBottom: {
+    transformOrigin: "center bottom",
+  },
 }))
 
 export default function AddQButton() {
@@ -51,7 +54,6 @@ export default function AddQButton() {
           color="secondary" 
           ref={anchorRef} 
           aria-label="split button"
-          className={classes.bGroup}
         >
           {/* Button */}
           <Button onClick={() => handleClick()}>
@@ -72,20 +74,16 @@ export default function AddQButton() {
           </Button>
         </ButtonGroup>
 
-        {/* Drop down */}
-        <Popper 
-          open={open} 
-          anchorEl={anchorRef.current} 
-          role={undefined} 
-          transition disablePortal
-        >
+        {/* Pop up/down list */}
+        <Popper open={open} anchorEl={anchorRef.current} role={undefined} transition>
           {({ TransitionProps, placement }) => (
             <Grow
               {...TransitionProps}
-              style={{
-                transformOrigin: placement === 'bottom' ? 'center top' : 'center bottom',
-              }}
+              className={
+                placement=== "bottom" ? classes.transformTop : classes.transformBottom
+              }
             >
+              {/* Drop down list*/}
               <Paper>
                 <ClickAwayListener onClickAway={handleClose}>
                   <MenuList id="split-button-menu">

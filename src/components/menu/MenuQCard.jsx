@@ -35,12 +35,12 @@ export default function MenuQCard(props) {
   })
 
   // Handle up click
-  function handleUpClick() {
-
+  function handleUpClick(id) {
+    // Use question's id to move it up one in order
   }
   // Handle down click 
-  function handleDownClick() {
-
+  function handleDownClick(id) {
+    // Use question's id to move it down one in order
   }
   // Handle change for text values
   const handleChange = (event) => {

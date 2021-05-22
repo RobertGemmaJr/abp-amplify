@@ -76,7 +76,7 @@ export default function Menu(props) {
   // Need to read questions from a database
   const tempQuestions = []
   for (var i = 0; i < 3; i++) {
-    tempQuestions.push(<MenuQCard key={i}/>)
+    tempQuestions.push(<MenuQCard key={i} id={i}/>)
   }
 
   return (
