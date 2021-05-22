@@ -76,7 +76,7 @@ export default function Menu(props) {
   // TEMP
   const tempQuestions = []
   for (var i = 0; i < 3; i++) {
-    tempQuestions.push(<MenuQCard />)
+    tempQuestions.push(<MenuQCard key={i}/>)
   }
 
   return (
@@ -88,7 +88,7 @@ export default function Menu(props) {
         <input
           className={classes.hideInput}
           id="import-child-list"
-          single
+          single="true"
           type="file"
           accept=".csv, .xlsx, .xls"
         />
@@ -108,7 +108,7 @@ export default function Menu(props) {
         <input
           className={classes.hideInput}
           id="import-staff-list"
-          single
+          single="true"
           type="file"
           accept=".csv, .xlsx, .xls"
         />
@@ -166,7 +166,7 @@ export default function Menu(props) {
       </Box>
 
       {/* Edit Questions */}
-      <Typography align="center" variant="h4" underline>
+      <Typography align="center" variant="h4" underline="true">
         Questions
       </Typography>
 

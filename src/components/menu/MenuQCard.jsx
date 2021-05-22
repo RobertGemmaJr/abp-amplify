@@ -1,6 +1,6 @@
 import React from "react"
 import { makeStyles } from "@material-ui/styles";
-import { Button, FormGroup, FormControlLabel, Card, TextField, Box, Checkbox, ButtonGroup } from "@material-ui/core"
+import { Button, Card, TextField, Box, ButtonGroup } from "@material-ui/core"
 import DeleteIcon from "@material-ui/icons/Delete"
 import { ArrowDropDown, ArrowDropUp } from "@material-ui/icons"
 
@@ -27,11 +27,13 @@ export default function MenuQCard(props) {
     childAfternoon: true,
     staffMorning: true,
     staffAfternoon: true,
-    manual: true,
+    manualMorning: true,
+    manualAfternoon: true,
   })
 
-  const handleCheckboxChange = (event) => {
-    setState({...state, [event.target.name]: event.target.checked})
+  const handleChange = (event) => {
+    setState({...state, [event.target.name]: event.target.value})
+    console.log(state.question, state.expectedResponse)
   }
   
 
@@ -62,56 +64,29 @@ export default function MenuQCard(props) {
 
         {/* Question */}
         <TextField 
-          name="question"
-          label="Question" 
-          value={state.question}
-          // onChange={}
           variant="outlined"
+          label="Question"
+          autoComplete="off"
           noValidate fullWidth
+          name="question"
+          value={state.question}
+          onChange={handleChange}
         />
 
         {/* Expected Response */}
         <TextField 
-          name="expectedResponse"
-          label="Response" 
-          value={state.expectedResponse}
-          // onChange={}
           variant="outlined"
+          label="Response"
+          autoComplete="off"        
           noValidate
+          name="expectedResponse"
+          value={state.expectedResponse}
+          onChange={handleChange}
+          
         />
 
         {/* Checkboxes */}
         <MenuQCheckboxes state={state} setState={setState}/>
-
-        {/* <FormGroup row>
-          <FormControlLabel
-            control={
-              <Checkbox 
-                color="secondary" 
-                name="childMorning"
-                checked={state.childMorning}
-                onChange={handleCheckboxChange} 
-              />
-            }
-            label="Morning"
-            labelPlacement="bottom"
-          />
-        </FormGroup>
-
-        <FormGroup row>
-          <FormControlLabel
-            control={
-              <Checkbox 
-                color="secondary" 
-                name="childAfternoon"
-                checked={state.childAfternoon}
-                onChange={handleCheckboxChange} 
-              />
-            }
-            label="Afternoon"
-            labelPlacement="bottom"
-          />
-        </FormGroup> */}
         
         {/* Delete button */}
         <Button>
