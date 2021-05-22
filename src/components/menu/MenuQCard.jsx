@@ -8,7 +8,10 @@ import MenuQCheckboxes from "./MenuQCheckboxes"
 
 const useStyles = makeStyles(theme => ({
   card: {
-
+    margin: theme.spacing(1, 0)
+  },
+  group: {
+    margin: theme.spacing(0, 1)
   }
 }))
 
@@ -20,7 +23,7 @@ export default function MenuQCard(props) {
   // Hook for question state
   // TODO: Set everything from questions database (API call)
   const [state, setState] = React.useState({
-    type: "bool",
+    type: "text",
     question: "Question State",
     expectedResponse: "Yes",
     childMorning: true,
@@ -31,13 +34,22 @@ export default function MenuQCard(props) {
     manualAfternoon: true,
   })
 
+  // Handle up click
+  function handleUpClick() {
+
+  }
+  // Handle down click 
+  function handleDownClick() {
+
+  }
+  // Handle change for text values
   const handleChange = (event) => {
     setState({...state, [event.target.name]: event.target.value})
   }
   
 
   return (
-    <Card m={1} className={classes.card}>
+    <Card className={classes.card} raised>
       <Box 
         p={2}
         display="flex" 
@@ -46,16 +58,16 @@ export default function MenuQCard(props) {
       >
 
         {/* Up and Down Arrows */}
-        <ButtonGroup orientation="vertical" color="secondary">
+        <ButtonGroup orientation="vertical" color="secondary" className={classes.group}>
           <Button 
             variant="contained"
-            // onClick={}
+            onClick={() => handleUpClick(props.id)}
           >
             <ArrowDropUp />
           </Button>
           <Button
             variant="contained"
-            // onClick={}
+            onClick={() => handleDownClick(props.id)}
           >
             <ArrowDropDown />
           </Button>
@@ -67,6 +79,7 @@ export default function MenuQCard(props) {
           label="Question"
           autoComplete="off"
           noValidate fullWidth
+          className={classes.group}
           name="question"
           value={state.question}
           onChange={handleChange}
@@ -78,6 +91,7 @@ export default function MenuQCard(props) {
           label="Response"
           autoComplete="off"        
           noValidate
+          className={classes.group}
           name="expectedResponse"
           value={state.expectedResponse}
           onChange={handleChange}
@@ -85,11 +99,11 @@ export default function MenuQCard(props) {
         />
 
         {/* Checkboxes */}
-        <MenuQCheckboxes state={state} setState={setState}/>
+        <MenuQCheckboxes state={state} setState={setState} className={classes.group}/>
         
         {/* Delete button */}
-        <Button>
-          <DeleteIcon color="secondary" />
+        <Button className={classes.group}>
+          <DeleteIcon color="secondary"/>
         </Button>
         
       </Box>

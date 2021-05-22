@@ -166,7 +166,7 @@ export default function Menu(props) {
       </Box>
 
       {/* Edit Questions */}
-      <Typography align="center" variant="h4" underline="true">
+      <Typography align="center" variant="h4">
         Questions
       </Typography>
 
