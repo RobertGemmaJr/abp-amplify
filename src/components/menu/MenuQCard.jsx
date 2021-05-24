@@ -90,6 +90,7 @@ export default function MenuQCard(props) {
 
         {/* Expected Response */}
         {q.type !== "bool" ?
+          // temp and text question
           <TextField 
             variant="outlined"
             label={q.type !== "temp" ? "Response" : "Maximum Temperature"}
@@ -101,6 +102,7 @@ export default function MenuQCard(props) {
             onChange={handleChange}
           /> 
         :
+          // bool question
           <Grid container direction="column" xs={2} className={classes.group}>
             <Grid item>
               <FormControlLabel
@@ -118,11 +120,10 @@ export default function MenuQCard(props) {
             </Grid>
             <Grid item>
               <Typography variant="body2" align="center">
-                {state.response ? "Yes" : "No"}
+                {state.familyMorning ? "Yes" : "No"}
               </Typography>
             </Grid>
           </Grid>
-
         }
 
         {/* Checkboxes */}

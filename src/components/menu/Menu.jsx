@@ -80,42 +80,36 @@ export default function Menu(props) {
     type: "temp",
     question: "97",
     response: "100",
-    checkboxes: {
-      familyMorning: true,
-      familyAfternoon: true,
-      staffMorning: true,
-      staffAfternoon: true,
-      manualMorning: true,
-      manualAfternoon: true,
-    }
+    familyMorning: true,
+    familyAfternoon: true,
+    staffMorning: true,
+    staffAfternoon: true,
+    manualMorning: true,
+    manualAfternoon: true,
   }
   const q2 = {
     id: 1,
     type: "text",
-    question: "Question 1",
-    response: "Answer 1",
-    checkboxes: {
-      familyMorning: true,
-      familyAfternoon: true,
-      staffMorning: true,
-      staffAfternoon: true,
-      manualMorning: true,
-      manualAfternoon: true,
-    }
+    question: "Text Question",
+    response: "Answer",
+    familyMorning: true,
+    familyAfternoon: true,
+    staffMorning: true,
+    staffAfternoon: true,
+    manualMorning: true,
+    manualAfternoon: true,
   }
   const q3 = {
     id: 2,
     type: "bool",
-    question: "Question 2",
+    question: "Boolean Question",
     response: false,
-    checkboxes: {
-      familyMorning: true,
-      familyAfternoon: true,
-      staffMorning: true,
-      staffAfternoon: true,
-      manualMorning: true,
-      manualAfternoon: true,
-    }
+    familyMorning: true,
+    familyAfternoon: true,
+    staffMorning: true,
+    staffAfternoon: true,
+    manualMorning: true,
+    manualAfternoon: true,
   }
   const tempQuestions = [
     <MenuQCard key={q1.id} q={q1}/>,
