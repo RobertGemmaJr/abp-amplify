@@ -28,7 +28,8 @@ const useStyles = makeStyles(theme => ({
     display: "none"
   },
   save: {
-    marginTop: theme.spacing(5)
+    marginTop: theme.spacing(5),
+    marginBottom: theme.spacing(3),
   }
 }))
 
@@ -119,7 +120,6 @@ export default function Menu(props) {
   ]
 
 
-  const boxMargin = 3
   return (
     <Paper className={classes.menu}>
     
@@ -237,7 +237,7 @@ export default function Menu(props) {
       </Box>
 
       {/* Save Button */}
-      <Box className={classes.box} align="center" className={classes.save}>
+      <Box align="center" className={classes.save}>
         <Button 
           variant="contained"
           color="secondary"
