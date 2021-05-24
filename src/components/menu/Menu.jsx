@@ -18,6 +18,9 @@ function getDate() {
 }
 
 const useStyles = makeStyles(theme => ({
+  box: {
+    margin: theme.spacing(3),
+  },
   menu: {
     width: "100%",
   },
@@ -71,8 +74,6 @@ export default function Menu(props) {
     // window.location.reload();
   }
 
-
-
   // TEMP - display example questions
   // Questions will be read from database
   const q1 = {
@@ -117,12 +118,13 @@ export default function Menu(props) {
     <MenuQCard key={q3.id} q={q3}/>,
   ]
 
+
   const boxMargin = 3
   return (
     <Paper className={classes.menu}>
     
       {/* Import Buttons */}
-      <Box m={boxMargin} display="flex" justifyContent="space-evenly">
+      <Box className={classes.box} display="flex" justifyContent="space-evenly">
         {/* Import Family List */}
         <input
           className={classes.hideInput}
@@ -165,7 +167,7 @@ export default function Menu(props) {
       </Box>
 
       {/* Export Answers */}
-      <Box m={boxMargin} display="flex" justifyContent="space-evenly">
+      <Box className={classes.box} display="flex" justifyContent="space-evenly">
         <TextField
           id="start-date"
           name="startDate"
@@ -192,7 +194,7 @@ export default function Menu(props) {
       </Box>
 
       {/* Update Title */}
-      <Box m={boxMargin} display="flex" justifyContent="space-evenly" component="form">
+      <Box className={classes.box} display="flex" justifyContent="space-evenly" component="form">
         <TextField 
           id="new-title" 
           name="newTitle"
@@ -230,12 +232,12 @@ export default function Menu(props) {
       {tempQuestions}
       
       {/* Question buttons */}
-      <Box m={boxMargin} display="flex" justifyContent="space-evenly">
+      <Box className={classes.box} display="flex" justifyContent="space-evenly">
         <AddQButton/>
       </Box>
 
       {/* Save Button */}
-      <Box m={boxMargin} align="center" className={classes.save}>
+      <Box className={classes.box} align="center" className={classes.save}>
         <Button 
           variant="contained"
           color="secondary"
