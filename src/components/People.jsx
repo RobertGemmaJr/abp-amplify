@@ -11,8 +11,8 @@ const useStyles = makeStyles(theme => ({
   gridList: {
     width: "100%",
     height: "100%",
-    alignContent: "flex-start",
-    justifyContent: "flex-start",
+    alignContent: "center",
+    justifyContent: "center",
   },
 }))
 
@@ -22,7 +22,7 @@ export default function People(props) {
   // TEMP
   var people = []
   const id = 12345 // Will be ID from database
-  for(var i=0; i < 5; i++) {
+  for(var i=0; i < 1; i++) {
     people.push(
       <GridListTile>
         <Person setContent={props.setContent} key={i} id={id} />
@@ -35,7 +35,7 @@ export default function People(props) {
       <GridList 
         cellHeight="auto"
         cols={4} 
-        spacing={5} 
+        spacing={20} 
         className={classes.gridList}
       >
         {people}
