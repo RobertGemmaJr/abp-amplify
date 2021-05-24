@@ -39,11 +39,12 @@ function App(props) {
   // Hook for content to be shown
   const [content, setContent] = React.useState("home")
 
-  // Hook for the current form type
-  const [form, setForm] = React.useState("Test")
+  // Hook for the current form
+  const [form, setForm] = React.useState("")
 
   // HandleClick functions
   function handleHomeClick() {
+    setForm("")
     setContent("home")
   }
 
