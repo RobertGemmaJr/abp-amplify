@@ -27,7 +27,7 @@ export default function Home(props) {
         setContent={props.setContent} 
         key="family"
         image={familyLogo} 
-        text="Child Form"
+        text="Family Form"
         
       />
       <HomeCard 

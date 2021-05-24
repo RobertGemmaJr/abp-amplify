@@ -51,8 +51,8 @@ export default function Menu(props) {
     setState({...state, [event.target.name]: event.target.checked})
   }
 
-  // Handle import child button clicked
-  function handleImportChildClick() {
+  // Handle import family button clicked
+  function handleImportFamilyClick() {
 
   }
   // Handle import staff button clicked
@@ -84,23 +84,23 @@ export default function Menu(props) {
     
       {/* Import Buttons */}
       <Box m={boxMargin} display="flex" justifyContent="space-evenly">
-        {/* Import Child List */}
+        {/* Import Family List */}
         <input
           className={classes.hideInput}
-          id="import-child-list"
+          id="import-family-list"
           single="true"
           type="file"
           accept=".csv, .xlsx, .xls"
         />
-        <label htmlFor="import-child-list">
+        <label htmlFor="import-family-list">
           <Button 
             startIcon={<CloudUploadIcon />}
             variant="contained"
             color="secondary"
             component="span"
-            onClick={() => handleImportChildClick()}
+            onClick={() => handleImportFamilyClick()}
           >
-            Import Child List
+            Import Family List
           </Button>
         </label>
 

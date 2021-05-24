@@ -43,20 +43,20 @@ export default function MenuQCheckboxes(props) {
       
       <Row className={classes.row}>
         <Grid item xs>
-          <Typography align="right">Child</Typography>
+          <Typography align="right">Family</Typography>
         </Grid>
         <Grid item xs>
           <Checkbox 
-            name="childMorning"
-            checked={state.childMorning}
+            name="familyMorning"
+            checked={state.familyMorning}
             onChange={handleChange}
             className={classes.checkbox}
           />
         </Grid>
         <Grid item xs>
           <Checkbox 
-            name="childAfternoon"
-            checked={state.childAfternoon}
+            name="familyAfternoon"
+            checked={state.familyAfternoon}
             onChange={handleChange}
             className={classes.checkbox}
           />
