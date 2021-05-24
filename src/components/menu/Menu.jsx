@@ -71,15 +71,59 @@ export default function Menu(props) {
     // window.location.reload();
   }
 
-  const boxMargin = 3
+
 
   // TEMP - display example questions
-  // Need to read questions from a database
-  const tempQuestions = []
-  for (var i = 0; i < 3; i++) {
-    tempQuestions.push(<MenuQCard key={i} id={i}/>)
+  // Questions will be read from database
+  const q1 = {
+    id: 0,
+    type: "temp",
+    question: "97",
+    response: "100",
+    checkboxes: {
+      familyMorning: true,
+      familyAfternoon: true,
+      staffMorning: true,
+      staffAfternoon: true,
+      manualMorning: true,
+      manualAfternoon: true,
+    }
   }
+  const q2 = {
+    id: 1,
+    type: "text",
+    question: "Question 1",
+    response: "Answer 1",
+    checkboxes: {
+      familyMorning: true,
+      familyAfternoon: true,
+      staffMorning: true,
+      staffAfternoon: true,
+      manualMorning: true,
+      manualAfternoon: true,
+    }
+  }
+  const q3 = {
+    id: 2,
+    type: "bool",
+    question: "Question 2",
+    response: false,
+    checkboxes: {
+      familyMorning: true,
+      familyAfternoon: true,
+      staffMorning: true,
+      staffAfternoon: true,
+      manualMorning: true,
+      manualAfternoon: true,
+    }
+  }
+  const tempQuestions = [
+    <MenuQCard key={q1.id} q={q1}/>,
+    <MenuQCard key={q2.id} q={q2}/>,
+    <MenuQCard key={q3.id} q={q3}/>,
+  ]
 
+  const boxMargin = 3
   return (
     <Paper className={classes.menu}>
     
@@ -188,6 +232,7 @@ export default function Menu(props) {
       </FormGroup>
 
       {/* Display Questions */}
+      {/* key is the questions index. State is its values */}
       {tempQuestions}
       
       {/* Question buttons */}

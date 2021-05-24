@@ -1,6 +1,6 @@
 import React from "react"
 import { makeStyles } from "@material-ui/styles";
-import { Button, Card, TextField, Box, ButtonGroup } from "@material-ui/core"
+import { Button, Card, TextField, Box, ButtonGroup, FormControlLabel, Switch } from "@material-ui/core"
 import DeleteIcon from "@material-ui/icons/Delete"
 import { ArrowDropDown, ArrowDropUp } from "@material-ui/icons"
 
@@ -12,39 +12,41 @@ const useStyles = makeStyles(theme => ({
   },
   group: {
     margin: theme.spacing(0, 1)
+  },
+  delete: {
+    padding: theme.spacing(0)
   }
 }))
 
 export default function MenuQCard(props) {
   const classes = useStyles()
+  const { q } = props
 
   // Change return if T/F question or text response?
 
   // Hook for question state
   // TODO: Set everything from questions database (API call)
   const [state, setState] = React.useState({
-    type: "text",
-    question: "Question State",
-    expectedResponse: "Yes",
-    familyMorning: true,
-    familyAfternoon: true,
-    staffMorning: true,
-    staffAfternoon: true,
-    manualMorning: true,
-    manualAfternoon: true,
+    question: q.question,
+    response: q.response,
+    checkboxes: q.checkboxes,
   })
 
   // Handle up click
-  function handleUpClick(id) {
+  function handleUpClick() {
     // Use question's id to move it up one in order
+    console.log(q.id)
   }
   // Handle down click 
-  function handleDownClick(id) {
+  function handleDownClick() {
     // Use question's id to move it down one in order
   }
   // Handle change for text values
   const handleChange = (event) => {
     setState({...state, [event.target.name]: event.target.value})
+  }
+  const toggleSwitch = (event) => {
+    setState({...state, [event.target.name]: event.target.checked });
   }
   
 
@@ -76,9 +78,10 @@ export default function MenuQCard(props) {
         {/* Question */}
         <TextField 
           variant="outlined"
-          label="Question"
+          label={q.type !== "temp" ? "Question" : "Minimum Temperature"}
           autoComplete="off"
-          noValidate fullWidth
+          noValidate 
+          fullWidth={q.type !== "temp"}
           className={classes.group}
           name="question"
           value={state.question}
@@ -86,23 +89,37 @@ export default function MenuQCard(props) {
         />
 
         {/* Expected Response */}
-        <TextField 
-          variant="outlined"
-          label="Response"
-          autoComplete="off"        
-          noValidate
-          className={classes.group}
-          name="expectedResponse"
-          value={state.expectedResponse}
-          onChange={handleChange}
-          
-        />
+        {q.type !== "bool" ?
+          <TextField 
+            variant="outlined"
+            label={q.type !== "temp" ? "Response" : "Maximum Temperature"}
+            autoComplete="off"        
+            noValidate
+            className={classes.group}
+            name="response"
+            value={state.response}
+            onChange={handleChange}
+          /> 
+        :
+          <FormControlLabel
+            control={
+              <Switch 
+                name="response"
+                checked={state.response}
+                onChange={toggleSwitch}
+              />
+            }
+            label={state.response ? "Yes" : "No"}
+            labelPlacement="top"
+            className={classes.group}
+          />
+        }
 
         {/* Checkboxes */}
         <MenuQCheckboxes state={state} setState={setState} className={classes.group}/>
         
         {/* Delete button */}
-        <Button className={classes.group}>
+        <Button className={classes.delete} >
           <DeleteIcon color="secondary"/>
         </Button>
         
