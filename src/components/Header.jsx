@@ -1,4 +1,4 @@
-import { AppBar, Container, Toolbar } from "@material-ui/core"
+import { AppBar, Box, Container, Toolbar } from "@material-ui/core"
 import { makeStyles } from "@material-ui/styles";
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
@@ -8,6 +8,7 @@ const useStyles = makeStyles(theme => ({
     backgroundColor: theme.palette.primary.light,
   },
   name: {
+    margin: theme.spacing(1),
     flexGrow: 1,
   },
   hButton: {
@@ -21,7 +22,7 @@ export default function Header(props) {
     return (
       <header className={classes.header}>
         <AppBar position="fixed">
-        <Container>
+        <Box>
             <Toolbar>
               {/* Program Name */}
               <Typography 
@@ -32,6 +33,7 @@ export default function Header(props) {
                 Apple Blossom Health Check App
               </Typography>
               
+              <Typography>{props.form}</Typography>
               {/* Home Button */}
               <Button 
                 variant="contained" 
@@ -42,7 +44,7 @@ export default function Header(props) {
                 Home
               </Button>
             </Toolbar>
-          </Container>
+          </Box>
         </AppBar>
         <Toolbar /> {/* Forces content below fixed AppBar */}
       </header>

@@ -42,6 +42,7 @@ export default function Home(props) {
       <Box className={classes.inner}>
         <HomeCard 
           setContent={props.setContent} 
+          setForm={props.setForm}
           key="family"
           image={familyLogo} 
           text="Family Form"
@@ -49,12 +50,14 @@ export default function Home(props) {
         />
         <HomeCard 
           setContent={props.setContent} 
+          setForm={props.setForm}
           key="staff"
           image={thermometerGuy} 
           text="Staff Form"
         />
         <HomeCard 
           setContent={props.setContent} 
+          setForm={props.setForm}
           key="manual"
           image={logo} 
           text="Manual Entry"

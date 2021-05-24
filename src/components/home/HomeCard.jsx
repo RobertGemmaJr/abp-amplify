@@ -10,12 +10,16 @@ const useStyles = makeStyles(theme => ({
   media: {
     height: 300,
   },
+  text: {
+    fontWeight: "bold"
+  }
 }))
 
 export default function HomeCard(props) {
   const classes = useStyles();
 
   function handleCardClick(form) {
+    props.setForm(form)
     console.log(form) // TEMP
     props.setContent("keypad")
   }
@@ -29,7 +33,7 @@ export default function HomeCard(props) {
         />
       </CardActionArea>
       <CardContent>
-        <Typography align="center" component="h3">
+        <Typography align="center" component="h3" className={classes.text}>
           {props.text}
         </Typography>
       </CardContent>

@@ -39,6 +39,9 @@ function App(props) {
   // Hook for content to be shown
   const [content, setContent] = React.useState("home")
 
+  // Hook for the current form type
+  const [form, setForm] = React.useState("Test")
+
   // HandleClick functions
   function handleHomeClick() {
     setContent("home")
@@ -48,13 +51,14 @@ function App(props) {
     <Box className={classes.root}>
       <CssBaseline />
       <Header 
-        homeClick={() => handleHomeClick()}
-        content={content}
+        content={content} 
+        form={form}
+        homeClick={() => handleHomeClick()} 
       />
       <Main 
-        content={content}
+        content={content} 
         setContent={setContent}
-        content={content}
+        setForm={setForm}
       />
       <Footer />
     </Box>

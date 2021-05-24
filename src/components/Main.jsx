@@ -34,7 +34,7 @@ const useStyles = makeStyles(theme => ({
 
 export default function Main(props) {
   const classes = useStyles();
-  const {content, setContent} = props;
+  const {content, setContent, setForm} = props;
   
   // Hook for title
   // TEMP - this should be saved in a database not a hook
@@ -57,7 +57,7 @@ export default function Main(props) {
         />
         );
       case "home":
-        return <Home content={content} setContent={setContent}/>;
+        return <Home setForm={setForm} content={content} setContent={setContent}/>;
       case "keypad":
         return <Keypad content={content} setContent={setContent}/>;
       case "people":
