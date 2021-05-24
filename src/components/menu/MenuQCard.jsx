@@ -1,6 +1,6 @@
 import React from "react"
 import { makeStyles } from "@material-ui/styles";
-import { Button, Card, TextField, Box, ButtonGroup, FormControlLabel, Switch } from "@material-ui/core"
+import { Grid, Button, Card, TextField, Box, ButtonGroup, FormControlLabel, Switch, Typography } from "@material-ui/core"
 import DeleteIcon from "@material-ui/icons/Delete"
 import { ArrowDropDown, ArrowDropUp } from "@material-ui/icons"
 
@@ -101,18 +101,28 @@ export default function MenuQCard(props) {
             onChange={handleChange}
           /> 
         :
-          <FormControlLabel
-            control={
-              <Switch 
-                name="response"
-                checked={state.response}
-                onChange={toggleSwitch}
-              />
-            }
-            label={state.response ? "Yes" : "No"}
-            labelPlacement="top"
-            className={classes.group}
-          />
+          <Grid container direction="column" xs={2} className={classes.group}>
+            <Grid item>
+              <FormControlLabel
+              control={
+                <Switch 
+                  name="response"
+                  checked={state.response}
+                  onChange={toggleSwitch}
+                />
+              }
+              label="Response"
+              labelPlacement="top"
+              className={classes.group}
+            />
+            </Grid>
+            <Grid item>
+              <Typography variant="body2" align="center">
+                {state.response ? "Yes" : "No"}
+              </Typography>
+            </Grid>
+          </Grid>
+
         }
 
         {/* Checkboxes */}
