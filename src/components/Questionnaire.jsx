@@ -1,9 +1,16 @@
-import { Paper } from "@material-ui/core";
+import { Container, Paper } from "@material-ui/core";
 import { makeStyles } from "@material-ui/styles";
 
+import ResetButton from "./ResetButton"
+
 const useStyles = makeStyles(theme => ({
-  questionnaire: {
+  paper: {
     width: "100%",
+    display: "flex",
+    flexDirection: "column",
+  },
+  questionnaire: {
+    flexGrow: 1,
   },
 }))
 
@@ -12,7 +19,11 @@ const useStyles = makeStyles(theme => ({
 export default function Questionnaire(props) {
     const classes = useStyles(0);
     return (
-      <Paper className={classes.questionnaire}>
+      <Paper className={classes.paper}>
+        <Container className={classes.questionnaire}>
+
+        </Container>
+        <ResetButton setContent={props.setContent}/>
       </Paper>
     )
 }

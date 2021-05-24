@@ -26,20 +26,25 @@ const useStyles = makeStyles(theme => ({
     display: "flex",
     justifyContent: "center",
   },
+  resetButton: {
+    textAlign: "center",
+    marginTop: theme.spacing(3),
+  }
 }))
 
 export default function Main(props) {
   const classes = useStyles();
+  const {content, setContent} = props;
+  
+  // Hook for title
+  // TEMP - this should be saved in a database not a hook
+  const [title, setTitle] = useState("Company Title")
 
-    // Hook for title
-    // TEMP - this should be saved in a database not a hook
-    const [title, setTitle] = useState("Company Title")
-
-    // Hook for question type
-    const [qType, setQType] = useState(true)
+  // Hook for question type
+  const [qType, setQType] = useState(true)
 
   // Hook for rendering the main content based on program state
-  const {content, setContent} = props;
+  
   function renderContent() {
     switch(content) {
       case "menu":
@@ -51,10 +56,10 @@ export default function Main(props) {
       case "people":
         return <People setContent={setContent}/>;
       case "questionnaire":
-          return <Questionnaire />;
+          return <Questionnaire setContent={setContent}/>;
       case "summary":
           // This will be the summary page with questions and responses
-          // return <Summary />;
+          // return <Summary setContent={setContent}/>;
           break;
       default:
         console.error("Invalid content code")
@@ -71,7 +76,21 @@ export default function Main(props) {
       >
         <Title content={content} title={title} qType={qType} />
       </Container>
-      <Container className={classes.content}> {renderContent()} </Container>
+      <Container className={classes.content}>
+        {renderContent()} 
+      </Container>
+      
+      {/* <Container className={classes.resetButton}> 
+        <Button 
+          variant="contained" 
+          className={classes.hButton}
+          onClick={resetClick}
+          color="secondary"
+          disabled={props.content === "home" || props.content === "menu" ? true: false}
+        >
+          Reset
+        </Button>
+      </Container> */}
     </Container>
   )
 }

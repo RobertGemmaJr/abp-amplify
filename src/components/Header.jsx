@@ -17,7 +17,7 @@ const useStyles = makeStyles(theme => ({
 
 export default function Header(props) {
     const classes = useStyles();
-    const { homeClick, resetClick, menuClick } = props;
+    const { homeClick, menuClick } = props;
 
     return (
       <header className={classes.header}>
@@ -42,17 +42,6 @@ export default function Header(props) {
                 disabled={props.content === "menu" ? true: false}
               >
                 Home
-              </Button>
-
-              {/* Reset Button */}
-              <Button 
-                variant="contained" 
-                className={classes.hButton}
-                onClick={resetClick}
-                color="secondary"
-                disabled={props.content === "home" || props.content === "menu" ? true: false}
-              >
-                Reset
               </Button>
 
               {/* Menu Button */}

@@ -1,7 +1,8 @@
-import { GridList, GridListTile } from "@material-ui/core"
+import { Box, GridList, GridListTile } from "@material-ui/core"
 import { makeStyles } from "@material-ui/styles";
 
 import Person from "./Person"
+import ResetButton from "./ResetButton"
 
 const useStyles = makeStyles(theme => ({
   gridList: {
@@ -16,7 +17,7 @@ export default function People(props) {
   // TEMP
   var people = []
   const id = 12345 // Will be ID from database
-  for(var i=0; i < 16; i++) {
+  for(var i=0; i < 25; i++) {
     people.push(
       <GridListTile>
         <Person setContent={props.setContent} key={i} id={id} />
@@ -25,13 +26,16 @@ export default function People(props) {
   }
 
   return (
-    <GridList 
-      cellHeight="auto"
-      cols={4} 
-      spacing={5} 
-      className={classes.gridList}
-    >
-      {people}
-    </GridList>
+    <Box display="flex" flexDirection="column">
+      <GridList 
+        cellHeight="auto"
+        cols={4} 
+        spacing={5} 
+        className={classes.gridList}
+      >
+        {people}
+      </GridList>
+    <ResetButton setContent={props.setContent}/>
+    </Box>
   )
 }

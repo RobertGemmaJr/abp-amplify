@@ -44,9 +44,6 @@ function App(props) {
   function handleHomeClick() {
     setContent("home")
   }
-  function handleResetClick() { 
-    setContent("keypad")
-  }
   function handleMenuClick() {
     if (content === "menu") {
       setContent(menuPrev)
@@ -62,7 +59,6 @@ function App(props) {
       <Header 
         homeClick={() => handleHomeClick()}
         menuClick={() => handleMenuClick()}
-        resetClick={() => handleResetClick()}
         content={content}
       />
       <Main 
