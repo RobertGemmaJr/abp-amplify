@@ -5,9 +5,14 @@ import Person from "./Person"
 import ResetButton from "./ResetButton"
 
 const useStyles = makeStyles(theme => ({
+  box: {
+    width: "100%",
+  },
   gridList: {
     width: "100%",
     height: "100%",
+    alignContent: "flex-start",
+    justifyContent: "flex-start",
   },
 }))
 
@@ -17,7 +22,7 @@ export default function People(props) {
   // TEMP
   var people = []
   const id = 12345 // Will be ID from database
-  for(var i=0; i < 25; i++) {
+  for(var i=0; i < 5; i++) {
     people.push(
       <GridListTile>
         <Person setContent={props.setContent} key={i} id={id} />
@@ -26,7 +31,7 @@ export default function People(props) {
   }
 
   return (
-    <Box display="flex" flexDirection="column">
+    <Box display="flex" flexDirection="column" className={classes.box}>
       <GridList 
         cellHeight="auto"
         cols={4} 

@@ -3,14 +3,17 @@ import { Box, Button, GridList, GridListTile, makeStyles } from '@material-ui/co
 import ResetButton from "./ResetButton"
 
 const useStyles = makeStyles(theme => ({
-  gridList: {
+  box: {
     width: "100%",
+    alignItems: "center",
+  },
+  gridList: {
     maxWidth: 500,
     justifyContent: "center",
     alignContent: "center",
     flexGrow: 1,
   },
-  button: {
+  keys: {
     width: "100%",
     height: "100%",
     fontSize: 25,
@@ -28,7 +31,7 @@ export default function Keypad(props) {
   }
 
   return (
-    <Box display="flex" flexDirection="column">
+    <Box display="flex" flexDirection="column" className={classes.box}>
       <GridList
         cellHeight={50}
         cols={4}
@@ -41,7 +44,7 @@ export default function Keypad(props) {
               <Button
                 variant="contained"
                 color="primary"
-                className={classes.button}
+                className={classes.keys}
                 onClick={() => handleKeypadClick(letter)}
               >
                 {letter}
