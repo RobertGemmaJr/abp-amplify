@@ -48,15 +48,22 @@ export default function Main(props) {
   function renderContent() {
     switch(content) {
       case "menu":
-        return <Menu title={title} setTitle={setTitle}/>;
+        return (
+        <Menu 
+          content={content} 
+          setContent={setContent}
+          title={title} 
+          setTitle={setTitle}
+        />
+        );
       case "home":
-        return <Home setContent={setContent}/>;
+        return <Home content={content} setContent={setContent}/>;
       case "keypad":
-        return <Keypad setContent={setContent}/>;
+        return <Keypad content={content} setContent={setContent}/>;
       case "people":
-        return <People setContent={setContent}/>;
+        return <People content={content} setContent={setContent}/>;
       case "questionnaire":
-          return <Questionnaire setContent={setContent}/>;
+          return <Questionnaire content={content} setContent={setContent}/>;
       case "summary":
           // This will be the summary page with questions and responses
           // return <Summary setContent={setContent}/>;

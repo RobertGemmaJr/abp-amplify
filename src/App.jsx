@@ -38,19 +38,10 @@ function App(props) {
 
   // Hook for content to be shown
   const [content, setContent] = React.useState("home")
-  const [menuPrev, setMenuPrev] = React.useState("home")
 
   // HandleClick functions
   function handleHomeClick() {
     setContent("home")
-  }
-  function handleMenuClick() {
-    if (content === "menu") {
-      setContent(menuPrev)
-    } else {
-      setMenuPrev(content)
-      setContent("menu")
-    }
   }
 
   return (
@@ -58,12 +49,12 @@ function App(props) {
       <CssBaseline />
       <Header 
         homeClick={() => handleHomeClick()}
-        menuClick={() => handleMenuClick()}
         content={content}
       />
       <Main 
         content={content}
         setContent={setContent}
+        content={content}
       />
       <Footer />
     </Box>

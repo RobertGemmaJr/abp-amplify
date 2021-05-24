@@ -67,6 +67,7 @@ export default function Menu(props) {
   // Handle save button clicked
   function handleSaveClick(state) {
     props.setTitle(state.newTitle);
+    props.setContent("home")
     // window.location.reload();
   }
 
