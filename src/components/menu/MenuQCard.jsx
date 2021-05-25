@@ -103,7 +103,13 @@ export default function MenuQCard(props) {
           /> 
         :
           // bool question
-          <Grid container direction="column" xs={2} className={classes.group}>
+          <Grid 
+            container 
+            direction="column" 
+            xs={2} 
+            alignContent="center"
+            className={classes.group} 
+          >
             <Grid item>
               <FormControlLabel
               control={
