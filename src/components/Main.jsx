@@ -6,8 +6,8 @@ import Title from "./Title"
 import Home from "./home/Home"
 import Keypad from "./Keypad"
 import Menu from "./menu/Menu"
-import People from "./People";
-import Questionnaire from "./Questionnaire"
+import People from "./people/People";
+import Questionnaire from "./questionnaire/Questionnaire"
 
 const useStyles = makeStyles(theme => ({
   main: {
@@ -47,6 +47,8 @@ export default function Main(props) {
   
   function renderContent() {
     switch(content) {
+      case "home":
+        return <Home setForm={setForm} content={content} setContent={setContent}/>;
       case "menu":
         return (
           <Menu 
@@ -60,8 +62,6 @@ export default function Main(props) {
           // This will be the manual page where a user types in there name
           // return <Manual content={content} setContent={setContent}/>;
           break;
-      case "home":
-        return <Home setForm={setForm} content={content} setContent={setContent}/>;
       case "keypad":
         return <Keypad content={content} setContent={setContent}/>;
       case "people":
