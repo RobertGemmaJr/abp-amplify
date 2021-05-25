@@ -20,8 +20,20 @@ export default function HomeCard(props) {
 
   function handleCardClick(form) {
     props.setForm(form)
-    console.log(form) // TEMP
-    props.setContent("keypad")
+    switch(form) {
+      case "Family Form":
+        props.setContent("keypad");
+        break;
+      case "Staff Form":
+        props.setContent("keypad");
+        break;
+      case "Manual Entry":
+        props.setContent("manual");
+        break;
+      default:
+          console.error("Invalid form code")
+          break;
+    }
   }
 
   return (

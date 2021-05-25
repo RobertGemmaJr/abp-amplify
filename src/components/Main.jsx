@@ -8,6 +8,7 @@ import Keypad from "./Keypad"
 import Menu from "./menu/Menu"
 import People from "./people/People";
 import Questionnaire from "./questionnaire/Questionnaire"
+import Manual from "./Manual"
 
 const useStyles = makeStyles(theme => ({
   main: {
@@ -44,7 +45,6 @@ export default function Main(props) {
   const [qType, setQType] = useState(true)
 
   // Hook for rendering the main content based on program state
-  
   function renderContent() {
     switch(content) {
       case "home":
@@ -59,9 +59,7 @@ export default function Main(props) {
           />
         );
       case "manual":
-          // This will be the manual page where a user types in there name
-          // return <Manual content={content} setContent={setContent}/>;
-          break;
+          return <Manual content={content} setContent={setContent}/>;
       case "keypad":
         return <Keypad content={content} setContent={setContent}/>;
       case "people":
