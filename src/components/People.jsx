@@ -22,7 +22,7 @@ export default function People(props) {
   // TEMP
   var people = []
   const id = 12345 // Will be ID from database
-  for(var i=0; i < 1; i++) {
+  for(var i=0; i < 15; i++) {
     people.push(
       <GridListTile>
         <Person setContent={props.setContent} key={i} id={id} />

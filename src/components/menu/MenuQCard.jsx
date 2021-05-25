@@ -120,7 +120,7 @@ export default function MenuQCard(props) {
             </Grid>
             <Grid item>
               <Typography variant="body2" align="center">
-                {state.familyMorning ? "Yes" : "No"}
+                {state.response ? "Yes" : "No"}
               </Typography>
             </Grid>
           </Grid>
