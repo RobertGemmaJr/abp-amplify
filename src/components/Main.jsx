@@ -49,13 +49,17 @@ export default function Main(props) {
     switch(content) {
       case "menu":
         return (
-        <Menu 
-          content={content} 
-          setContent={setContent}
-          title={title} 
-          setTitle={setTitle}
-        />
+          <Menu 
+            content={content} 
+            setContent={setContent}
+            title={title} 
+            setTitle={setTitle}
+          />
         );
+      case "manual":
+          // This will be the manual page where a user types in there name
+          // return <Manual content={content} setContent={setContent}/>;
+          break;
       case "home":
         return <Home setForm={setForm} content={content} setContent={setContent}/>;
       case "keypad":
@@ -66,7 +70,7 @@ export default function Main(props) {
           return <Questionnaire content={content} setContent={setContent}/>;
       case "summary":
           // This will be the summary page with questions and responses
-          // return <Summary setContent={setContent}/>;
+          // return <Summary content={content} setContent={setContent}/>;
           break;
       default:
         console.error("Invalid content code")
@@ -86,18 +90,6 @@ export default function Main(props) {
       <Container className={classes.content}>
         {renderContent()} 
       </Container>
-      
-      {/* <Container className={classes.resetButton}> 
-        <Button 
-          variant="contained" 
-          className={classes.hButton}
-          onClick={resetClick}
-          color="secondary"
-          disabled={props.content === "home" || props.content === "menu" ? true: false}
-        >
-          Reset
-        </Button>
-      </Container> */}
     </Container>
   )
 }

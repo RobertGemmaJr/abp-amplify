@@ -33,7 +33,9 @@ export default function Header(props) {
                 Apple Blossom Health Check App
               </Typography>
               
+              {/* Display Form */}
               <Typography>{props.form}</Typography>
+              
               {/* Home Button */}
               <Button 
                 variant="contained" 
