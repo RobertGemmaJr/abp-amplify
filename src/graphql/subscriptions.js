@@ -94,39 +94,6 @@ export const onDeleteQuestion = /* GraphQL */ `
     }
   }
 `;
-export const onCreateSettings = /* GraphQL */ `
-  subscription OnCreateSettings {
-    onCreateSettings {
-      id
-      title
-      randomized
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const onUpdateSettings = /* GraphQL */ `
-  subscription OnUpdateSettings {
-    onUpdateSettings {
-      id
-      title
-      randomized
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const onDeleteSettings = /* GraphQL */ `
-  subscription OnDeleteSettings {
-    onDeleteSettings {
-      id
-      title
-      randomized
-      createdAt
-      updatedAt
-    }
-  }
-`;
 export const onCreateResponse = /* GraphQL */ `
   subscription OnCreateResponse {
     onCreateResponse {
@@ -203,6 +170,84 @@ export const onDeleteResponse = /* GraphQL */ `
       }
       responses
       passed
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onCreateSettings = /* GraphQL */ `
+  subscription OnCreateSettings {
+    onCreateSettings {
+      id
+      title
+      randomized
+      questions {
+        id
+        type
+        question
+        response
+        recordTemp
+        familyMorning
+        familyAfternoon
+        staffMorning
+        staffAfternoon
+        manualMorning
+        manualAfternoon
+        createdAt
+        updatedAt
+      }
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onUpdateSettings = /* GraphQL */ `
+  subscription OnUpdateSettings {
+    onUpdateSettings {
+      id
+      title
+      randomized
+      questions {
+        id
+        type
+        question
+        response
+        recordTemp
+        familyMorning
+        familyAfternoon
+        staffMorning
+        staffAfternoon
+        manualMorning
+        manualAfternoon
+        createdAt
+        updatedAt
+      }
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onDeleteSettings = /* GraphQL */ `
+  subscription OnDeleteSettings {
+    onDeleteSettings {
+      id
+      title
+      randomized
+      questions {
+        id
+        type
+        question
+        response
+        recordTemp
+        familyMorning
+        familyAfternoon
+        staffMorning
+        staffAfternoon
+        manualMorning
+        manualAfternoon
+        createdAt
+        updatedAt
+      }
       createdAt
       updatedAt
     }

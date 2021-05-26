@@ -112,48 +112,6 @@ export const deleteQuestion = /* GraphQL */ `
     }
   }
 `;
-export const createSettings = /* GraphQL */ `
-  mutation CreateSettings(
-    $input: CreateSettingsInput!
-    $condition: ModelSettingsConditionInput
-  ) {
-    createSettings(input: $input, condition: $condition) {
-      id
-      title
-      randomized
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const updateSettings = /* GraphQL */ `
-  mutation UpdateSettings(
-    $input: UpdateSettingsInput!
-    $condition: ModelSettingsConditionInput
-  ) {
-    updateSettings(input: $input, condition: $condition) {
-      id
-      title
-      randomized
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const deleteSettings = /* GraphQL */ `
-  mutation DeleteSettings(
-    $input: DeleteSettingsInput!
-    $condition: ModelSettingsConditionInput
-  ) {
-    deleteSettings(input: $input, condition: $condition) {
-      id
-      title
-      randomized
-      createdAt
-      updatedAt
-    }
-  }
-`;
 export const createResponse = /* GraphQL */ `
   mutation CreateResponse(
     $input: CreateResponseInput!
@@ -239,6 +197,93 @@ export const deleteResponse = /* GraphQL */ `
       }
       responses
       passed
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const createSettings = /* GraphQL */ `
+  mutation CreateSettings(
+    $input: CreateSettingsInput!
+    $condition: ModelSettingsConditionInput
+  ) {
+    createSettings(input: $input, condition: $condition) {
+      id
+      title
+      randomized
+      questions {
+        id
+        type
+        question
+        response
+        recordTemp
+        familyMorning
+        familyAfternoon
+        staffMorning
+        staffAfternoon
+        manualMorning
+        manualAfternoon
+        createdAt
+        updatedAt
+      }
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const updateSettings = /* GraphQL */ `
+  mutation UpdateSettings(
+    $input: UpdateSettingsInput!
+    $condition: ModelSettingsConditionInput
+  ) {
+    updateSettings(input: $input, condition: $condition) {
+      id
+      title
+      randomized
+      questions {
+        id
+        type
+        question
+        response
+        recordTemp
+        familyMorning
+        familyAfternoon
+        staffMorning
+        staffAfternoon
+        manualMorning
+        manualAfternoon
+        createdAt
+        updatedAt
+      }
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const deleteSettings = /* GraphQL */ `
+  mutation DeleteSettings(
+    $input: DeleteSettingsInput!
+    $condition: ModelSettingsConditionInput
+  ) {
+    deleteSettings(input: $input, condition: $condition) {
+      id
+      title
+      randomized
+      questions {
+        id
+        type
+        question
+        response
+        recordTemp
+        familyMorning
+        familyAfternoon
+        staffMorning
+        staffAfternoon
+        manualMorning
+        manualAfternoon
+        createdAt
+        updatedAt
+      }
       createdAt
       updatedAt
     }
