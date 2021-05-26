@@ -26,10 +26,9 @@ export default function MenuQSwitch(props) {
         <FormControlLabel
           control={
             <Switch 
-              name="response"
-              checked={state.response}
+              name={props.switchName}
+              checked={props.switchChecked}
               onChange={toggleSwitch}
-              
             />
           }
           label={props.label}
@@ -38,7 +37,7 @@ export default function MenuQSwitch(props) {
       </Grid>
       <Grid item xs>
         <Typography variant="body2" align="center">
-          {state.response ? "Yes" : "No"}
+          {props.switchChecked ? "Yes" : "No"}
         </Typography>
       </Grid>
     </Grid>

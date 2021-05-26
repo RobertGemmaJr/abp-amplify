@@ -30,6 +30,7 @@ export default function MenuQCard(props) {
   const [state, setState] = React.useState({
     question: q.question,
     response: q.response,
+    recordTemp: q.recordTemp,
     checkboxes: q.checkboxes,
   })
 
@@ -51,7 +52,7 @@ export default function MenuQCard(props) {
               noValidate
               className={classes.group}
               name="question"
-              value={state.question}
+              value={q.recordTemp ? "-" : state.question}
               onChange={handleChange}
             />
             <TextField 
@@ -60,13 +61,15 @@ export default function MenuQCard(props) {
               autoComplete="off"        
               noValidate
               name="response"
-              value={state.response}
+              value={q.recordTemp ? "-" : state.response}
               onChange={handleChange}
               className={classes.group}
             />
             <MenuQSwitch 
               state={state} 
               setState={setState}
+              switchName="recordTemp"
+              switchChecked={state.recordTemp}
               label="Record?"
               className={classes.group}
             />
@@ -124,6 +127,8 @@ export default function MenuQCard(props) {
               state={state} 
               setState={setState}
               label="Response"
+              switchName="response"
+              switchChecked={state.response}
               className={classes.group}
             />
           </Box>
