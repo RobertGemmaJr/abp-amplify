@@ -15,7 +15,7 @@ const useStyles = makeStyles(theme => ({
 export default function AddQButton() {
   const classes = useStyles();
   const options = [
-    "Add T/F Question",
+    "Add Yes/No Question",
     "Add Text Question",
     "Add Temperature Question",
   ];
