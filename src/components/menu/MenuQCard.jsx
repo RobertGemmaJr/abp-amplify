@@ -1,9 +1,10 @@
 import React from "react"
 import { makeStyles } from "@material-ui/styles";
-import { Grid, Button, Card, TextField, Box, ButtonGroup, FormControlLabel, Switch, Typography } from "@material-ui/core"
+import { Button, Card, TextField, Box, ButtonGroup } from "@material-ui/core"
 import DeleteIcon from "@material-ui/icons/Delete"
 import { ArrowDropDown, ArrowDropUp } from "@material-ui/icons"
 
+import MenuQSwitch from "./MenuQSwitch"
 import MenuQCheckboxes from "./MenuQCheckboxes"
 
 const useStyles = makeStyles(theme => ({
@@ -15,22 +16,124 @@ const useStyles = makeStyles(theme => ({
   },
   delete: {
     padding: theme.spacing(0)
-  }
+  },
+  question: {
+    width: "100%",
+  },
 }))
 
 export default function MenuQCard(props) {
   const classes = useStyles()
   const { q } = props
 
-  // Change return if T/F question or text response?
-
   // Hook for question state
-  // TODO: Set everything from questions database (API call)
   const [state, setState] = React.useState({
     question: q.question,
     response: q.response,
     checkboxes: q.checkboxes,
   })
+
+  // Renders the question based on its type
+  function renderResponse() {
+    switch(q.type) {
+      case "temp":
+        return (
+          <Box 
+            display="flex"
+            alignItems="center" 
+            justifyContent="flex-start"
+            className={classes.question}
+          >
+            <TextField 
+              variant="outlined"
+              label="Minimum Temperature"
+              autoComplete="off"
+              noValidate
+              className={classes.group}
+              name="question"
+              value={state.question}
+              onChange={handleChange}
+            />
+            <TextField 
+              variant="outlined"
+              label="Maximum Temperature"
+              autoComplete="off"        
+              noValidate
+              name="response"
+              value={state.response}
+              onChange={handleChange}
+              className={classes.group}
+            />
+            <MenuQSwitch 
+              state={state} 
+              setState={setState}
+              label="Record?"
+              className={classes.group}
+            />
+          </Box> 
+        )
+      case "text":
+        return (
+          <Box
+            display="flex"
+            alignItems="center" 
+            justifyContent="flex-start"
+            className={classes.question}
+          >
+            <TextField 
+              variant="outlined"
+              label="Question"
+              autoComplete="off"
+              noValidate fullWidth
+              className={classes.group}
+              name="question"
+              value={state.question}
+              onChange={handleChange}
+            />
+            <TextField 
+              variant="outlined"
+              label="Response"
+              autoComplete="off"        
+              noValidate
+              className={classes.group}
+              name="response"
+              value={state.response}
+              onChange={handleChange}
+            /> 
+          </Box>
+        )
+      case "bool":
+        return (
+          <Box
+            display="flex"
+            alignItems="center" 
+            justifyContent="flex-start"
+            className={classes.question}
+          >
+            <TextField 
+              variant="outlined"
+              label="Question"
+              autoComplete="off"
+              noValidate fullWidth
+              className={classes.group}
+              name="question"
+              value={state.question}
+              onChange={handleChange}
+            />
+            <MenuQSwitch 
+              state={state} 
+              setState={setState}
+              label="Response"
+              className={classes.group}
+            />
+          </Box>
+        )
+      default:
+        console.error("Invalid question type")
+        break;
+    }
+
+  }
 
   // Handle up click
   function handleUpClick() {
@@ -44,9 +147,6 @@ export default function MenuQCard(props) {
   // Handle change for text values
   const handleChange = (event) => {
     setState({...state, [event.target.name]: event.target.value})
-  }
-  const toggleSwitch = (event) => {
-    setState({...state, [event.target.name]: event.target.checked });
   }
   
 
@@ -76,7 +176,7 @@ export default function MenuQCard(props) {
         </ButtonGroup>
 
         {/* Question */}
-        <TextField 
+        {/* <TextField 
           variant="outlined"
           label={q.type !== "temp" ? "Question" : "Minimum Temperature"}
           autoComplete="off"
@@ -86,51 +186,10 @@ export default function MenuQCard(props) {
           name="question"
           value={state.question}
           onChange={handleChange}
-        />
+        /> */}
 
         {/* Expected Response */}
-        {q.type !== "bool" ?
-          // temp and text question
-          <TextField 
-            variant="outlined"
-            label={q.type !== "temp" ? "Response" : "Maximum Temperature"}
-            autoComplete="off"        
-            noValidate
-            className={classes.group}
-            name="response"
-            value={state.response}
-            onChange={handleChange}
-          /> 
-        :
-          // bool question
-          <Grid 
-            container 
-            direction="column" 
-            xs={2} 
-            alignContent="center"
-            className={classes.group} 
-          >
-            <Grid item>
-              <FormControlLabel
-              control={
-                <Switch 
-                  name="response"
-                  checked={state.response}
-                  onChange={toggleSwitch}
-                />
-              }
-              label="Response"
-              labelPlacement="top"
-              className={classes.group}
-            />
-            </Grid>
-            <Grid item>
-              <Typography variant="body2" align="center">
-                {state.response ? "Yes" : "No"}
-              </Typography>
-            </Grid>
-          </Grid>
-        }
+        {renderResponse()}
 
         {/* Checkboxes */}
         <MenuQCheckboxes state={state} setState={setState} className={classes.group}/>

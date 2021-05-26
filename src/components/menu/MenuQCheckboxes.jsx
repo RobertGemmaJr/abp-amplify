@@ -4,6 +4,7 @@ import { Box, Checkbox, Grid, Typography } from "@material-ui/core"
 const useStyles = makeStyles(theme => ({
   grid: {
     flexGrow: 1,
+    margin: theme.spacing(0, 1)
   },
   row: {
   },
