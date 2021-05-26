@@ -1,26 +1,32 @@
+type Person @model {
+  id: ID!
+  type: String!
+  fName: String!
+  lName: String!
+}
+
+type Question @model {
+  id: ID!
+  type: String!
+  question: String!
+  response: String!
+  recordTemp: Boolean
+  familyMorning: Boolean!,
+  familyAfternoon: Boolean!,
+  staffMorning: Boolean!,
+  staffAfternoon: Boolean!,
+  manualMorning: Boolean!,
+  manualAfternoon: Boolean!,
+}
+
 type Settings @model {
   title: String!
   randomized: Boolean!
 }
-
- type Person @model {
+type Response @model {
   id: ID!
-  name: String!
- }
-
- type QuestionBool @model {
-  id: ID!
-  question: String!
-  response: Boolean!
- }
-
- type QuestionStr @model {
-  id: ID!
-  question: String!
-  response: String!
- }
-
- type Response @model {
-  id: ID!
-  date: String
- }
+  date: String!
+  questions: [Question!]
+  responses: [String]
+  passed: Boolean!
+}
