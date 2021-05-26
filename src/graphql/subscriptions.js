@@ -1,6 +1,99 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
+export const onCreatePerson = /* GraphQL */ `
+  subscription OnCreatePerson {
+    onCreatePerson {
+      id
+      type
+      fName
+      lName
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onUpdatePerson = /* GraphQL */ `
+  subscription OnUpdatePerson {
+    onUpdatePerson {
+      id
+      type
+      fName
+      lName
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onDeletePerson = /* GraphQL */ `
+  subscription OnDeletePerson {
+    onDeletePerson {
+      id
+      type
+      fName
+      lName
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onCreateQuestion = /* GraphQL */ `
+  subscription OnCreateQuestion {
+    onCreateQuestion {
+      id
+      type
+      question
+      response
+      recordTemp
+      familyMorning
+      familyAfternoon
+      staffMorning
+      staffAfternoon
+      manualMorning
+      manualAfternoon
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onUpdateQuestion = /* GraphQL */ `
+  subscription OnUpdateQuestion {
+    onUpdateQuestion {
+      id
+      type
+      question
+      response
+      recordTemp
+      familyMorning
+      familyAfternoon
+      staffMorning
+      staffAfternoon
+      manualMorning
+      manualAfternoon
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onDeleteQuestion = /* GraphQL */ `
+  subscription OnDeleteQuestion {
+    onDeleteQuestion {
+      id
+      type
+      question
+      response
+      recordTemp
+      familyMorning
+      familyAfternoon
+      staffMorning
+      staffAfternoon
+      manualMorning
+      manualAfternoon
+      createdAt
+      updatedAt
+    }
+  }
+`;
 export const onCreateSettings = /* GraphQL */ `
   subscription OnCreateSettings {
     onCreateSettings {
@@ -34,97 +127,82 @@ export const onDeleteSettings = /* GraphQL */ `
     }
   }
 `;
-export const onCreatePerson = /* GraphQL */ `
-  subscription OnCreatePerson {
-    onCreatePerson {
+export const onCreateResponse = /* GraphQL */ `
+  subscription OnCreateResponse {
+    onCreateResponse {
       id
-      name
+      date
+      questions {
+        id
+        type
+        question
+        response
+        recordTemp
+        familyMorning
+        familyAfternoon
+        staffMorning
+        staffAfternoon
+        manualMorning
+        manualAfternoon
+        createdAt
+        updatedAt
+      }
+      responses
+      passed
       createdAt
       updatedAt
     }
   }
 `;
-export const onUpdatePerson = /* GraphQL */ `
-  subscription OnUpdatePerson {
-    onUpdatePerson {
+export const onUpdateResponse = /* GraphQL */ `
+  subscription OnUpdateResponse {
+    onUpdateResponse {
       id
-      name
+      date
+      questions {
+        id
+        type
+        question
+        response
+        recordTemp
+        familyMorning
+        familyAfternoon
+        staffMorning
+        staffAfternoon
+        manualMorning
+        manualAfternoon
+        createdAt
+        updatedAt
+      }
+      responses
+      passed
       createdAt
       updatedAt
     }
   }
 `;
-export const onDeletePerson = /* GraphQL */ `
-  subscription OnDeletePerson {
-    onDeletePerson {
+export const onDeleteResponse = /* GraphQL */ `
+  subscription OnDeleteResponse {
+    onDeleteResponse {
       id
-      name
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const onCreateQuestionBool = /* GraphQL */ `
-  subscription OnCreateQuestionBool {
-    onCreateQuestionBool {
-      id
-      question
-      response
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const onUpdateQuestionBool = /* GraphQL */ `
-  subscription OnUpdateQuestionBool {
-    onUpdateQuestionBool {
-      id
-      question
-      response
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const onDeleteQuestionBool = /* GraphQL */ `
-  subscription OnDeleteQuestionBool {
-    onDeleteQuestionBool {
-      id
-      question
-      response
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const onCreateQuestionStr = /* GraphQL */ `
-  subscription OnCreateQuestionStr {
-    onCreateQuestionStr {
-      id
-      question
-      response
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const onUpdateQuestionStr = /* GraphQL */ `
-  subscription OnUpdateQuestionStr {
-    onUpdateQuestionStr {
-      id
-      question
-      response
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const onDeleteQuestionStr = /* GraphQL */ `
-  subscription OnDeleteQuestionStr {
-    onDeleteQuestionStr {
-      id
-      question
-      response
+      date
+      questions {
+        id
+        type
+        question
+        response
+        recordTemp
+        familyMorning
+        familyAfternoon
+        staffMorning
+        staffAfternoon
+        manualMorning
+        manualAfternoon
+        createdAt
+        updatedAt
+      }
+      responses
+      passed
       createdAt
       updatedAt
     }

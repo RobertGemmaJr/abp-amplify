@@ -1,6 +1,117 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
+export const createPerson = /* GraphQL */ `
+  mutation CreatePerson(
+    $input: CreatePersonInput!
+    $condition: ModelPersonConditionInput
+  ) {
+    createPerson(input: $input, condition: $condition) {
+      id
+      type
+      fName
+      lName
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const updatePerson = /* GraphQL */ `
+  mutation UpdatePerson(
+    $input: UpdatePersonInput!
+    $condition: ModelPersonConditionInput
+  ) {
+    updatePerson(input: $input, condition: $condition) {
+      id
+      type
+      fName
+      lName
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const deletePerson = /* GraphQL */ `
+  mutation DeletePerson(
+    $input: DeletePersonInput!
+    $condition: ModelPersonConditionInput
+  ) {
+    deletePerson(input: $input, condition: $condition) {
+      id
+      type
+      fName
+      lName
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const createQuestion = /* GraphQL */ `
+  mutation CreateQuestion(
+    $input: CreateQuestionInput!
+    $condition: ModelQuestionConditionInput
+  ) {
+    createQuestion(input: $input, condition: $condition) {
+      id
+      type
+      question
+      response
+      recordTemp
+      familyMorning
+      familyAfternoon
+      staffMorning
+      staffAfternoon
+      manualMorning
+      manualAfternoon
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const updateQuestion = /* GraphQL */ `
+  mutation UpdateQuestion(
+    $input: UpdateQuestionInput!
+    $condition: ModelQuestionConditionInput
+  ) {
+    updateQuestion(input: $input, condition: $condition) {
+      id
+      type
+      question
+      response
+      recordTemp
+      familyMorning
+      familyAfternoon
+      staffMorning
+      staffAfternoon
+      manualMorning
+      manualAfternoon
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const deleteQuestion = /* GraphQL */ `
+  mutation DeleteQuestion(
+    $input: DeleteQuestionInput!
+    $condition: ModelQuestionConditionInput
+  ) {
+    deleteQuestion(input: $input, condition: $condition) {
+      id
+      type
+      question
+      response
+      recordTemp
+      familyMorning
+      familyAfternoon
+      staffMorning
+      staffAfternoon
+      manualMorning
+      manualAfternoon
+      createdAt
+      updatedAt
+    }
+  }
+`;
 export const createSettings = /* GraphQL */ `
   mutation CreateSettings(
     $input: CreateSettingsInput!
@@ -43,124 +154,91 @@ export const deleteSettings = /* GraphQL */ `
     }
   }
 `;
-export const createPerson = /* GraphQL */ `
-  mutation CreatePerson(
-    $input: CreatePersonInput!
-    $condition: ModelPersonConditionInput
+export const createResponse = /* GraphQL */ `
+  mutation CreateResponse(
+    $input: CreateResponseInput!
+    $condition: ModelResponseConditionInput
   ) {
-    createPerson(input: $input, condition: $condition) {
+    createResponse(input: $input, condition: $condition) {
       id
-      name
+      date
+      questions {
+        id
+        type
+        question
+        response
+        recordTemp
+        familyMorning
+        familyAfternoon
+        staffMorning
+        staffAfternoon
+        manualMorning
+        manualAfternoon
+        createdAt
+        updatedAt
+      }
+      responses
+      passed
       createdAt
       updatedAt
     }
   }
 `;
-export const updatePerson = /* GraphQL */ `
-  mutation UpdatePerson(
-    $input: UpdatePersonInput!
-    $condition: ModelPersonConditionInput
+export const updateResponse = /* GraphQL */ `
+  mutation UpdateResponse(
+    $input: UpdateResponseInput!
+    $condition: ModelResponseConditionInput
   ) {
-    updatePerson(input: $input, condition: $condition) {
+    updateResponse(input: $input, condition: $condition) {
       id
-      name
+      date
+      questions {
+        id
+        type
+        question
+        response
+        recordTemp
+        familyMorning
+        familyAfternoon
+        staffMorning
+        staffAfternoon
+        manualMorning
+        manualAfternoon
+        createdAt
+        updatedAt
+      }
+      responses
+      passed
       createdAt
       updatedAt
     }
   }
 `;
-export const deletePerson = /* GraphQL */ `
-  mutation DeletePerson(
-    $input: DeletePersonInput!
-    $condition: ModelPersonConditionInput
+export const deleteResponse = /* GraphQL */ `
+  mutation DeleteResponse(
+    $input: DeleteResponseInput!
+    $condition: ModelResponseConditionInput
   ) {
-    deletePerson(input: $input, condition: $condition) {
+    deleteResponse(input: $input, condition: $condition) {
       id
-      name
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const createQuestionBool = /* GraphQL */ `
-  mutation CreateQuestionBool(
-    $input: CreateQuestionBoolInput!
-    $condition: ModelQuestionBoolConditionInput
-  ) {
-    createQuestionBool(input: $input, condition: $condition) {
-      id
-      question
-      response
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const updateQuestionBool = /* GraphQL */ `
-  mutation UpdateQuestionBool(
-    $input: UpdateQuestionBoolInput!
-    $condition: ModelQuestionBoolConditionInput
-  ) {
-    updateQuestionBool(input: $input, condition: $condition) {
-      id
-      question
-      response
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const deleteQuestionBool = /* GraphQL */ `
-  mutation DeleteQuestionBool(
-    $input: DeleteQuestionBoolInput!
-    $condition: ModelQuestionBoolConditionInput
-  ) {
-    deleteQuestionBool(input: $input, condition: $condition) {
-      id
-      question
-      response
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const createQuestionStr = /* GraphQL */ `
-  mutation CreateQuestionStr(
-    $input: CreateQuestionStrInput!
-    $condition: ModelQuestionStrConditionInput
-  ) {
-    createQuestionStr(input: $input, condition: $condition) {
-      id
-      question
-      response
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const updateQuestionStr = /* GraphQL */ `
-  mutation UpdateQuestionStr(
-    $input: UpdateQuestionStrInput!
-    $condition: ModelQuestionStrConditionInput
-  ) {
-    updateQuestionStr(input: $input, condition: $condition) {
-      id
-      question
-      response
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const deleteQuestionStr = /* GraphQL */ `
-  mutation DeleteQuestionStr(
-    $input: DeleteQuestionStrInput!
-    $condition: ModelQuestionStrConditionInput
-  ) {
-    deleteQuestionStr(input: $input, condition: $condition) {
-      id
-      question
-      response
+      date
+      questions {
+        id
+        type
+        question
+        response
+        recordTemp
+        familyMorning
+        familyAfternoon
+        staffMorning
+        staffAfternoon
+        manualMorning
+        manualAfternoon
+        createdAt
+        updatedAt
+      }
+      responses
+      passed
       createdAt
       updatedAt
     }

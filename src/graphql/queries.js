@@ -1,6 +1,82 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
+export const getPerson = /* GraphQL */ `
+  query GetPerson($id: ID!) {
+    getPerson(id: $id) {
+      id
+      type
+      fName
+      lName
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const listPersons = /* GraphQL */ `
+  query ListPersons(
+    $filter: ModelPersonFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listPersons(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        type
+        fName
+        lName
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+  }
+`;
+export const getQuestion = /* GraphQL */ `
+  query GetQuestion($id: ID!) {
+    getQuestion(id: $id) {
+      id
+      type
+      question
+      response
+      recordTemp
+      familyMorning
+      familyAfternoon
+      staffMorning
+      staffAfternoon
+      manualMorning
+      manualAfternoon
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const listQuestions = /* GraphQL */ `
+  query ListQuestions(
+    $filter: ModelQuestionFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listQuestions(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        type
+        question
+        response
+        recordTemp
+        familyMorning
+        familyAfternoon
+        staffMorning
+        staffAfternoon
+        manualMorning
+        manualAfternoon
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+  }
+`;
 export const getSettings = /* GraphQL */ `
   query GetSettings($id: ID!) {
     getSettings(id: $id) {
@@ -30,84 +106,60 @@ export const listSettingss = /* GraphQL */ `
     }
   }
 `;
-export const getPerson = /* GraphQL */ `
-  query GetPerson($id: ID!) {
-    getPerson(id: $id) {
+export const getResponse = /* GraphQL */ `
+  query GetResponse($id: ID!) {
+    getResponse(id: $id) {
       id
-      name
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const listPersons = /* GraphQL */ `
-  query ListPersons(
-    $filter: ModelPersonFilterInput
-    $limit: Int
-    $nextToken: String
-  ) {
-    listPersons(filter: $filter, limit: $limit, nextToken: $nextToken) {
-      items {
+      date
+      questions {
         id
-        name
+        type
+        question
+        response
+        recordTemp
+        familyMorning
+        familyAfternoon
+        staffMorning
+        staffAfternoon
+        manualMorning
+        manualAfternoon
         createdAt
         updatedAt
       }
-      nextToken
-    }
-  }
-`;
-export const getQuestionBool = /* GraphQL */ `
-  query GetQuestionBool($id: ID!) {
-    getQuestionBool(id: $id) {
-      id
-      question
-      response
+      responses
+      passed
       createdAt
       updatedAt
     }
   }
 `;
-export const listQuestionBools = /* GraphQL */ `
-  query ListQuestionBools(
-    $filter: ModelQuestionBoolFilterInput
+export const listResponses = /* GraphQL */ `
+  query ListResponses(
+    $filter: ModelResponseFilterInput
     $limit: Int
     $nextToken: String
   ) {
-    listQuestionBools(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    listResponses(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
-        question
-        response
-        createdAt
-        updatedAt
-      }
-      nextToken
-    }
-  }
-`;
-export const getQuestionStr = /* GraphQL */ `
-  query GetQuestionStr($id: ID!) {
-    getQuestionStr(id: $id) {
-      id
-      question
-      response
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const listQuestionStrs = /* GraphQL */ `
-  query ListQuestionStrs(
-    $filter: ModelQuestionStrFilterInput
-    $limit: Int
-    $nextToken: String
-  ) {
-    listQuestionStrs(filter: $filter, limit: $limit, nextToken: $nextToken) {
-      items {
-        id
-        question
-        response
+        date
+        questions {
+          id
+          type
+          question
+          response
+          recordTemp
+          familyMorning
+          familyAfternoon
+          staffMorning
+          staffAfternoon
+          manualMorning
+          manualAfternoon
+          createdAt
+          updatedAt
+        }
+        responses
+        passed
         createdAt
         updatedAt
       }
