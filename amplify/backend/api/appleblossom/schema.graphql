@@ -1,11 +1,11 @@
-type Person @model @auth(rules: [{ allow: owner }]) {
+type Person @model {
   id: ID!
   type: String!
   fName: String!
   lName: String!
 }
 
-type Question @model @auth(rules: [{ allow: owner }]) {
+type Question @model {
   id: ID!
   type: String!
   question: String!
@@ -19,7 +19,7 @@ type Question @model @auth(rules: [{ allow: owner }]) {
   manualAfternoon: Boolean!,
 }
 
-type Response @model @auth(rules: [{ allow: owner }]) {
+type Response @model {
   id: ID!
   date: AWSDate!
   questions: [Question!]
@@ -27,7 +27,7 @@ type Response @model @auth(rules: [{ allow: owner }]) {
   passed: Boolean!
 }
 
-type Settings @model @auth(rules: [{ allow: owner }]) {
+type Settings @model {
   id: ID!
   title: String!
   randomized: Boolean!
