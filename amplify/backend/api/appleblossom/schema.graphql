@@ -19,14 +19,17 @@ type Question @model {
   manualAfternoon: Boolean!,
 }
 
-type Settings @model {
-  title: String!
-  randomized: Boolean!
-}
 type Response @model {
   id: ID!
-  date: String!
+  date: AWSDate!
   questions: [Question!]
-  responses: [String]
+  responses: [String!]
   passed: Boolean!
+}
+
+type Settings @model {
+  id: ID!
+  title: String!
+  randomized: Boolean!
+  questions: [Questions!]
 }
