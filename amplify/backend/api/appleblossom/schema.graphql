@@ -8,7 +8,7 @@ type Account @model @auth(rules: [{ allow: owner }]) {
   randomizeQuestions: Boolean!
   people: [Person!] @connection(name: "AccountPersons")
   questions: [Question!] @connection(name: "AccountQuestions")
-  responses: [Responses!] @connection(name: "AccountResponses")
+  responses: [Response!] @connection(name: "AccountResponses")
 }
 
 # A single person
