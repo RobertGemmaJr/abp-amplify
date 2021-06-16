@@ -10,6 +10,7 @@ export const getPerson = /* GraphQL */ `
       lName
       createdAt
       updatedAt
+      owner
     }
   }
 `;
@@ -27,6 +28,7 @@ export const listPersons = /* GraphQL */ `
         lName
         createdAt
         updatedAt
+        owner
       }
       nextToken
     }
@@ -40,14 +42,18 @@ export const getQuestion = /* GraphQL */ `
       question
       response
       recordTemp
-      familyMorning
-      familyAfternoon
-      staffMorning
-      staffAfternoon
-      manualMorning
-      manualAfternoon
+      checkboxes {
+        id
+        familyMorning
+        familyAfternoon
+        staffMorning
+        staffAfternoon
+        manualMorning
+        manualAfternoon
+      }
       createdAt
       updatedAt
+      owner
     }
   }
 `;
@@ -64,14 +70,18 @@ export const listQuestions = /* GraphQL */ `
         question
         response
         recordTemp
-        familyMorning
-        familyAfternoon
-        staffMorning
-        staffAfternoon
-        manualMorning
-        manualAfternoon
+        checkboxes {
+          id
+          familyMorning
+          familyAfternoon
+          staffMorning
+          staffAfternoon
+          manualMorning
+          manualAfternoon
+        }
         createdAt
         updatedAt
+        owner
       }
       nextToken
     }
@@ -88,19 +98,24 @@ export const getResponse = /* GraphQL */ `
         question
         response
         recordTemp
-        familyMorning
-        familyAfternoon
-        staffMorning
-        staffAfternoon
-        manualMorning
-        manualAfternoon
+        checkboxes {
+          id
+          familyMorning
+          familyAfternoon
+          staffMorning
+          staffAfternoon
+          manualMorning
+          manualAfternoon
+        }
         createdAt
         updatedAt
+        owner
       }
       responses
       passed
       createdAt
       updatedAt
+      owner
     }
   }
 `;
@@ -120,78 +135,121 @@ export const listResponses = /* GraphQL */ `
           question
           response
           recordTemp
-          familyMorning
-          familyAfternoon
-          staffMorning
-          staffAfternoon
-          manualMorning
-          manualAfternoon
           createdAt
           updatedAt
+          owner
         }
         responses
         passed
         createdAt
         updatedAt
+        owner
       }
       nextToken
     }
   }
 `;
-export const getSettings = /* GraphQL */ `
-  query GetSettings($id: ID!) {
-    getSettings(id: $id) {
+export const getAccount = /* GraphQL */ `
+  query GetAccount($id: ID!) {
+    getAccount(id: $id) {
       id
       title
-      randomized
+      randomizeQuestions
+      people {
+        id
+        type
+        fName
+        lName
+        createdAt
+        updatedAt
+        owner
+      }
       questions {
         id
         type
         question
         response
         recordTemp
-        familyMorning
-        familyAfternoon
-        staffMorning
-        staffAfternoon
-        manualMorning
-        manualAfternoon
-        createdAt
-        updatedAt
-      }
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const listSettingss = /* GraphQL */ `
-  query ListSettingss(
-    $filter: ModelSettingsFilterInput
-    $limit: Int
-    $nextToken: String
-  ) {
-    listSettingss(filter: $filter, limit: $limit, nextToken: $nextToken) {
-      items {
-        id
-        title
-        randomized
-        questions {
+        checkboxes {
           id
-          type
-          question
-          response
-          recordTemp
           familyMorning
           familyAfternoon
           staffMorning
           staffAfternoon
           manualMorning
           manualAfternoon
-          createdAt
-          updatedAt
         }
         createdAt
         updatedAt
+        owner
+      }
+      responses {
+        id
+        date
+        questions {
+          id
+          type
+          question
+          response
+          recordTemp
+          createdAt
+          updatedAt
+          owner
+        }
+        responses
+        passed
+        createdAt
+        updatedAt
+        owner
+      }
+      createdAt
+      updatedAt
+      owner
+    }
+  }
+`;
+export const listAccounts = /* GraphQL */ `
+  query ListAccounts(
+    $filter: ModelAccountFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listAccounts(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        title
+        randomizeQuestions
+        people {
+          id
+          type
+          fName
+          lName
+          createdAt
+          updatedAt
+          owner
+        }
+        questions {
+          id
+          type
+          question
+          response
+          recordTemp
+          createdAt
+          updatedAt
+          owner
+        }
+        responses {
+          id
+          date
+          responses
+          passed
+          createdAt
+          updatedAt
+          owner
+        }
+        createdAt
+        updatedAt
+        owner
       }
       nextToken
     }

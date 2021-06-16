@@ -1,52 +1,61 @@
-# A single account
-  # Each account has many Persons
-  # Each account has many Questions
-  # Each account has many Responses
-type Account @model @auth(rules: [{ allow: owner }]) {
+type Person @model @auth(rules: [{allow: private}]) @key(name: "byAccount", fields: ["accountID"]) {
+  id: ID!
+  type: String!
+  fName: String!
+  lName: String!
+  accountID: ID
+  Responses: [Response] @connection(keyName: "byPerson", fields: ["id"])
+}
+
+type Question @model @auth(rules: [{allow: private}]) @key(name: "byAccount", fields: ["accountID"]) {
+  id: ID!
+  type: String!
+  question: String!
+  response: String!
+  recordTemp: Boolean
+  checkboxes: Matrix!
+  accountID: ID
+  responses: [ResponseQuestion] @connection(keyName: "byQuestion", fields: ["id"])
+}
+
+type Matrix {
+  id: ID!
+  familyMorning: Boolean!
+  familyAfternoon: Boolean!
+  staffMorning: Boolean!
+  staffAfternoon: Boolean!
+  manualMorning: Boolean!
+  manualAfternoon: Boolean!
+}
+
+type Response @model @auth(rules: [{allow: private}]) @key(name: "byAccount", fields: ["accountID"]) @key(name: "byPerson", fields: ["personID"]) {
+  id: ID!
+  date: AWSDate!
+  questions: [Question!]
+  responses: [String!]
+  passed: Boolean!
+  accountID: ID
+  personID: ID
+  ResponseQuestions: [ResponseQuestion] @connection(keyName: "byResponse", fields: ["id"])
+}
+
+type Account @model @auth(rules: [{allow: private}]) {
   id: ID!
   title: String!
   randomizeQuestions: Boolean!
-  people: [Person!] @connection(name: "AccountPersons")
-  questions: [Question!] @connection(name: "AccountQuestions")
-  responses: [Response!] @connection(name: "AccountResponses")
+  people: [Person!]
+  questions: [Question!]
+  responses: [Response!]
+  People: [Person] @connection(keyName: "byAccount", fields: ["id"])
+  Questions: [Question] @connection(keyName: "byAccount", fields: ["id"])
+  Responses: [Response] @connection(keyName: "byAccount", fields: ["id"])
 }
 
-# A single person
-type Person @model @auth(rules: [{ allow: owner }]) {
+type ResponseQuestion @model(queries: null) @key(name: "byResponse", fields: ["responseID", "questionID"]) @key(name: "byQuestion", fields: ["questionID", "responseID"]) @auth(rules: [{allow: private}, {allow: private}]) {
   id: ID!
-  type: String!   # "student", "staff", or "manual"
-  fName: String!
-  lName: String!
+  responseID: ID!
+  questionID: ID!
+  response: Response! @connection(fields: ["responseID"])
+  question: Question! @connection(fields: ["questionID"])
 }
-
-# A single question
-  # Each question has a single Matrix
-type Question @model @auth(rules: [{ allow: owner }]) {
-  id: ID!
-  type: String!       # "text", "bool", or "temp"
-  question: String!
-  response: String!
-  recordTemp: Boolean # If question is of "temp" type, whether to record response as a value or yes/no
-  checkboxes: Matrix! @connection(name: "QuestionMatrix")
-}
-
-# A single Matrix - whether or not to ask the question at the given time
-type Matrix @auth(rules: [{ allow: owner }]) {
-  id: ID!,
-  familyMorning: Boolean!,
-  familyAfternoon: Boolean!,
-  staffMorning: Boolean!,
-  staffAfternoon: Boolean!,
-  manualMorning: Boolean!,
-  manualAfternoon: Boolean!,
-}
-
-# A single response
-  # Each response has many Questions.
-type Response @model @auth(rules: [{ allow: owner }]) {
-  id: ID!
-  date: AWSDate!
-  questions: [Question!] @connection(name: "ResponseQuestions")
-  responses: [String!]
-  passed: Boolean!
-}
+ 

@@ -13,6 +13,7 @@ export const createPerson = /* GraphQL */ `
       lName
       createdAt
       updatedAt
+      owner
     }
   }
 `;
@@ -28,6 +29,7 @@ export const updatePerson = /* GraphQL */ `
       lName
       createdAt
       updatedAt
+      owner
     }
   }
 `;
@@ -43,6 +45,7 @@ export const deletePerson = /* GraphQL */ `
       lName
       createdAt
       updatedAt
+      owner
     }
   }
 `;
@@ -57,14 +60,18 @@ export const createQuestion = /* GraphQL */ `
       question
       response
       recordTemp
-      familyMorning
-      familyAfternoon
-      staffMorning
-      staffAfternoon
-      manualMorning
-      manualAfternoon
+      checkboxes {
+        id
+        familyMorning
+        familyAfternoon
+        staffMorning
+        staffAfternoon
+        manualMorning
+        manualAfternoon
+      }
       createdAt
       updatedAt
+      owner
     }
   }
 `;
@@ -79,14 +86,18 @@ export const updateQuestion = /* GraphQL */ `
       question
       response
       recordTemp
-      familyMorning
-      familyAfternoon
-      staffMorning
-      staffAfternoon
-      manualMorning
-      manualAfternoon
+      checkboxes {
+        id
+        familyMorning
+        familyAfternoon
+        staffMorning
+        staffAfternoon
+        manualMorning
+        manualAfternoon
+      }
       createdAt
       updatedAt
+      owner
     }
   }
 `;
@@ -101,14 +112,18 @@ export const deleteQuestion = /* GraphQL */ `
       question
       response
       recordTemp
-      familyMorning
-      familyAfternoon
-      staffMorning
-      staffAfternoon
-      manualMorning
-      manualAfternoon
+      checkboxes {
+        id
+        familyMorning
+        familyAfternoon
+        staffMorning
+        staffAfternoon
+        manualMorning
+        manualAfternoon
+      }
       createdAt
       updatedAt
+      owner
     }
   }
 `;
@@ -126,19 +141,24 @@ export const createResponse = /* GraphQL */ `
         question
         response
         recordTemp
-        familyMorning
-        familyAfternoon
-        staffMorning
-        staffAfternoon
-        manualMorning
-        manualAfternoon
+        checkboxes {
+          id
+          familyMorning
+          familyAfternoon
+          staffMorning
+          staffAfternoon
+          manualMorning
+          manualAfternoon
+        }
         createdAt
         updatedAt
+        owner
       }
       responses
       passed
       createdAt
       updatedAt
+      owner
     }
   }
 `;
@@ -156,19 +176,24 @@ export const updateResponse = /* GraphQL */ `
         question
         response
         recordTemp
-        familyMorning
-        familyAfternoon
-        staffMorning
-        staffAfternoon
-        manualMorning
-        manualAfternoon
+        checkboxes {
+          id
+          familyMorning
+          familyAfternoon
+          staffMorning
+          staffAfternoon
+          manualMorning
+          manualAfternoon
+        }
         createdAt
         updatedAt
+        owner
       }
       responses
       passed
       createdAt
       updatedAt
+      owner
     }
   }
 `;
@@ -186,106 +211,210 @@ export const deleteResponse = /* GraphQL */ `
         question
         response
         recordTemp
-        familyMorning
-        familyAfternoon
-        staffMorning
-        staffAfternoon
-        manualMorning
-        manualAfternoon
+        checkboxes {
+          id
+          familyMorning
+          familyAfternoon
+          staffMorning
+          staffAfternoon
+          manualMorning
+          manualAfternoon
+        }
         createdAt
         updatedAt
+        owner
       }
       responses
       passed
       createdAt
       updatedAt
+      owner
     }
   }
 `;
-export const createSettings = /* GraphQL */ `
-  mutation CreateSettings(
-    $input: CreateSettingsInput!
-    $condition: ModelSettingsConditionInput
+export const createAccount = /* GraphQL */ `
+  mutation CreateAccount(
+    $input: CreateAccountInput!
+    $condition: ModelAccountConditionInput
   ) {
-    createSettings(input: $input, condition: $condition) {
+    createAccount(input: $input, condition: $condition) {
       id
       title
-      randomized
+      randomizeQuestions
+      people {
+        id
+        type
+        fName
+        lName
+        createdAt
+        updatedAt
+        owner
+      }
       questions {
         id
         type
         question
         response
         recordTemp
-        familyMorning
-        familyAfternoon
-        staffMorning
-        staffAfternoon
-        manualMorning
-        manualAfternoon
+        checkboxes {
+          id
+          familyMorning
+          familyAfternoon
+          staffMorning
+          staffAfternoon
+          manualMorning
+          manualAfternoon
+        }
         createdAt
         updatedAt
+        owner
+      }
+      responses {
+        id
+        date
+        questions {
+          id
+          type
+          question
+          response
+          recordTemp
+          createdAt
+          updatedAt
+          owner
+        }
+        responses
+        passed
+        createdAt
+        updatedAt
+        owner
       }
       createdAt
       updatedAt
+      owner
     }
   }
 `;
-export const updateSettings = /* GraphQL */ `
-  mutation UpdateSettings(
-    $input: UpdateSettingsInput!
-    $condition: ModelSettingsConditionInput
+export const updateAccount = /* GraphQL */ `
+  mutation UpdateAccount(
+    $input: UpdateAccountInput!
+    $condition: ModelAccountConditionInput
   ) {
-    updateSettings(input: $input, condition: $condition) {
+    updateAccount(input: $input, condition: $condition) {
       id
       title
-      randomized
+      randomizeQuestions
+      people {
+        id
+        type
+        fName
+        lName
+        createdAt
+        updatedAt
+        owner
+      }
       questions {
         id
         type
         question
         response
         recordTemp
-        familyMorning
-        familyAfternoon
-        staffMorning
-        staffAfternoon
-        manualMorning
-        manualAfternoon
+        checkboxes {
+          id
+          familyMorning
+          familyAfternoon
+          staffMorning
+          staffAfternoon
+          manualMorning
+          manualAfternoon
+        }
         createdAt
         updatedAt
+        owner
+      }
+      responses {
+        id
+        date
+        questions {
+          id
+          type
+          question
+          response
+          recordTemp
+          createdAt
+          updatedAt
+          owner
+        }
+        responses
+        passed
+        createdAt
+        updatedAt
+        owner
       }
       createdAt
       updatedAt
+      owner
     }
   }
 `;
-export const deleteSettings = /* GraphQL */ `
-  mutation DeleteSettings(
-    $input: DeleteSettingsInput!
-    $condition: ModelSettingsConditionInput
+export const deleteAccount = /* GraphQL */ `
+  mutation DeleteAccount(
+    $input: DeleteAccountInput!
+    $condition: ModelAccountConditionInput
   ) {
-    deleteSettings(input: $input, condition: $condition) {
+    deleteAccount(input: $input, condition: $condition) {
       id
       title
-      randomized
+      randomizeQuestions
+      people {
+        id
+        type
+        fName
+        lName
+        createdAt
+        updatedAt
+        owner
+      }
       questions {
         id
         type
         question
         response
         recordTemp
-        familyMorning
-        familyAfternoon
-        staffMorning
-        staffAfternoon
-        manualMorning
-        manualAfternoon
+        checkboxes {
+          id
+          familyMorning
+          familyAfternoon
+          staffMorning
+          staffAfternoon
+          manualMorning
+          manualAfternoon
+        }
         createdAt
         updatedAt
+        owner
+      }
+      responses {
+        id
+        date
+        questions {
+          id
+          type
+          question
+          response
+          recordTemp
+          createdAt
+          updatedAt
+          owner
+        }
+        responses
+        passed
+        createdAt
+        updatedAt
+        owner
       }
       createdAt
       updatedAt
+      owner
     }
   }
 `;
