@@ -1,16 +1,38 @@
-type Person @model {
+# A single account
+  # Each account has many Persons
+  # Each account has many Questions
+  # Each account has many Responses
+type Account @model @auth(rules: [{ allow: owner }]) {
   id: ID!
-  type: String!
+  title: String!
+  randomizeQuestions: Boolean!
+  people: [Person!] @connection(name: "AccountPersons")
+  questions: [Question!] @connection(name: "AccountQuestions")
+  responses: [Responses!] @connection(name: "AccountResponses")
+}
+
+# A single person
+type Person @model @auth(rules: [{ allow: owner }]) {
+  id: ID!
+  type: String!   # "student", "staff", or "manual"
   fName: String!
   lName: String!
 }
 
-type Question @model {
+# A single question
+  # Each question has a single Matrix
+type Question @model @auth(rules: [{ allow: owner }]) {
   id: ID!
-  type: String!
+  type: String!       # "text", "bool", or "temp"
   question: String!
   response: String!
-  recordTemp: Boolean
+  recordTemp: Boolean # If question is of "temp" type, whether to record response as a value or yes/no
+  checkboxes: Matrix! @connection(name: "QuestionMatrix")
+}
+
+# A single Matrix - whether or not to ask the question at the given time
+type Matrix @auth(rules: [{ allow: owner }]) {
+  id: ID!,
   familyMorning: Boolean!,
   familyAfternoon: Boolean!,
   staffMorning: Boolean!,
@@ -19,17 +41,12 @@ type Question @model {
   manualAfternoon: Boolean!,
 }
 
-type Response @model {
+# A single response
+  # Each response has many Questions.
+type Response @model @auth(rules: [{ allow: owner }]) {
   id: ID!
   date: AWSDate!
-  questions: [Question!]
+  questions: [Question!] @connection(name: "ResponseQuestions")
   responses: [String!]
   passed: Boolean!
-}
-
-type Settings @model {
-  id: ID!
-  title: String!
-  randomized: Boolean!
-  questions: [Question!]
 }
