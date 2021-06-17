@@ -27,7 +27,7 @@ export default function Keypad(props) {
   const alphabet = 'ABCDEFGHIJKLMNOPQRTSUVWXYZ'.split('')
 
   function handleKeypadClick(letter) {
-    // Filter people by first letter of their last name
+    props.setLetter(letter)
     props.setContent(CONTENT.PEOPLE)
   }
 

@@ -20,23 +20,24 @@ const useStyles = makeStyles(theme => ({
 
 export default function People(props) {
   const classes = useStyles();
+  const { setContent, form, letter, setPerson } = props
 
   // TEMP
   var filteredPeople = []
-  var temp = people.filter(person => person.fName === props.letter)
-  console.log(props.letter, temp)
+  var temp = people.filter(person => (person.type === form && person.fName === letter))
+  console.log(letter, temp)
   temp.forEach((person) => {
     filteredPeople.push(
       <GridListTile key={person.id}>
         <Person 
-          setContent={props.setContent} 
+          setContent={setContent} 
+          setPerson={setPerson}
           id={person.id} 
           name={person.fName + " " + person.lName}
         />
       </GridListTile>
     )
-  }
-  )
+  })
 
   return (
     <Box display="flex" flexDirection="column" className={classes.box}>
@@ -48,7 +49,7 @@ export default function People(props) {
       >
         {filteredPeople}
       </GridList>
-    <ResetButton setContent={props.setContent}/>
+    <ResetButton setContent={setContent}/>
     </Box>
   )
 }

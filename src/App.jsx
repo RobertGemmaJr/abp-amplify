@@ -38,9 +38,6 @@ function App(props) {
   // Hook for the current form
   const [form, setForm] = React.useState(FORM.NONE);
 
-  // Hook for the current person
-  const [person, setPerson] = React.useState(null);
-
   // HandleClick for the home button in the header
   function handleHomeClick() {
     setForm(FORM.NONE)
@@ -52,13 +49,14 @@ function App(props) {
       <CssBaseline />
       <Header 
         content={content} 
-        form={form}
+        form={form} 
         homeClick={() => handleHomeClick()} 
       />
       <Main 
-        content={content} setContent={setContent}
-        form={form} setForm={setForm}
-        person={person} setPerson={setPerson}
+        content={content} 
+        setContent={setContent} 
+        form={form} 
+        setForm={setForm} 
       />
       <Footer />
     </Box>
