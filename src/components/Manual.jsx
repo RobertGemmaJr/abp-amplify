@@ -21,7 +21,7 @@ export default function Manual(props) {
     return (
       <Paper className={classes.paper}>
         <Container className={classes.manual}>
-
+          Manual
         </Container>
         <ResetButton setContent={props.setContent}/>
       </Paper>

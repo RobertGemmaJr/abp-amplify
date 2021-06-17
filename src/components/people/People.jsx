@@ -24,8 +24,8 @@ export default function People(props) {
 
   // TEMP
   var filteredPeople = []
-  var temp = people.filter(person => (person.type === form && person.fName === letter))
-  console.log(letter, temp)
+  var temp = people.filter(person => (person.type === form && person.fName.charAt(0) === letter))
+  console.log(letter, form, temp)
   temp.forEach((person) => {
     filteredPeople.push(
       <GridListTile key={person.id}>
