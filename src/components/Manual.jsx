@@ -21,7 +21,10 @@ export default function Manual(props) {
     const classes = useStyles(0);
     return (
       <Paper className={classes.paper}>
-        <Container className={classes.manual} onClick={() => props.setContent(CONTENT.QUESTIONNAIRE)}>
+        <Container className={classes.manual} onClick={() => {
+          // TEMP
+          props.setContent(CONTENT.QUESTIONNAIRE)
+        }}>
           Manual
         </Container>
         <ResetButton setContent={props.setContent}/>

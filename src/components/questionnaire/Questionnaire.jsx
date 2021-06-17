@@ -42,6 +42,10 @@ export default function Questionnaire(props) {
     const idx = 2 * (form-1) + !morning
     const formQuestions = questions.filter(question => question.checkboxes[idx])
 
+    function askQuestions() {
+      return <Question key={formQuestions[3].id} q={formQuestions[3]} className={classes.question}/>
+    }
+
     return (
       <Paper className={classes.paper}>
         <Box color="primary" className={classes.header}>
@@ -52,7 +56,7 @@ export default function Questionnaire(props) {
             {person.fName + " " + person.lName}
           </Typography>
         </Box>
-        <Question key={formQuestions[0].id} q={formQuestions[0]} className={classes.question}/>
+        {askQuestions()}
         <ResetButton setContent={setContent}/>
       </Paper>
     )

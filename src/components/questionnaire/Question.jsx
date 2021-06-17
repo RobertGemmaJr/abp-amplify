@@ -7,6 +7,7 @@ const useStyles = makeStyles(theme => ({
   },
   text: {
     margin: theme.spacing(3),
+    fontSize: 30,
     fontWeight: "bold",
     alignContent: "center",
   },
