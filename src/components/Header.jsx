@@ -20,7 +20,6 @@ const useStyles = makeStyles(theme => ({
 
 // Renders the form's text
 function formText(form) {
-  console.log(form)
   switch(form) {
     case FORM.NONE: return ""
     case FORM.FAMILY: return "FAMILY"

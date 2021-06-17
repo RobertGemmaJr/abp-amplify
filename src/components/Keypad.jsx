@@ -27,7 +27,7 @@ export default function Keypad(props) {
   const alphabet = 'ABCDEFGHIJKLMNOPQRTSUVWXYZ'.split('')
 
   function handleKeypadClick(letter) {
-    // Filter people but first letter of their last name
+    // Filter people by first letter of their last name
     props.setContent(CONTENT.PEOPLE)
   }
 
@@ -41,7 +41,7 @@ export default function Keypad(props) {
       >
         {alphabet.map(letter => {
           return (
-            <GridListTile>
+            <GridListTile key={letter}>
               <Button
                 variant="contained"
                 color="primary"

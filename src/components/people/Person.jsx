@@ -28,9 +28,6 @@ export default function Person(props) {
     props.setContent(CONTENT.QUESTIONNAIRE)
   }
 
-  // Will search for this info with props.id (from <People>)
-  const fName = "Robert"
-  const lName = "Gemma"
   return (
     <Card>
       <CardActionArea 
@@ -42,7 +39,7 @@ export default function Person(props) {
           component="h3"
           className={classes.name}
         >
-          {fName} {lName}
+          {props.name}
         </Typography>
       </CardActionArea>
     </Card>
