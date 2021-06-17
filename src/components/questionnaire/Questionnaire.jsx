@@ -50,6 +50,9 @@ function getDate() {
   );
 }
 
+// Keep track of the user's responses in an array
+const responses = [];
+
 export default function Questionnaire(props) {
     const classes = useStyles();
     const { setContent, form, morning, person } = props;
@@ -62,14 +65,17 @@ export default function Questionnaire(props) {
     // Hook for indexing the formQuestions array
     const [i, setI] = React.useState(0);
 
-    // Handle "yes" button
+    // Handle clicks that submit an answer
     function handleClick(response) {
-      console.log(response)
+      responses.push(response)
       setI(i + 1);
     }
 
     function submitResponses() {
-      setContent(CONTENT.SUMMARY)
+      console.log(responses);
+      // Determine if passed here
+      // Write to database here
+      setContent(CONTENT.SUMMARY);
     }
 
     return (
@@ -85,14 +91,12 @@ export default function Questionnaire(props) {
 
         {/* Ask all questions and then submit the responses */}
         {i < formQuestions.length ? 
-          <Box alignContent="center" justifyContent="center" className={classes.question}>
-            <Question 
-              className={classes.question}
-              key={formQuestions[i].id}  
-              q={formQuestions[i]}
-              handleClick={handleClick}
-            />
-          </Box>
+          <Question 
+            className={classes.question}
+            key={formQuestions[i].id}  
+            q={formQuestions[i]}
+            handleClick={handleClick}
+          />
           :
           submitResponses()
         }
