@@ -5,6 +5,7 @@ import { makeStyles } from "@material-ui/styles";
 import familyLogo from "../../media/Health Check Family Logo.png"
 import thermometerGuy from "../../media/Thermometer Guy.ico"
 import logo from "../../media/logos/Apple Blossom logo solid color.png"
+
 import HomeCard from "./HomeCard"
 
 const useStyles = makeStyles(theme => ({

@@ -1,7 +1,6 @@
 import React from "react";
 import { CssBaseline, Box } from "@material-ui/core"
 import { makeStyles } from "@material-ui/styles";
-import { withAuthenticator } from '@aws-amplify/ui-react'
 
 import Header from "./components/Header"
 import Main from "./components/Main"
@@ -16,10 +15,6 @@ const useStyles = makeStyles(theme => ({
 }))
 
 /**
- * @Amplify
- * This application uses AWS Amplify with GitHub for hosting. Changes made to 
- * the git branch will automatically be reflected on the live website. It uses 
- * a GraphQl database for the backend and React.js on the front end.
  * 
  * @TODO Menu
  * Write a description of what the Home and Reset buttons do in <Menu>
@@ -66,4 +61,4 @@ function App(props) {
   );
 }
 
-export default withAuthenticator(App);
+export default App;
