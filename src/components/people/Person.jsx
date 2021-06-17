@@ -20,26 +20,27 @@ const useStyles = makeStyles(theme => ({
 
 export default function Person(props) {
   const classes = useStyles();
+  const {setContent, setPerson, person, name } = props;
   
 
-  function handlePersonClick(id) {
-    // Select person (by id) and display questions
-    console.log(id)
-    props.setContent(CONTENT.QUESTIONNAIRE)
+  function handlePersonClick() {
+    // Select person and display questions
+    setPerson(person)
+    setContent(CONTENT.QUESTIONNAIRE)
   }
 
   return (
     <Card>
       <CardActionArea 
         className={classes.person}
-        onClick={() => handlePersonClick(props.id)}
+        onClick={() => handlePersonClick()}
       >
         <Typography 
           align="center"
           component="h3"
           className={classes.name}
         >
-          {props.name}
+          {name}
         </Typography>
       </CardActionArea>
     </Card>

@@ -87,6 +87,7 @@ export default function Main(props) {
           return (
             <Questionnaire 
               setContent={setContent} 
+              form={form} 
               morning={morning} 
               person={person} 
             />

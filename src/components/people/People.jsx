@@ -4,7 +4,7 @@ import { makeStyles } from "@material-ui/styles";
 import Person from "./Person"
 import ResetButton from "../ResetButton"
 
-import { people } from "../../constants/tempDatabase" // TEMP - pull from database with API
+import { people as everyone } from "../../constants/tempDatabase" // TEMP - pull from database with API
 
 const useStyles = makeStyles(theme => ({
   box: {
@@ -23,7 +23,7 @@ export default function People(props) {
   const { setContent, form, letter, setPerson } = props
 
   // Filter people by their type and first letter of their last name
-  var filteredPeople = people.filter(person => 
+  const people = everyone.filter(person => 
     person.type === form && person.fName.charAt(0) === letter
   )
 
@@ -35,20 +35,20 @@ export default function People(props) {
         spacing={20} 
         className={classes.gridList}
       >
-        {filteredPeople.map(person => {
+        {people.map(person => {
           return (
             <GridListTile key={person.id}>
               <Person 
                 setContent={setContent} 
                 setPerson={setPerson}
-                id={person.id} 
+                person={person} 
                 name={person.fName + " " + person.lName}
               />
             </GridListTile>
           )
         })}
       </GridList>
-    <ResetButton setContent={setContent}/>
+      <ResetButton setContent={setContent}/>
     </Box>
   )
 }
