@@ -1,10 +1,11 @@
-import React from "react"
-import { Paper, TextField, Box, Button, Checkbox, FormGroup, FormControlLabel, Typography } from "@material-ui/core"
+import React from "react";
+import { Paper, TextField, Box, Button, Checkbox, FormGroup, FormControlLabel, Typography } from "@material-ui/core";
 import CloudUploadIcon from '@material-ui/icons/CloudUpload';
 import { makeStyles } from "@material-ui/styles";
 
-import MenuQCard from "./MenuQCard"
-import AddQButton from "./AddQButton"
+import { CONTENT, QTYPE } from "../../constants/enum";
+import MenuQCard from "./MenuQCard";
+import AddQButton from "./AddQButton";
 
 // Returns date as a "yyyy-mm-dd" format
 function getDate() {
@@ -70,7 +71,7 @@ export default function Menu(props) {
   // Handle save button clicked
   function handleSaveClick(state) {
     props.setTitle(state.newTitle);
-    props.setContent("home")
+    props.setContent(CONTENT.HOME)
     // window.location.reload();
   }
 
@@ -78,7 +79,7 @@ export default function Menu(props) {
   // Questions will be read from database
   const q1 = {
     id: 0,
-    type: "temp",
+    type: QTYPE.TEMPERATURE,
     question: "97",
     response: "100",
     recordTemp: false,
@@ -91,7 +92,7 @@ export default function Menu(props) {
   }
   const q2 = {
     id: 1,
-    type: "text",
+    type: QTYPE.TEXT,
     question: "Text Question",
     response: "Answer",
     recordTemp: null,
@@ -104,7 +105,7 @@ export default function Menu(props) {
   }
   const q3 = {
     id: 2,
-    type: "bool",
+    type: QTYPE.BOOLEAN,
     question: "Boolean Question",
     response: false,
     recordTemp: null,

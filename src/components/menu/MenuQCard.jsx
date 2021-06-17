@@ -4,6 +4,7 @@ import { Button, Card, TextField, Box, ButtonGroup } from "@material-ui/core"
 import DeleteIcon from "@material-ui/icons/Delete"
 import { ArrowDropDown, ArrowDropUp } from "@material-ui/icons"
 
+import { QTYPE } from "../../constants/enum";
 import MenuQSwitch from "./MenuQSwitch"
 import MenuQCheckboxes from "./MenuQCheckboxes"
 
@@ -37,7 +38,7 @@ export default function MenuQCard(props) {
   // Renders the question based on its type
   function renderResponse() {
     switch(q.type) {
-      case "temp":
+      case QTYPE.TEMPERATURE:
         return (
           <Box 
             display="flex"
@@ -75,7 +76,7 @@ export default function MenuQCard(props) {
             />
           </Box> 
         )
-      case "text":
+      case QTYPE.TEXT:
         return (
           <Box
             display="flex"
@@ -105,7 +106,7 @@ export default function MenuQCard(props) {
             /> 
           </Box>
         )
-      case "bool":
+      case QTYPE.BOOLEAN:
         return (
           <Box
             display="flex"
