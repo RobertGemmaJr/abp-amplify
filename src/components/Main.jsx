@@ -2,6 +2,7 @@ import { useState } from "react"
 import { Container } from "@material-ui/core"
 import { makeStyles } from "@material-ui/styles";
 
+import * as CONTENT from "../constants/contentEnum"
 import Title from "./Title"
 import Home from "./home/Home"
 import Keypad from "./Keypad"
