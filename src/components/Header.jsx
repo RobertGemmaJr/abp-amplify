@@ -3,6 +3,8 @@ import { makeStyles } from "@material-ui/styles";
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 
+import { FORM } from "../constants/enum"
+
 const useStyles = makeStyles(theme => ({
   header: {
     backgroundColor: theme.palette.primary.light,
@@ -15,6 +17,20 @@ const useStyles = makeStyles(theme => ({
     margin: theme.spacing(0, 1),
   },
 }))
+
+// Renders the form's text
+function formText(form) {
+  console.log(form)
+  switch(form) {
+    case FORM.NONE: return ""
+    case FORM.FAMILY: return "FAMILY"
+    case FORM.STAFF: return "STAFF"
+    case FORM.MANUAL: return "MANUAL"
+    default:
+      console.error("Invalid form code:", form)
+      break;
+  }
+}
 
 export default function Header(props) {
     const classes = useStyles();
@@ -34,7 +50,10 @@ export default function Header(props) {
                 </Typography>
 
                 {/* Display Form */}
-                <Typography>{props.form}</Typography>
+                <Typography>
+                  {/* {props.form} */}
+                  {formText(props.form)}
+                </Typography>
 
                 {/* Home Button */}
                 <Button 

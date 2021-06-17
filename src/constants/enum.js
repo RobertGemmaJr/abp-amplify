@@ -19,3 +19,13 @@ export const QTYPE = Object.freeze({
     TEXT: 2,
     TEMPERATURE: 3,
 })
+
+/** Enumeration for the different form types
+ * 
+ */
+export const FORM = Object.freeze({
+    NONE: 0,
+    FAMILY: 1,
+    STAFF: 2,
+    MANUAL: 3,
+})

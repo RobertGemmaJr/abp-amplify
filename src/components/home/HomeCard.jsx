@@ -1,7 +1,7 @@
 import { Card, CardActionArea, CardContent, CardMedia, Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/styles";
 
-import { CONTENT } from "../../constants/enum"
+import { CONTENT, FORM } from "../../constants/enum"
 
 const useStyles = makeStyles(theme => ({
   card: {
@@ -23,24 +23,24 @@ export default function HomeCard(props) {
   function handleCardClick(form) {
     props.setForm(form)
     switch(form) {
-      case "Family Form":
+      case FORM.FAMILY:
         props.setContent(CONTENT.KEYPAD);
         break;
-      case "Staff Form":
+      case FORM.STAFF:
         props.setContent(CONTENT.KEYPAD);
         break;
-      case "Manual Entry":
+      case FORM.MANUAL:
         props.setContent(CONTENT.MANUAL);
         break;
       default:
-          console.error("Invalid form code")
+          console.error("Invalid form code: ", form)
           break;
     }
   }
 
   return (
     <Card className={classes.card}>
-      <CardActionArea onClick={() => handleCardClick(props.text)}>
+      <CardActionArea onClick={() => handleCardClick(props.form)}>
         <CardMedia 
           className={classes.media}
           image={props.image}
