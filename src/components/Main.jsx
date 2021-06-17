@@ -2,7 +2,7 @@ import { useState } from "react"
 import { Container } from "@material-ui/core"
 import { makeStyles } from "@material-ui/styles";
 
-import * as CONTENT from "../constants/contentEnum"
+import { CONTENT } from "../constants/enum"
 import Title from "./Title"
 import Home from "./home/Home"
 import Keypad from "./Keypad"
@@ -48,9 +48,9 @@ export default function Main(props) {
   // Hook for rendering the main content based on program state
   function renderContent() {
     switch(content) {
-      case "home":
+      case CONTENT.HOME:
         return <Home setForm={setForm} content={content} setContent={setContent}/>;
-      case "menu":
+      case CONTENT.MENU:
         return (
           <Menu 
             content={content} 
@@ -59,20 +59,20 @@ export default function Main(props) {
             setTitle={setTitle}
           />
         );
-      case "manual":
+      case CONTENT.MANUAL:
           return <Manual content={content} setContent={setContent}/>;
-      case "keypad":
+      case CONTENT.KEYPAD:
         return <Keypad content={content} setContent={setContent}/>;
-      case "people":
+      case CONTENT.PEOPLE:
         return <People content={content} setContent={setContent}/>;
-      case "questionnaire":
+      case CONTENT.QUESTIONNAIRE:
           return <Questionnaire content={content} setContent={setContent}/>;
-      case "summary":
+      case CONTENT.SUMMARY:
           // This will be the summary page with questions and responses
           // return <Summary content={content} setContent={setContent}/>;
           break;
       default:
-        console.error("Invalid content code")
+        console.error("Invalid content code", content)
         break;
     }
   }

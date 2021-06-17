@@ -2,6 +2,7 @@ import React from "react"
 import { Button, Box } from "@material-ui/core";
 import { makeStyles } from "@material-ui/styles";
 
+import { CONTENT } from "../../constants/enum"
 import familyLogo from "../../media/Health Check Family Logo.png"
 import thermometerGuy from "../../media/Thermometer Guy.ico"
 import logo from "../../media/logos/Apple Blossom logo solid color.png"
@@ -28,13 +29,13 @@ const useStyles = makeStyles(theme => ({
 export default function Home(props) {
   const classes = useStyles();
 
-  const [menuPrev, setMenuPrev] = React.useState("home")
+  const [menuPrev, setMenuPrev] = React.useState(CONTENT.HOME)
   function handleMenuClick() {
-    if (props.content === "menu") {
+    if (props.content === CONTENT.MENU) {
       props.setContent(menuPrev)
     } else {
       setMenuPrev(props.content)
-      props.setContent("menu")
+      props.setContent(CONTENT.MENU)
     }
   }
 

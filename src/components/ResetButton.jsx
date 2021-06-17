@@ -1,6 +1,8 @@
 import { Container, Button } from "@material-ui/core"
 import { makeStyles } from "@material-ui/styles";
 
+import { CONTENT } from "../constants/enum";
+
 const useStyles = makeStyles(theme => ({
   resetButton: {
     textAlign: "center",
@@ -12,7 +14,7 @@ export default function ResetButton(props) {
   const classes = useStyles();
 
   function handleClick() { 
-    props.setContent("keypad")
+    props.setContent(CONTENT.KEYPAD)
   }
 
   return (

@@ -2,6 +2,7 @@ import React from "react";
 import { CssBaseline, Box } from "@material-ui/core"
 import { makeStyles } from "@material-ui/styles";
 
+import { CONTENT } from "./constants/enum";
 import Header from "./components/Header"
 import Main from "./components/Main"
 import Footer from "./components/Footer"
@@ -32,15 +33,15 @@ function App(props) {
   const classes = useStyles();
 
   // Hook for content to be shown
-  const [content, setContent] = React.useState("home")
+  const [content, setContent] = React.useState(CONTENT.HOME)
 
   // Hook for the current form
   const [form, setForm] = React.useState("")
 
-  // HandleClick functions
+  // HandleClick for the home button in the header
   function handleHomeClick() {
     setForm("")
-    setContent("home")
+    setContent(CONTENT.HOME)
   }
 
   return (

@@ -1,5 +1,6 @@
 import { Box, Button, GridList, GridListTile, makeStyles } from '@material-ui/core';
 
+import { CONTENT } from "../constants/enum"
 import ResetButton from "./ResetButton"
 
 const useStyles = makeStyles(theme => ({
@@ -27,7 +28,7 @@ export default function Keypad(props) {
 
   function handleKeypadClick(letter) {
     // Filter people but first letter of their last name
-    props.setContent("people")
+    props.setContent(CONTENT.PEOPLE)
   }
 
   return (

@@ -1,6 +1,8 @@
 import { Card, CardActionArea, Typography } from "@material-ui/core"
 import { makeStyles } from "@material-ui/styles";
 
+import { CONTENT } from "../../constants/enum";
+
 const useStyles = makeStyles(theme => ({
   person: {
     width: "100%",
@@ -23,7 +25,7 @@ export default function Person(props) {
   function handlePersonClick(id) {
     // Select person (by id) and display questions
     console.log(id)
-    props.setContent("questionnaire")
+    props.setContent(CONTENT.QUESTIONNAIRE)
   }
 
   // Will search for this info with props.id (from <People>)

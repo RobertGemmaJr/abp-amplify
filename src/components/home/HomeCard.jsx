@@ -1,6 +1,8 @@
 import { Card, CardActionArea, CardContent, CardMedia, Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/styles";
 
+import { CONTENT } from "../../constants/enum"
+
 const useStyles = makeStyles(theme => ({
   card: {
     flexGrow: 1,
@@ -22,13 +24,13 @@ export default function HomeCard(props) {
     props.setForm(form)
     switch(form) {
       case "Family Form":
-        props.setContent("keypad");
+        props.setContent(CONTENT.KEYPAD);
         break;
       case "Staff Form":
-        props.setContent("keypad");
+        props.setContent(CONTENT.KEYPAD);
         break;
       case "Manual Entry":
-        props.setContent("manual");
+        props.setContent(CONTENT.MANUAL);
         break;
       default:
           console.error("Invalid form code")
