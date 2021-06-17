@@ -1,6 +1,8 @@
-import { Box, Container, Paper, Typography } from "@material-ui/core";
+import React from "react";
+import { Box, Paper, Typography, Button } from "@material-ui/core";
 import { makeStyles } from "@material-ui/styles";
 
+import { CONTENT } from "../../constants/enum";
 import ResetButton from "../ResetButton"
 import Question from "./Question";
 
@@ -20,7 +22,22 @@ const useStyles = makeStyles(theme => ({
     '& > *': {
       fontWeight: "bold",
     },
-  }
+  },
+  text: {
+    margin: theme.spacing(3),
+    fontSize: 30,
+    fontWeight: "bold",
+    alignContent: "center",
+  },
+  answer: {
+    width: "100%",
+    display: "flex",
+    justifyContent: "center",
+
+    '& > *': {
+      margin: theme.spacing(2, 5),
+    },
+  },
 }))
 
 // Returns date as a "mm/dd/yyyy" format
@@ -42,8 +59,22 @@ export default function Questionnaire(props) {
     const idx = 2 * (form-1) + !morning
     const formQuestions = questions.filter(question => question.checkboxes[idx])
 
-    function askQuestions() {
-      return <Question key={formQuestions[3].id} q={formQuestions[3]} className={classes.question}/>
+    // Hook for indexing the formQuestions array
+    const [i, setI] = React.useState(0);
+    var q = formQuestions[i]
+
+    // Handle "yes" button
+    function handleYesClick() {
+      setI(i + 1);
+    }
+
+    // Handle "no" button
+    function handleNoClick() {
+      setI(i + 1);
+    }
+
+    function submitResponses() {
+      setContent(CONTENT.SUMMARY)
     }
 
     return (
@@ -56,7 +87,36 @@ export default function Questionnaire(props) {
             {person.fName + " " + person.lName}
           </Typography>
         </Box>
-        {askQuestions()}
+
+        {/* Ask all questions and then submit the responses */}
+        {i < formQuestions.length ? 
+          <Box alignContent="center" justifyContent="center" className={classes.question}>
+            <Typography align="center" className={classes.text}>
+              {q.id + ") " + q.question}
+            </Typography> 
+            <Box className={classes.answer}>  
+              <Button
+                variant="contained" 
+                color="primary"
+                size="large"
+                onClick={() => handleYesClick()}
+              >
+                Yes
+              </Button>
+              <Button
+                variant="contained"
+                color="primary" 
+                size="large"
+                onClick={() => handleNoClick()}
+              >
+                No
+              </Button>
+            </Box>
+          </Box>
+          :
+          submitResponses()
+        }
+
         <ResetButton setContent={setContent}/>
       </Paper>
     )
