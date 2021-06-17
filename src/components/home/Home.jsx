@@ -28,23 +28,14 @@ const useStyles = makeStyles(theme => ({
 
 export default function Home(props) {
   const classes = useStyles();
-
-  const [menuPrev, setMenuPrev] = React.useState(CONTENT.HOME)
-  function handleMenuClick() {
-    if (props.content === CONTENT.MENU) {
-      props.setContent(menuPrev)
-    } else {
-      setMenuPrev(props.content)
-      props.setContent(CONTENT.MENU)
-    }
-  }
+  const {setContent, setForm} = props;
 
   return (
     <Box className={classes.outer}>
       <Box className={classes.inner}>
         <HomeCard 
-          setContent={props.setContent} 
-          setForm={props.setForm}
+          setContent={setContent} 
+          setForm={setForm}
           key={FORM.FAMILY}
           form={FORM.FAMILY}
           image={familyLogo} 
@@ -52,16 +43,16 @@ export default function Home(props) {
           
         />
         <HomeCard 
-          setContent={props.setContent} 
-          setForm={props.setForm}
+          setContent={setContent} 
+          setForm={setForm}
           key={FORM.STAFF}
           form={FORM.STAFF}
           image={thermometerGuy} 
           text="Staff Form"
         />
         <HomeCard 
-          setContent={props.setContent} 
-          setForm={props.setForm}
+          setContent={setContent} 
+          setForm={setForm}
           key={FORM.MANUAL}
           form={FORM.MANUAL}
           image={logo} 
@@ -73,7 +64,7 @@ export default function Home(props) {
       <Button 
         variant="contained" 
         className={classes.hButton}
-        onClick={() => handleMenuClick()}
+        onClick={() => setContent(CONTENT.MENU)}
         color="secondary"
         size="large"
       >

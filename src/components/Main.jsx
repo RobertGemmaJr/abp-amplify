@@ -36,7 +36,7 @@ const useStyles = makeStyles(theme => ({
 
 export default function Main(props) {
   const classes = useStyles();
-  const {content, setContent, setForm} = props;
+  const {content, setContent, form, setForm, person, setPerson} = props;
   
   // Hook for title
   // TEMP - this should be saved in a database not a hook
@@ -49,27 +49,20 @@ export default function Main(props) {
   function renderContent() {
     switch(content) {
       case CONTENT.HOME:
-        return <Home setForm={setForm} content={content} setContent={setContent}/>;
+        return <Home setContent={setContent} setForm={setForm} />;
       case CONTENT.MENU:
-        return (
-          <Menu 
-            content={content} 
-            setContent={setContent}
-            title={title} 
-            setTitle={setTitle}
-          />
-        );
+        return <Menu setContent={setContent} title={title} setTitle={setTitle} />;
       case CONTENT.MANUAL:
-          return <Manual content={content} setContent={setContent}/>;
+          return <Manual setContent={setContent}/>;
       case CONTENT.KEYPAD:
-        return <Keypad content={content} setContent={setContent}/>;
+        return <Keypad setContent={setContent}/>;
       case CONTENT.PEOPLE:
-        return <People content={content} setContent={setContent}/>;
+        return <People setContent={setContent} form={form} setPerson={setPerson}/>;
       case CONTENT.QUESTIONNAIRE:
-          return <Questionnaire content={content} setContent={setContent}/>;
+          return <Questionnaire setContent={setContent} person={person} />;
       case CONTENT.SUMMARY:
           // This will be the summary page with questions and responses
-          // return <Summary content={content} setContent={setContent}/>;
+          // return <Summary setContent={setContent} person={person}/>;
           break;
       default:
         console.error("Invalid content code", content)

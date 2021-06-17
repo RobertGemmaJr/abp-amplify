@@ -50,7 +50,6 @@ export default function Header(props) {
 
                 {/* Display Form */}
                 <Typography>
-                  {/* {props.form} */}
                   {formText(props.form)}
                 </Typography>
 

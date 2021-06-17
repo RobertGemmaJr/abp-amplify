@@ -33,10 +33,13 @@ function App(props) {
   const classes = useStyles();
 
   // Hook for content to be shown
-  const [content, setContent] = React.useState(CONTENT.HOME)
+  const [content, setContent] = React.useState(CONTENT.HOME);
 
   // Hook for the current form
-  const [form, setForm] = React.useState(FORM.NONE)
+  const [form, setForm] = React.useState(FORM.NONE);
+
+  // Hook for the current person
+  const [person, setPerson] = React.useState(null);
 
   // HandleClick for the home button in the header
   function handleHomeClick() {
@@ -53,9 +56,9 @@ function App(props) {
         homeClick={() => handleHomeClick()} 
       />
       <Main 
-        content={content} 
-        setContent={setContent}
-        setForm={setForm}
+        content={content} setContent={setContent}
+        form={form} setForm={setForm}
+        person={person} setPerson={setPerson}
       />
       <Footer />
     </Box>
