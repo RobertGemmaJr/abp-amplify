@@ -22,22 +22,10 @@ export default function People(props) {
   const classes = useStyles();
   const { setContent, form, letter, setPerson } = props
 
-  // TEMP
-  var filteredPeople = []
-  var temp = people.filter(person => (person.type === form && person.fName.charAt(0) === letter))
-  console.log(letter, form, temp)
-  temp.forEach((person) => {
-    filteredPeople.push(
-      <GridListTile key={person.id}>
-        <Person 
-          setContent={setContent} 
-          setPerson={setPerson}
-          id={person.id} 
-          name={person.fName + " " + person.lName}
-        />
-      </GridListTile>
-    )
-  })
+  // Filter people by their type and first letter of their last name
+  var filteredPeople = people.filter(person => 
+    person.type === form && person.fName.charAt(0) === letter
+  )
 
   return (
     <Box display="flex" flexDirection="column" className={classes.box}>
@@ -47,7 +35,18 @@ export default function People(props) {
         spacing={20} 
         className={classes.gridList}
       >
-        {filteredPeople}
+        {filteredPeople.map(person => {
+          return (
+            <GridListTile key={person.id}>
+              <Person 
+                setContent={setContent} 
+                setPerson={setPerson}
+                id={person.id} 
+                name={person.fName + " " + person.lName}
+              />
+            </GridListTile>
+          )
+        })}
       </GridList>
     <ResetButton setContent={setContent}/>
     </Box>
