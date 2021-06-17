@@ -1,7 +1,6 @@
-import { Container, Paper } from "@material-ui/core";
+import { Button, Box, Container, Paper, Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/styles";
 
-import { FORM } from "../../constants/enum"
 import ResetButton from "../ResetButton"
 
 import { questions } from "../../constants/tempDatabase"; // TEMP - will get from database API
@@ -11,45 +10,75 @@ const useStyles = makeStyles(theme => ({
     width: "100%",
     display: "flex",
     flexDirection: "column",
+    alignItems: "center",
   },
   questionnaire: {
     flexGrow: 1,
   },
+  answer: {
+    width: "100%",
+    display: "flex",
+    alignItems: "space-evenly",
+  },
+  footer: {
+    width: "100%",
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "space-between",
+    // flexGrow: 1,
+  }
 }))
 
 export default function Questionnaire(props) {
     const classes = useStyles();
     const { setContent, form, morning, person } = props;
 
-    console.log(form, morning, person)
+    // Get checkbox index for the current form and filter questions
+    // family-morning == 0, family-afternoon == 1, staff-morning == 2, ... 
+    const idx = 2 * (form-1) + !morning
+    const formQuestions = questions.filter(question => question.checkboxes[idx])
 
-    // Filter questions for the current form
-    const checkbox = null;
-    if(form === FORM.FAMILY) {
+    function handleYesClick() {
 
-    } else if (form === FORM.STAFF) {
+    }
+    function handleNoClick() {
 
-    } else if (form === FORM.MANUAL) {
-
-    } 
-    else console.log("Incorrect form question. Form: ", form, ", morning: ", morning)
-
-    const formQuestions = questions.filter(question => 
-      (form === FORM.FAMILY && morning && question.checkboxes[0]) // family-morning
-      // family-afternoon
-      // staff-morning
-      // staff-afternoon
-      // manual-morning
-      // manual-afternoon
-    )
-    console.log(formQuestions)
+    }
 
     return (
       <Paper className={classes.paper}>
         <Container className={classes.questionnaire}>
-          Questionnaire
+          {person.fName + " " + person.lName}
+          {formQuestions.map(q => {
+            return <Typography key={q.id}>{q.question}</Typography>
+          })}
         </Container>
-        <ResetButton setContent={setContent}/>
+        <Box className={classes.answer}>
+          <Button
+            variant="contained" 
+            className={classes.hButton}
+            onClick={() => handleYesClick()}
+            color="primary"
+            size="large"
+          >
+            Yes
+          </Button>
+          <Button
+            variant="contained" 
+            className={classes.hButton}
+            onClick={() => handleNoClick()}
+            color="primary"
+            size="large"
+          >
+            No
+          </Button>
+        </Box>
+        <Box className={classes.footer}>
+          <Typography display="inline">Date</Typography>
+          <ResetButton setContent={setContent}/>
+          <Typography  display="inline">{person.fName + " " + person.lName}</Typography>
+        </Box>
+        
       </Paper>
     )
 }

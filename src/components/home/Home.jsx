@@ -15,13 +15,11 @@ const useStyles = makeStyles(theme => ({
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
-    justifyContent: "center",
   },
   inner: {
     width: "100%",
     display: "flex",
     alignItems: "center",
-    justifyContent: "center",
     flexGrow: 1,
   }
 }))

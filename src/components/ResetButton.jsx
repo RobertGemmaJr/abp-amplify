@@ -21,7 +21,6 @@ export default function ResetButton(props) {
     <Container disableGutters className={classes.resetButton}> 
       <Button 
         variant="contained" 
-        className={classes.hButton}
         onClick={() => handleClick()}
         color="secondary"
         size="large"
