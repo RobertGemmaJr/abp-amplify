@@ -42,8 +42,8 @@ export default function Main(props) {
   // TEMP - this should be saved in a database not a hook
   const [title, setTitle] = React.useState("Company Title")
 
-  // Hook for question type
-  const [qType, setQType] = React.useState(true)
+  // Hook for the time (morning or afternoon)
+  const [morning, setMorning] = React.useState(true)
 
   // Hook for the current letter
   const [letter, setLetter] = React.useState(null);
@@ -55,23 +55,48 @@ export default function Main(props) {
   function renderContent() {
     switch(content) {
       case CONTENT.HOME:
-        return <Home setContent={setContent} setForm={setForm} />;
+        return (
+          <Home setContent={setContent} setForm={setForm} />
+        );
       case CONTENT.MENU:
-        return <Menu setContent={setContent} title={title} setTitle={setTitle} />;
+        return (
+          <Menu 
+            setContent={setContent} 
+            title={title} 
+            setTitle={setTitle} 
+          />
+        );
       case CONTENT.MANUAL:
-          return <Manual setContent={setContent}/>;
+          return (
+            <Manual setContent={setContent}/>
+          );
       case CONTENT.KEYPAD:
-        return <Keypad setContent={setContent} setLetter={setLetter} />;
+        return (
+          <Keypad setContent={setContent} setLetter={setLetter} />
+        );
       case CONTENT.PEOPLE:
-        return <People setContent={setContent} form={form} letter={letter} setPerson={setPerson}/>;
+        return (
+          <People 
+            setContent={setContent} 
+            form={form} 
+            letter={letter} 
+            setPerson={setPerson}
+          />
+        );
       case CONTENT.QUESTIONNAIRE:
-          return <Questionnaire setContent={setContent} person={person} />;
+          return (
+            <Questionnaire 
+              setContent={setContent} 
+              morning={morning} 
+              person={person} 
+            />
+          );
       case CONTENT.SUMMARY:
           // This will be the summary page with questions and responses
           // return <Summary setContent={setContent} person={person}/>;
           break;
       default:
-        console.error("Invalid content code", content)
+        console.error("Invalid content code:", content)
         break;
     }
   }
@@ -81,9 +106,9 @@ export default function Main(props) {
       <Container 
         disableGutters
         className={classes.title} 
-        onClick={() => setQType(!qType)}
+        onClick={() => setMorning(!morning)}
       >
-        <Title content={content} title={title} qType={qType} />
+        <Title content={content} title={title} morning={morning} />
       </Container>
       <Container className={classes.content}>
         {renderContent()} 

@@ -2,6 +2,8 @@ import { Container } from "@material-ui/core"
 import { makeStyles } from "@material-ui/styles";
 import Typography from '@material-ui/core/Typography';
 
+import { CONTENT } from "../constants/enum";
+
 const useStyles = makeStyles(theme => ({
   subtitle: {
     color: theme.palette.secondary.dark,
@@ -11,15 +13,15 @@ const useStyles = makeStyles(theme => ({
 
 export default function Title(props) {
   const classes = useStyles();
-  const {content, title, qType} = props
+  const {content, title, morning} = props
   
   // Get Subtitle
   let subtitle = ""
-  if (content === "home") subtitle = "Home"
-  else if (content === "menu") subtitle = "Menu"
-  else if (content === "summary") subtitle = "Summary"
+  if (content === CONTENT.HOME) subtitle = "Home"
+  else if (content === CONTENT.MENU) subtitle = "Menu"
+  else if (content === CONTENT.SUMMARY) subtitle = "Summary"
   else {
-    subtitle = qType ? "Morning Questions" : "Afternoon Questions"
+    subtitle = morning ? "Morning Questions" : "Afternoon Questions"
   }
 
   return (
