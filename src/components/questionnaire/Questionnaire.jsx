@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Paper, Typography, Button } from "@material-ui/core";
+import { Box, Paper, Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/styles";
 
 import { CONTENT } from "../../constants/enum";
@@ -22,22 +22,22 @@ const useStyles = makeStyles(theme => ({
     '& > *': {
       fontWeight: "bold",
     },
-  },
-  text: {
-    margin: theme.spacing(3),
-    fontSize: 30,
-    fontWeight: "bold",
-    alignContent: "center",
-  },
-  answer: {
-    width: "100%",
-    display: "flex",
-    justifyContent: "center",
-
-    '& > *': {
-      margin: theme.spacing(2, 5),
+    text: {
+      margin: theme.spacing(3),
+      fontSize: 30,
+      fontWeight: "bold",
+      alignContent: "center",
     },
-  },
+    answer: {
+      width: "100%",
+      display: "flex",
+      justifyContent: "center",
+  
+      '& > *': {
+        margin: theme.spacing(2, 5),
+      },
+    },
+  }
 }))
 
 // Returns date as a "mm/dd/yyyy" format
@@ -61,15 +61,10 @@ export default function Questionnaire(props) {
 
     // Hook for indexing the formQuestions array
     const [i, setI] = React.useState(0);
-    var q = formQuestions[i]
 
     // Handle "yes" button
-    function handleYesClick() {
-      setI(i + 1);
-    }
-
-    // Handle "no" button
-    function handleNoClick() {
+    function handleClick(response) {
+      console.log(response)
       setI(i + 1);
     }
 
@@ -91,27 +86,12 @@ export default function Questionnaire(props) {
         {/* Ask all questions and then submit the responses */}
         {i < formQuestions.length ? 
           <Box alignContent="center" justifyContent="center" className={classes.question}>
-            <Typography align="center" className={classes.text}>
-              {q.id + ") " + q.question}
-            </Typography> 
-            <Box className={classes.answer}>  
-              <Button
-                variant="contained" 
-                color="primary"
-                size="large"
-                onClick={() => handleYesClick()}
-              >
-                Yes
-              </Button>
-              <Button
-                variant="contained"
-                color="primary" 
-                size="large"
-                onClick={() => handleNoClick()}
-              >
-                No
-              </Button>
-            </Box>
+            <Question 
+              className={classes.question}
+              key={formQuestions[i].id}  
+              q={formQuestions[i]}
+              handleClick={handleClick}
+            />
           </Box>
           :
           submitResponses()
