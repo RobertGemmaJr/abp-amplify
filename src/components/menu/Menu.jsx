@@ -1,5 +1,4 @@
 import React from "react"
-import { AmplifySignOut } from '@aws-amplify/ui-react'
 import { Paper, TextField, Box, Button, Checkbox, FormGroup, FormControlLabel, Typography } from "@material-ui/core"
 import CloudUploadIcon from '@material-ui/icons/CloudUpload';
 import { makeStyles } from "@material-ui/styles";
@@ -250,9 +249,6 @@ export default function Menu(props) {
           Save
         </Button>
       </Box> 
-      
-      {/* Let user sign out of amplify */}
-      <AmplifySignOut />
     </Paper>
   )
 }
