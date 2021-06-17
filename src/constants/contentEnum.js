@@ -1,10 +1,10 @@
-// Enumeration for the content to render
-export const CONTENT = Object.freeze({
-    HOME: 1,
-    MENU: 2,
-    MANUAL: 3,
-    KEYPAD: 4,
-    PEOPLE: 5,
-    QUESTIONNAIRE: 6,
-    SUMMARY: 7,
-})
+/** Enumeration for the content to render
+ * 
+ */
+export const HOME = Object.freeze(1)
+export const MENU = Object.freeze(2)
+export const MANUAL = Object.freeze(3)
+export const KEYPAD = Object.freeze(4)
+export const PEOPLE = Object.freeze(5)
+export const QUESTIONNAIRE = Object.freeze(6)
+export const SUMMARY = Object.freeze(7)

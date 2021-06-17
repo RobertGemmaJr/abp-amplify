@@ -1,6 +1,6 @@
-// Enumeration for each question type
-export default QTYPE = Object.freeze({
-    BOOLEAN: 1,
-    TEXT: 2,
-    TEMPERATURE: 3,
-})
+/** Enumeration for the different question types
+ * 
+ */
+ export const BOOLEAN = Object.freeze(1)
+ export const TEXT = Object.freeze(2)
+ export const TEMPERATURE = Object.freeze(3)
