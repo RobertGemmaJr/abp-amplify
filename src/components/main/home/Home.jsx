@@ -2,10 +2,10 @@ import React from "react"
 import { Button, Box } from "@material-ui/core";
 import { makeStyles } from "@material-ui/styles";
 
-import { CONTENT, FORM } from "constants/enum"
-import familyLogo from "media/Health Check Family Logo.png"
-import thermometerGuy from "media/Thermometer Guy.ico"
-import logo from "media/logos/Apple Blossom logo solid color.png"
+import { CONTENT, FORM } from "../../../constants/enum"
+import familyLogo from "../../../media/Health Check Family Logo.png"
+import thermometerGuy from "../../../media/Thermometer Guy.ico"
+import logo from "../../../media/logos/Apple Blossom logo solid color.png"
 
 import HomeCard from "./HomeCard"
 

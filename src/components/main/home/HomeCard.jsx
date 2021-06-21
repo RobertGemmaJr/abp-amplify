@@ -1,7 +1,7 @@
 import { Card, CardActionArea, CardContent, CardMedia, Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/styles";
 
-import { CONTENT, FORM } from "constants/enum"
+import { CONTENT, FORM } from "../../../constants/enum"
 
 const useStyles = makeStyles(theme => ({
   card: {

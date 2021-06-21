@@ -4,7 +4,7 @@ import { Button, Card, TextField, Box, ButtonGroup } from "@material-ui/core"
 import { ArrowDropDown, ArrowDropUp } from "@material-ui/icons"
 import DeleteIcon from "@material-ui/icons/Delete"
 
-import { QTYPE } from "constants/enum";
+import { QTYPE } from "../../../constants/enum";
 import MenuQSwitch from "./MenuQSwitch"
 import MenuQCheckboxes from "./MenuQCheckboxes"
 

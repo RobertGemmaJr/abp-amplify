@@ -3,7 +3,7 @@ import { Paper, TextField, Box, Button, Checkbox, FormGroup, FormControlLabel, T
 import CloudUploadIcon from '@material-ui/icons/CloudUpload';
 import { makeStyles } from "@material-ui/styles";
 
-import { CONTENT, QTYPE } from "constants/enum";
+import { CONTENT, QTYPE } from "../../../constants/enum";
 import MenuQCard from "./MenuQCard";
 import AddQButton from "./AddQButton";
 

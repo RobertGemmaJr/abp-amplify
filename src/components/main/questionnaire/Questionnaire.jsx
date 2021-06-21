@@ -1,7 +1,7 @@
 import React from "react";
 import { makeStyles } from "@material-ui/styles";
 
-import { CONTENT } from "constants/enum";
+import { CONTENT } from "../../../constants/enum";
 import Paper from "../../Paper"
 import Question from "./Question";
 
