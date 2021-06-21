@@ -1,7 +1,7 @@
 import { Box, Button, GridList, GridListTile, makeStyles } from '@material-ui/core';
 
-import { CONTENT } from "../../../constants/enum"
-import ResetButton from "../../ResetButton"
+import { CONTENT } from "constants/enum"
+import ResetButton from "components/ResetButton"
 
 const useStyles = makeStyles(theme => ({
   box: {

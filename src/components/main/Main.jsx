@@ -2,15 +2,15 @@ import React from "react";
 import { Container } from "@material-ui/core"
 import { makeStyles } from "@material-ui/styles";
 
-import { CONTENT } from "../../constants/enum"
+import { CONTENT } from "constants/enum"
 import Title from "./Title"
-import Home from "../home/Home"
+import Home from "./home/Home"
 import Keypad from "./keypad/Keypad"
-import Menu from "../menu/Menu"
-import People from "../people/People";
-import Questionnaire from "../questionnaire/Questionnaire"
-import Manual from "../manual/Manual"
-import Summary from "../summary/Summary"
+import Menu from "./menu/Menu"
+import People from "./people/People";
+import Questionnaire from "./questionnaire/Questionnaire"
+import Manual from "./manual/Manual"
+import Summary from "./summary/Summary"
 
 const useStyles = makeStyles(theme => ({
   main: {

@@ -2,7 +2,7 @@ import { Container } from "@material-ui/core"
 import { makeStyles } from "@material-ui/styles";
 import Typography from '@material-ui/core/Typography';
 
-import { CONTENT } from "../constants/enum";
+import { CONTENT } from "../../constants/enum";
 
 const useStyles = makeStyles(theme => ({
   subtitle: {

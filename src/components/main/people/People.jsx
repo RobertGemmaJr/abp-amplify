@@ -1,11 +1,11 @@
 import { Box, GridList, GridListTile } from "@material-ui/core"
 import { makeStyles } from "@material-ui/styles";
 
-import { CONTENT } from "../../constants/enum";
+import { CONTENT } from "constants/enum";
+import ResetButton from "components/ResetButton"
 import Person from "./Person"
-import ResetButton from "../ResetButton"
 
-import { people as everyone, questions as Qs } from "../../constants/tempDatabase" // TEMP - pull from database with API
+import { people as everyone, questions as Qs } from "constants/tempDatabase" // TEMP - pull from database with API
 
 const useStyles = makeStyles(theme => ({
   box: {

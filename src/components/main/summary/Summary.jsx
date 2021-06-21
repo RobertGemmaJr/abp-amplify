@@ -1,7 +1,7 @@
 import React from "react";
 import { makeStyles } from "@material-ui/styles";
 
-import Paper from "../Paper";
+import Paper from "components/Paper";
 
 const useStyles = makeStyles(theme => ({
   paper: {
@@ -15,11 +15,11 @@ const useStyles = makeStyles(theme => ({
 
 export default function Summary(props) {
   // const classes = useStyles()
-  const { person, response } = props
+  const { setContent, person, response } = props
 
 
   return (
-    <Paper person={person}>
+    <Paper setContent={setContent} person={person}>
       <h1>Hello World</h1>
     </Paper>
   )

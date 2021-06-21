@@ -1,8 +1,8 @@
 import { Container, Paper } from "@material-ui/core";
 import { makeStyles } from "@material-ui/styles";
 
-import { CONTENT } from "../../constants/enum";
-import ResetButton from "../ResetButton"
+import { CONTENT } from "constants/enum";
+import ResetButton from "components/ResetButton"
 
 const useStyles = makeStyles(theme => ({
   paper: {

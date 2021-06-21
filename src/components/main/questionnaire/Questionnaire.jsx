@@ -1,9 +1,9 @@
 import React from "react";
 import { makeStyles } from "@material-ui/styles";
 
-import { CONTENT } from "../../constants/enum";
+import { CONTENT } from "constants/enum";
+import Paper from "components/Paper"
 import Question from "./Question";
-import Paper from "../Paper"
 
 const useStyles = makeStyles(theme => ({
   paper: {
@@ -86,7 +86,7 @@ export default function Questionnaire(props) {
     }
 
     return (
-      <Paper person={person}>
+      <Paper setContent={setContent} person={person}>
         {/* Ask all questions and then submit the responses */}
         {i < questions.length ? 
           <Question 

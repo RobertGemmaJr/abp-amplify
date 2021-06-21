@@ -1,5 +1,5 @@
-import { Grid, FormControlLabel, Switch, Typography } from "@material-ui/core"
 import { makeStyles } from "@material-ui/styles";
+import { Grid, FormControlLabel, Switch, Typography } from "@material-ui/core"
 
 const useStyles = makeStyles(theme => ({
   outer: {

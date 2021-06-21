@@ -3,8 +3,8 @@ import { CssBaseline, Box } from "@material-ui/core"
 import { makeStyles } from "@material-ui/styles";
 
 import { CONTENT, FORM } from "../constants/enum";
-import Header from "./Header"
-import Main from "./components/Main"
+import Header from "./header/Header"
+import Main from "./main/Main"
 import Footer from "./footer/Footer"
 
 const useStyles = makeStyles(theme => ({
