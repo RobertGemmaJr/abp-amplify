@@ -1,8 +1,6 @@
 import { Card, CardActionArea, Typography } from "@material-ui/core"
 import { makeStyles } from "@material-ui/styles";
 
-import { CONTENT } from "../../constants/enum";
-
 const useStyles = makeStyles(theme => ({
   person: {
     width: "100%",
@@ -20,20 +18,13 @@ const useStyles = makeStyles(theme => ({
 
 export default function Person(props) {
   const classes = useStyles();
-  const {setContent, setPerson, person, name } = props;
-  
-
-  function handlePersonClick() {
-    // Select person and display questions
-    setPerson(person)
-    setContent(CONTENT.QUESTIONNAIRE)
-  }
+  const {person, name, handleClick } = props;
 
   return (
     <Card>
       <CardActionArea 
         className={classes.person}
-        onClick={() => handlePersonClick()}
+        onClick={() => handleClick(person)}
       >
         <Typography 
           align="center"

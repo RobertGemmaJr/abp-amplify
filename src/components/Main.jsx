@@ -10,6 +10,7 @@ import Menu from "./menu/Menu"
 import People from "./people/People";
 import Questionnaire from "./questionnaire/Questionnaire"
 import Manual from "./Manual"
+import Summary from "./Summary"
 
 const useStyles = makeStyles(theme => ({
   main: {
@@ -51,6 +52,12 @@ export default function Main(props) {
   // Hook for the current person
   const [person, setPerson] = React.useState(null);
 
+  // Hook for the used questions
+  const [questions, setQuestions] = React.useState([]);
+
+  // Hook for the recorded response
+  const [response, setResponse] = React.useState(null);
+
   // Hook for rendering the main content based on program state
   function renderContent() {
     switch(content) {
@@ -79,23 +86,24 @@ export default function Main(props) {
           <People 
             setContent={setContent} 
             form={form} 
+            morning={morning} 
             letter={letter} 
             setPerson={setPerson}
+            setQuestions={setQuestions}
           />
         );
       case CONTENT.QUESTIONNAIRE:
           return (
             <Questionnaire 
-              setContent={setContent} 
-              form={form} 
-              morning={morning} 
+              setContent={setContent}
               person={person} 
+              questions={questions}
+              setResponse={setResponse}
             />
           );
       case CONTENT.SUMMARY:
           // This will be the summary page with questions and responses
-          // return <Summary setContent={setContent} person={person}/>;
-          break;
+          return <Summary setContent={setContent} person={person} response={response}/>;
       default:
         console.error("Invalid content code:", content)
         break;

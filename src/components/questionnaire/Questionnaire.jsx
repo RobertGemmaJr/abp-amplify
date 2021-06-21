@@ -6,8 +6,6 @@ import { CONTENT } from "../../constants/enum";
 import ResetButton from "../ResetButton"
 import Question from "./Question";
 
-import { questions } from "../../constants/tempDatabase"; // TEMP - will get from database API
-
 const useStyles = makeStyles(theme => ({
   paper: {
     width: "100%",
@@ -55,14 +53,14 @@ const responses = [];
 
 export default function Questionnaire(props) {
     const classes = useStyles();
-    const { setContent, form, morning, person } = props;
+    const { 
+      setContent, person, 
+      questions, setResponse 
+    } = props;
 
-    // Get checkbox index for the current form and filter questions
-    // family-morning == 0, family-afternoon == 1, staff-morning == 2, ... 
-    const idx = 2 * (form-1) + !morning
-    const formQuestions = questions.filter(question => question.checkboxes[idx])
+    console.log(questions)
 
-    // Hook for indexing the formQuestions array
+    // Hook for indexing the questions array
     const [i, setI] = React.useState(0);
 
     // Handle clicks that submit an answer
@@ -73,8 +71,16 @@ export default function Questionnaire(props) {
 
     function submitResponses() {
       console.log(responses);
-      // Determine if passed here
-      // Write to database here
+
+      // Check if user passed the questionnaire and generate response
+      const response = {
+        date: getDate(),
+        questions: questions,
+      }
+
+      // Write the response to the database
+      setResponse(response)
+
       setContent(CONTENT.SUMMARY);
     }
 
@@ -90,16 +96,14 @@ export default function Questionnaire(props) {
         </Box>
 
         {/* Ask all questions and then submit the responses */}
-        {i < formQuestions.length ? 
+        {i < questions.length ? 
           <Question 
             className={classes.question}
-            key={formQuestions[i].id}  
-            q={formQuestions[i]}
+            key={questions[i].id}  
+            q={questions[i]}
             handleClick={handleClick}
           />
-          :
-          submitResponses()
-        }
+        : submitResponses()}
 
         <ResetButton setContent={setContent}/>
       </Paper>
