@@ -1,11 +1,12 @@
 import React from "react";
 import { makeStyles } from "@material-ui/styles";
-import { Box, Paper, Typography } from "@material-ui/core";
+// import { Paper } from "@material-ui/core";
 
 import { CONTENT } from "../../constants/enum";
 import ResetButton from "../ResetButton"
 import Question from "./Question";
 import DateAndName from "../DateAndName"
+import Paper from "../Paper"
 
 const useStyles = makeStyles(theme => ({
   paper: {
@@ -88,10 +89,7 @@ export default function Questionnaire(props) {
     }
 
     return (
-      <Paper className={classes.paper}>
-        <DateAndName person={person} />
-
-
+      <Paper person={person}>
         {/* Ask all questions and then submit the responses */}
         {i < questions.length ? 
           <Question 
@@ -101,8 +99,6 @@ export default function Questionnaire(props) {
             handleClick={handleClick}
           />
         : submitResponses()}
-
-        <ResetButton setContent={setContent}/>
       </Paper>
     )
 }

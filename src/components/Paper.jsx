@@ -1,6 +1,8 @@
 import React from "react";
 import { makeStyles } from "@material-ui/styles";
-import { Box, Typography } from "@material-ui/core";
+import { Box, Typography, Paper } from "@material-ui/core";
+
+import ResetButton from "./ResetButton"
 
 const useStyles = makeStyles(theme => ({
   paper: {
@@ -44,18 +46,24 @@ function getDate() {
   );
 }
 
-export default function DateAndName(props) {
+export default function MyPaper(props) {
     const classes = useStyles();
-    const {person} = props;
+    const { setContent, person } = props;
 
     return (
-      <Box color="primary" className={classes.header}>
-        <Typography variant="h5" component="h5">
-          {getDate()}
-        </Typography>
-        <Typography variant="h5" component="h5"> 
-          {person.fName + " " + person.lName}
-        </Typography>
-      </Box>
+      <Paper className={classes.paper}>
+        <Box color="primary" className={classes.header}>
+          <Typography variant="h5" component="h5">
+            {getDate()}
+          </Typography>
+          <Typography variant="h5" component="h5"> 
+            {person.fName + " " + person.lName}
+          </Typography>
+        </Box>
+
+        {props.children}
+
+        <ResetButton setContent={setContent}/>
+      </Paper>
     )
 }
