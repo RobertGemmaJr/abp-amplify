@@ -1,15 +1,9 @@
-import { Box, Button, GridList, GridListTile, makeStyles } from '@material-ui/core';
+import { Button, GridList, GridListTile, makeStyles } from '@material-ui/core';
 
 import { CONTENT } from "../../../constants/enum"
-import ResetButton from "../../ResetButton"
-
 import FlexBox from "../../FlexBox"
 
 const useStyles = makeStyles(theme => ({
-  box: {
-    width: "100%",
-    alignItems: "center",
-  },
   gridList: {
     maxWidth: 500,
     justifyContent: "center",
@@ -34,7 +28,7 @@ export default function Keypad(props) {
   }
 
   return (
-    <FlexBox setContent={props.setContent}>
+    <FlexBox setContent={props.setContent} reset={true}>
       <GridList
         cellHeight={40}
         cols={4}

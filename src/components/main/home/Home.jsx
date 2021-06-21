@@ -1,12 +1,13 @@
 import React from "react"
-import { Button, Box } from "@material-ui/core";
+import { Box } from "@material-ui/core";
 import { makeStyles } from "@material-ui/styles";
 
-import { CONTENT, FORM } from "../../../constants/enum"
+import { FORM } from "../../../constants/enum"
 import familyLogo from "../../../media/Health Check Family Logo.png"
 import thermometerGuy from "../../../media/Thermometer Guy.ico"
 import logo from "../../../media/logos/Apple Blossom logo solid color.png"
 
+import FlexBox from "../../FlexBox";
 import HomeCard from "./HomeCard"
 
 const useStyles = makeStyles(theme => ({
@@ -29,7 +30,7 @@ export default function Home(props) {
   const {setContent, setForm} = props;
 
   return (
-    <Box className={classes.outer}>
+    <FlexBox setContent={setContent} reset={false}>
       <Box className={classes.inner}>
         <HomeCard 
           setContent={setContent} 
@@ -57,17 +58,6 @@ export default function Home(props) {
           text="Manual Entry"
         />
       </Box>
-
-      {/* Menu Button */}
-      <Button 
-        variant="contained" 
-        className={classes.hButton}
-        onClick={() => setContent(CONTENT.MENU)}
-        color="secondary"
-        size="large"
-      >
-        Menu
-      </Button>
-    </Box>
+    </FlexBox>
   )
 }

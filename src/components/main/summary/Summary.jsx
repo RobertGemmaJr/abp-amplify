@@ -14,8 +14,10 @@ const useStyles = makeStyles(theme => ({
 }))
 
 export default function Summary(props) {
-  // const classes = useStyles()
+  const classes = useStyles()
   const { setContent, person, response } = props
+
+  console.log(response, classes)
 
 
   return (

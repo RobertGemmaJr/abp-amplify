@@ -1,17 +1,13 @@
-import { Box, GridList, GridListTile } from "@material-ui/core"
+import { GridList, GridListTile } from "@material-ui/core"
 import { makeStyles } from "@material-ui/styles";
 
 import { CONTENT } from "../../../constants/enum";
 import FlexBox from "../../FlexBox";
-import ResetButton from "../../ResetButton"
 import Person from "./Person"
 
 import { people as everyone, questions as Qs } from "../../../constants/tempDatabase" // TEMP - pull from database with API
 
 const useStyles = makeStyles(theme => ({
-  box: {
-    width: "100%",
-  },
   gridList: {
     width: "100%",
     height: "100%",
@@ -48,7 +44,7 @@ export default function People(props) {
 
   return (
     // <Box display="flex" flexDirection="column" className={classes.box}>
-    <FlexBox setContent={props.setContent}>
+    <FlexBox setContent={props.setContent} reset={true}>
       <GridList 
         cellHeight="auto"
         cols={4} 
