@@ -2,7 +2,7 @@ import React from "react";
 import { makeStyles } from "@material-ui/styles";
 import { Box, Typography, Paper } from "@material-ui/core";
 
-import ResetButton from "components/ResetButton"
+import ResetButton from "./ResetButton"
 
 const useStyles = makeStyles(theme => ({
   paper: {

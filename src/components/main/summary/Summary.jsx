@@ -1,7 +1,7 @@
 import React from "react";
 import { makeStyles } from "@material-ui/styles";
 
-import Paper from "components/Paper";
+import Paper from "../../Paper";
 
 const useStyles = makeStyles(theme => ({
   paper: {

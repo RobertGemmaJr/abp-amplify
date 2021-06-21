@@ -2,7 +2,7 @@ import React from "react";
 import { makeStyles } from "@material-ui/styles";
 
 import { CONTENT } from "constants/enum";
-import Paper from "components/Paper"
+import Paper from "../../Paper"
 import Question from "./Question";
 
 const useStyles = makeStyles(theme => ({

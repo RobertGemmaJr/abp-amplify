@@ -2,7 +2,7 @@ import React from "react";
 import { Container } from "@material-ui/core"
 import { makeStyles } from "@material-ui/styles";
 
-import { CONTENT } from "constants/enum"
+import { CONTENT } from "../../constants/enum"
 import Title from "./Title"
 import Home from "./home/Home"
 import Keypad from "./keypad/Keypad"

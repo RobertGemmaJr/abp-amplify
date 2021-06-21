@@ -2,7 +2,7 @@ import { Box, GridList, GridListTile } from "@material-ui/core"
 import { makeStyles } from "@material-ui/styles";
 
 import { CONTENT } from "constants/enum";
-import ResetButton from "components/ResetButton"
+import ResetButton from "../../ResetButton"
 import Person from "./Person"
 
 import { people as everyone, questions as Qs } from "constants/tempDatabase" // TEMP - pull from database with API
