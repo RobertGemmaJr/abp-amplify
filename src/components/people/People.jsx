@@ -59,7 +59,6 @@ export default function People(props) {
               <Person 
                 person={person} 
                 name={person.fName + " " + person.lName}
-
                 handleClick={selectPerson}
               />
             </GridListTile>

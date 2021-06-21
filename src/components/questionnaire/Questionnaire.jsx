@@ -1,10 +1,11 @@
 import React from "react";
-import { Box, Paper, Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/styles";
+import { Box, Paper, Typography } from "@material-ui/core";
 
 import { CONTENT } from "../../constants/enum";
 import ResetButton from "../ResetButton"
 import Question from "./Question";
+import DateAndName from "../DateAndName"
 
 const useStyles = makeStyles(theme => ({
   paper: {
@@ -48,17 +49,17 @@ function getDate() {
   );
 }
 
+// Returns true if all of the user responses match the question's expectedResponse
+function checkPassed(questions, responses) {
+  return true //TEMP
+}
+
 // Keep track of the user's responses in an array
 const responses = [];
 
 export default function Questionnaire(props) {
     const classes = useStyles();
-    const { 
-      setContent, person, 
-      questions, setResponse 
-    } = props;
-
-    console.log(questions)
+    const { setContent, person, questions, setResponse } = props;
 
     // Hook for indexing the questions array
     const [i, setI] = React.useState(0);
@@ -72,28 +73,24 @@ export default function Questionnaire(props) {
     function submitResponses() {
       console.log(responses);
 
-      // Check if user passed the questionnaire and generate response
+      // Generate response
       const response = {
         date: getDate(),
         questions: questions,
+        passed: checkPassed(questions, responses)
       }
 
       // Write the response to the database
       setResponse(response)
 
       setContent(CONTENT.SUMMARY);
+      responses.length = 0; //Clear responses array
     }
 
     return (
       <Paper className={classes.paper}>
-        <Box color="primary" className={classes.header}>
-          <Typography variant="h5" component="h5">
-            {getDate()}
-          </Typography>
-          <Typography variant="h5" component="h5"> 
-            {person.fName + " " + person.lName}
-          </Typography>
-        </Box>
+        <DateAndName person={person} />
+
 
         {/* Ask all questions and then submit the responses */}
         {i < questions.length ? 
