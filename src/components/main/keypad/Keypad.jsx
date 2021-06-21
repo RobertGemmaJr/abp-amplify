@@ -3,6 +3,8 @@ import { Box, Button, GridList, GridListTile, makeStyles } from '@material-ui/co
 import { CONTENT } from "../../../constants/enum"
 import ResetButton from "../../ResetButton"
 
+import FlexBox from "../../FlexBox"
+
 const useStyles = makeStyles(theme => ({
   box: {
     width: "100%",
@@ -32,9 +34,9 @@ export default function Keypad(props) {
   }
 
   return (
-    <Box display="flex" flexDirection="column" className={classes.box}>
+    <FlexBox setContent={props.setContent}>
       <GridList
-        cellHeight={50}
+        cellHeight={40}
         cols={4}
         spacing={20}
         className={classes.gridList}
@@ -54,7 +56,6 @@ export default function Keypad(props) {
           )
         })}
       </GridList>
-      <ResetButton setContent={props.setContent}/>
-    </Box>
+    </FlexBox>
   )
 }

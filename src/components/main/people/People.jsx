@@ -2,6 +2,7 @@ import { Box, GridList, GridListTile } from "@material-ui/core"
 import { makeStyles } from "@material-ui/styles";
 
 import { CONTENT } from "../../../constants/enum";
+import FlexBox from "../../FlexBox";
 import ResetButton from "../../ResetButton"
 import Person from "./Person"
 
@@ -46,7 +47,8 @@ export default function People(props) {
   }
 
   return (
-    <Box display="flex" flexDirection="column" className={classes.box}>
+    // <Box display="flex" flexDirection="column" className={classes.box}>
+    <FlexBox setContent={props.setContent}>
       <GridList 
         cellHeight="auto"
         cols={4} 
@@ -65,7 +67,8 @@ export default function People(props) {
           )
         })}
       </GridList>
-      <ResetButton setContent={setContent}/>
-    </Box>
+      {/* <ResetButton setContent={setContent}/> */}
+    {/* </Box> */}
+    </FlexBox>
   )
 }
