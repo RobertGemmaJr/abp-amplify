@@ -1,11 +1,8 @@
 import React from "react";
 import { makeStyles } from "@material-ui/styles";
-// import { Paper } from "@material-ui/core";
 
 import { CONTENT } from "../../constants/enum";
-import ResetButton from "../ResetButton"
 import Question from "./Question";
-import DateAndName from "../DateAndName"
 import Paper from "../Paper"
 
 const useStyles = makeStyles(theme => ({
