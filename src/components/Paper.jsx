@@ -2,7 +2,7 @@ import React from "react";
 import { makeStyles } from "@material-ui/styles";
 import { Box, Typography, Paper } from "@material-ui/core";
 
-import ResetButton from "./ResetButton"
+import ResetButton from "./ResetButton";
 
 const useStyles = makeStyles(theme => ({
   paper: {
@@ -10,30 +10,15 @@ const useStyles = makeStyles(theme => ({
     display: "flex",
     flexDirection: "column",
     justifyContent: "space-between",
+    alignItems: "center",
     padding: theme.spacing(2),
   },
   header: {
-    display: "flex",
-    justifyContent: "space-between",
+    width: "100%",
     '& > *': {
       fontWeight: "bold",
     },
-    text: {
-      margin: theme.spacing(3),
-      fontSize: 30,
-      fontWeight: "bold",
-      alignContent: "center",
-    },
-    answer: {
-      width: "100%",
-      display: "flex",
-      justifyContent: "center",
-  
-      '& > *': {
-        margin: theme.spacing(2, 5),
-      },
-    },
-  }
+  },
 }))
 
 // Returns date as a "mm/dd/yyyy" format
@@ -52,17 +37,15 @@ export default function MyPaper(props) {
 
     return (
       <Paper className={classes.paper}>
-        <Box color="primary" className={classes.header}>
-          <Typography variant="h5" component="h5">
-            {getDate()}
-          </Typography>
-          <Typography variant="h5" component="h5"> 
-            {person.fName + " " + person.lName}
-          </Typography>
-        </Box>
-
-        {props.children}
-
+          <Box display="flex" justifyContent="space-between" className={classes.header}>
+            <Typography variant="h5" component="h5">
+              {getDate()}
+            </Typography>
+            <Typography variant="h5" component="h5"> 
+              {person.fName + " " + person.lName}
+            </Typography>
+          </Box>
+          {props.children} 
         <ResetButton setContent={setContent}/>
       </Paper>
     )
