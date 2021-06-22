@@ -102,7 +102,13 @@ export default function Main(props) {
             />
           );
       case CONTENT.SUMMARY:
-          return <Summary setContent={setContent} person={person} response={response}/>;
+          return (
+            <Summary 
+              setContent={setContent} 
+              person={person} 
+              response={response}
+            />
+          )
       default:
         console.error("Invalid content code:", content)
         break;

@@ -178,7 +178,8 @@ export const res = {
     date: "2021-01-01",
     form: FORM.FAMILY,
     morning: true,
-    questions: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10], // Make sure I have all the ids correctly
+    person: people[0],
+    questions: questions, // Make sure I have all the ids correctly
     responses: ["Yes", "Yes", "Yes", "Yes", "Yes", "Yes", "Yes", "Yes", "Yes", "Yes", ],
     passed: true,
 }

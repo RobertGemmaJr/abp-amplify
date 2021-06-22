@@ -1,7 +1,6 @@
 import React from "react";
 import { makeStyles } from "@material-ui/styles";
-import { Container, Typography } from "@material-ui/core";
-import { DataGrid } from "@material-ui/data-grid";
+import { TableContainer, Table, TableHead, TableBody, TableRow, TableCell } from "@material-ui/core";
 
 import { FORM } from "../../../constants/enum" 
 import Paper from "../../Paper";
@@ -38,14 +37,19 @@ function formText(form) {
   }
 }
 
-const rows = []
-const columns = []
+const rows = [
+  res.questions.map((q, idx) => {
+    return (
+      console.log(q)
+    )
+  })
+]
 
 export default function Summary(props) {
   const classes = useStyles()
   const { setContent, person, response } = props
 
-  console.log(response, classes)
+  // console.log(person)
 
   return (
     <Paper setContent={setContent} person={person}>
@@ -53,7 +57,7 @@ export default function Summary(props) {
       <SummaryText title="Submitted On: " body={res.date} />
       <SummaryText 
         title="Submitted By: "
-        body={person.fName + " " + person.lName}
+        body={res.person.fName + " " + person.lName}
       />
       <SummaryText 
         title="Form: " 
@@ -64,10 +68,27 @@ export default function Summary(props) {
       />
 
       {/* Table */}
-      <DataGrid 
-        rows={rows} columns={columns} 
-        className={classes.table}
-      />
+      <TableContainer component={Paper}>
+        <Table className={classes.table} size="small">
+          <TableHead>
+            <TableRow>
+              <TableCell align="center">ID</TableCell>
+              <TableCell align="center">Question</TableCell>
+              <TableCell align="center">Expected Response</TableCell>
+              <TableCell align="center">Received Response</TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {rows.map(row => (
+              // Temporary key - should be question id
+              <TableRow key={row}> 
+
+              </TableRow>
+            ))}
+          </TableBody>
+
+        </Table>
+      </TableContainer>
     </Paper>
   )
 }

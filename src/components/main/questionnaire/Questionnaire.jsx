@@ -69,8 +69,6 @@ export default function Questionnaire(props) {
     }
 
     function submitResponses() {
-      console.log(responses);
-
       // Generate response
       const response = {
         id: Math.floor(Math.random() * 1000),
