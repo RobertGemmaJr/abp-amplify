@@ -10,8 +10,8 @@ import { res } from "../../../constants/tempDatabase" // TEMP
 
 const useStyles = makeStyles(theme => ({
   table: {
-    minWidth: 750,
-    margin: theme.spacing(1)
+    // minWidth: 500,
+    margin: theme.spacing(1, 0)
   },
   bold: {
     fontWeight: "bold"
@@ -37,19 +37,18 @@ function formText(form) {
   }
 }
 
-const rows = [
-  res.questions.map((q, idx) => {
-    return (
-      console.log(q)
-    )
-  })
-]
+function createRow(id, question, expectedResponse, receivedResponse) {
+  return {id, question, expectedResponse, receivedResponse }
+}
+
+const rows = []
+res.questions.forEach((q, idx) => {
+  rows.push(createRow(q.id, q.question, q.expectedResponse, res.responses[idx]))
+})
 
 export default function Summary(props) {
   const classes = useStyles()
-  const { setContent, person, response } = props
-
-  // console.log(person)
+  const { setContent, person } = props
 
   return (
     <Paper setContent={setContent} person={person}>
@@ -57,7 +56,7 @@ export default function Summary(props) {
       <SummaryText title="Submitted On: " body={res.date} />
       <SummaryText 
         title="Submitted By: "
-        body={res.person.fName + " " + person.lName}
+        body={res.person.fName + " " + res.person.lName}
       />
       <SummaryText 
         title="Form: " 
@@ -68,7 +67,7 @@ export default function Summary(props) {
       />
 
       {/* Table */}
-      <TableContainer component={Paper}>
+      <TableContainer>
         <Table className={classes.table} size="small">
           <TableHead>
             <TableRow>
@@ -79,12 +78,19 @@ export default function Summary(props) {
             </TableRow>
           </TableHead>
           <TableBody>
-            {rows.map(row => (
-              // Temporary key - should be question id
-              <TableRow key={row}> 
-
+            {rows.map(row => {
+              return (
+                <TableRow key={row.id}> 
+                <TableCell component="th" scope="row">
+                  {row.id}
+                </TableCell>
+                <TableCell align="left">{row.question}</TableCell>
+                <TableCell align="left">{row.expectedResponse}</TableCell>
+                <TableCell align="left">{row.receivedResponse}</TableCell>
               </TableRow>
-            ))}
+              )
+
+              })}
           </TableBody>
 
         </Table>
