@@ -73,6 +73,7 @@ export default function Questionnaire(props) {
 
       // Generate response
       const response = {
+        id: Math.floor(Math.random() * 1000),
         date: getDate(),
         questions: questions,
         passed: checkPassed(questions, responses)

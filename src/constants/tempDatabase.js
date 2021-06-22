@@ -173,9 +173,11 @@ export const questions = [
 ]
 
 // An example response
-export const response = {
+export const res = {
     id: Math.floor(Math.random() * 1000),
     date: "2021-01-01",
+    form: FORM.FAMILY,
+    morning: true,
     questions: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10], // Make sure I have all the ids correctly
     responses: ["Yes", "Yes", "Yes", "Yes", "Yes", "Yes", "Yes", "Yes", "Yes", "Yes", ],
     passed: true,
