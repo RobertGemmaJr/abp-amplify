@@ -13,10 +13,6 @@ const useStyles = makeStyles(theme => ({
   table: {
     margin: theme.spacing(1, 0)
   },
-  typography: {
-    width: "100%",
-    textAlign: "left",
-  },
 }))
 
 // Renders the form's text
@@ -93,7 +89,6 @@ export default function Summary(props) {
       <Typography 
         variant="subtitle1" 
         color={res.passed ? "inherit" : "error"}
-        className={classes.typography}
       >
         {res.passed ? "You passed!" : "Please try again"}
       </Typography>
