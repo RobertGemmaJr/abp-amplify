@@ -7,21 +7,16 @@ import Paper from "../../Paper";
 import SummaryText from "./SummaryText";
 
 import { res } from "../../../constants/tempDatabase" // TEMP
+import { Typography } from "@material-ui/core";
 
 const useStyles = makeStyles(theme => ({
   table: {
-    // minWidth: 500,
     margin: theme.spacing(1, 0)
   },
-  bold: {
-    fontWeight: "bold"
+  typography: {
+    width: "100%",
+    textAlign: "left",
   },
-  passed: {
-
-  },
-  failed: {
-
-  }
 }))
 
 // Renders the form's text
@@ -81,20 +76,27 @@ export default function Summary(props) {
             {rows.map(row => {
               return (
                 <TableRow key={row.id}> 
-                <TableCell component="th" scope="row">
-                  {row.id}
-                </TableCell>
-                <TableCell align="left">{row.question}</TableCell>
-                <TableCell align="left">{row.expectedResponse}</TableCell>
-                <TableCell align="left">{row.receivedResponse}</TableCell>
-              </TableRow>
+                  <TableCell component="th" scope="row">
+                    {row.id}
+                  </TableCell>
+                  <TableCell align="left">{row.question}</TableCell>
+                  <TableCell align="left">{row.expectedResponse}</TableCell>
+                  <TableCell align="left">{row.receivedResponse}</TableCell>
+                </TableRow>
               )
-
-              })}
+            })}
           </TableBody>
-
         </Table>
       </TableContainer>
+
+      {/* Passed? */}
+      <Typography 
+        variant="subtitle1" 
+        color={res.passed ? "inherit" : "error"}
+        className={classes.typography}
+      >
+        {res.passed ? "You passed!" : "Please try again"}
+      </Typography>
     </Paper>
   )
 }
