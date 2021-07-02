@@ -9,11 +9,15 @@ const useStyles = makeStyles(theme => ({
 
 export default function MenuQSwitch(props) {
   const classes = useStyles();
-  const {state, setState } = props;
+  const {state, setSwitch} = props;
 
-  const toggleSwitch = (event) => {
-    setState({...state, [event.target.name]: event.target.checked });
+  // Call setSwitch from <MenuQCard> on change
+  const handleChange = (event) => {
+    const value = (state.response === "Yes" ? "No" : "Yes");
+    setSwitch(value)
   }
+
+  
 
   return (
     <Grid 
@@ -26,9 +30,9 @@ export default function MenuQSwitch(props) {
         <FormControlLabel
           control={
             <Switch 
-              name={props.switchName}
-              checked={props.switchChecked}
-              onChange={toggleSwitch}
+              name="response"
+              checked={state.response === "Yes" ? true : false}
+              onChange={handleChange}
             />
           }
           label={props.label}
@@ -36,9 +40,7 @@ export default function MenuQSwitch(props) {
         />
       </Grid>
       <Grid item xs>
-        <Typography variant="body2" align="center">
-          {props.switchChecked ? "Yes" : "No"}
-        </Typography>
+        <Typography variant="body2" align="center"> {state.response} </Typography>
       </Grid>
     </Grid>
   )

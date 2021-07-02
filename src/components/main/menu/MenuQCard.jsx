@@ -1,7 +1,7 @@
 import React from "react"
 import { makeStyles } from "@material-ui/styles";
 import { Button, Card, TextField, Box, ButtonGroup } from "@material-ui/core"
-import { ArrowDropDown, ArrowDropUp, ContactsOutlined } from "@material-ui/icons"
+import { ArrowDropDown, ArrowDropUp } from "@material-ui/icons"
 import DeleteIcon from "@material-ui/icons/Delete"
 
 import { QTYPE } from "../../../constants/enum";
@@ -20,7 +20,6 @@ const useStyles = makeStyles(theme => ({
   },
   question: {
     width: "100%",
-    // flexGrow: 1,
   },
 }))
 
@@ -31,7 +30,7 @@ export default function MenuQCard(props) {
   // Hook for question state
   const [state, setState] = React.useState({
     question: q.question,
-    response: q.response,
+    response: q.expectedResponse,
     recordTemp: q.recordTemp,
     checkboxes: q.checkboxes,
   })
@@ -40,73 +39,11 @@ export default function MenuQCard(props) {
   function renderResponse() {
     switch(q.type) {
       case QTYPE.TEMPERATURE:
-        return (
-          <Box 
-            display="flex"
-            alignItems="center" 
-            justifyContent="flex-start"
-            className={classes.question}
-          >
-            <TextField 
-              variant="outlined"
-              label="Minimum Temperature"
-              autoComplete="off"
-              noValidate
-              className={classes.group}
-              name="question"
-              value={q.recordTemp ? "-" : state.question}
-              onChange={handleChange}
-            />
-            <TextField 
-              variant="outlined"
-              label="Maximum Temperature"
-              autoComplete="off"        
-              noValidate
-              name="response"
-              value={q.recordTemp ? "-" : state.response}
-              onChange={handleChange}
-              className={classes.group}
-            />
-            <MenuQSwitch 
-              state={state} 
-              setState={setState}
-              switchName="recordTemp"
-              switchChecked={state.recordTemp}
-              label="Record?"
-              className={classes.group}
-            />
-          </Box> 
-        )
+        // Not implemented yet
+        return null; 
       case QTYPE.TEXT:
-        return (
-          <Box
-            display="flex"
-            alignItems="center" 
-            justifyContent="flex-start"
-            className={classes.question}
-          >
-            <TextField 
-              variant="outlined"
-              label="Question"
-              autoComplete="off"
-              noValidate fullWidth
-              className={classes.group}
-              name="question"
-              value={state.question}
-              onChange={handleChange}
-            />
-            <TextField 
-              variant="outlined"
-              label="Response"
-              autoComplete="off"        
-              noValidate
-              className={classes.group}
-              name="response"
-              value={state.response}
-              onChange={handleChange}
-            /> 
-          </Box>
-        )
+        // Not implemented yet
+        return null; 
       case QTYPE.BOOLEAN:
         return (
           <Box
@@ -126,11 +63,9 @@ export default function MenuQCard(props) {
               onChange={handleChange}
             />
             <MenuQSwitch 
-              state={state.response} 
-              setState={setState}
+              state={state} 
+              setSwitch={setSwitch}
               label="Response"
-              switchName="response"
-              switchChecked={state.response}
               className={classes.group}
             />
           </Box>
@@ -152,17 +87,22 @@ export default function MenuQCard(props) {
     // Use question's id to move it down one in order
     console.log("Down Click", q.id)
   }
+
+  // Handle change for switch
+  function setSwitch(value) {
+    setState({...state, "response": value});
+  }
+  // Handle change for checkboxes
+  function setCheckboxes(idx, value) {
+      var checkboxes = state.checkboxes;
+      checkboxes[idx] = value;
+      setState({...state, [state.checkboxes]: checkboxes})
+  }
   // Handle change for text values
   const handleChange = (event) => {
     setState({...state, [event.target.name]: event.target.value})
   }
-  // Handle change for checkboxes
-  function setCheckboxes(idx, value) {
-    var checkboxes = state.checkboxes;
-    checkboxes[idx] = value;
-    setState({...state, [state.checkboxes]: checkboxes})
-  }
-  
+
 
   return (
     <Card className={classes.card} raised>
@@ -193,9 +133,7 @@ export default function MenuQCard(props) {
         {renderResponse()}
 
         {/* Checkboxes */}
-        {/* <MenuQCheckboxes state={state} setState={setState} className={classes.group}/> */}
         <MenuQCheckboxes state={state} setCheckboxes={setCheckboxes} className={classes.group}/>
-        {/* <MenuQCheckboxes checkboxes={q.checkboxes} className={classes.group}/> */}
 
         {/* Delete button */}
         <Button className={classes.delete} >
