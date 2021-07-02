@@ -41,8 +41,6 @@ export default function Summary(props) {
   const classes = useStyles()
   const { setContent, person } = props
 
-  console.log(res.morning, res.questions);
-
   return (
     <Paper setContent={setContent} person={person}>
       <SummaryText title="Response: " body={res.id} />
