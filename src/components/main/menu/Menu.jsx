@@ -35,7 +35,7 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-
+// API.getQuestions
 const tempQuestions = [];
 questions.forEach(q => {
     tempQuestions.push(<MenuQCard key={q.id} q={q}/>);
@@ -44,8 +44,8 @@ questions.forEach(q => {
 export default function Menu(props) {
   const classes = useStyles();
 
+  // API call for title abd randomized
   // Hook for menu state
-  // TODO: start newTitle from current title (API call)
   const [state, setState] = React.useState({
     newTitle: props.title,
     startDate: "2020-01-01",

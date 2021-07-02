@@ -32,6 +32,7 @@ function createRow(id, question, expectedResponse, receivedResponse) {
   return {id, question, expectedResponse, receivedResponse }
 }
 
+// API call for response?
 const rows = []
 res.questions.forEach((q, idx) => {
   rows.push(createRow(q.id, q.question, q.expectedResponse, res.responses[idx]))

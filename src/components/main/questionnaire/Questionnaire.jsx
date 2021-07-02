@@ -78,6 +78,10 @@ export default function Questionnaire(props) {
     const classes = useStyles();
     const { setContent, person, questions, morning, setResponse } = props;
 
+    React.Component.componentDidMount(
+      // Get questions
+    )
+
     // Hook for indexing the questions array
     const [i, setI] = React.useState(0);
 

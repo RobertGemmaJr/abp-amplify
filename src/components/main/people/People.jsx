@@ -34,9 +34,11 @@ export default function People(props) {
     // family-morning == 0, family-afternoon == 1, staff-morning == 2, ... 
     const idx = 2 * (form-1) + !morning
 
-    // Note that this should be the only API call
-    const questions2 = Qs.filter(q => q.checkboxes[idx])
-    setQuestions(questions2)
+    // @TODO API Call
+    const randomize = true; // TEMP - api call
+    var questions = Qs.filter(q => q.checkboxes[idx])
+    if(randomize) questions.sort(() => Math.random() - 0.5); // Note that this is a biased randomization algorithm
+    setQuestions(questions)
 
     // Render the questionnaire
     setContent(CONTENT.QUESTIONNAIRE)

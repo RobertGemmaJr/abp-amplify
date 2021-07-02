@@ -53,7 +53,7 @@ export default function Main(props) {
   const [person, setPerson] = React.useState(null);
 
   // Hook for the used questions
-  const [questions, setQuestions] = React.useState([]);
+  const [questions, setQuestions] = React.useState([]); // API call
 
   // Hook for the recorded response
   const [response, setResponse] = React.useState(null);
@@ -70,7 +70,7 @@ export default function Main(props) {
           <Menu 
             setContent={setContent} 
             title={title} 
-            setTitle={setTitle} 
+            setTitle={setTitle}
           />
         );
       case CONTENT.MANUAL:
