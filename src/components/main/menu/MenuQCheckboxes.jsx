@@ -1,3 +1,4 @@
+import React from "react"
 import { makeStyles } from "@material-ui/styles";
 import { Box, Checkbox, Grid, Typography } from "@material-ui/core"
 
@@ -14,26 +15,23 @@ const useStyles = makeStyles(theme => ({
 }))
 
 function Row(props) {
-  return (
-    <Grid container item  alignItems="center">
-      {props.children}
-    </Grid>
-  )
+  return <Grid container item alignItems="center"> {props.children} </Grid>
 }
 
 export default function MenuQCheckboxes(props) {
   const classes = useStyles();
-  const {state, setState} = props;
+  const {state, setCheckboxes} = props;
 
+  // Call setCheckboxes from <MenuQCard> on change
   const handleChange = (event) => {
-    setState({
-      ...state, 
-      [event.target.name]: event.target.checked});
+    const idx = parseInt(event.target.name);
+    setCheckboxes(idx, event.target.checked)
   }
 
   return (
     <Box className={classes.grid}>
       <Grid container align="center">
+        {/* Heading */}
         <Row className={classes.row}>
           <Grid item xs/>
           <Grid item xs>
@@ -51,7 +49,7 @@ export default function MenuQCheckboxes(props) {
           </Grid>
           <Grid item xs>
             <Checkbox 
-              name="familyMorning"
+              name="0"
               checked={state.checkboxes[0]}
               onChange={handleChange}
               className={classes.checkbox}
@@ -59,7 +57,7 @@ export default function MenuQCheckboxes(props) {
           </Grid>
           <Grid item xs>
             <Checkbox 
-              name="familyAfternoon"
+              name="1"
               checked={state.checkboxes[1]}
               onChange={handleChange}
               className={classes.checkbox}
@@ -74,7 +72,7 @@ export default function MenuQCheckboxes(props) {
           </Grid>
           <Grid item xs>
             <Checkbox 
-              name="staffMorning"
+              name="2"
               checked={state.checkboxes[2]}
               onChange={handleChange}
               className={classes.checkbox}
@@ -82,7 +80,7 @@ export default function MenuQCheckboxes(props) {
           </Grid>
           <Grid item xs>
             <Checkbox 
-              name="staffAfternoon"
+              name="3"
               checked={state.checkboxes[3]}
               onChange={handleChange}
               className={classes.checkbox}
@@ -97,7 +95,7 @@ export default function MenuQCheckboxes(props) {
           </Grid>
           <Grid item xs>
             <Checkbox 
-              name="manualMorning"
+              name="4"
               checked={state.checkboxes[4]}
               onChange={handleChange}
               className={classes.checkbox}
@@ -105,13 +103,14 @@ export default function MenuQCheckboxes(props) {
           </Grid>
           <Grid item xs>
             <Checkbox 
-              name="manualAfternoon"
+              name="5"
               checked={state.checkboxes[5]}
               onChange={handleChange}
               className={classes.checkbox}
             />
           </Grid>
         </Row>
+  
       </Grid>
     </Box>
   )

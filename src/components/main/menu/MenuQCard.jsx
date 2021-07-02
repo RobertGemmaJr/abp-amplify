@@ -1,7 +1,7 @@
 import React from "react"
 import { makeStyles } from "@material-ui/styles";
 import { Button, Card, TextField, Box, ButtonGroup } from "@material-ui/core"
-import { ArrowDropDown, ArrowDropUp } from "@material-ui/icons"
+import { ArrowDropDown, ArrowDropUp, ContactsOutlined } from "@material-ui/icons"
 import DeleteIcon from "@material-ui/icons/Delete"
 
 import { QTYPE } from "../../../constants/enum";
@@ -20,6 +20,7 @@ const useStyles = makeStyles(theme => ({
   },
   question: {
     width: "100%",
+    // flexGrow: 1,
   },
 }))
 
@@ -125,7 +126,7 @@ export default function MenuQCard(props) {
               onChange={handleChange}
             />
             <MenuQSwitch 
-              state={state} 
+              state={state.response} 
               setState={setState}
               label="Response"
               switchName="response"
@@ -155,6 +156,12 @@ export default function MenuQCard(props) {
   const handleChange = (event) => {
     setState({...state, [event.target.name]: event.target.value})
   }
+  // Handle change for checkboxes
+  function setCheckboxes(idx, value) {
+    var checkboxes = state.checkboxes;
+    checkboxes[idx] = value;
+    setState({...state, [state.checkboxes]: checkboxes})
+  }
   
 
   return (
@@ -182,25 +189,14 @@ export default function MenuQCard(props) {
           </Button>
         </ButtonGroup>
 
-        {/* Question */}
-        {/* <TextField 
-          variant="outlined"
-          label={q.type !== "temp" ? "Question" : "Minimum Temperature"}
-          autoComplete="off"
-          noValidate 
-          fullWidth={q.type !== "temp"}
-          className={classes.group}
-          name="question"
-          value={state.question}
-          onChange={handleChange}
-        /> */}
-
         {/* Expected Response */}
         {renderResponse()}
 
         {/* Checkboxes */}
-        <MenuQCheckboxes state={state} setState={setState} className={classes.group}/>
-        
+        {/* <MenuQCheckboxes state={state} setState={setState} className={classes.group}/> */}
+        <MenuQCheckboxes state={state} setCheckboxes={setCheckboxes} className={classes.group}/>
+        {/* <MenuQCheckboxes checkboxes={q.checkboxes} className={classes.group}/> */}
+
         {/* Delete button */}
         <Button className={classes.delete} >
           <DeleteIcon color="secondary"/>

@@ -3,6 +3,7 @@ import { Grid, FormControlLabel, Switch, Typography } from "@material-ui/core"
 
 const useStyles = makeStyles(theme => ({
   outer: {
+    flexShrink: 6,
   },
 }))
 
@@ -19,7 +20,6 @@ export default function MenuQSwitch(props) {
       container 
       direction="column" 
       alignContent="center"
-      xs={2}
       className={classes.outer}
     >
       <Grid item xs>

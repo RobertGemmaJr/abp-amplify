@@ -41,12 +41,6 @@ questions.forEach(q => {
     tempQuestions.push(<MenuQCard key={q.id} q={q}/>);
 })
 
-// [
-//   <MenuQCard key={q1.id} q={q1}/>,
-//   <MenuQCard key={q2.id} q={q2}/>,
-//   <MenuQCard key={q3.id} q={q3}/>,
-// ]
-
 export default function Menu(props) {
   const classes = useStyles();
 
