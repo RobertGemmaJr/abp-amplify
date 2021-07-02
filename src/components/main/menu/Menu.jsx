@@ -3,7 +3,9 @@ import { Paper, TextField, Box, Button, Checkbox, FormGroup, FormControlLabel, T
 import CloudUploadIcon from '@material-ui/icons/CloudUpload';
 import { makeStyles } from "@material-ui/styles";
 
-import { CONTENT, QTYPE } from "../../../constants/enum";
+import { questions } from "../../../constants/tempDatabase" // TEMP
+
+import { CONTENT } from "../../../constants/enum";
 import MenuQCard from "./MenuQCard";
 import AddQButton from "./AddQButton";
 
@@ -32,6 +34,18 @@ const useStyles = makeStyles(theme => ({
     marginBottom: theme.spacing(3),
   }
 }))
+
+
+const tempQuestions = [];
+questions.forEach(q => {
+    tempQuestions.push(<MenuQCard key={q.id} q={q}/>);
+})
+
+// [
+//   <MenuQCard key={q1.id} q={q1}/>,
+//   <MenuQCard key={q2.id} q={q2}/>,
+//   <MenuQCard key={q3.id} q={q3}/>,
+// ]
 
 export default function Menu(props) {
   const classes = useStyles();
@@ -74,54 +88,6 @@ export default function Menu(props) {
     props.setContent(CONTENT.HOME)
     // window.location.reload();
   }
-
-  // TEMP - display example questions
-  // Questions will be read from database
-  const q1 = {
-    id: 0,
-    type: QTYPE.TEMPERATURE,
-    question: "97",
-    response: "100",
-    recordTemp: false,
-    familyMorning: true,
-    familyAfternoon: true,
-    staffMorning: true,
-    staffAfternoon: true,
-    manualMorning: true,
-    manualAfternoon: true,
-  }
-  const q2 = {
-    id: 1,
-    type: QTYPE.TEXT,
-    question: "Text Question",
-    response: "Answer",
-    recordTemp: null,
-    familyMorning: true,
-    familyAfternoon: true,
-    staffMorning: true,
-    staffAfternoon: true,
-    manualMorning: true,
-    manualAfternoon: true,
-  }
-  const q3 = {
-    id: 2,
-    type: QTYPE.BOOLEAN,
-    question: "Boolean Question",
-    response: false,
-    recordTemp: null,
-    familyMorning: true,
-    familyAfternoon: true,
-    staffMorning: true,
-    staffAfternoon: true,
-    manualMorning: true,
-    manualAfternoon: true,
-  }
-  const tempQuestions = [
-    <MenuQCard key={q1.id} q={q1}/>,
-    <MenuQCard key={q2.id} q={q2}/>,
-    <MenuQCard key={q3.id} q={q3}/>,
-  ]
-
 
   return (
     <Paper className={classes.menu}>
@@ -231,7 +197,8 @@ export default function Menu(props) {
       </FormGroup>
 
       {/* Display Questions */}
-      {/* key is the questions index. State is its values */}
+      {
+      /* key is the questions index. State is its values */}
       {tempQuestions}
       
       {/* Question buttons */}

@@ -144,11 +144,12 @@ export default function MenuQCard(props) {
   // Handle up click
   function handleUpClick() {
     // Use question's id to move it up one in order
-    console.log(q.id)
+    console.log("Up click", q.id)
   }
   // Handle down click 
   function handleDownClick() {
     // Use question's id to move it down one in order
+    console.log("Down Click", q.id)
   }
   // Handle change for text values
   const handleChange = (event) => {
