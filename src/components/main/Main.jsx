@@ -98,6 +98,7 @@ export default function Main(props) {
               setContent={setContent}
               person={person} 
               questions={questions}
+              morning={morning}
               setResponse={setResponse}
             />
           );

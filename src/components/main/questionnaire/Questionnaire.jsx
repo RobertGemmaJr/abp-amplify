@@ -52,12 +52,31 @@ function checkPassed(questions, responses) {
   return true //TEMP
 }
 
+// Submits a response to the database
+function submitResponses(questions, responses, morning, setResponse, setContent) {
+  // Generate response
+  const response = {
+    id: Math.floor(Math.random() * 1000),
+    date: getDate(),
+    questions: questions,
+    morning: morning,
+    passed: checkPassed(questions, responses)
+  }
+  console.log(response.morning);
+
+  // Write the response to the database
+  setResponse(response)
+
+  setContent(CONTENT.SUMMARY);
+  responses.length = 0; //Clear responses array
+}
+
 // Keep track of the user's responses in an array
 const responses = [];
 
 export default function Questionnaire(props) {
     const classes = useStyles();
-    const { setContent, person, questions, setResponse } = props;
+    const { setContent, person, questions, morning, setResponse } = props;
 
     // Hook for indexing the questions array
     const [i, setI] = React.useState(0);
@@ -66,22 +85,6 @@ export default function Questionnaire(props) {
     function handleClick(response) {
       responses.push(response)
       setI(i + 1);
-    }
-
-    function submitResponses() {
-      // Generate response
-      const response = {
-        id: Math.floor(Math.random() * 1000),
-        date: getDate(),
-        questions: questions,
-        passed: checkPassed(questions, responses)
-      }
-
-      // Write the response to the database
-      setResponse(response)
-
-      setContent(CONTENT.SUMMARY);
-      responses.length = 0; //Clear responses array
     }
 
     return (
@@ -94,7 +97,7 @@ export default function Questionnaire(props) {
             q={questions[i]}
             handleClick={handleClick}
           />
-        : submitResponses()}
+        : submitResponses(questions, responses, morning, setResponse, setContent)}
       </Paper>
     )
 }
