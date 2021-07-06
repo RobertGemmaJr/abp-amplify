@@ -78,6 +78,9 @@ export default function Menu(props) {
 
   // Handle save button clicked
   function handleSaveClick(state) {
+    // API call to set title
+    // API call to add/remove questions
+    // API call to add/remove people
     props.setTitle(state.newTitle);
     props.setContent(CONTENT.HOME)
     // window.location.reload();

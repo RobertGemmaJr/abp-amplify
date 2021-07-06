@@ -24,8 +24,9 @@ export default function FlexBox(props) {
       {props.children}
       {
         reset ?
-          <ResetButton setContent={props.setContent}/>
+          <ResetButton setContent={setContent}/>
         :
+          // Menu Button
           <Button 
             variant="contained" 
             className={classes.hButton}

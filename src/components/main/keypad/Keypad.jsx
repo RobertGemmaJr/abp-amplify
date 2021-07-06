@@ -20,15 +20,20 @@ const useStyles = makeStyles(theme => ({
 
 export default function Keypad(props) {
   const classes = useStyles();
+  const {setContent, form, people, setPeople} = props;
   const alphabet = 'ABCDEFGHIJKLMNOPQRTSUVWXYZ'.split('')
 
   function handleKeypadClick(letter) {
-    props.setLetter(letter)
-    props.setContent(CONTENT.PEOPLE)
+    // Filter people by the form type and the selected letter
+    const filtered = people.filter(person => 
+      person.type === form && person.fName.charAt(0) === letter
+    )
+    setPeople(filtered)
+    setContent(CONTENT.PEOPLE)
   }
 
   return (
-    <FlexBox setContent={props.setContent} reset={true}>
+    <FlexBox setContent={setContent} reset={true}>
       <GridList
         cellHeight={40}
         cols={4}

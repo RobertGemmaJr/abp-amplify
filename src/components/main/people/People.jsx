@@ -18,13 +18,10 @@ const useStyles = makeStyles(theme => ({
 
 export default function People(props) {
   const classes = useStyles();
-  const { setContent, form, morning, letter, setPerson, setQuestions } = props
+  const { setContent, form, morning, people, setPerson, setQuestions } = props
 
   // Filter people by their type and first letter of their last name
   // Note that this should be the first and only API call. Filter by form and first name
-  const people = everyone.filter(person => 
-    person.type === form && person.fName.charAt(0) === letter
-  )
 
   function selectPerson(person) {
     // Set the selected person
@@ -65,8 +62,6 @@ export default function People(props) {
           )
         })}
       </GridList>
-      {/* <ResetButton setContent={setContent}/> */}
-    {/* </Box> */}
     </FlexBox>
   )
 }

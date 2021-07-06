@@ -2,6 +2,8 @@ import React from "react";
 import { Container } from "@material-ui/core"
 import { makeStyles } from "@material-ui/styles";
 
+import { account, questions as Qs, people as everyone} from "../../constants/tempDatabase" // TEMP
+
 import { CONTENT } from "../../constants/enum"
 import Title from "./Title"
 import Home from "./home/Home"
@@ -40,23 +42,22 @@ export default function Main(props) {
   const {content, setContent, form, setForm } = props;
   
   // Hook for title
-  // TEMP - this should be saved in a database not a hook
-  const [title, setTitle] = React.useState("Company Title")
+  const [title, setTitle] = React.useState(account.title) // API call
+
+  // Hook for all questions
+  const [questions, setQuestions] = React.useState(Qs); // API call
+
+  // Hook for all people
+  const [people, setPeople] = React.useState(everyone)
 
   // Hook for the time (morning or afternoon)
   const [morning, setMorning] = React.useState(true)
 
   // Hook for the current letter
-  const [letter, setLetter] = React.useState(null);
+  //const [letter, setLetter] = React.useState(null); // THIS ISN't NEEDED
 
   // Hook for the current person
   const [person, setPerson] = React.useState(null);
-
-  // Hook for the used questions
-  const [questions, setQuestions] = React.useState([]); // API call
-
-  // Hook for the recorded response
-  const [response, setResponse] = React.useState(null);
 
   // Hook for rendering the main content based on program state
   function renderContent() {
@@ -79,7 +80,7 @@ export default function Main(props) {
           );
       case CONTENT.KEYPAD:
         return (
-          <Keypad setContent={setContent} setLetter={setLetter} />
+          <Keypad setContent={setContent} form={form} people={people} setPeople={setPeople}/>
         );
       case CONTENT.PEOPLE:
         return (
@@ -87,7 +88,6 @@ export default function Main(props) {
             setContent={setContent} 
             form={form} 
             morning={morning} 
-            letter={letter} 
             setPerson={setPerson}
             setQuestions={setQuestions}
           />
@@ -99,15 +99,13 @@ export default function Main(props) {
               person={person} 
               questions={questions}
               morning={morning}
-              setResponse={setResponse}
             />
           );
       case CONTENT.SUMMARY:
           return (
             <Summary 
               setContent={setContent} 
-              person={person} 
-              response={response}
+              person={person}
             />
           )
       default:
