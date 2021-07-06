@@ -44,6 +44,9 @@ export default function Main(props) {
   // Hook for title
   const [title, setTitle] = React.useState(account.title) // API call
 
+  // Hook for isRandomized
+  const [randomized, setRandomized] = React.useState(account.randomizeQuestions);
+
   // Hook for all questions
   const [questions, setQuestions] = React.useState(Qs); // API call
 
@@ -78,6 +81,8 @@ export default function Main(props) {
             setContent={setContent} 
             title={title} 
             setTitle={setTitle}
+            randomized={randomized}
+            setRandomized={setRandomized}
           />
         );
       case CONTENT.MANUAL:
@@ -103,6 +108,7 @@ export default function Main(props) {
           return (
             <Questionnaire 
               setContent={setContent}
+              randomized={randomized}
               person={person} 
               questions={questions}
               morning={morning}

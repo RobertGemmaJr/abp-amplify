@@ -26,7 +26,7 @@ export default function Manual(props) {
            props.setContent(CONTENT.QUESTIONNAIRE)
          }}>
            Temporary text
-          </Container>
+        </Container>
       </FlexBox>
     )
 }

@@ -43,14 +43,15 @@ questions.forEach(q => {
 
 export default function Menu(props) {
   const classes = useStyles();
+  const {setContent, title, setTitle, randomized, setRandomized} = props;
 
   // API call for title abd randomized
   // Hook for menu state
   const [state, setState] = React.useState({
-    newTitle: props.title,
+    newTitle: title,
     startDate: "2020-01-01",
     endDate: getDate(),
-    randomized: true,
+    randomized: randomized,
   })
 
   // Handle newTitle change
@@ -81,8 +82,9 @@ export default function Menu(props) {
     // API call to set title
     // API call to add/remove questions
     // API call to add/remove people
-    props.setTitle(state.newTitle);
-    props.setContent(CONTENT.HOME)
+    setTitle(state.newTitle);
+    setRandomized(state.randomized)
+    setContent(CONTENT.HOME)
     // window.location.reload();
   }
 
