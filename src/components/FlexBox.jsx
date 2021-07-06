@@ -1,7 +1,6 @@
 import { makeStyles } from "@material-ui/styles";
-import { Box, Button } from "@material-ui/core"
+import { Box } from "@material-ui/core"
 
-import { CONTENT } from "../constants/enum";
 import ResetButton from "./ResetButton";
 
 const useStyles = makeStyles(theme => ({
@@ -22,22 +21,7 @@ export default function FlexBox(props) {
       className={classes.box}
     >
       {props.children}
-      {
-        reset && <ResetButton setContent={setContent}/>
-        // reset ?
-        //   <ResetButton setContent={setContent}/>
-        // : null
-          // Menu Button
-          // <Button 
-          //   variant="contained" 
-          //   className={classes.hButton}
-          //   onClick={() => setContent(CONTENT.MENU)}
-          //   color="secondary"
-          //   size="large"
-          // >
-          //   Menu
-          // </Button>
-        }
+      {reset && <ResetButton setContent={setContent}/>}
     </Box>
   )
 }

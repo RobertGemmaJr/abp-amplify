@@ -4,7 +4,6 @@ import { makeStyles } from "@material-ui/styles";
 import FlexBox from "../../FlexBox";
 
 import { CONTENT } from "../../../constants/enum";
-import ResetButton from "../../ResetButton"
 
 const useStyles = makeStyles(theme => ({
   paper: {
@@ -17,8 +16,6 @@ const useStyles = makeStyles(theme => ({
   },
 }))
 
-// Prompt user to type their first and last name
-// Display all previous manual entry names? 
 export default function Manual(props) {
     const classes = useStyles(0);
     const { setContent } = props;
@@ -31,14 +28,5 @@ export default function Manual(props) {
            Temporary text
           </Container>
       </FlexBox>
-      // <Paper className={classes.paper}>
-      //   <Container className={classes.manual} onClick={() => {
-      //     // TEMP
-      //     props.setContent(CONTENT.QUESTIONNAIRE)
-      //   }}>
-      //     Manual
-      //   </Container>
-      //   <ResetButton setContent={props.setContent}/>
-      // </Paper>
     )
 }

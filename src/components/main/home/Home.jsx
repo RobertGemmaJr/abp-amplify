@@ -1,8 +1,8 @@
 import React from "react"
-import { Box } from "@material-ui/core";
+import { Box, Button } from "@material-ui/core";
 import { makeStyles } from "@material-ui/styles";
 
-import { FORM } from "../../../constants/enum"
+import { CONTENT, FORM } from "../../../constants/enum"
 import familyLogo from "../../../media/Health Check Family Logo.png"
 import thermometerGuy from "../../../media/Thermometer Guy.ico"
 import logo from "../../../media/logos/Apple Blossom logo solid color.png"
@@ -30,7 +30,7 @@ export default function Home(props) {
   const {setContent, setForm} = props;
 
   return (
-    <FlexBox setContent={setContent} reset={false}>
+    <FlexBox setContent={setContent}>
       <Box className={classes.inner}>
         <HomeCard 
           setContent={setContent} 
@@ -58,6 +58,15 @@ export default function Home(props) {
           text="Manual Entry"
         />
       </Box>
+      <Button 
+        variant="contained" 
+        className={classes.hButton}
+        onClick={() => setContent(CONTENT.MENU)}
+        color="secondary"
+        size="large"
+      >
+        Menu
+      </Button>
     </FlexBox>
   )
 }
