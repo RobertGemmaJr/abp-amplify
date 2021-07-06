@@ -1,4 +1,4 @@
-import { Container, Paper } from "@material-ui/core";
+import { Container } from "@material-ui/core";
 import { makeStyles } from "@material-ui/styles";
 
 import FlexBox from "../../FlexBox";
