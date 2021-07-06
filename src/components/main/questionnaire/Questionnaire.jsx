@@ -75,11 +75,16 @@ const responses = [];
 
 export default function Questionnaire(props) {
     const classes = useStyles();
-    const { setContent, person, questions, morning, setResponse } = props;
+    const { setContent, handleResetClick, randomized, person, questions, morning, setResponse } = props;
 
     React.useEffect(() => {
       // API call to get questions
-    }, [])
+
+      // Randomize questions if needed
+      if(randomized) {
+
+      }
+    }, [randomized, ])
 
     // Hook for indexing the questions array
     const [i, setI] = React.useState(0);
@@ -91,7 +96,7 @@ export default function Questionnaire(props) {
     }
 
     return (
-      <Paper setContent={setContent} person={person}>
+      <Paper handleResetClick={handleResetClick} person={person}>
         {/* Ask all questions and then submit the responses */}
         {i < questions.length ? 
           <Question 

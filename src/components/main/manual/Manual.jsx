@@ -18,9 +18,9 @@ const useStyles = makeStyles(theme => ({
 
 export default function Manual(props) {
     const classes = useStyles(0);
-    const { setContent } = props;
+    const { setContent, handleResetClick } = props;
     return (
-      <FlexBox setContent={setContent}>
+      <FlexBox setContent={setContent} handleResetClick={handleResetClick}>
         <Container className={classes.manual} onClick={() => {
            // TEMP
            props.setContent(CONTENT.QUESTIONNAIRE)

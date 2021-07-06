@@ -40,10 +40,10 @@ res.questions.forEach((q, idx) => {
 
 export default function Summary(props) {
   const classes = useStyles()
-  const { setContent, person } = props
+  const { handleResetClick, person } = props
 
   return (
-    <Paper setContent={setContent} person={person}>
+    <Paper handleResetClick={handleResetClick} person={person}>
       <SummaryText title="Response: " body={res.id} />
       <SummaryText title="Submitted On: " body={res.date} />
       <SummaryText 

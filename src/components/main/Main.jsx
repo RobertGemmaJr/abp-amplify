@@ -87,16 +87,23 @@ export default function Main(props) {
         );
       case CONTENT.MANUAL:
           return (
-            <Manual setContent={setContent}/>
+            <Manual handleResetClick={handleResetClick}/>
           );
       case CONTENT.KEYPAD:
         return (
-          <Keypad setContent={setContent} form={form} people={people} setPeople={setPeople}/>
+          <Keypad 
+            setContent={setContent} 
+            handleResetClick={handleResetClick}
+            form={form} 
+            people={people} 
+            setPeople={setPeople}
+          />
         );
       case CONTENT.PEOPLE:
         return (
           <People 
             setContent={setContent} 
+            handleResetClick={handleResetClick}
             form={form} 
             morning={morning} 
             people={people}
@@ -108,6 +115,7 @@ export default function Main(props) {
           return (
             <Questionnaire 
               setContent={setContent}
+              handleResetClick={handleResetClick}
               randomized={randomized}
               person={person} 
               questions={questions}
@@ -118,6 +126,7 @@ export default function Main(props) {
           return (
             <Summary 
               setContent={setContent} 
+              handleResetClick={handleResetClick}
               person={person}
             />
           )

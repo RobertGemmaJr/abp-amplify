@@ -12,7 +12,7 @@ const useStyles = makeStyles(theme => ({
 
 export default function FlexBox(props) {
   const classes = useStyles()
-  const { setContent, reset } = props
+  const { handleResetClick, reset } = props
   return(
     <Box 
       display="flex" 
@@ -21,7 +21,7 @@ export default function FlexBox(props) {
       className={classes.box}
     >
       {props.children}
-      {reset && <ResetButton setContent={setContent}/>}
+      {reset && <ResetButton handleResetClick={handleResetClick}/>}
     </Box>
   )
 }

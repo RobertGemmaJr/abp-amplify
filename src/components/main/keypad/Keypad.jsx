@@ -20,7 +20,7 @@ const useStyles = makeStyles(theme => ({
 
 export default function Keypad(props) {
   const classes = useStyles();
-  const {setContent, form, people, setPeople} = props;
+  const {setContent, handleResetClick, form, people, setPeople} = props;
   const alphabet = 'ABCDEFGHIJKLMNOPQRTSUVWXYZ'.split('')
 
   function handleKeypadClick(letter) {
@@ -32,7 +32,7 @@ export default function Keypad(props) {
   }
 
   return (
-    <FlexBox setContent={setContent} reset={true}>
+    <FlexBox handleResetClick={handleResetClick} reset={true}>
       <GridList
         cellHeight={40}
         cols={4}

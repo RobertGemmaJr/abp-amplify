@@ -34,7 +34,7 @@ function getDate() {
 
 export default function MyPaper(props) {
     const classes = useStyles();
-    const { setContent, person } = props;
+    const { handleResetClick, person } = props;
 
     return (
       <Paper className={classes.paper}>
@@ -47,7 +47,7 @@ export default function MyPaper(props) {
             </Typography>
           </Box>
           {props.children} 
-        <ResetButton setContent={setContent}/>
+        <ResetButton handleResetClick={handleResetClick}/>
       </Paper>
     )
 }
