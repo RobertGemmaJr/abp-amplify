@@ -41,6 +41,9 @@ export default function Main(props) {
   const classes = useStyles();
   const {content, setContent, form, setForm } = props;
 
+  React.useEffect(() => {
+  }, []);
+
   // API call for account settings
   // API call for questions
   // API call for people
