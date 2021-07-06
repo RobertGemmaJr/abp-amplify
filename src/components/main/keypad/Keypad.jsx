@@ -24,7 +24,7 @@ export default function Keypad(props) {
   const alphabet = 'ABCDEFGHIJKLMNOPQRTSUVWXYZ'.split('')
 
   function handleKeypadClick(letter) {
-    // Filter people by the form type and the selected letter
+    // Filter people by the current form and the selected letter
     setPeople(people.filter(person => 
       person.type === form && person.fName.charAt(0) === letter
     ))

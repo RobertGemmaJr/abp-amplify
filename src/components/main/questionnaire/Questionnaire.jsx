@@ -75,16 +75,7 @@ const responses = [];
 
 export default function Questionnaire(props) {
     const classes = useStyles();
-    const { setContent, handleResetClick, randomized, person, questions, morning, setResponse } = props;
-
-    React.useEffect(() => {
-      // API call to get questions
-
-      // Randomize questions if needed
-      if(randomized) {
-
-      }
-    }, [randomized, ])
+    const { setContent, handleResetClick, person, questions, morning, setResponse } = props;
 
     // Hook for indexing the questions array
     const [i, setI] = React.useState(0);

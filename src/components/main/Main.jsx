@@ -40,15 +40,19 @@ const useStyles = makeStyles(theme => ({
 export default function Main(props) {
   const classes = useStyles();
   const {content, setContent, form, setForm } = props;
+
+  // API call for account settings
+  // API call for questions
+  // API call for people
   
   // Hook for title
-  const [title, setTitle] = React.useState(account.title) // API call
+  const [title, setTitle] = React.useState(account.title)
 
   // Hook for isRandomized
   const [randomized, setRandomized] = React.useState(account.randomizeQuestions);
 
   // Hook for all questions
-  const [questions, setQuestions] = React.useState(Qs); // API call
+  const [questions, setQuestions] = React.useState(Qs);
 
   // Hook for all people
   const [people, setPeople] = React.useState(everyone)
@@ -56,15 +60,14 @@ export default function Main(props) {
   // Hook for the time (morning or afternoon)
   const [morning, setMorning] = React.useState(true)
 
-  // Hook for the current letter
-  //const [letter, setLetter] = React.useState(null); // THIS ISN't NEEDED
-
   // Hook for the current person
   const [person, setPerson] = React.useState(null);
 
   // handleClick for the reset button
   function handleResetClick() {
     setPeople(everyone);
+    setQuestions(Qs);
+    console.log(questions);
     setContent(CONTENT.KEYPAD);
   }
 
@@ -104,11 +107,12 @@ export default function Main(props) {
           <People 
             setContent={setContent} 
             handleResetClick={handleResetClick}
+            people={people}
             form={form} 
             morning={morning} 
-            people={people}
+            randomized={randomized}
             setPerson={setPerson}
-            setQuestions={setQuestions}
+            questions={questions} setQuestions={setQuestions}
           />
         );
       case CONTENT.QUESTIONNAIRE:
