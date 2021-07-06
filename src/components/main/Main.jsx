@@ -59,6 +59,12 @@ export default function Main(props) {
   // Hook for the current person
   const [person, setPerson] = React.useState(null);
 
+  // handleClick for the reset button
+  function handleResetClick() {
+    setPeople(everyone);
+    setContent(CONTENT.KEYPAD);
+  }
+
   // Hook for rendering the main content based on program state
   function renderContent() {
     switch(content) {
@@ -88,6 +94,7 @@ export default function Main(props) {
             setContent={setContent} 
             form={form} 
             morning={morning} 
+            people={people}
             setPerson={setPerson}
             setQuestions={setQuestions}
           />

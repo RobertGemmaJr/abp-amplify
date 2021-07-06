@@ -23,19 +23,21 @@ export default function FlexBox(props) {
     >
       {props.children}
       {
-        reset ?
-          <ResetButton setContent={setContent}/>
-        :
+        reset && <ResetButton setContent={setContent}/>
+        // reset ?
+        //   <ResetButton setContent={setContent}/>
+        // : null
           // Menu Button
-          <Button 
-            variant="contained" 
-            className={classes.hButton}
-            onClick={() => setContent(CONTENT.MENU)}
-            color="secondary"
-            size="large"
-          >
-            Menu
-          </Button>}
+          // <Button 
+          //   variant="contained" 
+          //   className={classes.hButton}
+          //   onClick={() => setContent(CONTENT.MENU)}
+          //   color="secondary"
+          //   size="large"
+          // >
+          //   Menu
+          // </Button>
+        }
     </Box>
   )
 }

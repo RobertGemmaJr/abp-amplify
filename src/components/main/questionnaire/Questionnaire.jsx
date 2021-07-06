@@ -65,7 +65,6 @@ function submitResponses(questions, responses, morning, setResponse, setContent)
   console.log(response.morning);
 
   // Write the response to the database
-  setResponse(response)
 
   setContent(CONTENT.SUMMARY);
   responses.length = 0; //Clear responses array
@@ -78,9 +77,9 @@ export default function Questionnaire(props) {
     const classes = useStyles();
     const { setContent, person, questions, morning, setResponse } = props;
 
-    React.Component.componentDidMount(
-      // Get questions
-    )
+    React.useEffect(() => {
+      // API call to get questions
+    }, [])
 
     // Hook for indexing the questions array
     const [i, setI] = React.useState(0);

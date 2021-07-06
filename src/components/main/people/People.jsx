@@ -5,7 +5,7 @@ import { CONTENT } from "../../../constants/enum";
 import FlexBox from "../../FlexBox";
 import Person from "./Person"
 
-import { people as everyone, questions as Qs } from "../../../constants/tempDatabase" // TEMP - pull from database with API
+import { questions as Qs } from "../../../constants/tempDatabase" // TEMP - pull from database with API
 
 const useStyles = makeStyles(theme => ({
   gridList: {
@@ -31,7 +31,7 @@ export default function People(props) {
     // family-morning == 0, family-afternoon == 1, staff-morning == 2, ... 
     const idx = 2 * (form-1) + !morning
 
-    // @TODO API Call
+    // @TODO API Call in Questionnaire
     const randomize = true; // TEMP - api call
     var questions = Qs.filter(q => q.checkboxes[idx])
     if(randomize) questions.sort(() => Math.random() - 0.5); // Note that this is a biased randomization algorithm
@@ -42,7 +42,6 @@ export default function People(props) {
   }
 
   return (
-    // <Box display="flex" flexDirection="column" className={classes.box}>
     <FlexBox setContent={props.setContent} reset={true}>
       <GridList 
         cellHeight="auto"
