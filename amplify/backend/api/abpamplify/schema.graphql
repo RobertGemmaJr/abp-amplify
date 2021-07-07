@@ -1,0 +1,46 @@
+type Account @model @auth(rules: [{allow: owner}]) {
+  id: ID!
+  title: String!
+  randomizeQuestions: Boolean!
+  People: [Person] @connection(keyName: "byAccount", fields: ["id"])
+  Questions: [Question] @connection(keyName: "byAccount", fields: ["id"])
+  Responses: [Response] @connection(keyName: "byAccount", fields: ["id"])
+}
+
+type Person @model @auth(rules: [{allow: owner}]) 
+            @key(name: "byAccount", fields: ["accountID"]) {
+  id: ID!
+  accountID: ID!
+  type: Int!
+  fName: String
+  lName: String!
+  Responses: [Response] @connection(keyName: "byPerson", fields: ["id"])
+}
+
+type Question @model @auth(rules: [{allow: owner}]) 
+              @key(name: "byAccount", fields: ["accountID"]) {
+  id: ID!
+  accountID: ID!
+  type: Int!
+  question: String!
+  expectedResponse: String!
+  checkboxes: [String!]
+}
+
+type Response @model @auth(rules: [{allow: owner}]) 
+              @key(name: "byAccount", fields: ["accountID"])  
+              @key(name: "byPerson", fields: ["personID"]) {
+  id: ID!
+  accountID: ID!
+  personID: ID!
+  date: AWSDate!
+  responses: [String!]!
+  passed: Boolean!
+}
+
+
+
+
+
+
+ 

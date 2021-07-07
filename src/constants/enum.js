@@ -18,6 +18,7 @@ export const QTYPE = Object.freeze({
     BOOLEAN: 1,
     TEXT: 2,
     TEMPERATURE: 3,
+    TEMPERATURE_CHECKBOX: 4,
 })
 
 /** Enumeration for the different form types
