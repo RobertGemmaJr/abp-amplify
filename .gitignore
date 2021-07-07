@@ -22,6 +22,10 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
+# My ignores
+/.vscode
+.eslintcache
+
 #amplify
 amplify/\#current-cloud-backend
 amplify/.config/local-*
@@ -41,7 +45,3 @@ amplify-build-config.json
 amplify-gradle-config.json
 amplifytools.xcconfig
 .secret-*
-
-# My ignores
-/.vscode
-.eslintcache
