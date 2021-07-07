@@ -24,48 +24,6 @@ export const schema = {
                     "isRequired": true,
                     "attributes": []
                 },
-                "People": {
-                    "name": "People",
-                    "isArray": true,
-                    "type": {
-                        "model": "Person"
-                    },
-                    "isRequired": false,
-                    "attributes": [],
-                    "isArrayNullable": true,
-                    "association": {
-                        "connectionType": "HAS_MANY",
-                        "associatedWith": "accountID"
-                    }
-                },
-                "Questions": {
-                    "name": "Questions",
-                    "isArray": true,
-                    "type": {
-                        "model": "Question"
-                    },
-                    "isRequired": false,
-                    "attributes": [],
-                    "isArrayNullable": true,
-                    "association": {
-                        "connectionType": "HAS_MANY",
-                        "associatedWith": "accountID"
-                    }
-                },
-                "Responses": {
-                    "name": "Responses",
-                    "isArray": true,
-                    "type": {
-                        "model": "Response"
-                    },
-                    "isRequired": false,
-                    "attributes": [],
-                    "isArrayNullable": true,
-                    "association": {
-                        "connectionType": "HAS_MANY",
-                        "associatedWith": "accountID"
-                    }
-                },
                 "createdAt": {
                     "name": "createdAt",
                     "isArray": false,
@@ -121,17 +79,12 @@ export const schema = {
                     "isRequired": true,
                     "attributes": []
                 },
-                "accountID": {
-                    "name": "accountID",
-                    "isArray": false,
-                    "type": "ID",
-                    "isRequired": true,
-                    "attributes": []
-                },
                 "type": {
                     "name": "type",
                     "isArray": false,
-                    "type": "Int",
+                    "type": {
+                        "enum": "Ptype"
+                    },
                     "isRequired": true,
                     "attributes": []
                 },
@@ -139,7 +92,7 @@ export const schema = {
                     "name": "fName",
                     "isArray": false,
                     "type": "String",
-                    "isRequired": false,
+                    "isRequired": true,
                     "attributes": []
                 },
                 "lName": {
@@ -155,7 +108,7 @@ export const schema = {
                     "type": {
                         "model": "Response"
                     },
-                    "isRequired": false,
+                    "isRequired": true,
                     "attributes": [],
                     "isArrayNullable": true,
                     "association": {
@@ -188,15 +141,6 @@ export const schema = {
                     "properties": {}
                 },
                 {
-                    "type": "key",
-                    "properties": {
-                        "name": "byAccount",
-                        "fields": [
-                            "accountID"
-                        ]
-                    }
-                },
-                {
                     "type": "auth",
                     "properties": {
                         "rules": [
@@ -227,13 +171,6 @@ export const schema = {
                     "isRequired": true,
                     "attributes": []
                 },
-                "accountID": {
-                    "name": "accountID",
-                    "isArray": false,
-                    "type": "ID",
-                    "isRequired": true,
-                    "attributes": []
-                },
                 "personID": {
                     "name": "personID",
                     "isArray": false,
@@ -245,6 +182,24 @@ export const schema = {
                     "name": "date",
                     "isArray": false,
                     "type": "AWSDate",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "formType": {
+                    "name": "formType",
+                    "isArray": false,
+                    "type": {
+                        "enum": "Ptype"
+                    },
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "time": {
+                    "name": "time",
+                    "isArray": false,
+                    "type": {
+                        "enum": "Time"
+                    },
                     "isRequired": true,
                     "attributes": []
                 },
@@ -290,15 +245,6 @@ export const schema = {
                 {
                     "type": "key",
                     "properties": {
-                        "name": "byAccount",
-                        "fields": [
-                            "accountID"
-                        ]
-                    }
-                },
-                {
-                    "type": "key",
-                    "properties": {
                         "name": "byPerson",
                         "fields": [
                             "personID"
@@ -336,17 +282,12 @@ export const schema = {
                     "isRequired": true,
                     "attributes": []
                 },
-                "accountID": {
-                    "name": "accountID",
-                    "isArray": false,
-                    "type": "ID",
-                    "isRequired": true,
-                    "attributes": []
-                },
                 "type": {
                     "name": "type",
                     "isArray": false,
-                    "type": "Int",
+                    "type": {
+                        "enum": "Qtype"
+                    },
                     "isRequired": true,
                     "attributes": []
                 },
@@ -397,15 +338,6 @@ export const schema = {
                     "properties": {}
                 },
                 {
-                    "type": "key",
-                    "properties": {
-                        "name": "byAccount",
-                        "fields": [
-                            "accountID"
-                        ]
-                    }
-                },
-                {
                     "type": "auth",
                     "properties": {
                         "rules": [
@@ -427,7 +359,33 @@ export const schema = {
             ]
         }
     },
-    "enums": {},
+    "enums": {
+        "Qtype": {
+            "name": "Qtype",
+            "values": [
+                "BOOLEAN",
+                "TEXT",
+                "TEMP",
+                "TEMP_CHECKBOX"
+            ]
+        },
+        "Ptype": {
+            "name": "Ptype",
+            "values": [
+                "NONE",
+                "FAMILY",
+                "STAFF",
+                "MANUAL"
+            ]
+        },
+        "Time": {
+            "name": "Time",
+            "values": [
+                "MORNING",
+                "AFTERNOON"
+            ]
+        }
+    },
     "nonModels": {},
-    "version": "ad19bff715c8be7a343ffea885ccd5fb"
+    "version": "279d9d73cbd4a73cdffc51f6e390b312"
 };

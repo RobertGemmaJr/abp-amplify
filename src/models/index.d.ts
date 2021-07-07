@@ -1,6 +1,23 @@
 import { ModelInit, MutableModel, PersistentModelConstructor } from "@aws-amplify/datastore";
 
+export enum Qtype {
+  BOOLEAN = "BOOLEAN",
+  TEXT = "TEXT",
+  TEMP = "TEMP",
+  TEMP_CHECKBOX = "TEMP_CHECKBOX"
+}
 
+export enum Ptype {
+  NONE = "NONE",
+  FAMILY = "FAMILY",
+  STAFF = "STAFF",
+  MANUAL = "MANUAL"
+}
+
+export enum Time {
+  MORNING = "MORNING",
+  AFTERNOON = "AFTERNOON"
+}
 
 
 
@@ -8,9 +25,6 @@ export declare class Account {
   readonly id: string;
   readonly title: string;
   readonly randomizeQuestions: boolean;
-  readonly People?: (Person | null)[];
-  readonly Questions?: (Question | null)[];
-  readonly Responses?: (Response | null)[];
   readonly createdAt?: string;
   readonly updatedAt?: string;
   constructor(init: ModelInit<Account>);
@@ -19,11 +33,10 @@ export declare class Account {
 
 export declare class Person {
   readonly id: string;
-  readonly accountID: string;
-  readonly type: number;
-  readonly fName?: string;
+  readonly type: Ptype | keyof typeof Ptype;
+  readonly fName: string;
   readonly lName: string;
-  readonly Responses?: (Response | null)[];
+  readonly Responses?: Response[];
   readonly createdAt?: string;
   readonly updatedAt?: string;
   constructor(init: ModelInit<Person>);
@@ -32,9 +45,10 @@ export declare class Person {
 
 export declare class Response {
   readonly id: string;
-  readonly accountID: string;
   readonly personID: string;
   readonly date: string;
+  readonly formType: Ptype | keyof typeof Ptype;
+  readonly time: Time | keyof typeof Time;
   readonly responses: string[];
   readonly passed: boolean;
   readonly createdAt?: string;
@@ -45,8 +59,7 @@ export declare class Response {
 
 export declare class Question {
   readonly id: string;
-  readonly accountID: string;
-  readonly type: number;
+  readonly type: Qtype | keyof typeof Qtype;
   readonly question: string;
   readonly expectedResponse: string;
   readonly checkboxes?: string[];

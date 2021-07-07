@@ -13,59 +13,6 @@ export const onCreateAccount = /* GraphQL */ `
       createdAt
       updatedAt
       owner
-      People {
-        items {
-          id
-          accountID
-          type
-          fName
-          lName
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-          owner
-        }
-        nextToken
-        startedAt
-      }
-      Questions {
-        items {
-          id
-          accountID
-          type
-          question
-          expectedResponse
-          checkboxes
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-          owner
-        }
-        nextToken
-        startedAt
-      }
-      Responses {
-        items {
-          id
-          accountID
-          personID
-          date
-          responses
-          passed
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-          owner
-        }
-        nextToken
-        startedAt
-      }
     }
   }
 `;
@@ -81,59 +28,6 @@ export const onUpdateAccount = /* GraphQL */ `
       createdAt
       updatedAt
       owner
-      People {
-        items {
-          id
-          accountID
-          type
-          fName
-          lName
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-          owner
-        }
-        nextToken
-        startedAt
-      }
-      Questions {
-        items {
-          id
-          accountID
-          type
-          question
-          expectedResponse
-          checkboxes
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-          owner
-        }
-        nextToken
-        startedAt
-      }
-      Responses {
-        items {
-          id
-          accountID
-          personID
-          date
-          responses
-          passed
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-          owner
-        }
-        nextToken
-        startedAt
-      }
     }
   }
 `;
@@ -149,59 +43,6 @@ export const onDeleteAccount = /* GraphQL */ `
       createdAt
       updatedAt
       owner
-      People {
-        items {
-          id
-          accountID
-          type
-          fName
-          lName
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-          owner
-        }
-        nextToken
-        startedAt
-      }
-      Questions {
-        items {
-          id
-          accountID
-          type
-          question
-          expectedResponse
-          checkboxes
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-          owner
-        }
-        nextToken
-        startedAt
-      }
-      Responses {
-        items {
-          id
-          accountID
-          personID
-          date
-          responses
-          passed
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-          owner
-        }
-        nextToken
-        startedAt
-      }
     }
   }
 `;
@@ -209,7 +50,6 @@ export const onCreatePerson = /* GraphQL */ `
   subscription OnCreatePerson($owner: String) {
     onCreatePerson(owner: $owner) {
       id
-      accountID
       type
       fName
       lName
@@ -222,9 +62,10 @@ export const onCreatePerson = /* GraphQL */ `
       Responses {
         items {
           id
-          accountID
           personID
           date
+          formType
+          time
           responses
           passed
           _version
@@ -244,7 +85,6 @@ export const onUpdatePerson = /* GraphQL */ `
   subscription OnUpdatePerson($owner: String) {
     onUpdatePerson(owner: $owner) {
       id
-      accountID
       type
       fName
       lName
@@ -257,9 +97,10 @@ export const onUpdatePerson = /* GraphQL */ `
       Responses {
         items {
           id
-          accountID
           personID
           date
+          formType
+          time
           responses
           passed
           _version
@@ -279,7 +120,6 @@ export const onDeletePerson = /* GraphQL */ `
   subscription OnDeletePerson($owner: String) {
     onDeletePerson(owner: $owner) {
       id
-      accountID
       type
       fName
       lName
@@ -292,9 +132,10 @@ export const onDeletePerson = /* GraphQL */ `
       Responses {
         items {
           id
-          accountID
           personID
           date
+          formType
+          time
           responses
           passed
           _version
@@ -314,7 +155,6 @@ export const onCreateQuestion = /* GraphQL */ `
   subscription OnCreateQuestion($owner: String) {
     onCreateQuestion(owner: $owner) {
       id
-      accountID
       type
       question
       expectedResponse
@@ -332,7 +172,6 @@ export const onUpdateQuestion = /* GraphQL */ `
   subscription OnUpdateQuestion($owner: String) {
     onUpdateQuestion(owner: $owner) {
       id
-      accountID
       type
       question
       expectedResponse
@@ -350,7 +189,6 @@ export const onDeleteQuestion = /* GraphQL */ `
   subscription OnDeleteQuestion($owner: String) {
     onDeleteQuestion(owner: $owner) {
       id
-      accountID
       type
       question
       expectedResponse
@@ -368,9 +206,10 @@ export const onCreateResponse = /* GraphQL */ `
   subscription OnCreateResponse($owner: String) {
     onCreateResponse(owner: $owner) {
       id
-      accountID
       personID
       date
+      formType
+      time
       responses
       passed
       _version
@@ -386,9 +225,10 @@ export const onUpdateResponse = /* GraphQL */ `
   subscription OnUpdateResponse($owner: String) {
     onUpdateResponse(owner: $owner) {
       id
-      accountID
       personID
       date
+      formType
+      time
       responses
       passed
       _version
@@ -404,9 +244,10 @@ export const onDeleteResponse = /* GraphQL */ `
   subscription OnDeleteResponse($owner: String) {
     onDeleteResponse(owner: $owner) {
       id
-      accountID
       personID
       date
+      formType
+      time
       responses
       passed
       _version

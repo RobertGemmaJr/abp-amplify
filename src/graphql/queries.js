@@ -13,59 +13,6 @@ export const getAccount = /* GraphQL */ `
       createdAt
       updatedAt
       owner
-      People {
-        items {
-          id
-          accountID
-          type
-          fName
-          lName
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-          owner
-        }
-        nextToken
-        startedAt
-      }
-      Questions {
-        items {
-          id
-          accountID
-          type
-          question
-          expectedResponse
-          checkboxes
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-          owner
-        }
-        nextToken
-        startedAt
-      }
-      Responses {
-        items {
-          id
-          accountID
-          personID
-          date
-          responses
-          passed
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-          owner
-        }
-        nextToken
-        startedAt
-      }
     }
   }
 `;
@@ -86,18 +33,6 @@ export const listAccounts = /* GraphQL */ `
         createdAt
         updatedAt
         owner
-        People {
-          nextToken
-          startedAt
-        }
-        Questions {
-          nextToken
-          startedAt
-        }
-        Responses {
-          nextToken
-          startedAt
-        }
       }
       nextToken
       startedAt
@@ -127,18 +62,6 @@ export const syncAccounts = /* GraphQL */ `
         createdAt
         updatedAt
         owner
-        People {
-          nextToken
-          startedAt
-        }
-        Questions {
-          nextToken
-          startedAt
-        }
-        Responses {
-          nextToken
-          startedAt
-        }
       }
       nextToken
       startedAt
@@ -149,7 +72,6 @@ export const getPerson = /* GraphQL */ `
   query GetPerson($id: ID!) {
     getPerson(id: $id) {
       id
-      accountID
       type
       fName
       lName
@@ -162,9 +84,10 @@ export const getPerson = /* GraphQL */ `
       Responses {
         items {
           id
-          accountID
           personID
           date
+          formType
+          time
           responses
           passed
           _version
@@ -189,7 +112,6 @@ export const listPeople = /* GraphQL */ `
     listPeople(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
-        accountID
         type
         fName
         lName
@@ -224,7 +146,6 @@ export const syncPeople = /* GraphQL */ `
     ) {
       items {
         id
-        accountID
         type
         fName
         lName
@@ -248,7 +169,6 @@ export const getQuestion = /* GraphQL */ `
   query GetQuestion($id: ID!) {
     getQuestion(id: $id) {
       id
-      accountID
       type
       question
       expectedResponse
@@ -271,7 +191,6 @@ export const listQuestions = /* GraphQL */ `
     listQuestions(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
-        accountID
         type
         question
         expectedResponse
@@ -303,7 +222,6 @@ export const syncQuestions = /* GraphQL */ `
     ) {
       items {
         id
-        accountID
         type
         question
         expectedResponse
@@ -324,9 +242,10 @@ export const getResponse = /* GraphQL */ `
   query GetResponse($id: ID!) {
     getResponse(id: $id) {
       id
-      accountID
       personID
       date
+      formType
+      time
       responses
       passed
       _version
@@ -347,9 +266,10 @@ export const listResponses = /* GraphQL */ `
     listResponses(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
-        accountID
         personID
         date
+        formType
+        time
         responses
         passed
         _version
@@ -379,9 +299,10 @@ export const syncResponses = /* GraphQL */ `
     ) {
       items {
         id
-        accountID
         personID
         date
+        formType
+        time
         responses
         passed
         _version

@@ -16,59 +16,6 @@ export const createAccount = /* GraphQL */ `
       createdAt
       updatedAt
       owner
-      People {
-        items {
-          id
-          accountID
-          type
-          fName
-          lName
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-          owner
-        }
-        nextToken
-        startedAt
-      }
-      Questions {
-        items {
-          id
-          accountID
-          type
-          question
-          expectedResponse
-          checkboxes
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-          owner
-        }
-        nextToken
-        startedAt
-      }
-      Responses {
-        items {
-          id
-          accountID
-          personID
-          date
-          responses
-          passed
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-          owner
-        }
-        nextToken
-        startedAt
-      }
     }
   }
 `;
@@ -87,59 +34,6 @@ export const updateAccount = /* GraphQL */ `
       createdAt
       updatedAt
       owner
-      People {
-        items {
-          id
-          accountID
-          type
-          fName
-          lName
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-          owner
-        }
-        nextToken
-        startedAt
-      }
-      Questions {
-        items {
-          id
-          accountID
-          type
-          question
-          expectedResponse
-          checkboxes
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-          owner
-        }
-        nextToken
-        startedAt
-      }
-      Responses {
-        items {
-          id
-          accountID
-          personID
-          date
-          responses
-          passed
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-          owner
-        }
-        nextToken
-        startedAt
-      }
     }
   }
 `;
@@ -158,59 +52,6 @@ export const deleteAccount = /* GraphQL */ `
       createdAt
       updatedAt
       owner
-      People {
-        items {
-          id
-          accountID
-          type
-          fName
-          lName
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-          owner
-        }
-        nextToken
-        startedAt
-      }
-      Questions {
-        items {
-          id
-          accountID
-          type
-          question
-          expectedResponse
-          checkboxes
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-          owner
-        }
-        nextToken
-        startedAt
-      }
-      Responses {
-        items {
-          id
-          accountID
-          personID
-          date
-          responses
-          passed
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-          owner
-        }
-        nextToken
-        startedAt
-      }
     }
   }
 `;
@@ -221,7 +62,6 @@ export const createPerson = /* GraphQL */ `
   ) {
     createPerson(input: $input, condition: $condition) {
       id
-      accountID
       type
       fName
       lName
@@ -234,9 +74,10 @@ export const createPerson = /* GraphQL */ `
       Responses {
         items {
           id
-          accountID
           personID
           date
+          formType
+          time
           responses
           passed
           _version
@@ -259,7 +100,6 @@ export const updatePerson = /* GraphQL */ `
   ) {
     updatePerson(input: $input, condition: $condition) {
       id
-      accountID
       type
       fName
       lName
@@ -272,9 +112,10 @@ export const updatePerson = /* GraphQL */ `
       Responses {
         items {
           id
-          accountID
           personID
           date
+          formType
+          time
           responses
           passed
           _version
@@ -297,7 +138,6 @@ export const deletePerson = /* GraphQL */ `
   ) {
     deletePerson(input: $input, condition: $condition) {
       id
-      accountID
       type
       fName
       lName
@@ -310,9 +150,10 @@ export const deletePerson = /* GraphQL */ `
       Responses {
         items {
           id
-          accountID
           personID
           date
+          formType
+          time
           responses
           passed
           _version
@@ -335,7 +176,6 @@ export const createQuestion = /* GraphQL */ `
   ) {
     createQuestion(input: $input, condition: $condition) {
       id
-      accountID
       type
       question
       expectedResponse
@@ -356,7 +196,6 @@ export const updateQuestion = /* GraphQL */ `
   ) {
     updateQuestion(input: $input, condition: $condition) {
       id
-      accountID
       type
       question
       expectedResponse
@@ -377,7 +216,6 @@ export const deleteQuestion = /* GraphQL */ `
   ) {
     deleteQuestion(input: $input, condition: $condition) {
       id
-      accountID
       type
       question
       expectedResponse
@@ -398,9 +236,10 @@ export const createResponse = /* GraphQL */ `
   ) {
     createResponse(input: $input, condition: $condition) {
       id
-      accountID
       personID
       date
+      formType
+      time
       responses
       passed
       _version
@@ -419,9 +258,10 @@ export const updateResponse = /* GraphQL */ `
   ) {
     updateResponse(input: $input, condition: $condition) {
       id
-      accountID
       personID
       date
+      formType
+      time
       responses
       passed
       _version
@@ -440,9 +280,10 @@ export const deleteResponse = /* GraphQL */ `
   ) {
     deleteResponse(input: $input, condition: $condition) {
       id
-      accountID
       personID
       date
+      formType
+      time
       responses
       passed
       _version

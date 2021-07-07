@@ -1,46 +1,51 @@
+enum QTYPE {
+  BOOLEAN
+  TEXT
+  TEMP
+  TEMP_CHECKBOX
+}
+
+enum PTYPE {
+  NONE
+  FAMILY
+  STAFF
+  MANUAL
+}
+
+enum TIME {
+  MORNING
+  AFTERNOON
+}
+
 type Account @model @auth(rules: [{allow: owner}]) {
   id: ID!
   title: String!
   randomizeQuestions: Boolean!
-  People: [Person] @connection(keyName: "byAccount", fields: ["id"])
-  Questions: [Question] @connection(keyName: "byAccount", fields: ["id"])
-  Responses: [Response] @connection(keyName: "byAccount", fields: ["id"])
 }
 
-type Person @model @auth(rules: [{allow: owner}]) 
-            @key(name: "byAccount", fields: ["accountID"]) {
+type Person @model @auth(rules: [{allow: owner}]) {
   id: ID!
-  accountID: ID!
-  type: Int!
-  fName: String
+  type: PTYPE!
+  fName: String!
   lName: String!
-  Responses: [Response] @connection(keyName: "byPerson", fields: ["id"])
+  Responses: [Response!] @connection(keyName: "byPerson", fields: ["id"])
 }
 
-type Question @model @auth(rules: [{allow: owner}]) 
-              @key(name: "byAccount", fields: ["accountID"]) {
+type Question @model @auth(rules: [{allow: owner}]) {
   id: ID!
-  accountID: ID!
-  type: Int!
+  type: QTYPE!
   question: String!
   expectedResponse: String!
   checkboxes: [String!]
 }
 
-type Response @model @auth(rules: [{allow: owner}]) 
-              @key(name: "byAccount", fields: ["accountID"])  
-              @key(name: "byPerson", fields: ["personID"]) {
+type Response @model @key(name: "byPerson", fields: ["personID"]) @auth(rules: [{allow: owner}]) {
   id: ID!
-  accountID: ID!
   personID: ID!
   date: AWSDate!
+  formType: PTYPE!
+  time: TIME!
   responses: [String!]!
   passed: Boolean!
 }
-
-
-
-
-
-
  
