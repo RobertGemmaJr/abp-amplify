@@ -1,4 +1,5 @@
 import React from "react";
+import { withAuthenticator } from '@aws-amplify/ui-react'
 import { CssBaseline, Box } from "@material-ui/core"
 import { makeStyles } from "@material-ui/styles";
 
@@ -63,4 +64,4 @@ function App(props) {
   );
 }
 
-export default App;
+export default withAuthenticator(App);
