@@ -79,6 +79,13 @@ export const schema = {
                     "isRequired": true,
                     "attributes": []
                 },
+                "companyID": {
+                    "name": "companyID",
+                    "isArray": false,
+                    "type": "Int",
+                    "isRequired": false,
+                    "attributes": []
+                },
                 "type": {
                     "name": "type",
                     "isArray": false,
@@ -203,21 +210,6 @@ export const schema = {
                     "isRequired": true,
                     "attributes": []
                 },
-                "responses": {
-                    "name": "responses",
-                    "isArray": true,
-                    "type": "String",
-                    "isRequired": true,
-                    "attributes": [],
-                    "isArrayNullable": false
-                },
-                "passed": {
-                    "name": "passed",
-                    "isArray": false,
-                    "type": "Boolean",
-                    "isRequired": true,
-                    "attributes": []
-                },
                 "questions": {
                     "name": "questions",
                     "isArray": true,
@@ -225,6 +217,21 @@ export const schema = {
                     "isRequired": true,
                     "attributes": [],
                     "isArrayNullable": true
+                },
+                "responses": {
+                    "name": "responses",
+                    "isArray": true,
+                    "type": "String",
+                    "isRequired": true,
+                    "attributes": [],
+                    "isArrayNullable": true
+                },
+                "passed": {
+                    "name": "passed",
+                    "isArray": false,
+                    "type": "Boolean",
+                    "isRequired": true,
+                    "attributes": []
                 },
                 "createdAt": {
                     "name": "createdAt",
@@ -395,5 +402,5 @@ export const schema = {
         }
     },
     "nonModels": {},
-    "version": "c8a0bc39420998c7181805f255ea8738"
+    "version": "2fff664a97f7056760fa04bd915e039c"
 };

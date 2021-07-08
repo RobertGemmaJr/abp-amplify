@@ -50,4 +50,3 @@ type Response @model @auth(rules: [{allow: owner}]) @key(name: "byPerson", field
   responses: [String!]
   passed: Boolean!
 }
- 

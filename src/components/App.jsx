@@ -1,12 +1,17 @@
 import React from "react";
+import { API } from "aws-amplify";
+
 import { withAuthenticator } from '@aws-amplify/ui-react'
 import { CssBaseline, Box } from "@material-ui/core"
 import { makeStyles } from "@material-ui/styles";
 
+import { listSettings } from "../graphql/queries"
+import * as mutations from "../graphql/mutations"
 import { CONTENT, FORM } from "../constants/enum";
 import Header from "./header/Header"
 import Main from "./main/Main"
 import Footer from "./footer/Footer"
+
 
 const useStyles = makeStyles(theme => ({
   root : {
@@ -29,8 +34,39 @@ const useStyles = makeStyles(theme => ({
  * Images on <Home> page are cropped.
  * 
  */
-function App(props) {
+function App() {
   const classes = useStyles();
+
+  // Hook for the settings
+  const [settings, setSettings] = React.useState();
+  // Function to get the settings
+  async function getSettings() {
+    const apiData = await API.graphql({query: listSettings})
+    console.log(apiData)
+  }
+
+  async function createInitialSettings() {
+    const initialSettings = {
+      title: "Initial Title",
+      isRandomized: false
+    }
+    await API.graphql({query: mutations.createSettings, variables: {input: initialSettings}});
+  }
+
+  // Get settings on first render
+  React.useEffect(() => {
+    // getSettings();
+    getSettings().then(res => {
+      console.log("getSettings response", res);
+    }).catch(e => {
+      console.log("getSettings error", e);
+      createInitialSettings().then(res => {
+        console.log("createInitialSettings response", res);
+      }).catch(e => {
+        console.log("createInitialSettings error", e);
+      });
+    });
+  }, []);
 
   // Hook for content to be shown
   const [content, setContent] = React.useState(CONTENT.HOME);

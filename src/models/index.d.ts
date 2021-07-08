@@ -33,6 +33,7 @@ export declare class Setting {
 
 export declare class Person {
   readonly id: string;
+  readonly companyID?: number;
   readonly type: Ptype | keyof typeof Ptype;
   readonly fName: string;
   readonly lName: string;
@@ -49,9 +50,9 @@ export declare class Response {
   readonly dateCreated: string;
   readonly formType: Ptype | keyof typeof Ptype;
   readonly time: Time | keyof typeof Time;
-  readonly responses: string[];
-  readonly passed: boolean;
   readonly questions?: string[];
+  readonly responses?: string[];
+  readonly passed: boolean;
   readonly createdAt?: string;
   readonly updatedAt?: string;
   constructor(init: ModelInit<Response>);
