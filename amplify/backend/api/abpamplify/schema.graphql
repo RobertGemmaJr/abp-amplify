@@ -40,7 +40,7 @@ type Question @model @auth(rules: [{allow: owner}]) {
   checkboxes: [Boolean!]!
 }
 
-type Response @model @auth(rules: [{allow: owner}]) {
+type Response @model @auth(rules: [{allow: owner}]) @key(name: "byPerson", fields: ["personID"]) {
   id: ID!
   personID: ID!
   dateCreated: AWSDate!
