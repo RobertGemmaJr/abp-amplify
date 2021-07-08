@@ -39,26 +39,21 @@ const useStyles = makeStyles(theme => ({
 
 export default function Main(props) {
   const classes = useStyles();
-  const {content, setContent, form, setForm } = props;
-
-  React.useEffect(() => {
-  }, []);
-
-  // API call for account settings
-  // API call for questions
-  // API call for people
+  const {settings, setSettings, content, setContent, form, setForm } = props;
   
   // Hook for title
+    // Just use settings hook from props (menu)
   const [title, setTitle] = React.useState(account.title)
 
   // Hook for isRandomized
+    // Just use settings hook from props (menu)
   const [randomized, setRandomized] = React.useState(account.randomizeQuestions);
 
   // Hook for all questions
-  const [questions, setQuestions] = React.useState(Qs);
+  const [questions, setQuestions] = React.useState(Qs); // Do in <App>
 
   // Hook for all people
-  const [people, setPeople] = React.useState(everyone)
+  const [people, setPeople] = React.useState(everyone) // Do in <App>
 
   // Hook for the time (morning or afternoon)
   const [morning, setMorning] = React.useState(true)
@@ -84,6 +79,7 @@ export default function Main(props) {
         return (
           <Menu 
             setContent={setContent} 
+            setSettings={setSettings}
             title={title} 
             setTitle={setTitle}
             randomized={randomized}
@@ -112,7 +108,7 @@ export default function Main(props) {
             people={people}
             form={form} 
             morning={morning} 
-            randomized={randomized}
+            randomizeQuestions={settings.randomizeQuestions}
             setPerson={setPerson}
             questions={questions} setQuestions={setQuestions}
           />
@@ -122,7 +118,6 @@ export default function Main(props) {
             <Questionnaire 
               setContent={setContent}
               handleResetClick={handleResetClick}
-              randomized={randomized}
               person={person} 
               questions={questions}
               morning={morning}
@@ -156,7 +151,7 @@ export default function Main(props) {
         className={classes.title} 
         onClick={() => handleClick()}
       >
-        <Title content={content} title={title} morning={morning} />
+        <Title content={content} title={settings.title} morning={morning} />
       </Container>
       <Container className={classes.content}>
         {renderContent()} 

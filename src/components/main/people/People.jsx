@@ -16,12 +16,10 @@ const useStyles = makeStyles(theme => ({
 
 export default function People(props) {
   const classes = useStyles();
-  const { setContent, handleResetClick, people, form, morning, randomized,
+  const { setContent, handleResetClick, people, form, morning, randomizeQuestions,
           setPerson, questions, setQuestions } = props;
 
-  // Select the given person and generate the questionnaire
   function generateQuestionnaire(person) {
-    // Set the selected person
     setPerson(person)
 
     // Get checkbox index for the current form and morning/afternoon
@@ -30,7 +28,10 @@ export default function People(props) {
 
     // Filter questions by filter index
     setQuestions(questions.filter(q => q.checkboxes[idx]))
-    if(randomized) setQuestions(questions.sort(() => Math.random() - 0.5)); // Note that this is a biased randomization algorithm
+    if(randomizeQuestions) {
+      // Note that this is a biased randomization algorithm
+      setQuestions(questions.sort(() => Math.random() - 0.5));
+    }
 
     // Render the questionnaire
     setContent(CONTENT.QUESTIONNAIRE)

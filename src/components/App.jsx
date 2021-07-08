@@ -1,16 +1,20 @@
 import React from "react";
-import { API } from "aws-amplify";
+// import { API } from "aws-amplify";
 
 import { withAuthenticator } from '@aws-amplify/ui-react'
 import { CssBaseline, Box } from "@material-ui/core"
 import { makeStyles } from "@material-ui/styles";
 
-import { listSettings } from "../graphql/queries"
-import * as mutations from "../graphql/mutations"
+// import { listSettings } from "../graphql/queries"
+// import * as mutations from "../graphql/mutations"
 import { CONTENT, FORM } from "../constants/enum";
 import Header from "./header/Header"
 import Main from "./main/Main"
 import Footer from "./footer/Footer"
+
+// Test
+import { DataStore } from '@aws-amplify/datastore';
+import { Setting } from '../models';
 
 
 const useStyles = makeStyles(theme => ({
@@ -20,6 +24,23 @@ const useStyles = makeStyles(theme => ({
     minHeight: "100vh",
   },
 }))
+
+async function getSettings(setSettings) {
+  var models = await DataStore.query(Setting);
+
+  if (!models.length) {
+    // If no settings have been created, make initial one
+    await DataStore.save(
+      new Setting({
+        "title": "Change Title in Menu",
+        "randomizeQuestions": true
+      })
+    );
+    models = await DataStore.query(Setting)    
+  } else if (models.length > 1) console.error("Too many settings! Using first object")
+
+  setSettings(models[0]);
+}
 
 /**
  * 
@@ -37,36 +58,15 @@ const useStyles = makeStyles(theme => ({
 function App() {
   const classes = useStyles();
 
-  // Function to get the settings
-  async function getSettings() {
-    const apiData = await API.graphql({query: listSettings})
-    console.log(apiData)
-  }
-
-  async function createInitialSettings() {
-    const initialSettings = {
-      title: "Initial Title",
-      isRandomized: false
-    }
-    await API.graphql({query: mutations.createSettings, variables: {input: initialSettings}});
-  }
-
-  // Get settings on first render
+  // DataStore API calls on initial render
   React.useEffect(() => {
-    // getSettings();
-    getSettings().then(res => {
-      console.log("getSettings response", res);
-    }).catch(e => {
-      console.log("getSettings error", e);
+    getSettings(setSettings);
+    // getPeople(); 
+    // getQuestions(); 
+  }, [])
 
-      // If there's an error, create your initial settings
-      createInitialSettings().then(res => {
-        console.log("createInitialSettings response", res);
-      }).catch(e => {
-        console.log("createInitialSettings error", e);
-      });
-    });
-  }, []);
+  // Hook for React settings
+  const [settings, setSettings] = React.useState(0);
 
   // Hook for content to be shown
   const [content, setContent] = React.useState(CONTENT.HOME);
@@ -89,10 +89,9 @@ function App() {
         homeClick={() => handleHomeClick()} 
       />
       <Main 
-        content={content} 
-        setContent={setContent} 
-        form={form} 
-        setForm={setForm} 
+        settings={settings} setSettings={setSettings}
+        content={content} setContent={setContent} 
+        form={form} setForm={setForm}
       />
       <Footer />
     </Box>
