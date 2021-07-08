@@ -1,20 +1,16 @@
 import React from "react";
-// import { API } from "aws-amplify";
 
 import { withAuthenticator } from '@aws-amplify/ui-react'
 import { CssBaseline, Box } from "@material-ui/core"
 import { makeStyles } from "@material-ui/styles";
 
-// import { listSettings } from "../graphql/queries"
-// import * as mutations from "../graphql/mutations"
 import { CONTENT, FORM } from "../constants/enum";
 import Header from "./header/Header"
 import Main from "./main/Main"
 import Footer from "./footer/Footer"
 
-// Test
 import { DataStore } from '@aws-amplify/datastore';
-import { Setting } from '../models';
+import { Setting, Person } from '../models';
 
 
 const useStyles = makeStyles(theme => ({
@@ -25,7 +21,7 @@ const useStyles = makeStyles(theme => ({
   },
 }))
 
-async function getSettings(setSettings) {
+async function getSettings() {
   var models = await DataStore.query(Setting);
 
   if (!models.length) {
@@ -39,7 +35,12 @@ async function getSettings(setSettings) {
     models = await DataStore.query(Setting)    
   } else if (models.length > 1) console.error("Too many settings! Using first object")
 
-  setSettings(models[0]);
+  return models[0];
+}
+
+async function getPeople() {
+  var models = await DataStore.query(Person);
+  return models
 }
 
 /**
@@ -60,13 +61,25 @@ function App() {
 
   // DataStore API calls on initial render
   React.useEffect(() => {
-    getSettings(setSettings);
-    // getPeople(); 
+    getSettings().then(res => {
+      setSettings(res)
+    }).catch(e => {console.error(e)})
+
+    getPeople().then(res => {
+      setPeople(res)
+    }).catch(e => {console.error(e)}); 
+
+
     // getQuestions(); 
   }, [])
 
-  // Hook for React settings
+  // Hook for user settings
   const [settings, setSettings] = React.useState(0);
+
+  // Hook for user's people
+  const [people, setPeople] = React.useState(0);
+
+  // Hook for user's questions
 
   // Hook for content to be shown
   const [content, setContent] = React.useState(CONTENT.HOME);
@@ -90,6 +103,7 @@ function App() {
       />
       <Main 
         settings={settings} setSettings={setSettings}
+        people={people} setPeople={setPeople}
         content={content} setContent={setContent} 
         form={form} setForm={setForm}
       />

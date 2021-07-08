@@ -39,8 +39,14 @@ const useStyles = makeStyles(theme => ({
 
 export default function Main(props) {
   const classes = useStyles();
-  const {settings, setSettings, content, setContent, form, setForm } = props;
-  
+  const {settings, setSettings, people, setPeople,
+        content, setContent, form, setForm } = props;
+
+  // Temp - set people to tempDatabase at initial render
+  React.useEffect(() => {
+    setPeople(everyone)
+  })
+
   // Hook for title
     // Just use settings hook from props (menu)
   const [title, setTitle] = React.useState(account.title)
@@ -51,9 +57,6 @@ export default function Main(props) {
 
   // Hook for all questions
   const [questions, setQuestions] = React.useState(Qs); // Do in <App>
-
-  // Hook for all people
-  const [people, setPeople] = React.useState(everyone) // Do in <App>
 
   // Hook for the time (morning or afternoon)
   const [morning, setMorning] = React.useState(true)
