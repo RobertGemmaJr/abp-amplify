@@ -45,6 +45,8 @@ function App(props) {
     setContent(CONTENT.HOME)
   }
 
+  console.log()
+
   return (
     <Box className={classes.root}>
       <CssBaseline />

@@ -21,12 +21,13 @@ const Time = {
   "AFTERNOON": "AFTERNOON"
 };
 
-const { Account, Person, Response, Question } = initSchema(schema);
+const { Account, Person, Response, ResponseQuestion, Question } = initSchema(schema);
 
 export {
   Account,
   Person,
   Response,
+  ResponseQuestion,
   Question,
   Qtype,
   Ptype,

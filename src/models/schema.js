@@ -203,6 +203,20 @@ export const schema = {
                     "isRequired": true,
                     "attributes": []
                 },
+                "questions": {
+                    "name": "questions",
+                    "isArray": true,
+                    "type": {
+                        "model": "ResponseQuestion"
+                    },
+                    "isRequired": true,
+                    "attributes": [],
+                    "isArrayNullable": true,
+                    "association": {
+                        "connectionType": "HAS_MANY",
+                        "associatedWith": "response"
+                    }
+                },
                 "responses": {
                     "name": "responses",
                     "isArray": true,
@@ -272,6 +286,89 @@ export const schema = {
                 }
             ]
         },
+        "ResponseQuestion": {
+            "name": "ResponseQuestion",
+            "fields": {
+                "id": {
+                    "name": "id",
+                    "isArray": false,
+                    "type": "ID",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "response": {
+                    "name": "response",
+                    "isArray": false,
+                    "type": {
+                        "model": "Response"
+                    },
+                    "isRequired": true,
+                    "attributes": [],
+                    "association": {
+                        "connectionType": "BELONGS_TO",
+                        "targetName": "responseQuestionResponseId"
+                    }
+                },
+                "question": {
+                    "name": "question",
+                    "isArray": false,
+                    "type": {
+                        "model": "Question"
+                    },
+                    "isRequired": true,
+                    "attributes": [],
+                    "association": {
+                        "connectionType": "BELONGS_TO",
+                        "targetName": "responseQuestionQuestionId"
+                    }
+                },
+                "createdAt": {
+                    "name": "createdAt",
+                    "isArray": false,
+                    "type": "AWSDateTime",
+                    "isRequired": false,
+                    "attributes": [],
+                    "isReadOnly": true
+                },
+                "updatedAt": {
+                    "name": "updatedAt",
+                    "isArray": false,
+                    "type": "AWSDateTime",
+                    "isRequired": false,
+                    "attributes": [],
+                    "isReadOnly": true
+                }
+            },
+            "syncable": true,
+            "pluralName": "ResponseQuestions",
+            "attributes": [
+                {
+                    "type": "model",
+                    "properties": {
+                        "queries": null
+                    }
+                },
+                {
+                    "type": "auth",
+                    "properties": {
+                        "rules": [
+                            {
+                                "provider": "userPools",
+                                "ownerField": "owner",
+                                "allow": "owner",
+                                "identityClaim": "cognito:username",
+                                "operations": [
+                                    "create",
+                                    "update",
+                                    "delete",
+                                    "read"
+                                ]
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
         "Question": {
             "name": "Question",
             "fields": {
@@ -312,6 +409,20 @@ export const schema = {
                     "isRequired": true,
                     "attributes": [],
                     "isArrayNullable": true
+                },
+                "responses": {
+                    "name": "responses",
+                    "isArray": true,
+                    "type": {
+                        "model": "ResponseQuestion"
+                    },
+                    "isRequired": true,
+                    "attributes": [],
+                    "isArrayNullable": true,
+                    "association": {
+                        "connectionType": "HAS_MANY",
+                        "associatedWith": "question"
+                    }
                 },
                 "createdAt": {
                     "name": "createdAt",
@@ -387,5 +498,5 @@ export const schema = {
         }
     },
     "nonModels": {},
-    "version": "279d9d73cbd4a73cdffc51f6e390b312"
+    "version": "dc5ccd7c20b04cefbc7f90cab019eea7"
 };

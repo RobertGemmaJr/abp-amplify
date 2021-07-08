@@ -186,6 +186,19 @@ export const createQuestion = /* GraphQL */ `
       createdAt
       updatedAt
       owner
+      responses {
+        items {
+          id
+          _version
+          _deleted
+          _lastChangedAt
+          createdAt
+          updatedAt
+          owner
+        }
+        nextToken
+        startedAt
+      }
     }
   }
 `;
@@ -206,6 +219,19 @@ export const updateQuestion = /* GraphQL */ `
       createdAt
       updatedAt
       owner
+      responses {
+        items {
+          id
+          _version
+          _deleted
+          _lastChangedAt
+          createdAt
+          updatedAt
+          owner
+        }
+        nextToken
+        startedAt
+      }
     }
   }
 `;
@@ -226,6 +252,19 @@ export const deleteQuestion = /* GraphQL */ `
       createdAt
       updatedAt
       owner
+      responses {
+        items {
+          id
+          _version
+          _deleted
+          _lastChangedAt
+          createdAt
+          updatedAt
+          owner
+        }
+        nextToken
+        startedAt
+      }
     }
   }
 `;
@@ -248,6 +287,19 @@ export const createResponse = /* GraphQL */ `
       createdAt
       updatedAt
       owner
+      questions {
+        items {
+          id
+          _version
+          _deleted
+          _lastChangedAt
+          createdAt
+          updatedAt
+          owner
+        }
+        nextToken
+        startedAt
+      }
     }
   }
 `;
@@ -270,6 +322,19 @@ export const updateResponse = /* GraphQL */ `
       createdAt
       updatedAt
       owner
+      questions {
+        items {
+          id
+          _version
+          _deleted
+          _lastChangedAt
+          createdAt
+          updatedAt
+          owner
+        }
+        nextToken
+        startedAt
+      }
     }
   }
 `;
@@ -291,6 +356,175 @@ export const deleteResponse = /* GraphQL */ `
       _lastChangedAt
       createdAt
       updatedAt
+      owner
+      questions {
+        items {
+          id
+          _version
+          _deleted
+          _lastChangedAt
+          createdAt
+          updatedAt
+          owner
+        }
+        nextToken
+        startedAt
+      }
+    }
+  }
+`;
+export const createResponseQuestion = /* GraphQL */ `
+  mutation CreateResponseQuestion(
+    $input: CreateResponseQuestionInput!
+    $condition: ModelResponseQuestionConditionInput
+  ) {
+    createResponseQuestion(input: $input, condition: $condition) {
+      id
+      _version
+      _deleted
+      _lastChangedAt
+      createdAt
+      updatedAt
+      question {
+        id
+        type
+        question
+        expectedResponse
+        checkboxes
+        _version
+        _deleted
+        _lastChangedAt
+        createdAt
+        updatedAt
+        owner
+        responses {
+          nextToken
+          startedAt
+        }
+      }
+      response {
+        id
+        personID
+        date
+        formType
+        time
+        responses
+        passed
+        _version
+        _deleted
+        _lastChangedAt
+        createdAt
+        updatedAt
+        owner
+        questions {
+          nextToken
+          startedAt
+        }
+      }
+      owner
+    }
+  }
+`;
+export const updateResponseQuestion = /* GraphQL */ `
+  mutation UpdateResponseQuestion(
+    $input: UpdateResponseQuestionInput!
+    $condition: ModelResponseQuestionConditionInput
+  ) {
+    updateResponseQuestion(input: $input, condition: $condition) {
+      id
+      _version
+      _deleted
+      _lastChangedAt
+      createdAt
+      updatedAt
+      question {
+        id
+        type
+        question
+        expectedResponse
+        checkboxes
+        _version
+        _deleted
+        _lastChangedAt
+        createdAt
+        updatedAt
+        owner
+        responses {
+          nextToken
+          startedAt
+        }
+      }
+      response {
+        id
+        personID
+        date
+        formType
+        time
+        responses
+        passed
+        _version
+        _deleted
+        _lastChangedAt
+        createdAt
+        updatedAt
+        owner
+        questions {
+          nextToken
+          startedAt
+        }
+      }
+      owner
+    }
+  }
+`;
+export const deleteResponseQuestion = /* GraphQL */ `
+  mutation DeleteResponseQuestion(
+    $input: DeleteResponseQuestionInput!
+    $condition: ModelResponseQuestionConditionInput
+  ) {
+    deleteResponseQuestion(input: $input, condition: $condition) {
+      id
+      _version
+      _deleted
+      _lastChangedAt
+      createdAt
+      updatedAt
+      question {
+        id
+        type
+        question
+        expectedResponse
+        checkboxes
+        _version
+        _deleted
+        _lastChangedAt
+        createdAt
+        updatedAt
+        owner
+        responses {
+          nextToken
+          startedAt
+        }
+      }
+      response {
+        id
+        personID
+        date
+        formType
+        time
+        responses
+        passed
+        _version
+        _deleted
+        _lastChangedAt
+        createdAt
+        updatedAt
+        owner
+        questions {
+          nextToken
+          startedAt
+        }
+      }
       owner
     }
   }

@@ -179,6 +179,19 @@ export const getQuestion = /* GraphQL */ `
       createdAt
       updatedAt
       owner
+      responses {
+        items {
+          id
+          _version
+          _deleted
+          _lastChangedAt
+          createdAt
+          updatedAt
+          owner
+        }
+        nextToken
+        startedAt
+      }
     }
   }
 `;
@@ -201,6 +214,10 @@ export const listQuestions = /* GraphQL */ `
         createdAt
         updatedAt
         owner
+        responses {
+          nextToken
+          startedAt
+        }
       }
       nextToken
       startedAt
@@ -232,6 +249,10 @@ export const syncQuestions = /* GraphQL */ `
         createdAt
         updatedAt
         owner
+        responses {
+          nextToken
+          startedAt
+        }
       }
       nextToken
       startedAt
@@ -254,6 +275,19 @@ export const getResponse = /* GraphQL */ `
       createdAt
       updatedAt
       owner
+      questions {
+        items {
+          id
+          _version
+          _deleted
+          _lastChangedAt
+          createdAt
+          updatedAt
+          owner
+        }
+        nextToken
+        startedAt
+      }
     }
   }
 `;
@@ -278,6 +312,10 @@ export const listResponses = /* GraphQL */ `
         createdAt
         updatedAt
         owner
+        questions {
+          nextToken
+          startedAt
+        }
       }
       nextToken
       startedAt
@@ -310,6 +348,65 @@ export const syncResponses = /* GraphQL */ `
         _lastChangedAt
         createdAt
         updatedAt
+        owner
+        questions {
+          nextToken
+          startedAt
+        }
+      }
+      nextToken
+      startedAt
+    }
+  }
+`;
+export const syncResponseQuestions = /* GraphQL */ `
+  query SyncResponseQuestions(
+    $filter: ModelResponseQuestionFilterInput
+    $limit: Int
+    $nextToken: String
+    $lastSync: AWSTimestamp
+  ) {
+    syncResponseQuestions(
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+      lastSync: $lastSync
+    ) {
+      items {
+        id
+        _version
+        _deleted
+        _lastChangedAt
+        createdAt
+        updatedAt
+        question {
+          id
+          type
+          question
+          expectedResponse
+          checkboxes
+          _version
+          _deleted
+          _lastChangedAt
+          createdAt
+          updatedAt
+          owner
+        }
+        response {
+          id
+          personID
+          date
+          formType
+          time
+          responses
+          passed
+          _version
+          _deleted
+          _lastChangedAt
+          createdAt
+          updatedAt
+          owner
+        }
         owner
       }
       nextToken

@@ -165,6 +165,19 @@ export const onCreateQuestion = /* GraphQL */ `
       createdAt
       updatedAt
       owner
+      responses {
+        items {
+          id
+          _version
+          _deleted
+          _lastChangedAt
+          createdAt
+          updatedAt
+          owner
+        }
+        nextToken
+        startedAt
+      }
     }
   }
 `;
@@ -182,6 +195,19 @@ export const onUpdateQuestion = /* GraphQL */ `
       createdAt
       updatedAt
       owner
+      responses {
+        items {
+          id
+          _version
+          _deleted
+          _lastChangedAt
+          createdAt
+          updatedAt
+          owner
+        }
+        nextToken
+        startedAt
+      }
     }
   }
 `;
@@ -199,6 +225,19 @@ export const onDeleteQuestion = /* GraphQL */ `
       createdAt
       updatedAt
       owner
+      responses {
+        items {
+          id
+          _version
+          _deleted
+          _lastChangedAt
+          createdAt
+          updatedAt
+          owner
+        }
+        nextToken
+        startedAt
+      }
     }
   }
 `;
@@ -218,6 +257,19 @@ export const onCreateResponse = /* GraphQL */ `
       createdAt
       updatedAt
       owner
+      questions {
+        items {
+          id
+          _version
+          _deleted
+          _lastChangedAt
+          createdAt
+          updatedAt
+          owner
+        }
+        nextToken
+        startedAt
+      }
     }
   }
 `;
@@ -237,6 +289,19 @@ export const onUpdateResponse = /* GraphQL */ `
       createdAt
       updatedAt
       owner
+      questions {
+        items {
+          id
+          _version
+          _deleted
+          _lastChangedAt
+          createdAt
+          updatedAt
+          owner
+        }
+        nextToken
+        startedAt
+      }
     }
   }
 `;
@@ -255,6 +320,166 @@ export const onDeleteResponse = /* GraphQL */ `
       _lastChangedAt
       createdAt
       updatedAt
+      owner
+      questions {
+        items {
+          id
+          _version
+          _deleted
+          _lastChangedAt
+          createdAt
+          updatedAt
+          owner
+        }
+        nextToken
+        startedAt
+      }
+    }
+  }
+`;
+export const onCreateResponseQuestion = /* GraphQL */ `
+  subscription OnCreateResponseQuestion($owner: String) {
+    onCreateResponseQuestion(owner: $owner) {
+      id
+      _version
+      _deleted
+      _lastChangedAt
+      createdAt
+      updatedAt
+      question {
+        id
+        type
+        question
+        expectedResponse
+        checkboxes
+        _version
+        _deleted
+        _lastChangedAt
+        createdAt
+        updatedAt
+        owner
+        responses {
+          nextToken
+          startedAt
+        }
+      }
+      response {
+        id
+        personID
+        date
+        formType
+        time
+        responses
+        passed
+        _version
+        _deleted
+        _lastChangedAt
+        createdAt
+        updatedAt
+        owner
+        questions {
+          nextToken
+          startedAt
+        }
+      }
+      owner
+    }
+  }
+`;
+export const onUpdateResponseQuestion = /* GraphQL */ `
+  subscription OnUpdateResponseQuestion($owner: String) {
+    onUpdateResponseQuestion(owner: $owner) {
+      id
+      _version
+      _deleted
+      _lastChangedAt
+      createdAt
+      updatedAt
+      question {
+        id
+        type
+        question
+        expectedResponse
+        checkboxes
+        _version
+        _deleted
+        _lastChangedAt
+        createdAt
+        updatedAt
+        owner
+        responses {
+          nextToken
+          startedAt
+        }
+      }
+      response {
+        id
+        personID
+        date
+        formType
+        time
+        responses
+        passed
+        _version
+        _deleted
+        _lastChangedAt
+        createdAt
+        updatedAt
+        owner
+        questions {
+          nextToken
+          startedAt
+        }
+      }
+      owner
+    }
+  }
+`;
+export const onDeleteResponseQuestion = /* GraphQL */ `
+  subscription OnDeleteResponseQuestion($owner: String) {
+    onDeleteResponseQuestion(owner: $owner) {
+      id
+      _version
+      _deleted
+      _lastChangedAt
+      createdAt
+      updatedAt
+      question {
+        id
+        type
+        question
+        expectedResponse
+        checkboxes
+        _version
+        _deleted
+        _lastChangedAt
+        createdAt
+        updatedAt
+        owner
+        responses {
+          nextToken
+          startedAt
+        }
+      }
+      response {
+        id
+        personID
+        date
+        formType
+        time
+        responses
+        passed
+        _version
+        _deleted
+        _lastChangedAt
+        createdAt
+        updatedAt
+        owner
+        questions {
+          nextToken
+          startedAt
+        }
+      }
       owner
     }
   }
