@@ -1,12 +1,12 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const createAccount = /* GraphQL */ `
-  mutation CreateAccount(
-    $input: CreateAccountInput!
-    $condition: ModelAccountConditionInput
+export const createSettings = /* GraphQL */ `
+  mutation CreateSettings(
+    $input: CreateSettingsInput!
+    $condition: ModelSettingsConditionInput
   ) {
-    createAccount(input: $input, condition: $condition) {
+    createSettings(input: $input, condition: $condition) {
       id
       title
       randomizeQuestions
@@ -19,12 +19,12 @@ export const createAccount = /* GraphQL */ `
     }
   }
 `;
-export const updateAccount = /* GraphQL */ `
-  mutation UpdateAccount(
-    $input: UpdateAccountInput!
-    $condition: ModelAccountConditionInput
+export const updateSettings = /* GraphQL */ `
+  mutation UpdateSettings(
+    $input: UpdateSettingsInput!
+    $condition: ModelSettingsConditionInput
   ) {
-    updateAccount(input: $input, condition: $condition) {
+    updateSettings(input: $input, condition: $condition) {
       id
       title
       randomizeQuestions
@@ -37,12 +37,12 @@ export const updateAccount = /* GraphQL */ `
     }
   }
 `;
-export const deleteAccount = /* GraphQL */ `
-  mutation DeleteAccount(
-    $input: DeleteAccountInput!
-    $condition: ModelAccountConditionInput
+export const deleteSettings = /* GraphQL */ `
+  mutation DeleteSettings(
+    $input: DeleteSettingsInput!
+    $condition: ModelSettingsConditionInput
   ) {
-    deleteAccount(input: $input, condition: $condition) {
+    deleteSettings(input: $input, condition: $condition) {
       id
       title
       randomizeQuestions

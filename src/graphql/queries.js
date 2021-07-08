@@ -1,9 +1,9 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const getAccount = /* GraphQL */ `
-  query GetAccount($id: ID!) {
-    getAccount(id: $id) {
+export const getSettings = /* GraphQL */ `
+  query GetSettings($id: ID!) {
+    getSettings(id: $id) {
       id
       title
       randomizeQuestions
@@ -16,13 +16,13 @@ export const getAccount = /* GraphQL */ `
     }
   }
 `;
-export const listAccounts = /* GraphQL */ `
-  query ListAccounts(
-    $filter: ModelAccountFilterInput
+export const listSettings = /* GraphQL */ `
+  query ListSettings(
+    $filter: ModelSettingsFilterInput
     $limit: Int
     $nextToken: String
   ) {
-    listAccounts(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    listSettings(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
         title
@@ -39,14 +39,14 @@ export const listAccounts = /* GraphQL */ `
     }
   }
 `;
-export const syncAccounts = /* GraphQL */ `
-  query SyncAccounts(
-    $filter: ModelAccountFilterInput
+export const syncSettings = /* GraphQL */ `
+  query SyncSettings(
+    $filter: ModelSettingsFilterInput
     $limit: Int
     $nextToken: String
     $lastSync: AWSTimestamp
   ) {
-    syncAccounts(
+    syncSettings(
       filter: $filter
       limit: $limit
       nextToken: $nextToken

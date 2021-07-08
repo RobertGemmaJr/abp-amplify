@@ -4,7 +4,7 @@ import { makeStyles } from "@material-ui/styles";
 
 import { account, questions as Qs, people as everyone} from "../../constants/tempDatabase" // TEMP
 
-import { CONTENT } from "../../constants/enum"
+import { CONTENT, FORM } from "../../constants/enum"
 import Title from "./Title"
 import Home from "./home/Home"
 import Keypad from "./keypad/Keypad"
@@ -70,8 +70,7 @@ export default function Main(props) {
   function handleResetClick() {
     setPeople(everyone);
     setQuestions(Qs);
-    console.log(questions);
-    setContent(CONTENT.KEYPAD);
+    form === FORM.MANUAL ? setContent(CONTENT.MANUAL) : setContent(CONTENT.KEYPAD);
   }
 
   // Hook for rendering the main content based on program state
@@ -93,7 +92,7 @@ export default function Main(props) {
         );
       case CONTENT.MANUAL:
           return (
-            <Manual handleResetClick={handleResetClick}/>
+            <Manual setContent={setContent} setPerson={setPerson}/>
           );
       case CONTENT.KEYPAD:
         return (

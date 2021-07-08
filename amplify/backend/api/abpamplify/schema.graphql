@@ -17,7 +17,7 @@ enum TIME {
   AFTERNOON
 }
 
-type Account @model @auth(rules: [{allow: owner}]) {
+type Settings @model @auth(rules: [{allow: owner}]) {
   id: ID!
   title: String!
   randomizeQuestions: Boolean!
@@ -37,7 +37,6 @@ type Question @model @auth(rules: [{allow: owner}]) {
   question: String!
   expectedResponse: String!
   checkboxes: [String!]
-  responses: [ResponseQuestion!] @connection(name: "QuestionResponses")
 }
 
 type Response @model @key(name: "byPerson", fields: ["personID"]) @auth(rules: [{allow: owner}]) {
@@ -46,14 +45,7 @@ type Response @model @key(name: "byPerson", fields: ["personID"]) @auth(rules: [
   date: AWSDate!
   formType: PTYPE!
   time: TIME!
-  questions: [ResponseQuestion!] @connection(name: "ResponseQuestions")
   responses: [String!]!
   passed: Boolean!
-}
-
-type ResponseQuestion @model(queries: null) @auth(rules: [{allow: owner}]) {
-  id: ID!
-  response: Response! @connection(name: "ResponseQuestions")
-  question: Question! @connection(name: "QuestionResponses")
 }
  

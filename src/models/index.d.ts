@@ -21,14 +21,14 @@ export enum Time {
 
 
 
-export declare class Account {
+export declare class Settings {
   readonly id: string;
   readonly title: string;
   readonly randomizeQuestions: boolean;
   readonly createdAt?: string;
   readonly updatedAt?: string;
-  constructor(init: ModelInit<Account>);
-  static copyOf(source: Account, mutator: (draft: MutableModel<Account>) => MutableModel<Account> | void): Account;
+  constructor(init: ModelInit<Settings>);
+  static copyOf(source: Settings, mutator: (draft: MutableModel<Settings>) => MutableModel<Settings> | void): Settings;
 }
 
 export declare class Person {
@@ -49,7 +49,6 @@ export declare class Response {
   readonly date: string;
   readonly formType: Ptype | keyof typeof Ptype;
   readonly time: Time | keyof typeof Time;
-  readonly questions?: ResponseQuestion[];
   readonly responses: string[];
   readonly passed: boolean;
   readonly createdAt?: string;
@@ -58,23 +57,12 @@ export declare class Response {
   static copyOf(source: Response, mutator: (draft: MutableModel<Response>) => MutableModel<Response> | void): Response;
 }
 
-export declare class ResponseQuestion {
-  readonly id: string;
-  readonly response: Response;
-  readonly question: Question;
-  readonly createdAt?: string;
-  readonly updatedAt?: string;
-  constructor(init: ModelInit<ResponseQuestion>);
-  static copyOf(source: ResponseQuestion, mutator: (draft: MutableModel<ResponseQuestion>) => MutableModel<ResponseQuestion> | void): ResponseQuestion;
-}
-
 export declare class Question {
   readonly id: string;
   readonly type: Qtype | keyof typeof Qtype;
   readonly question: string;
   readonly expectedResponse: string;
   readonly checkboxes?: string[];
-  readonly responses?: ResponseQuestion[];
   readonly createdAt?: string;
   readonly updatedAt?: string;
   constructor(init: ModelInit<Question>);

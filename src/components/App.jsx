@@ -27,7 +27,6 @@ const useStyles = makeStyles(theme => ({
  * @TODO Miscellaneous
  * Header(text and buttons), title, subtitle, etc. should scale down on xs devices
  * Images on <Home> page are cropped.
- * Put menu button on the <Home> page instead of the header? 
  * 
  */
 function App(props) {
@@ -44,8 +43,6 @@ function App(props) {
     setForm(FORM.NONE)
     setContent(CONTENT.HOME)
   }
-
-  console.log()
 
   return (
     <Box className={classes.root}>

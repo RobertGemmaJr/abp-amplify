@@ -1,9 +1,9 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const onCreateAccount = /* GraphQL */ `
-  subscription OnCreateAccount($owner: String) {
-    onCreateAccount(owner: $owner) {
+export const onCreateSettings = /* GraphQL */ `
+  subscription OnCreateSettings($owner: String) {
+    onCreateSettings(owner: $owner) {
       id
       title
       randomizeQuestions
@@ -16,9 +16,9 @@ export const onCreateAccount = /* GraphQL */ `
     }
   }
 `;
-export const onUpdateAccount = /* GraphQL */ `
-  subscription OnUpdateAccount($owner: String) {
-    onUpdateAccount(owner: $owner) {
+export const onUpdateSettings = /* GraphQL */ `
+  subscription OnUpdateSettings($owner: String) {
+    onUpdateSettings(owner: $owner) {
       id
       title
       randomizeQuestions
@@ -31,9 +31,9 @@ export const onUpdateAccount = /* GraphQL */ `
     }
   }
 `;
-export const onDeleteAccount = /* GraphQL */ `
-  subscription OnDeleteAccount($owner: String) {
-    onDeleteAccount(owner: $owner) {
+export const onDeleteSettings = /* GraphQL */ `
+  subscription OnDeleteSettings($owner: String) {
+    onDeleteSettings(owner: $owner) {
       id
       title
       randomizeQuestions
