@@ -5,12 +5,10 @@ import { CssBaseline, Box } from "@material-ui/core"
 import { makeStyles } from "@material-ui/styles";
 
 import { CONTENT, FORM } from "../constants/enum";
+import { getSettings, getPeople } from "../api";
 import Header from "./header/Header"
 import Main from "./main/Main"
 import Footer from "./footer/Footer"
-
-import { DataStore } from '@aws-amplify/datastore';
-import { Setting, Person } from '../models';
 
 
 const useStyles = makeStyles(theme => ({
@@ -20,28 +18,6 @@ const useStyles = makeStyles(theme => ({
     minHeight: "100vh",
   },
 }))
-
-async function getSettings() {
-  var models = await DataStore.query(Setting);
-
-  if (!models.length) {
-    // If no settings have been created, make initial one
-    await DataStore.save(
-      new Setting({
-        "title": "Change Title in Menu",
-        "randomizeQuestions": true
-      })
-    );
-    models = await DataStore.query(Setting)    
-  } else if (models.length > 1) console.error("Too many settings! Using first object")
-
-  return models[0];
-}
-
-async function getPeople() {
-  var models = await DataStore.query(Person);
-  return models
-}
 
 /**
  * 

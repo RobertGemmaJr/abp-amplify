@@ -46,6 +46,7 @@ export default function Main(props) {
   React.useEffect(() => {
     setPeople(everyone)
   })
+  console.log(people)
 
   // Hook for title
     // Just use settings hook from props (menu)
