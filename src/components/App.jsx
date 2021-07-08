@@ -37,8 +37,6 @@ const useStyles = makeStyles(theme => ({
 function App() {
   const classes = useStyles();
 
-  // Hook for the settings
-  const [settings, setSettings] = React.useState();
   // Function to get the settings
   async function getSettings() {
     const apiData = await API.graphql({query: listSettings})
@@ -60,6 +58,8 @@ function App() {
       console.log("getSettings response", res);
     }).catch(e => {
       console.log("getSettings error", e);
+
+      // If there's an error, create your initial settings
       createInitialSettings().then(res => {
         console.log("createInitialSettings response", res);
       }).catch(e => {
