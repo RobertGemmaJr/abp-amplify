@@ -142,12 +142,19 @@ export default function Main(props) {
     }
   }
   
+  function handleClick() {
+    if(content === CONTENT.KEYPAD || content === CONTENT.MANUAL || content === CONTENT.PEOPLE) {
+      // Only change on certain content states
+      setMorning(!morning)
+    } 
+  }
+  
   return (
     <Container component="main" className={classes.main}>
       <Container 
         disableGutters
         className={classes.title} 
-        onClick={() => setMorning(!morning)}
+        onClick={() => handleClick()}
       >
         <Title content={content} title={title} morning={morning} />
       </Container>

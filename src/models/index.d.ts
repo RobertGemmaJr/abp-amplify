@@ -21,14 +21,14 @@ export enum Time {
 
 
 
-export declare class Settings {
+export declare class Setting {
   readonly id: string;
   readonly title: string;
   readonly randomizeQuestions: boolean;
   readonly createdAt?: string;
   readonly updatedAt?: string;
-  constructor(init: ModelInit<Settings>);
-  static copyOf(source: Settings, mutator: (draft: MutableModel<Settings>) => MutableModel<Settings> | void): Settings;
+  constructor(init: ModelInit<Setting>);
+  static copyOf(source: Setting, mutator: (draft: MutableModel<Setting>) => MutableModel<Setting> | void): Setting;
 }
 
 export declare class Person {
@@ -46,11 +46,12 @@ export declare class Person {
 export declare class Response {
   readonly id: string;
   readonly personID: string;
-  readonly date: string;
+  readonly dateCreated: string;
   readonly formType: Ptype | keyof typeof Ptype;
   readonly time: Time | keyof typeof Time;
   readonly responses: string[];
   readonly passed: boolean;
+  readonly questions?: string[];
   readonly createdAt?: string;
   readonly updatedAt?: string;
   constructor(init: ModelInit<Response>);
@@ -62,7 +63,7 @@ export declare class Question {
   readonly type: Qtype | keyof typeof Qtype;
   readonly question: string;
   readonly expectedResponse: string;
-  readonly checkboxes?: string[];
+  readonly checkboxes: boolean[];
   readonly createdAt?: string;
   readonly updatedAt?: string;
   constructor(init: ModelInit<Question>);

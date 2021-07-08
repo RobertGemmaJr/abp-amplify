@@ -1,7 +1,7 @@
 export const schema = {
     "models": {
-        "Settings": {
-            "name": "Settings",
+        "Setting": {
+            "name": "Setting",
             "fields": {
                 "id": {
                     "name": "id",
@@ -178,8 +178,8 @@ export const schema = {
                     "isRequired": true,
                     "attributes": []
                 },
-                "date": {
-                    "name": "date",
+                "dateCreated": {
+                    "name": "dateCreated",
                     "isArray": false,
                     "type": "AWSDate",
                     "isRequired": true,
@@ -217,6 +217,14 @@ export const schema = {
                     "type": "Boolean",
                     "isRequired": true,
                     "attributes": []
+                },
+                "questions": {
+                    "name": "questions",
+                    "isArray": true,
+                    "type": "String",
+                    "isRequired": true,
+                    "attributes": [],
+                    "isArrayNullable": true
                 },
                 "createdAt": {
                     "name": "createdAt",
@@ -308,10 +316,10 @@ export const schema = {
                 "checkboxes": {
                     "name": "checkboxes",
                     "isArray": true,
-                    "type": "String",
+                    "type": "Boolean",
                     "isRequired": true,
                     "attributes": [],
-                    "isArrayNullable": true
+                    "isArrayNullable": false
                 },
                 "createdAt": {
                     "name": "createdAt",
@@ -387,5 +395,5 @@ export const schema = {
         }
     },
     "nonModels": {},
-    "version": "d8e5589a5bcaf395d8bcf04eba0a0378"
+    "version": "c8a0bc39420998c7181805f255ea8738"
 };

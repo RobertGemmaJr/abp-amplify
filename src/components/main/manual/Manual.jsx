@@ -8,7 +8,7 @@ import { CONTENT, FORM } from "../../../constants/enum";
 
 const useStyles = makeStyles(theme => ({
   manual: {
-    margin: theme.spacing(2, 0),
+    // margin: theme.spacing(2, 0),
   }
 }))
 
@@ -54,7 +54,8 @@ export default function Manual(props) {
           value={state.fName}
           onChange={handleChange}
           variant="outlined"
-          noValidate autoFocus
+          margin="normal"
+          noValidate required autoFocus
           className={classes.manual}
         />
 
@@ -65,7 +66,8 @@ export default function Manual(props) {
           value={state.lName}
           onChange={handleChange}
           variant="outlined"
-          noValidate
+          margin="normal"
+          noValidate required
           className={classes.manual}
         />
         
