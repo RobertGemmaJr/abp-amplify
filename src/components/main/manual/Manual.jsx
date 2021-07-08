@@ -8,8 +8,8 @@ import { CONTENT, FORM } from "../../../constants/enum";
 
 const useStyles = makeStyles(theme => ({
   manual: {
-    
-  },
+    margin: theme.spacing(2, 0),
+  }
 }))
 
 export default function Manual(props) {
@@ -27,6 +27,11 @@ export default function Manual(props) {
     }
 
     function manualEntry() {
+      // Check if person already exists by first and last name
+
+      // If exists, use it
+
+      // Otherwise create a new person
       const person = {
         id: 0, // Need to make sure I create a unique id
         type: FORM.MANUAL,
@@ -34,22 +39,23 @@ export default function Manual(props) {
         lName: state.lName,
         Responses: [],
       }
+      
 
-      // API call to create Person
       setPerson(person);
       setContent(CONTENT.QUESTIONNAIRE)
     }
 
     return (
-      <FlexBox className={classes.manual}>
-        <TextField
+      <FlexBox>
+        <TextField          
           id="fName"
           name="fName"
           label="First Name"
           value={state.fName}
           onChange={handleChange}
           variant="outlined"
-          noValidate
+          noValidate autoFocus
+          className={classes.manual}
         />
 
         <TextField
@@ -60,12 +66,14 @@ export default function Manual(props) {
           onChange={handleChange}
           variant="outlined"
           noValidate
+          className={classes.manual}
         />
         
         <Button 
           variant="contained"
           color="secondary"
           onClick={() => manualEntry()}
+          className={classes.manual}
         >
           SUBMIT
         </Button>

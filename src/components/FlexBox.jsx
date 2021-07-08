@@ -6,7 +6,6 @@ import ResetButton from "./ResetButton";
 const useStyles = makeStyles(theme => ({
   box: {
     width: "100%",
-    alignItems: "center",
   },
 }))
 
@@ -18,6 +17,7 @@ export default function FlexBox(props) {
       display="flex" 
       flexDirection="column" 
       alignItems="center" 
+      justifyContent="center"
       className={classes.box}
     >
       {props.children}
