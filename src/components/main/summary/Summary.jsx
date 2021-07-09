@@ -4,7 +4,6 @@ import { TableContainer, Table, TableHead, TableBody, TableRow, TableCell, Typog
 
 import { res } from "../../../constants/tempDatabase" // TEMP
 
-import { Ptype } from "../../../models";
 import Paper from "../../Paper";
 import SummaryText from "./SummaryText";
 
@@ -14,27 +13,14 @@ const useStyles = makeStyles(theme => ({
   },
 }))
 
-// Renders the form's text
-function formText(form) {
-  switch(form) {
-    case Ptype.NONE: return ""
-    case Ptype.FAMILY: return "Family"
-    case Ptype.STAFF: return "Staff"
-    case Ptype.MANUAL: return "Manual"
-    default:
-      console.error("Invalid form code:", form)
-      break;
-  }
-}
-
-function createRow(id, question, expectedResponse, receivedResponse) {
-  return {id, question, expectedResponse, receivedResponse }
+function createRow(index, question, expectedResponse, receivedResponse) {
+  return {index, question, expectedResponse, receivedResponse }
 }
 
 // API call for response?
 const rows = []
 res.questions.forEach((q, idx) => {
-  rows.push(createRow(q.id, q.question, q.expectedResponse, res.responses[idx]))
+  rows.push(createRow(q.index, q.question, q.expectedResponse, res.responses[idx]))
 })
 
 export default function Summary(props) {
@@ -51,10 +37,7 @@ export default function Summary(props) {
       />
       <SummaryText 
         title="Form: " 
-        body={
-          formText(res.form) + 
-          "-".concat(res.morning ? "Morning" : "Afternoon")
-        } 
+        body={ res.form + "-" + res.morning} 
       />
 
       {/* Table */}
@@ -62,7 +45,7 @@ export default function Summary(props) {
         <Table className={classes.table} size="small">
           <TableHead>
             <TableRow>
-              <TableCell align="center">ID</TableCell>
+              <TableCell align="center">Index</TableCell>
               <TableCell align="center">Question</TableCell>
               <TableCell align="center">Expected Response</TableCell>
               <TableCell align="center">Received Response</TableCell>
@@ -71,9 +54,9 @@ export default function Summary(props) {
           <TableBody>
             {rows.map(row => {
               return (
-                <TableRow key={row.id}> 
+                <TableRow key={row.index}> 
                   <TableCell component="th" scope="row">
-                    {row.id}
+                    {row.index}
                   </TableCell>
                   <TableCell align="left">{row.question}</TableCell>
                   <TableCell align="left">{row.expectedResponse}</TableCell>

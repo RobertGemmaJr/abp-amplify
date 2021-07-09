@@ -18,19 +18,6 @@ const useStyles = makeStyles(theme => ({
   },
 }))
 
-// Renders the form's text
-function formText(form) {
-  switch(form) {
-    case Ptype.NONE: return ""
-    case Ptype.FAMILY: return "FAMILY"
-    case Ptype.STAFF: return "STAFF"
-    case Ptype.MANUAL: return "MANUAL"
-    default:
-      console.error("Invalid form code:", form)
-      break;
-  }
-}
-
 export default function Header(props) {
     const classes = useStyles();
 
@@ -50,7 +37,7 @@ export default function Header(props) {
 
                 {/* Display Form */}
                 <Typography>
-                  {formText(props.form)}
+                  {props.form !== Ptype.NONE && props.form}
                 </Typography>
 
                 {/* Home Button */}

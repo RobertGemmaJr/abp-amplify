@@ -26,12 +26,10 @@ export default function Question(props) {
   const classes = useStyles();
   const { q, handleClick } = props;
 
-
-
   return (
     <Box alignContent="center" justifyContent="center" className={classes.question}>
       <Typography align="center" className={classes.text}>
-        {q.id + ") " + q.question}
+        {q.index + ") " + q.question}
       </Typography> 
       <Box className={classes.answer}>  
         <Button
