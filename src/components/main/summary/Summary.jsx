@@ -4,7 +4,7 @@ import { TableContainer, Table, TableHead, TableBody, TableRow, TableCell, Typog
 
 import { res } from "../../../constants/tempDatabase" // TEMP
 
-import { getNewestResponse } from "../../../api";
+// import { getNewestResponse } from "../../../api";
 import Paper from "../../Paper";
 import Text from "./Text";
 
@@ -29,14 +29,14 @@ export default function Summary(props) {
   const { handleResetClick, person } = props
 
   // Hook for response
-  const [response, setResponse] = React.useState(0);
+  // const [response, setResponse] = React.useState(0);
 
-  React.useEffect(() => {
-    getNewestResponse().then(res => {
-      setResponse(res)
-      // Check if response is nothing
-    }).catch(e => {console.error(e)})
-  }, [])
+  // React.useEffect(() => {
+  //   getNewestResponse().then(res => {
+  //     setResponse(res)
+  //     // Check if response is nothing
+  //   }).catch(e => {console.error(e)})
+  // }, [])
 
   return (
     <Paper handleResetClick={handleResetClick} person={person}>

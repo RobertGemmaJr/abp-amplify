@@ -46,17 +46,7 @@ export async function getResponses(startDate, endDate) {
 export async function getNewestResponse() {
   return
 }
-export async function createResponse(personId, date, type, time, questions, responses, passed) {
-  // Generate response
-   const response = {
-     personID: personId,
-     dateCreated: date,
-     formType: type,
-     time: time,
-     questions: questions,
-     responses: responses,
-     passed: passed
-  }
+export async function createResponse(response) {
   console.log(response)
   // await DataStore.save(
   //   new Response({
