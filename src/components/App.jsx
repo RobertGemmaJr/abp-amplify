@@ -18,6 +18,9 @@ const useStyles = makeStyles(theme => ({
   },
 }))
 
+const initialFormState = { time: Time.MORNING, ptype: Ptype.NONE }
+
+// Prevents unnecessary API calls
 var allPeople = null;
 var allQuestions = null;
 
@@ -68,17 +71,16 @@ function App() {
   // Hook for content to be shown
   const [content, setContent] = React.useState(Content.HOME);
 
-  const [form, setForm] = React.useState({
-    ptype: Ptype.NONE,
-    time: Time.MORNING
-  })
+  const [form, setForm] = React.useState(initialFormState)
 
   // Hook for the current person
   const [person, setPerson] = React.useState(null);
 
   // HandleClick for the home button in the header
   function handleHomeClick() {
-    setForm({...form, "ptype": Ptype.NONE})
+    setPeople(allPeople)
+    setQuestions(allQuestions)
+    setForm(initialFormState)
     setContent(Content.HOME)
   }
 

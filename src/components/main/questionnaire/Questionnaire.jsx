@@ -78,7 +78,6 @@ const responses = [];
 export default function Questionnaire(props) {
     const classes = useStyles();
     const { setContent, handleResetClick, person, questions, form } = props;
-    console.log(questions)
 
     // Hook for indexing the questions array
     const [i, setI] = React.useState(0);
