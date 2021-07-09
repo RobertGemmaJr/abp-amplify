@@ -1,14 +1,14 @@
 // Enumeration for the content to render
 // Added to schema
-export const CONTENT = Object.freeze({
-    HOME: 1,
-    MENU: 2,
-    MANUAL: 3,
-    KEYPAD: 4,
-    PEOPLE: 5,
-    QUESTIONNAIRE: 6,
-    SUMMARY: 7,
-})
+// export const CONTENT = Object.freeze({
+//     HOME: 1,
+//     MENU: 2,
+//     MANUAL: 3,
+//     KEYPAD: 4,
+//     PEOPLE: 5,
+//     QUESTIONNAIRE: 6,
+//     SUMMARY: 7,
+// })
 
 // Enumeration for the different question types
 // This is in schema
