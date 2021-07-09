@@ -54,10 +54,7 @@ function App() {
     getQuestions().then(res => {
       allQuestions = res;
       setQuestions(res)
-    }).catch(e => {
-      console.log("Error")
-      console.error(e)
-    }); 
+    }).catch(e => { console.error(e)}); 
   }, [])
 
   // Hook for user settings
@@ -75,6 +72,14 @@ function App() {
   // Hook for the current form
     // Make based on Content enum
   const [form, setForm] = React.useState(FORM.NONE);
+
+  // Hook for the time (morning or afternoon)
+    // Make based on Time enum
+    // Change to [time, setTime]
+  const [morning, setMorning] = React.useState(true)
+
+  // Hook for the current person
+  const [person, setPerson] = React.useState(null);
 
   // HandleClick for the home button in the header
   function handleHomeClick() {
@@ -102,8 +107,12 @@ function App() {
       <Main 
         settings={settings} setSettings={setSettings}
         people={people} setPeople={setPeople}
+        questions={questions} setQuestions={setQuestions}
         content={content} setContent={setContent} 
         form={form} setForm={setForm}
+        morning={morning} setMorning={setMorning}
+        person={person} setPerson={setPerson}
+        handleResetClick={handleResetClick}
       />
       <Footer />
     </Box>

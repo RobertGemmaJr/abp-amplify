@@ -1,7 +1,6 @@
+import { Predicates, SortDirection } from 'aws-amplify';
 import { DataStore } from '@aws-amplify/datastore';
 import { Setting, Person, Question, Response } from './models';
-
-import { questions } from './constants/tempDatabase';
 
 // Returns all models of type Setting
 // There should be exactly 1 per user
@@ -18,7 +17,7 @@ export async function getSettings() {
     );
     models = await DataStore.query(Setting)    
   } else if (models.length > 1) console.error("Too many settings! Using first object")
-
+  // TODO: This error is happening
   return models[0];
 }
 
@@ -28,47 +27,12 @@ export async function getPeople() {
 }
 
 // Returns all models of type Question
+// Questions are sorted by index
 export async function getQuestions() {
-  const models = await DataStore.query(Question);
-  console.log(models)
-
-  if(!models.length) {
-    console.log("empty")
-
-    for(let i=0; i < questions.length; i++) {
-      await DataStore.save(
-        new Question({
-          "index": questions[i].index,
-          "type": questions[i].type,
-          "question": questions[i].question,
-          "expectedResponse": questions[i].expectedResponse,
-          "checkboxes":  questions[i].checkboxes
-      })
-    )}
-    // questions.forEach(q => {
-    //   await DataStore.save(
-    //     new Question({
-    //       "index": q.index,
-    //       "type": q.type,
-    //       "question": q.question,
-    //       "expectedResponse": q.expectedResponse,
-    //       "checkboxes":  q.checkboxes
-    //   })
-    // );   
-    // })
-  } else {
-    console.log("questions", models)
-
-    // models.forEach(m => {
-    //   DataStore.delete(m); // TEMP
-    // })
-  }
-
-
-
-  
+  const models = await DataStore.query(Question, Predicates.ALL, {
+    sort: q => q.index(SortDirection.ASCENDING)
+  });
   return models
-  // return await DataStore.query(Question)
 }
 
 // Returns all models of type Response dated between the start and end date

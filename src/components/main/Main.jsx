@@ -2,9 +2,7 @@ import React from "react";
 import { Container } from "@material-ui/core"
 import { makeStyles } from "@material-ui/styles";
 
-import { questions as Qs, people as everyone} from "../../constants/tempDatabase" // TEMP
-
-import { CONTENT, FORM } from "../../constants/enum"
+import { CONTENT } from "../../constants/enum"
 import Title from "./Title"
 import Home from "./home/Home"
 import Keypad from "./keypad/Keypad"
@@ -39,8 +37,11 @@ const useStyles = makeStyles(theme => ({
 
 export default function Main(props) {
   const classes = useStyles();
-  const {settings, setSettings, people, setPeople,
-        content, setContent, form, setForm } = props;
+  const {
+    settings, setSettings, people, setPeople, questions, setQuestions, 
+    content, setContent, form, setForm, morning, setMorning, person, setPerson, 
+    handleResetClick 
+  } = props;
 
   // Hook for title
     // Just use settings hook from props (menu)
@@ -50,22 +51,11 @@ export default function Main(props) {
     // Just use settings hook from props (menu)
   const [randomized, setRandomized] = React.useState(settings.randomizeQuestions);
 
-  // Hook for all questions
-    // Move to App in API
-  const [questions, setQuestions] = React.useState(Qs); // Do in <App>
+  // // Hook for the time (morning or afternoon)
+  // const [morning, setMorning] = React.useState(true)
 
-  // Hook for the time (morning or afternoon)
-  const [morning, setMorning] = React.useState(true)
-
-  // Hook for the current person
-  const [person, setPerson] = React.useState(null);
-
-  // handleClick for the reset button
-  function handleResetClick() {
-    setPeople(everyone);
-    setQuestions(Qs);
-    form === FORM.MANUAL ? setContent(CONTENT.MANUAL) : setContent(CONTENT.KEYPAD);
-  }
+  // // Hook for the current person
+  // const [person, setPerson] = React.useState(null);
 
   // Hook for rendering the main content based on program state
   function renderContent() {
