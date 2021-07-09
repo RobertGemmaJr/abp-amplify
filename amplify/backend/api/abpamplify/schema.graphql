@@ -44,6 +44,7 @@ type Person @model @auth(rules: [{allow: owner}]) {
 
 type Question @model @auth(rules: [{allow: owner}]) {
   id: ID!
+  index: Int!
   type: QTYPE!
   question: String!
   expectedResponse: String!

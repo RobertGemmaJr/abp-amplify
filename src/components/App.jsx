@@ -5,7 +5,7 @@ import { makeStyles } from "@material-ui/styles";
 
 import { CONTENT, FORM } from "../constants/enum";
 // import { Content, Ptype } from "../models"
-import { getSettings, getPeople } from "../api";
+import { getSettings, getPeople, getQuestions } from "../api";
 import Header from "./header/Header"
 import Main from "./main/Main"
 import Footer from "./footer/Footer"
@@ -18,6 +18,9 @@ const useStyles = makeStyles(theme => ({
     minHeight: "100vh",
   },
 }))
+
+var allPeople = null;
+var allQuestions = null;
 
 /**
  * 
@@ -37,17 +40,21 @@ function App() {
 
   // DataStore API calls on initial render
   React.useEffect(() => {
-    console.log("Running effect")
     getSettings().then(res => {
       setSettings(res)
     }).catch(e => {console.error(e)})
 
     getPeople().then(res => {
+      allPeople = res;
       setPeople(res)
     }).catch(e => {console.error(e)}); 
 
 
     // getQuestions(); 
+    getQuestions().then(res => {
+      allQuestions = res;
+      setQuestions(res)
+    }).catch(e => {console.error(e)}); 
   }, [])
 
   // Hook for user settings
@@ -57,7 +64,7 @@ function App() {
   const [people, setPeople] = React.useState(0);
 
   // Hook for user's questions
-  // const [questions, setQuestions] = React.useState(0);
+  const [questions, setQuestions] = React.useState(0);
 
   // Hook for content to be shown
   const [content, setContent] = React.useState(CONTENT.HOME);
@@ -74,10 +81,12 @@ function App() {
 
   // HandleClick for the reset button
   function handleResetClick() {
-    // Currently in MAIN
+    setPeople(allPeople);
+    setQuestions(allQuestions);
+    form === FORM.MANUAL ? setContent(CONTENT.MANUAL) : setContent(CONTENT.KEYPAD);
   }
 
-  console.log(people)
+  // console.log(questions)
 
   return (
     <Box className={classes.root}>

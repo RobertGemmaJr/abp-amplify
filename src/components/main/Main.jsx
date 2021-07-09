@@ -42,12 +42,6 @@ export default function Main(props) {
   const {settings, setSettings, people, setPeople,
         content, setContent, form, setForm } = props;
 
-  // Temp - set people to tempDatabase at initial render
-  // React.useEffect(() => {
-  //   // Note that this is going to be called on each render
-  //   setPeople(everyone)
-  // })
-
   // Hook for title
     // Just use settings hook from props (menu)
   const [title, setTitle] = React.useState(settings.title)
