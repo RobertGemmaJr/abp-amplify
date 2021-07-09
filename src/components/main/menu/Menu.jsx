@@ -4,8 +4,6 @@ import { Paper, TextField, Box, Button, Checkbox, FormGroup, FormControlLabel, T
 import CloudUploadIcon from '@material-ui/icons/CloudUpload';
 import { makeStyles } from "@material-ui/styles";
 
-import { questions } from "../../../constants/tempDatabase" // TEMP
-
 import { Content } from "../../../models";
 import MenuQCard from "./MenuQCard";
 import AddQButton from "./AddQButton";
@@ -36,15 +34,9 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-// API.getQuestions
-const tempQuestions = [];
-questions.forEach(q => {
-    tempQuestions.push(<MenuQCard key={q.id} q={q}/>);
-})
-
 export default function Menu(props) {
   const classes = useStyles();
-  const {setContent, title, setTitle, randomized, setRandomized} = props;
+  const {setContent, title, setTitle, randomized, setRandomized, questions} = props;
 
   // API call for title abd randomized
   // Hook for menu state
@@ -197,9 +189,7 @@ export default function Menu(props) {
       </FormGroup>
 
       {/* Display Questions */}
-      {
-      /* key is the questions index. State is its values */}
-      {tempQuestions}
+      {questions.map(q => {return <MenuQCard key={q.id} q={q}/>})}
       
       {/* Question buttons */}
       <Box className={classes.box} display="flex" justifyContent="space-evenly">

@@ -40,7 +40,7 @@ export default function Main(props) {
   const {
     settings, setSettings, people, setPeople, questions, setQuestions, 
     content, setContent, form, setForm, morning, setMorning, person, setPerson, 
-    handleResetClick 
+    handleResetClick, allQuestions, allPeople
   } = props;
 
   // Hook for title
@@ -67,12 +67,13 @@ export default function Main(props) {
             setTitle={setTitle}
             randomized={randomized}
             setRandomized={setRandomized}
+            questions={allQuestions} people={allPeople}
           />
         );
       case Content.MANUAL:
-          return (
-            <Manual setContent={setContent} setPerson={setPerson}/>
-          );
+        return (
+          <Manual setContent={setContent} setPerson={setPerson}/>
+        );
       case Content.KEYPAD:
         return (
           <Keypad 

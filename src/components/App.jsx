@@ -112,6 +112,7 @@ function App() {
         morning={morning} setMorning={setMorning}
         person={person} setPerson={setPerson}
         handleResetClick={handleResetClick}
+        allQuestions={allQuestions} allPeople={allPeople}
       />
       <Footer />
     </Box>
