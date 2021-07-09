@@ -1,10 +1,10 @@
 import React from "react";
-
 import { withAuthenticator } from '@aws-amplify/ui-react'
 import { CssBaseline, Box } from "@material-ui/core"
 import { makeStyles } from "@material-ui/styles";
 
 import { CONTENT, FORM } from "../constants/enum";
+// import { Content, Ptype } from "../models"
 import { getSettings, getPeople } from "../api";
 import Header from "./header/Header"
 import Main from "./main/Main"
@@ -37,6 +37,7 @@ function App() {
 
   // DataStore API calls on initial render
   React.useEffect(() => {
+    console.log("Running effect")
     getSettings().then(res => {
       setSettings(res)
     }).catch(e => {console.error(e)})
@@ -56,11 +57,13 @@ function App() {
   const [people, setPeople] = React.useState(0);
 
   // Hook for user's questions
+  // const [questions, setQuestions] = React.useState(0);
 
   // Hook for content to be shown
   const [content, setContent] = React.useState(CONTENT.HOME);
 
   // Hook for the current form
+    // Make based on Content enum
   const [form, setForm] = React.useState(FORM.NONE);
 
   // HandleClick for the home button in the header
@@ -68,6 +71,13 @@ function App() {
     setForm(FORM.NONE)
     setContent(CONTENT.HOME)
   }
+
+  // HandleClick for the reset button
+  function handleResetClick() {
+    // Currently in MAIN
+  }
+
+  console.log(people)
 
   return (
     <Box className={classes.root}>

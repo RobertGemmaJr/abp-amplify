@@ -17,6 +17,16 @@ enum TIME {
   AFTERNOON
 }
 
+enum CONTENT {
+  HOME
+  MENU
+  MANUAL
+  KEYPAD
+  PEOPLE
+  QUESTIONNAIRE
+  SUMMARY
+}
+
 type Setting @model @auth(rules: [{allow: owner}]) {
   id: ID!
   title: String!

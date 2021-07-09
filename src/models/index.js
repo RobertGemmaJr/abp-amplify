@@ -21,6 +21,16 @@ const Time = {
   "AFTERNOON": "AFTERNOON"
 };
 
+const Content = {
+  "HOME": "HOME",
+  "MENU": "MENU",
+  "MANUAL": "MANUAL",
+  "KEYPAD": "KEYPAD",
+  "PEOPLE": "PEOPLE",
+  "QUESTIONNAIRE": "QUESTIONNAIRE",
+  "SUMMARY": "SUMMARY"
+};
+
 const { Setting, Person, Response, Question } = initSchema(schema);
 
 export {
@@ -30,5 +40,6 @@ export {
   Question,
   Qtype,
   Ptype,
-  Time
+  Time,
+  Content
 };

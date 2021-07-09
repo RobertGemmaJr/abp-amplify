@@ -399,6 +399,18 @@ export const schema = {
                 "MORNING",
                 "AFTERNOON"
             ]
+        },
+        "Content": {
+            "name": "Content",
+            "values": [
+                "HOME",
+                "MENU",
+                "MANUAL",
+                "KEYPAD",
+                "PEOPLE",
+                "QUESTIONNAIRE",
+                "SUMMARY"
+            ]
         }
     },
     "nonModels": {},

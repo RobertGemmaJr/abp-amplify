@@ -19,6 +19,16 @@ export enum Time {
   AFTERNOON = "AFTERNOON"
 }
 
+export enum Content {
+  HOME = "HOME",
+  MENU = "MENU",
+  MANUAL = "MANUAL",
+  KEYPAD = "KEYPAD",
+  PEOPLE = "PEOPLE",
+  QUESTIONNAIRE = "QUESTIONNAIRE",
+  SUMMARY = "SUMMARY"
+}
+
 
 
 export declare class Setting {

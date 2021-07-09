@@ -2,7 +2,7 @@ import React from "react";
 import { Container } from "@material-ui/core"
 import { makeStyles } from "@material-ui/styles";
 
-import { account, questions as Qs, people as everyone} from "../../constants/tempDatabase" // TEMP
+import { questions as Qs, people as everyone} from "../../constants/tempDatabase" // TEMP
 
 import { CONTENT, FORM } from "../../constants/enum"
 import Title from "./Title"
@@ -43,20 +43,21 @@ export default function Main(props) {
         content, setContent, form, setForm } = props;
 
   // Temp - set people to tempDatabase at initial render
-  React.useEffect(() => {
-    // Note that this is going to be called on each render
-    setPeople(everyone)
-  })
+  // React.useEffect(() => {
+  //   // Note that this is going to be called on each render
+  //   setPeople(everyone)
+  // })
 
   // Hook for title
     // Just use settings hook from props (menu)
-  const [title, setTitle] = React.useState(account.title)
+  const [title, setTitle] = React.useState(settings.title)
 
   // Hook for isRandomized
     // Just use settings hook from props (menu)
-  const [randomized, setRandomized] = React.useState(account.randomizeQuestions);
+  const [randomized, setRandomized] = React.useState(settings.randomizeQuestions);
 
   // Hook for all questions
+    // Move to App in API
   const [questions, setQuestions] = React.useState(Qs); // Do in <App>
 
   // Hook for the time (morning or afternoon)

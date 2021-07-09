@@ -1,4 +1,5 @@
 // Enumeration for the content to render
+// Added to schema
 export const CONTENT = Object.freeze({
     HOME: 1,
     MENU: 2,
