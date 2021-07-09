@@ -5,7 +5,7 @@ import { TableContainer, Table, TableHead, TableBody, TableRow, TableCell, Typog
 import { res } from "../../../constants/tempDatabase" // TEMP
 
 import Paper from "../../Paper";
-import SummaryText from "./SummaryText";
+import Text from "./Text";
 
 const useStyles = makeStyles(theme => ({
   table: {
@@ -29,13 +29,13 @@ export default function Summary(props) {
 
   return (
     <Paper handleResetClick={handleResetClick} person={person}>
-      <SummaryText title="Response: " body={res.id} />
-      <SummaryText title="Submitted On: " body={res.date} />
-      <SummaryText 
+      <Text title="Response: " body={res.id} />
+      <Text title="Submitted On: " body={res.date} />
+      <Text 
         title="Submitted By: "
         body={res.person.fName + " " + res.person.lName}
       />
-      <SummaryText 
+      <Text 
         title="Form: " 
         body={ res.form + "-" + res.morning} 
       />

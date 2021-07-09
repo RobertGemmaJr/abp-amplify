@@ -7,7 +7,7 @@ const useStyles = makeStyles(theme => ({
   },
 }))
 
-export default function MenuQSwitch(props) {
+export default function CardSwitch(props) {
   const classes = useStyles();
   const {state, setSwitch} = props;
 

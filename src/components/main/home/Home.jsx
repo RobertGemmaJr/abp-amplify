@@ -8,7 +8,7 @@ import thermometerGuy from "../../../media/Thermometer Guy.ico"
 import logo from "../../../media/logos/Apple Blossom logo solid color.png"
 
 import FlexBox from "../../FlexBox";
-import HomeCard from "./HomeCard"
+import HomeCard from "./Card"
 
 const useStyles = makeStyles(theme => ({
   outer: {

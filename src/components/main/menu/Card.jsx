@@ -5,8 +5,8 @@ import { ArrowDropDown, ArrowDropUp } from "@material-ui/icons"
 import DeleteIcon from "@material-ui/icons/Delete"
 
 import { Qtype } from "../../../models";
-import MenuQSwitch from "./MenuQSwitch"
-import MenuQCheckboxes from "./MenuQCheckboxes"
+import CardSwitch from "./CardSwitch"
+import CardCheckboxes from "./CardCheckboxes"
 
 const useStyles = makeStyles(theme => ({
   card: {
@@ -23,7 +23,7 @@ const useStyles = makeStyles(theme => ({
   },
 }))
 
-export default function MenuQCard(props) {
+export default function MenuCard(props) {
   const classes = useStyles()
   const { q } = props
 
@@ -56,7 +56,7 @@ export default function MenuQCard(props) {
               value={state.question}
               onChange={handleChange}
             />
-            <MenuQSwitch 
+            <CardSwitch 
               state={state} 
               setSwitch={setSwitch}
               label="Response"
@@ -135,7 +135,7 @@ export default function MenuQCard(props) {
         {renderResponse()}
 
         {/* Checkboxes */}
-        <MenuQCheckboxes state={state} setCheckboxes={setCheckboxes} className={classes.group}/>
+        <CardCheckboxes state={state} setCheckboxes={setCheckboxes} className={classes.group}/>
 
         {/* Delete button */}
         <Button className={classes.delete} >

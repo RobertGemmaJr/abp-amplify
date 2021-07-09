@@ -18,7 +18,7 @@ function Row(props) {
   return <Grid container item alignItems="center"> {props.children} </Grid>
 }
 
-export default function MenuQCheckboxes(props) {
+export default function CardCheckboxes(props) {
   const classes = useStyles();
   const {state, setCheckboxes} = props;
 

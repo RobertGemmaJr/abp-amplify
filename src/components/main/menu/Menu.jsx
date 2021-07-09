@@ -5,7 +5,7 @@ import CloudUploadIcon from '@material-ui/icons/CloudUpload';
 import { makeStyles } from "@material-ui/styles";
 
 import { Content } from "../../../models";
-import MenuQCard from "./MenuQCard";
+import MenuQCard from "./Card";
 import AddQButton from "./AddQButton";
 
 // Returns date as a "yyyy-mm-dd" format

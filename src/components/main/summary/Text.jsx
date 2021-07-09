@@ -12,7 +12,7 @@ const useStyles = makeStyles(theme => ({
   },
 }))
 
-export default function SummaryText(props) {
+export default function Text(props) {
   const classes = useStyles()
   const { title, body } = props
 
