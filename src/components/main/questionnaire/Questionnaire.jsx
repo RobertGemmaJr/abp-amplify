@@ -67,19 +67,16 @@ function submitResponses(personId, form, questions, responses, setContent) {
   // responses.length = 0; 
 }
 
-// Keep track of the user's responses in an array
-const responses = [];
-
 export default function Questionnaire(props) {
     const classes = useStyles();
-    const { setContent, handleResetClick, person, questions, form } = props;
+    const { setContent, handleResetClick, person, questions, form, responses, setResponses } = props;
 
     // Hook for indexing the questions array
     const [i, setI] = React.useState(0);
 
     // Handle clicks that submit an answer
     function handleClick(response) {
-      responses.push(response)
+      setResponses(responses.concat(response))
       setI(i + 1);
     }
 

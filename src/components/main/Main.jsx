@@ -39,8 +39,8 @@ export default function Main(props) {
   const classes = useStyles();
   const {
     settings, setSettings, people, setPeople, questions, setQuestions, 
-    content, setContent, form, setForm, person, setPerson, handleResetClick, 
-    allQuestions, allPeople
+    content, setContent, form, setForm, person, setPerson, responses, setResponses, 
+    handleResetClick, allQuestions, allPeople
   } = props;
 
   // Hook for title
@@ -104,6 +104,7 @@ export default function Main(props) {
               person={person} 
               questions={questions}
               form={form}
+              responses={responses} setResponses={setResponses}
             />
           );
       case Content.SUMMARY:

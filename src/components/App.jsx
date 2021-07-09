@@ -76,18 +76,23 @@ function App() {
   // Hook for the current person
   const [person, setPerson] = React.useState(null);
 
+  // Hook for person's responses to the questions
+  const [responses, setResponses] = React.useState([]);
+
   // HandleClick for the home button in the header
   function handleHomeClick() {
-    setPeople(allPeople)
-    setQuestions(allQuestions)
-    setForm(initialFormState)
-    setContent(Content.HOME)
+    setPeople(allPeople);
+    setQuestions(allQuestions);
+    setForm(initialFormState);
+    setResponses([]);
+    setContent(Content.HOME);
   }
 
   // HandleClick for the reset button
   function handleResetClick() {
     setPeople(allPeople);
     setQuestions(allQuestions);
+    setResponses([]);
     form.ptype === Ptype.MANUAL ? setContent(Content.MANUAL) : setContent(Content.KEYPAD);
   }
 
@@ -106,6 +111,7 @@ function App() {
         content={content} setContent={setContent} 
         form={form} setForm={setForm}
         person={person} setPerson={setPerson}
+        responses={responses} setResponses={setResponses} 
         handleResetClick={handleResetClick}
         allQuestions={allQuestions} allPeople={allPeople}
       />
