@@ -2,7 +2,8 @@ import React from "react"
 import { Box, Button } from "@material-ui/core";
 import { makeStyles } from "@material-ui/styles";
 
-import { CONTENT, FORM } from "../../../constants/enum"
+import { FORM } from "../../../constants/enum"
+import { Content } from "../../../models";
 import familyLogo from "../../../media/Health Check Family Logo.png"
 import thermometerGuy from "../../../media/Thermometer Guy.ico"
 import logo from "../../../media/logos/Apple Blossom logo solid color.png"
@@ -61,7 +62,7 @@ export default function Home(props) {
       <Button 
         variant="contained" 
         className={classes.hButton}
-        onClick={() => setContent(CONTENT.MENU)}
+        onClick={() => setContent(Content.MENU)}
         color="secondary"
         size="large"
       >

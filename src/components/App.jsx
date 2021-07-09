@@ -3,8 +3,8 @@ import { withAuthenticator } from '@aws-amplify/ui-react'
 import { CssBaseline, Box } from "@material-ui/core"
 import { makeStyles } from "@material-ui/styles";
 
-import { CONTENT, FORM } from "../constants/enum";
-// import { Content, Ptype } from "../models"
+import { FORM } from "../constants/enum";
+import { Content } from "../models";
 import { getSettings, getPeople, getQuestions } from "../api";
 import Header from "./header/Header"
 import Main from "./main/Main"
@@ -67,7 +67,7 @@ function App() {
   const [questions, setQuestions] = React.useState(0);
 
   // Hook for content to be shown
-  const [content, setContent] = React.useState(CONTENT.HOME);
+  const [content, setContent] = React.useState(Content.HOME);
 
   // Hook for the current form
     // Make based on Content enum
@@ -84,14 +84,14 @@ function App() {
   // HandleClick for the home button in the header
   function handleHomeClick() {
     setForm(FORM.NONE)
-    setContent(CONTENT.HOME)
+    setContent(Content.HOME)
   }
 
   // HandleClick for the reset button
   function handleResetClick() {
     setPeople(allPeople);
     setQuestions(allQuestions);
-    form === FORM.MANUAL ? setContent(CONTENT.MANUAL) : setContent(CONTENT.KEYPAD);
+    form === FORM.MANUAL ? setContent(Content.MANUAL) : setContent(Content.KEYPAD);
   }
 
   // console.log(questions)

@@ -6,7 +6,7 @@ import { makeStyles } from "@material-ui/styles";
 
 import { questions } from "../../../constants/tempDatabase" // TEMP
 
-import { CONTENT } from "../../../constants/enum";
+import { Content } from "../../../models";
 import MenuQCard from "./MenuQCard";
 import AddQButton from "./AddQButton";
 
@@ -85,7 +85,7 @@ export default function Menu(props) {
     // API call to add/remove people
     setTitle(state.newTitle);
     setRandomized(state.randomized)
-    setContent(CONTENT.HOME)
+    setContent(Content.HOME)
     // window.location.reload();
   }
 

@@ -1,13 +1,12 @@
 import React from "react";
 import { makeStyles } from "@material-ui/styles";
-import { TableContainer, Table, TableHead, TableBody, TableRow, TableCell } from "@material-ui/core";
+import { TableContainer, Table, TableHead, TableBody, TableRow, TableCell, Typography } from "@material-ui/core";
+
+import { res } from "../../../constants/tempDatabase" // TEMP
 
 import { FORM } from "../../../constants/enum" 
 import Paper from "../../Paper";
 import SummaryText from "./SummaryText";
-
-import { res } from "../../../constants/tempDatabase" // TEMP
-import { Typography } from "@material-ui/core";
 
 const useStyles = makeStyles(theme => ({
   table: {

@@ -1,7 +1,7 @@
 import React from "react";
 import { makeStyles } from "@material-ui/styles";
 
-import { CONTENT } from "../../../constants/enum";
+import { Content } from "../../../models";
 import Paper from "../../Paper"
 import Question from "./Question";
 
@@ -62,11 +62,11 @@ function submitResponses(questions, responses, morning, setResponse, setContent)
     morning: morning,
     passed: checkPassed(questions, responses)
   }
-  console.log(response.morning);
+  console.log(response);
 
   // Write the response to the database
 
-  setContent(CONTENT.SUMMARY);
+  setContent(Content.SUMMARY);
   responses.length = 0; //Clear responses array
 }
 

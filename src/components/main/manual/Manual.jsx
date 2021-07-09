@@ -2,9 +2,9 @@ import React from "react";
 import { TextField, Button } from "@material-ui/core";
 import { makeStyles } from "@material-ui/styles";
 
+import { FORM } from "../../../constants/enum";
+import { Content } from "../../../models"
 import FlexBox from "../../FlexBox";
-
-import { CONTENT, FORM } from "../../../constants/enum";
 
 const useStyles = makeStyles(theme => ({
   manual: {
@@ -42,7 +42,7 @@ export default function Manual(props) {
       
 
       setPerson(person);
-      setContent(CONTENT.QUESTIONNAIRE)
+      setContent(Content.QUESTIONNAIRE)
     }
 
     return (

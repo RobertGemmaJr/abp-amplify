@@ -1,7 +1,7 @@
 import { GridList, GridListTile } from "@material-ui/core"
 import { makeStyles } from "@material-ui/styles";
 
-import { CONTENT } from "../../../constants/enum";
+import { Content } from "../../../models";
 import FlexBox from "../../FlexBox";
 import Person from "./Person"
 
@@ -34,7 +34,7 @@ export default function People(props) {
     }
 
     // Render the questionnaire
-    setContent(CONTENT.QUESTIONNAIRE)
+    setContent(Content.QUESTIONNAIRE)
   }
 
   return (

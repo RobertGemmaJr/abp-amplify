@@ -2,7 +2,7 @@ import React from "react";
 import { Container } from "@material-ui/core"
 import { makeStyles } from "@material-ui/styles";
 
-import { CONTENT } from "../../constants/enum"
+import { Content } from "../../models";
 import Title from "./Title"
 import Home from "./home/Home"
 import Keypad from "./keypad/Keypad"
@@ -51,20 +51,14 @@ export default function Main(props) {
     // Just use settings hook from props (menu)
   const [randomized, setRandomized] = React.useState(settings.randomizeQuestions);
 
-  // // Hook for the time (morning or afternoon)
-  // const [morning, setMorning] = React.useState(true)
-
-  // // Hook for the current person
-  // const [person, setPerson] = React.useState(null);
-
   // Hook for rendering the main content based on program state
   function renderContent() {
     switch(content) {
-      case CONTENT.HOME:
+      case Content.HOME:
         return (
           <Home setContent={setContent} setForm={setForm} />
         );
-      case CONTENT.MENU:
+      case Content.MENU:
         return (
           <Menu 
             setContent={setContent} 
@@ -75,11 +69,11 @@ export default function Main(props) {
             setRandomized={setRandomized}
           />
         );
-      case CONTENT.MANUAL:
+      case Content.MANUAL:
           return (
             <Manual setContent={setContent} setPerson={setPerson}/>
           );
-      case CONTENT.KEYPAD:
+      case Content.KEYPAD:
         return (
           <Keypad 
             setContent={setContent} 
@@ -89,7 +83,7 @@ export default function Main(props) {
             setPeople={setPeople}
           />
         );
-      case CONTENT.PEOPLE:
+      case Content.PEOPLE:
         return (
           <People 
             setContent={setContent} 
@@ -102,7 +96,7 @@ export default function Main(props) {
             questions={questions} setQuestions={setQuestions}
           />
         );
-      case CONTENT.QUESTIONNAIRE:
+      case Content.QUESTIONNAIRE:
           return (
             <Questionnaire 
               setContent={setContent}
@@ -112,7 +106,7 @@ export default function Main(props) {
               morning={morning}
             />
           );
-      case CONTENT.SUMMARY:
+      case Content.SUMMARY:
           return (
             <Summary 
               setContent={setContent} 
@@ -127,7 +121,7 @@ export default function Main(props) {
   }
   
   function handleClick() {
-    if(content === CONTENT.KEYPAD || content === CONTENT.MANUAL || content === CONTENT.PEOPLE) {
+    if(content === Content.KEYPAD || content === Content.MANUAL || content === Content.PEOPLE) {
       // Only change on certain content states
       setMorning(!morning)
     } 

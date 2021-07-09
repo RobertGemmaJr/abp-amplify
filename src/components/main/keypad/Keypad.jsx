@@ -1,6 +1,6 @@
 import { Button, GridList, GridListTile, makeStyles } from '@material-ui/core';
 
-import { CONTENT } from "../../../constants/enum"
+import { Content } from "../../../models"
 import FlexBox from "../../FlexBox"
 
 const useStyles = makeStyles(theme => ({
@@ -29,8 +29,7 @@ export default function Keypad(props) {
       // person.type === form && person.fName.charAt(0) === letter
       person.fName.charAt(0) === letter
     ))
-    setContent(CONTENT.PEOPLE)
-    console.log(form, people[0].type)
+    setContent(Content.PEOPLE)
   }
 
   return (
