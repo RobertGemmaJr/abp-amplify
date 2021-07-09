@@ -17,7 +17,7 @@ export async function getSettings() {
     );
     models = await DataStore.query(Setting)    
   } else if (models.length > 1) console.error("Too many settings! Using first object")
-  // TODO: This error is happening
+    // TODO: This error is happening
   return models[0];
 }
 
