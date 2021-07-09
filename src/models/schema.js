@@ -297,6 +297,13 @@ export const schema = {
                     "isRequired": true,
                     "attributes": []
                 },
+                "index": {
+                    "name": "index",
+                    "isArray": false,
+                    "type": "Int",
+                    "isRequired": true,
+                    "attributes": []
+                },
                 "type": {
                     "name": "type",
                     "isArray": false,
@@ -414,5 +421,5 @@ export const schema = {
         }
     },
     "nonModels": {},
-    "version": "2fff664a97f7056760fa04bd915e039c"
+    "version": "bbf4a5604e346e05286604efa486eb06"
 };

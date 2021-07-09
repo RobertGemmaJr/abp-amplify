@@ -54,7 +54,10 @@ function App() {
     getQuestions().then(res => {
       allQuestions = res;
       setQuestions(res)
-    }).catch(e => {console.error(e)}); 
+    }).catch(e => {
+      console.log("Error")
+      console.error(e)
+    }); 
   }, [])
 
   // Hook for user settings

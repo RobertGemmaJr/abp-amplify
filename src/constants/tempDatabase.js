@@ -3,43 +3,43 @@ import { Qtype, Ptype, Time } from "../models"
 // All of the people associated with the account
 export const people = [
     {
-        id: Math.floor(Math.random() * 1000),
+
         type: Ptype.FAMILY,
         fName: "Robert",
         lName: "Gemma",
     },
     {
-        id: Math.floor(Math.random() * 1000),
+
         type: Ptype.FAMILY,
         fName: "Carl",
         lName: "Salvo",
     },
     {
-        id: Math.floor(Math.random() * 1000),
+
         type: Ptype.FAMILY,
         fName: "Anthony",
         lName: "Dutra",
     },
     {
-        id: Math.floor(Math.random() * 1000),
+
         type: Ptype.STAFF,
         fName: "Robert",
         lName: "Gemma",
     },
     {
-        id: Math.floor(Math.random() * 1000),
+
         type: Ptype.STAFF,
         fName: "Carl",
         lName: "Salvo",
     },
     {
-        id: Math.floor(Math.random() * 1000),
+
         type: Ptype.STAFF,
         fName: "Anthony",
         lName: "Dutra",
     },
     {
-        id: Math.floor(Math.random() * 1000),
+
         type: Ptype.MANUAL,
         fName: "First Name",
         lName: "Last Name",
@@ -164,7 +164,6 @@ export const questions = [
 
 // An example response
 export const res = {
-    id: Math.floor(Math.random() * 1000),
     date: "2021-01-01",
     form: Ptype.FAMILY,
     morning: Time.MORNING,

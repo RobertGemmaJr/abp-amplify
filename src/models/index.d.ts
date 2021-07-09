@@ -71,6 +71,7 @@ export declare class Response {
 
 export declare class Question {
   readonly id: string;
+  readonly index: number;
   readonly type: Qtype | keyof typeof Qtype;
   readonly question: string;
   readonly expectedResponse: string;
