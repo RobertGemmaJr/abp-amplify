@@ -16,7 +16,6 @@ const useStyles = makeStyles(theme => ({
 
 // Get checkbox index for the current form
 function getIndex(form) {
-  console.log(form)
   if      (form.ptype === Ptype.FAMILY && form.time === Time.MORNING) return 0;
   else if (form.ptype === Ptype.FAMILY && form.time === Time.AFTERNOON) return 1;
   else if (form.ptype === Ptype.STAFF && form.time === Time.MORNING) return 2;

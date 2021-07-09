@@ -19,9 +19,9 @@ export default function AddQButton() {
     "Add Text Question",
     "Add Temperature Question",
   ];
-  
-  const [open, setOpen] = React.useState(false);
+
   const anchorRef = React.useRef(null);
+  const [open, setOpen] = React.useState(false);
   const [selectedIndex, setSelectedIndex] = React.useState(0);
 
   // Handle actual button click
@@ -41,9 +41,7 @@ export default function AddQButton() {
 
   // Closes on click away
   const handleClose = (event) => {
-    if (anchorRef.current && anchorRef.current.contains(event.target)) {
-      return;
-    }
+    if (anchorRef.current && anchorRef.current.contains(event.target)) return;
     setOpen(false);
   };
 

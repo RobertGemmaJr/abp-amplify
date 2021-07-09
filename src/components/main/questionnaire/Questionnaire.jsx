@@ -2,6 +2,7 @@ import React from "react";
 import { makeStyles } from "@material-ui/styles";
 
 import { Content } from "../../../models";
+import { createResponse } from "../../../api";
 import Paper from "../../Paper"
 import Question from "./Question";
 
@@ -41,35 +42,29 @@ const useStyles = makeStyles(theme => ({
 function getDate() {
   const today = new Date()
   return (
-    String(today.getMonth()+1).padStart(2, "0") + "/" + 
-    String(today.getDate()).padStart(2, "0") +  "/" +
-    today.getFullYear()
+    today.getFullYear() + "-" + 
+    String(today.getMonth()+1).padStart(2, "0") + "-" + 
+    String(today.getDate()).padStart(2, "0")
   );
 }
 
 // Returns true if all of the user responses match the question's expectedResponse
 function checkPassed(questions, responses) {
+  console.log("checkPassed", questions, responses)
   return true //TEMP
 }
 
 // Submits a response to the database
-function submitResponses(form, questions, responses, setContent) {
-  // Generate response
-  const response = {
-    // personID
-    dateCreated: getDate(), // Make sure this is an AWS date
-    formType: form.ptype,
-    time: form.time,
-    questions: questions, // Just question strings
-    responses: responses, // Just strings
-    passed: checkPassed(questions, responses)
-  }
-  console.log(response);
+function submitResponses(personId, form, questions, responses, setContent) {
+  const strQuestions = []
+  questions.forEach(q => { strQuestions.push(q.question) })
 
   // Write the response to the database
+  createResponse(personId, getDate(), form.ptype, form.time, questions, 
+    responses, checkPassed(questions, responses))
 
   setContent(Content.SUMMARY);
-  responses.length = 0; //Clear responses array
+  // responses.length = 0; 
 }
 
 // Keep track of the user's responses in an array
@@ -98,7 +93,9 @@ export default function Questionnaire(props) {
             q={questions[i]}
             handleClick={handleClick}
           />
-        : submitResponses(form, questions, responses, setContent)}
+        : 
+          submitResponses(person.id, form, questions, responses, setContent)
+        }
       </Paper>
     )
 }

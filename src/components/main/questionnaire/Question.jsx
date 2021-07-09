@@ -36,7 +36,7 @@ export default function Question(props) {
           variant="contained" 
           color="primary"
           size="large"
-          onClick={() => handleClick("yes")}
+          onClick={() => handleClick("Yes")}
         >
           Yes
         </Button>
@@ -44,7 +44,7 @@ export default function Question(props) {
           variant="contained"
           color="primary" 
           size="large"
-          onClick={() => handleClick("no")}
+          onClick={() => handleClick("No")}
         >
           No
         </Button>

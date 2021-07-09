@@ -41,3 +41,32 @@ export async function getQuestions() {
 export async function getResponses(startDate, endDate) {
   return await DataStore.query(Response)
 }
+
+// Returns the most recently created response
+export async function getNewestResponse() {
+  return
+}
+export async function createResponse(personId, date, type, time, questions, responses, passed) {
+  // Generate response
+   const response = {
+     personID: personId,
+     dateCreated: date,
+     formType: type,
+     time: time,
+     questions: questions,
+     responses: responses,
+     passed: passed
+  }
+  console.log(response)
+  // await DataStore.save(
+  //   new Response({
+	// 	"dateCreated": response.dateCreated,
+	// 	"formType": response.formType,
+	// 	"time": response.time,
+	// 	"questions": response.questions,
+	// 	"responses": response.responses,
+	// 	"passed": response.passed
+	//   })
+  // );
+  return
+}
