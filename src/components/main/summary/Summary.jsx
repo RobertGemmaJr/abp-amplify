@@ -4,7 +4,7 @@ import { TableContainer, Table, TableHead, TableBody, TableRow, TableCell, Typog
 
 import { res } from "../../../constants/tempDatabase" // TEMP
 
-import { FORM } from "../../../constants/enum" 
+import { Ptype } from "../../../models";
 import Paper from "../../Paper";
 import SummaryText from "./SummaryText";
 
@@ -17,10 +17,10 @@ const useStyles = makeStyles(theme => ({
 // Renders the form's text
 function formText(form) {
   switch(form) {
-    case FORM.NONE: return ""
-    case FORM.FAMILY: return "Family"
-    case FORM.STAFF: return "Staff"
-    case FORM.MANUAL: return "Manual"
+    case Ptype.NONE: return ""
+    case Ptype.FAMILY: return "Family"
+    case Ptype.STAFF: return "Staff"
+    case Ptype.MANUAL: return "Manual"
     default:
       console.error("Invalid form code:", form)
       break;

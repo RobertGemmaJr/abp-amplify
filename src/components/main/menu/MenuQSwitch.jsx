@@ -17,8 +17,6 @@ export default function MenuQSwitch(props) {
     setSwitch(value)
   }
 
-  
-
   return (
     <Grid 
       container 

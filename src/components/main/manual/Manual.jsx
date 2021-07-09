@@ -2,8 +2,7 @@ import React from "react";
 import { TextField, Button } from "@material-ui/core";
 import { makeStyles } from "@material-ui/styles";
 
-import { FORM } from "../../../constants/enum";
-import { Content } from "../../../models"
+import { Content, Ptype } from "../../../models"
 import FlexBox from "../../FlexBox";
 
 const useStyles = makeStyles(theme => ({
@@ -32,15 +31,14 @@ export default function Manual(props) {
       // If exists, use it
 
       // Otherwise create a new person
+      // THIS IS NOT THE CORRECT FORMAT
       const person = {
         id: 0, // Need to make sure I create a unique id
-        type: FORM.MANUAL,
+        type: Ptype.MANUAL,
         fName: state.fName,
         lName: state.lName,
         Responses: [],
       }
-      
-
       setPerson(person);
       setContent(Content.QUESTIONNAIRE)
     }

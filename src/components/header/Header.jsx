@@ -3,7 +3,7 @@ import { makeStyles } from "@material-ui/styles";
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 
-import { FORM } from "../../constants/enum"
+import { Ptype } from "../../models";
 
 const useStyles = makeStyles(theme => ({
   header: {
@@ -21,10 +21,10 @@ const useStyles = makeStyles(theme => ({
 // Renders the form's text
 function formText(form) {
   switch(form) {
-    case FORM.NONE: return ""
-    case FORM.FAMILY: return "FAMILY"
-    case FORM.STAFF: return "STAFF"
-    case FORM.MANUAL: return "MANUAL"
+    case Ptype.NONE: return ""
+    case Ptype.FAMILY: return "FAMILY"
+    case Ptype.STAFF: return "STAFF"
+    case Ptype.MANUAL: return "MANUAL"
     default:
       console.error("Invalid form code:", form)
       break;

@@ -3,8 +3,7 @@ import { withAuthenticator } from '@aws-amplify/ui-react'
 import { CssBaseline, Box } from "@material-ui/core"
 import { makeStyles } from "@material-ui/styles";
 
-import { FORM } from "../constants/enum";
-import { Content } from "../models";
+import { Content, Ptype } from "../models";
 import { getSettings, getPeople, getQuestions } from "../api";
 import Header from "./header/Header"
 import Main from "./main/Main"
@@ -71,7 +70,7 @@ function App() {
 
   // Hook for the current form
     // Make based on Content enum
-  const [form, setForm] = React.useState(FORM.NONE);
+  const [form, setForm] = React.useState(Ptype.NONE);
 
   // Hook for the time (morning or afternoon)
     // Make based on Time enum
@@ -83,7 +82,7 @@ function App() {
 
   // HandleClick for the home button in the header
   function handleHomeClick() {
-    setForm(FORM.NONE)
+    setForm(Ptype.NONE)
     setContent(Content.HOME)
   }
 
@@ -91,7 +90,7 @@ function App() {
   function handleResetClick() {
     setPeople(allPeople);
     setQuestions(allQuestions);
-    form === FORM.MANUAL ? setContent(Content.MANUAL) : setContent(Content.KEYPAD);
+    form === Ptype.MANUAL ? setContent(Content.MANUAL) : setContent(Content.KEYPAD);
   }
 
   // console.log(questions)

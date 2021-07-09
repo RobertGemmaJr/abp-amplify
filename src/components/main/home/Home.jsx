@@ -2,8 +2,7 @@ import React from "react"
 import { Box, Button } from "@material-ui/core";
 import { makeStyles } from "@material-ui/styles";
 
-import { FORM } from "../../../constants/enum"
-import { Content } from "../../../models";
+import { Content, Ptype } from "../../../models";
 import familyLogo from "../../../media/Health Check Family Logo.png"
 import thermometerGuy from "../../../media/Thermometer Guy.ico"
 import logo from "../../../media/logos/Apple Blossom logo solid color.png"
@@ -36,8 +35,8 @@ export default function Home(props) {
         <HomeCard 
           setContent={setContent} 
           setForm={setForm}
-          key={FORM.FAMILY}
-          form={FORM.FAMILY}
+          key={Ptype.FAMILY}
+          form={Ptype.FAMILY}
           image={familyLogo} 
           text="Family Form"
           
@@ -45,16 +44,16 @@ export default function Home(props) {
         <HomeCard 
           setContent={setContent} 
           setForm={setForm}
-          key={FORM.STAFF}
-          form={FORM.STAFF}
+          key={Ptype.STAFF}
+          form={Ptype.STAFF}
           image={thermometerGuy} 
           text="Staff Form"
         />
         <HomeCard 
           setContent={setContent} 
           setForm={setForm}
-          key={FORM.MANUAL}
-          form={FORM.MANUAL}
+          key={Ptype.MANUAL}
+          form={Ptype.MANUAL}
           image={logo} 
           text="Manual Entry"
         />

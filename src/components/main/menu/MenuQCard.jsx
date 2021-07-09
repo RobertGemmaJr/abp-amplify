@@ -4,7 +4,7 @@ import { Button, Card, TextField, Box, ButtonGroup } from "@material-ui/core"
 import { ArrowDropDown, ArrowDropUp } from "@material-ui/icons"
 import DeleteIcon from "@material-ui/icons/Delete"
 
-import { QTYPE } from "../../../constants/enum";
+import { Qtype } from "../../../models";
 import MenuQSwitch from "./MenuQSwitch"
 import MenuQCheckboxes from "./MenuQCheckboxes"
 
@@ -38,13 +38,7 @@ export default function MenuQCard(props) {
   // Renders the question based on its type
   function renderResponse() {
     switch(q.type) {
-      case QTYPE.TEMPERATURE:
-        // Not implemented yet
-        return null; 
-      case QTYPE.TEXT:
-        // Not implemented yet
-        return null; 
-      case QTYPE.BOOLEAN:
+      case Qtype.BOOLEAN:
         return (
           <Box
             display="flex"
@@ -70,22 +64,30 @@ export default function MenuQCard(props) {
             />
           </Box>
         )
+      case Qtype.TEXT:
+        // Not implemented yet
+        return null; 
+      case Qtype.TEMP:
+        // Not implemented yet
+        return null; 
+      case Qtype.TEMP_CHECKBOX:
+          // Not implemented yet
+        return null;
       default:
         console.error("Invalid question type")
         break;
     }
-
   }
 
   // Handle up click
   function handleUpClick() {
-    // Use question's id to move it up one in order
-    console.log("Up click", q.id)
+    // Use question's index to move it up one in order
+    console.log("Up click", q.index)
   }
   // Handle down click 
   function handleDownClick() {
-    // Use question's id to move it down one in order
-    console.log("Down Click", q.id)
+    // Use question's index to move it down one in order
+    console.log("Down Click", q.index)
   }
 
   // Handle change for switch
