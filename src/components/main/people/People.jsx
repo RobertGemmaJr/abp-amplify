@@ -15,28 +15,27 @@ const useStyles = makeStyles(theme => ({
 }))
 
 // Get checkbox index for the current form
-function getIndex(form, morning) {
-  if      (form === Ptype.FAMILY && morning === true) return 0;
-  else if (form === Ptype.FAMILY && morning === false) return 1;
-  else if (form === Ptype.STAFF && morning === true) return 2;
-  else if (form === Ptype.STAFF && morning === false) return 3;
-  else if (form === Ptype.MANUAL && morning === true) return 4;
-  else if (form === Ptype.MANUAL && morning === false) return 5;
-  else console.error("Invalid form settings", form, morning)
+function getIndex(form) {
+  if      (form.ptype === Ptype.FAMILY && form.time === true) return 0;
+  else if (form.ptype === Ptype.FAMILY && form.time === false) return 1;
+  else if (form.ptype === Ptype.STAFF && form.time === true) return 2;
+  else if (form.ptype === Ptype.STAFF && form.time === false) return 3;
+  else if (form.ptype === Ptype.MANUAL && form.time === true) return 4;
+  else if (form.ptype === Ptype.MANUAL && form.time === false) return 5;
+  else console.error("Invalid form settings", form.ptype, form.time)
 }
 
 export default function People(props) {
   const classes = useStyles();
-  const { setContent, handleResetClick, people, form, morning, randomizeQuestions,
+  const { setContent, handleResetClick, people, form, randomizeQuestions,
           setPerson, questions, setQuestions } = props;
 
   function generateQuestionnaire(person) {
     setPerson(person)
 
-    const idx = getIndex(form, morning)
+    const idx = getIndex(form)
 
     // Filter questions by filter index
-    console.log("Start", questions)
     setQuestions(questions.filter(q => q.checkboxes[idx]))
     if(randomizeQuestions) {
       // Note that this is a biased randomization algorithm

@@ -2,7 +2,7 @@ import React from "react";
 import { Container } from "@material-ui/core"
 import { makeStyles } from "@material-ui/styles";
 
-import { Content } from "../../models";
+import { Content, Time } from "../../models";
 import Title from "./Title"
 import Home from "./home/Home"
 import Keypad from "./keypad/Keypad"
@@ -39,8 +39,8 @@ export default function Main(props) {
   const classes = useStyles();
   const {
     settings, setSettings, people, setPeople, questions, setQuestions, 
-    content, setContent, form, setForm, morning, setMorning, person, setPerson, 
-    handleResetClick, allQuestions, allPeople
+    content, setContent, form, setForm, person, setPerson, handleResetClick, 
+    allQuestions, allPeople
   } = props;
 
   // Hook for title
@@ -56,7 +56,7 @@ export default function Main(props) {
     switch(content) {
       case Content.HOME:
         return (
-          <Home setContent={setContent} setForm={setForm} />
+          <Home setContent={setContent} form={form} setForm={setForm} />
         );
       case Content.MENU:
         return (
@@ -79,7 +79,7 @@ export default function Main(props) {
           <Keypad 
             setContent={setContent} 
             handleResetClick={handleResetClick}
-            form={form} 
+            ptype={form.ptype} 
             people={people} 
             setPeople={setPeople}
           />
@@ -91,7 +91,6 @@ export default function Main(props) {
             handleResetClick={handleResetClick}
             people={people}
             form={form} 
-            morning={morning} 
             randomizeQuestions={settings.randomizeQuestions}
             setPerson={setPerson}
             questions={questions} setQuestions={setQuestions}
@@ -104,7 +103,7 @@ export default function Main(props) {
               handleResetClick={handleResetClick}
               person={person} 
               questions={questions}
-              morning={morning}
+              form={form}
             />
           );
       case Content.SUMMARY:
@@ -121,10 +120,11 @@ export default function Main(props) {
     }
   }
   
-  function handleClick() {
+  function handleTitleClick() {
     if(content === Content.KEYPAD || content === Content.MANUAL || content === Content.PEOPLE) {
       // Only change on certain content states
-      setMorning(!morning)
+      console.log(form)
+      setForm({...form, "time": form.time = (form.time === Time.MORNING ? Time.AFTERNOON : Time.MORNING)})
     } 
   }
   
@@ -133,9 +133,9 @@ export default function Main(props) {
       <Container 
         disableGutters
         className={classes.title} 
-        onClick={() => handleClick()}
+        onClick={() => handleTitleClick()}
       >
-        <Title content={content} title={settings.title} morning={morning} />
+        <Title content={content} title={settings.title} time={form.time} />
       </Container>
       <Container className={classes.content}>
         {renderContent()} 

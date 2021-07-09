@@ -19,11 +19,11 @@ const useStyles = makeStyles(theme => ({
 
 export default function HomeCard(props) {
   const classes = useStyles();
-  const {setContent, setForm, form, image, text} = props;
+  const {setContent, form, setForm, ptype, image, text} = props;
 
-  function handleCardClick(form) {
-    setForm(form)
-    switch(form) {
+  function handleCardClick() {
+    setForm({...form, "ptype": ptype})
+    switch(ptype) {
       case Ptype.FAMILY:
         setContent(Content.KEYPAD);
         break;
@@ -34,14 +34,14 @@ export default function HomeCard(props) {
         setContent(Content.MANUAL);
         break;
       default:
-        console.error("Invalid form code: ", form)
+        console.error("Invalid form code: ", form.ptype)
         break;
     }
   }
 
   return (
     <Card className={classes.card}>
-      <CardActionArea onClick={() => handleCardClick(form)}>
+      <CardActionArea onClick={() => handleCardClick()}>
         <CardMedia 
           className={classes.media}
           image={image}

@@ -3,7 +3,7 @@ import { withAuthenticator } from '@aws-amplify/ui-react'
 import { CssBaseline, Box } from "@material-ui/core"
 import { makeStyles } from "@material-ui/styles";
 
-import { Content, Ptype } from "../models";
+import { Content, Ptype, Time } from "../models";
 import { getSettings, getPeople, getQuestions } from "../api";
 import Header from "./header/Header"
 import Main from "./main/Main"
@@ -68,21 +68,26 @@ function App() {
   // Hook for content to be shown
   const [content, setContent] = React.useState(Content.HOME);
 
+  const [form, setForm] = React.useState({
+    ptype: Ptype.NONE,
+    time: Time.MORNING
+  })
+
   // Hook for the current form
     // Make based on Content enum
-  const [form, setForm] = React.useState(Ptype.NONE);
+  // const [form, setForm] = React.useState(Ptype.NONE);
 
   // Hook for the time (morning or afternoon)
     // Make based on Time enum
     // Change to [time, setTime]
-  const [morning, setMorning] = React.useState(true)
+  // const [morning, setMorning] = React.useState(true)
 
   // Hook for the current person
   const [person, setPerson] = React.useState(null);
 
   // HandleClick for the home button in the header
   function handleHomeClick() {
-    setForm(Ptype.NONE)
+    setForm({...form, "ptype": Ptype.NONE})
     setContent(Content.HOME)
   }
 
@@ -90,10 +95,8 @@ function App() {
   function handleResetClick() {
     setPeople(allPeople);
     setQuestions(allQuestions);
-    form === Ptype.MANUAL ? setContent(Content.MANUAL) : setContent(Content.KEYPAD);
+    form.ptype === Ptype.MANUAL ? setContent(Content.MANUAL) : setContent(Content.KEYPAD);
   }
-
-  // console.log(questions)
 
   return (
     <Box className={classes.root}>
@@ -109,7 +112,6 @@ function App() {
         questions={questions} setQuestions={setQuestions}
         content={content} setContent={setContent} 
         form={form} setForm={setForm}
-        morning={morning} setMorning={setMorning}
         person={person} setPerson={setPerson}
         handleResetClick={handleResetClick}
         allQuestions={allQuestions} allPeople={allPeople}

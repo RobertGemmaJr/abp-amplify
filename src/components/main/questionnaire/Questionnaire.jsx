@@ -53,13 +53,15 @@ function checkPassed(questions, responses) {
 }
 
 // Submits a response to the database
-function submitResponses(questions, responses, morning, setResponse, setContent) {
+function submitResponses(form, questions, responses, setContent) {
   // Generate response
   const response = {
-    id: Math.floor(Math.random() * 1000),
-    date: getDate(),
-    questions: questions,
-    morning: morning,
+    // personID
+    dateCreated: getDate(), // Make sure this is an AWS date
+    formType: form.ptype,
+    time: form.time,
+    questions: questions, // Just question strings
+    responses: responses, // Just strings
     passed: checkPassed(questions, responses)
   }
   console.log(response);
@@ -75,7 +77,8 @@ const responses = [];
 
 export default function Questionnaire(props) {
     const classes = useStyles();
-    const { setContent, handleResetClick, person, questions, morning, setResponse } = props;
+    const { setContent, handleResetClick, person, questions, form } = props;
+    console.log(questions)
 
     // Hook for indexing the questions array
     const [i, setI] = React.useState(0);
@@ -92,11 +95,11 @@ export default function Questionnaire(props) {
         {i < questions.length ? 
           <Question 
             className={classes.question}
-            key={questions[i].id}  
+            key={questions[i].index}  
             q={questions[i]}
             handleClick={handleClick}
           />
-        : submitResponses(questions, responses, morning, setResponse, setContent)}
+        : submitResponses(form, questions, responses, setContent)}
       </Paper>
     )
 }

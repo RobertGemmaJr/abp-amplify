@@ -20,6 +20,7 @@ const useStyles = makeStyles(theme => ({
 
 export default function Header(props) {
     const classes = useStyles();
+    const { form, homeClick } = props
 
     return (
       <header className={classes.header}>
@@ -37,14 +38,14 @@ export default function Header(props) {
 
                 {/* Display Form */}
                 <Typography>
-                  {props.form !== Ptype.NONE && props.form}
+                  {form.ptype !== Ptype.NONE && form.ptype}
                 </Typography>
 
                 {/* Home Button */}
                 <Button 
                   variant="contained" 
                   className={classes.hButton}
-                  onClick={props.homeClick}
+                  onClick={homeClick}
                   color="secondary"
                 >
                   Home

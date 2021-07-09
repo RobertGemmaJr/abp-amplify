@@ -20,13 +20,13 @@ const useStyles = makeStyles(theme => ({
 
 export default function Keypad(props) {
   const classes = useStyles();
-  const {setContent, handleResetClick, form, people, setPeople} = props;
+  const {setContent, handleResetClick, ptype, people, setPeople} = props;
   const alphabet = 'ABCDEFGHIJKLMNOPQRTSUVWXYZ'.split('')
 
   function handleKeypadClick(letter) {
-    // Filter people by the current form and the selected letter
+    // Filter people by the current ptype and the selected letter
     setPeople(people.filter(person => 
-      person.type === form && person.fName.charAt(0) === letter
+      person.type === ptype && person.fName.charAt(0) === letter
     ))
     setContent(Content.PEOPLE)
   }

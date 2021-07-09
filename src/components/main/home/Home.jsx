@@ -27,33 +27,33 @@ const useStyles = makeStyles(theme => ({
 
 export default function Home(props) {
   const classes = useStyles();
-  const {setContent, setForm} = props;
+  const {setContent, form, setForm} = props;
 
   return (
     <FlexBox setContent={setContent}>
       <Box className={classes.inner}>
         <HomeCard 
           setContent={setContent} 
-          setForm={setForm}
+          form={form} setForm={setForm}
           key={Ptype.FAMILY}
-          form={Ptype.FAMILY}
+          ptype={Ptype.FAMILY}
           image={familyLogo} 
           text="Family Form"
           
         />
         <HomeCard 
           setContent={setContent} 
-          setForm={setForm}
+          form={form} setForm={setForm}
           key={Ptype.STAFF}
-          form={Ptype.STAFF}
+          ptype={Ptype.STAFF}
           image={thermometerGuy} 
           text="Staff Form"
         />
         <HomeCard 
           setContent={setContent} 
-          setForm={setForm}
+          form={form} setForm={setForm}
           key={Ptype.MANUAL}
-          form={Ptype.MANUAL}
+          ptype={Ptype.MANUAL}
           image={logo} 
           text="Manual Entry"
         />
