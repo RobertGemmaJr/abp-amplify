@@ -73,15 +73,6 @@ function App() {
     time: Time.MORNING
   })
 
-  // Hook for the current form
-    // Make based on Content enum
-  // const [form, setForm] = React.useState(Ptype.NONE);
-
-  // Hook for the time (morning or afternoon)
-    // Make based on Time enum
-    // Change to [time, setTime]
-  // const [morning, setMorning] = React.useState(true)
-
   // Hook for the current person
   const [person, setPerson] = React.useState(null);
 
