@@ -1,4 +1,4 @@
-import { Container, Typography } from "@material-ui/core"
+import { Box, Container, Typography } from "@material-ui/core"
 import { makeStyles } from "@material-ui/styles";
 
 const useStyles = makeStyles(theme => ({
@@ -16,7 +16,7 @@ export default function Footer(props) {
   const classes = useStyles();
   
   return (
-    <footer className={classes.footer}>
+    <Box component="footer" className={classes.footer}>
       <Container>
         <Typography 
           variant="body2"
@@ -27,6 +27,6 @@ export default function Footer(props) {
           {new Date().getFullYear()}
         </Typography>
       </Container>
-    </footer>
+    </Box>
   )
 }

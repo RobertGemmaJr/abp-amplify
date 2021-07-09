@@ -1,7 +1,5 @@
-import { AppBar, Container, Toolbar } from "@material-ui/core"
+import { Box, AppBar, Container, Toolbar, Typography, Button } from "@material-ui/core"
 import { makeStyles } from "@material-ui/styles";
-import Typography from '@material-ui/core/Typography';
-import Button from '@material-ui/core/Button';
 
 import { Ptype } from "../../models";
 
@@ -23,7 +21,7 @@ export default function Header(props) {
     const { form, homeClick } = props
 
     return (
-      <header className={classes.header}>
+      <Box component="header" className={classes.header}>
         <AppBar position="fixed">
           <Container disableGutters>
               <Toolbar>
@@ -54,6 +52,6 @@ export default function Header(props) {
           </Container>
         </AppBar>
         <Toolbar /> {/* Forces content below fixed AppBar */}
-      </header>
+      </Box>
     )
 }

@@ -59,7 +59,7 @@ function App() {
     }).catch(e => { console.error(e)}); 
   }, [])
 
-  // Hook for user settings
+  // Hook for user's settings
   const [settings, setSettings] = React.useState(0);
 
   // Hook for user's people
