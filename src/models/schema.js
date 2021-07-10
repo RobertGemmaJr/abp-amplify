@@ -109,11 +109,11 @@ export const schema = {
                     "isRequired": true,
                     "attributes": []
                 },
-                "Responses": {
-                    "name": "Responses",
+                "Submissions": {
+                    "name": "Submissions",
                     "isArray": true,
                     "type": {
-                        "model": "Response"
+                        "model": "Submission"
                     },
                     "isRequired": true,
                     "attributes": [],
@@ -168,8 +168,8 @@ export const schema = {
                 }
             ]
         },
-        "Response": {
-            "name": "Response",
+        "Submission": {
+            "name": "Submission",
             "fields": {
                 "id": {
                     "name": "id",
@@ -206,10 +206,10 @@ export const schema = {
                 "questions": {
                     "name": "questions",
                     "isArray": true,
-                    "type": "String",
+                    "type": "ID",
                     "isRequired": true,
                     "attributes": [],
-                    "isArrayNullable": true
+                    "isArrayNullable": false
                 },
                 "responses": {
                     "name": "responses",
@@ -217,7 +217,7 @@ export const schema = {
                     "type": "String",
                     "isRequired": true,
                     "attributes": [],
-                    "isArrayNullable": true
+                    "isArrayNullable": false
                 },
                 "passed": {
                     "name": "passed",
@@ -244,7 +244,7 @@ export const schema = {
                 }
             },
             "syncable": true,
-            "pluralName": "Responses",
+            "pluralName": "Submissions",
             "attributes": [
                 {
                     "type": "model",
@@ -414,5 +414,5 @@ export const schema = {
         }
     },
     "nonModels": {},
-    "version": "3d6394084f9238e1d87609069df467b9"
+    "version": "a2fea8f17b43a81885402c671880a714"
 };

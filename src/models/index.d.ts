@@ -47,25 +47,25 @@ export declare class Person {
   readonly type: Ptype | keyof typeof Ptype;
   readonly fName: string;
   readonly lName: string;
-  readonly Responses?: Response[];
+  readonly Submissions?: Submission[];
   readonly createdAt?: string;
   readonly updatedAt?: string;
   constructor(init: ModelInit<Person>);
   static copyOf(source: Person, mutator: (draft: MutableModel<Person>) => MutableModel<Person> | void): Person;
 }
 
-export declare class Response {
+export declare class Submission {
   readonly id: string;
   readonly personID: string;
   readonly formType: Ptype | keyof typeof Ptype;
   readonly time: Time | keyof typeof Time;
-  readonly questions?: string[];
-  readonly responses?: string[];
+  readonly questions: string[];
+  readonly responses: string[];
   readonly passed: boolean;
   readonly createdAt?: string;
   readonly updatedAt?: string;
-  constructor(init: ModelInit<Response>);
-  static copyOf(source: Response, mutator: (draft: MutableModel<Response>) => MutableModel<Response> | void): Response;
+  constructor(init: ModelInit<Submission>);
+  static copyOf(source: Submission, mutator: (draft: MutableModel<Submission>) => MutableModel<Submission> | void): Submission;
 }
 
 export declare class Question {

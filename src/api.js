@@ -1,6 +1,6 @@
 import { Predicates, SortDirection } from 'aws-amplify';
 import { DataStore } from '@aws-amplify/datastore';
-import { Setting, Person, Question, Response } from './models';
+import { Setting, Person, Question, Submission } from './models';
 
 /********* READ **********/
 
@@ -45,14 +45,14 @@ export async function getQuestions() {
 }
 
 // Returns all models of type Response dated between the start and end date
-export async function getResponses(startDate, endDate) {
-  return await DataStore.query(Response)
+export async function getSubmissions(startDate, endDate) {
+  return await DataStore.query(Submission)
 }
 
 /********** CREATE **********/
 
-export async function createResponse(submission) {
-  const res = new Response({
+export async function createSubmission(submission) {
+  const res = new Submission({
     "personID": submission.personID,
     "formType": submission.formType,
     "time": submission.time,

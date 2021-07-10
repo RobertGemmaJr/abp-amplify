@@ -39,7 +39,7 @@ type Person @model @auth(rules: [{allow: owner}]) {
   type: PTYPE!
   fName: String!
   lName: String!
-  Responses: [Response!] @connection(keyName: "byPerson", fields: ["id"])
+  Submissions: [Submission!] @connection(keyName: "byPerson", fields: ["id"])
 }
 
 type Question @model @auth(rules: [{allow: owner}]) {
@@ -51,12 +51,12 @@ type Question @model @auth(rules: [{allow: owner}]) {
   checkboxes: [Boolean!]!
 }
 
-type Response @model @auth(rules: [{allow: owner}]) @key(name: "byPerson", fields: ["personID"]) {
+type Submission @model @auth(rules: [{allow: owner}]) @key(name: "byPerson", fields: ["personID"]) {
   id: ID!
   personID: ID!
   formType: PTYPE!
   time: TIME!
-  questions: [String!]
-  responses: [String!]
+  questions: [ID!]!
+  responses: [String!]!
   passed: Boolean!
 }

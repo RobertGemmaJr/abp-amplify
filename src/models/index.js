@@ -31,12 +31,12 @@ const Content = {
   "SUMMARY": "SUMMARY"
 };
 
-const { Setting, Person, Response, Question } = initSchema(schema);
+const { Setting, Person, Submission, Question } = initSchema(schema);
 
 export {
   Setting,
   Person,
-  Response,
+  Submission,
   Question,
   Qtype,
   Ptype,

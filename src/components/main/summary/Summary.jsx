@@ -28,7 +28,7 @@ export default function Summary(props) {
     for(var i=0; i < 10; i++) {
       rows.push(createRow("Index", "question", "expected", "actual"))
     }
-  }, [])
+  })
 
   return (
     <Paper handleResetClick={handleResetClick} person={person}>

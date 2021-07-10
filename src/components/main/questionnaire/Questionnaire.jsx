@@ -2,7 +2,7 @@ import React from "react";
 import { makeStyles } from "@material-ui/styles";
 
 import { Content } from "../../../models";
-import { createResponse } from "../../../api";
+import { createSubmission } from "../../../api";
 import Paper from "../../Paper"
 import Question from "./Question";
 
@@ -65,15 +65,18 @@ export default function Questionnaire(props) {
 
     // Generate the submission and move to Summary page
     function generateSubmission() {
-      const strQuestions = []
-      questions.forEach(q => { strQuestions.push(q.question) })
+      // const strQuestions = []
+      // questions.forEach(q => { strQuestions.push(q.question) })
+      const questionIds = []
+      questions.forEach(q => { questionIds.push(q.id) })
 
       // Save submission to database
-      const submissionId = createResponse({
+      const submissionId = createSubmission({
       personID: person.id,
       formType: form.ptype,
       time: form.time,
-      questions: strQuestions,
+      // questions: strQuestions,
+      questions: questionIds,
       responses: responses,
       passed: checkPassed(questions, responses)  
       })
