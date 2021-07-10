@@ -25,7 +25,7 @@ function readableDateTime(dateTime) {
   if(hh === 0 ) hh = 12
   m = m < 10 ? "0"+m : m;
 
-  return day + "/" + month + "/" + year + " " + hh + ":" + min + " " + m
+  return month + "/" + day + "/" + year + " " + hh + ":" + min + " " + m
 }
 
 function createRow(id, index, question, expectedResponse, receivedResponse) {
