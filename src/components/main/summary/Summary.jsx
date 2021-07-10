@@ -11,6 +11,23 @@ const useStyles = makeStyles(theme => ({
   },
 }))
 
+function readableDateTime(dateTime) {
+  const date = new Date(dateTime);
+  const year = date.getFullYear();
+  const month = date.getMonth()+1;
+  const day = date.getDate();
+  let hh = date.getHours();
+  let min = date.getMinutes();
+  
+  // Convert to 12 hour time
+  let m = "AM"
+  if(hh >= 12) hh = hh-12
+  if(hh === 0 ) hh = 12
+  m = m < 10 ? "0"+m : m;
+
+  return day + "/" + month + "/" + year + " " + hh + ":" + min + " " + m
+}
+
 function createRow(id, index, question, expectedResponse, receivedResponse) {
   return {id, index, question, expectedResponse, receivedResponse }
 }
@@ -41,7 +58,7 @@ export default function Summary(props) {
   return (
     <Paper handleResetClick={handleResetClick} person={person}>
       <Text title="Response: " body={submission.id} />
-      <Text title="Submitted On: " body={submission.createdAt} />
+      <Text title="Submitted On: " body={readableDateTime(submission.createdAt)} />
       <Text 
         title="Submitted By: "
         body={person.companyID + ") " + person.fName + " " + person.lName}

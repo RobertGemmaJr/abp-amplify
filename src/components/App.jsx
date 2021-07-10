@@ -101,6 +101,7 @@ function App() {
     setPeople(allPeople);
     setQuestions(allQuestions);
     setResponses([]);
+    setSubmission(0);
     setForm(initialFormState);
     setContent(Content.HOME);
   }
@@ -110,6 +111,7 @@ function App() {
     setPeople(allPeople);
     setQuestions(allQuestions);
     setResponses([]);
+    setSubmission(0);
     form.ptype === Ptype.MANUAL ? setContent(Content.MANUAL) : setContent(Content.KEYPAD);
   }
 

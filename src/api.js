@@ -54,6 +54,7 @@ export async function getSubmissions(startDate, endDate) {
 export async function createSubmission(submission) {
   const res = new Submission({
     "personID": submission.personID,
+    "createdAt": submission.createdAt,
     "formType": submission.formType,
     "time": submission.time,
     "questions": submission.questions,
