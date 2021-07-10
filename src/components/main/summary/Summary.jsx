@@ -4,6 +4,7 @@ import { TableContainer, Table, TableHead, TableBody, TableRow, TableCell, Typog
 
 import { res } from "../../../constants/tempDatabase" // TEMP
 
+import { getPerson } from "../../../api";
 import Paper from "../../Paper";
 import Text from "./Text";
 
@@ -19,27 +20,30 @@ function createRow(index, question, expectedResponse, receivedResponse) {
 
 // API call for response?
 const rows = []
-res.questions.forEach((q, idx) => {
-  rows.push(createRow(q.index, q.question, q.expectedResponse, res.responses[idx]))
-})
 
 export default function Summary(props) {
   const classes = useStyles()
   const { handleResetClick, person, submission } = props
+  console.log(submission)
 
-  console.log("Submission", submission)
+  React.useEffect(() => {
+    // Temp - use question
+    for(var i=0; i < 10; i++) {
+      rows.push(createRow("Index", "question", "expected", "actual"))
+    }
+  }, [])
 
   return (
     <Paper handleResetClick={handleResetClick} person={person}>
-      <Text title="Response: " body={res.id} />
-      <Text title="Submitted On: " body={res.date} />
+      <Text title="Response: " body={submission.id} />
+      <Text title="Submitted On: " body={submission.dateCreated} />
       <Text 
         title="Submitted By: "
-        body={res.person.fName + " " + res.person.lName}
+        body={person.fName + " " + person.lName}
       />
       <Text 
         title="Form: " 
-        body={ res.form + "-" + res.morning} 
+        body={ submission.formType + "-" + submission.time} 
       />
 
       {/* Table */}
@@ -73,9 +77,9 @@ export default function Summary(props) {
       {/* Passed? */}
       <Typography 
         variant="subtitle1" 
-        color={res.passed ? "inherit" : "error"}
+        color={submission.passed ? "inherit" : "error"}
       >
-        {res.passed ? "You passed!" : "Please try again"}
+        {submission.passed ? "You passed!" : "Please try again"}
       </Typography>
     </Paper>
   )

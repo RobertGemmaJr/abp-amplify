@@ -30,6 +30,11 @@ export async function getPeople() {
   return await DataStore.query(Person);
 }
 
+// Returns a single person by id
+export async function getPerson(id) {
+  return await DataStore.query(Person, id);
+}
+
 // Returns all models of type Question
 // Questions are sorted by index
 export async function getQuestions() {
@@ -59,5 +64,5 @@ export async function createResponse(submission) {
 
   // const models = await DataStore.query(Response)
   // console.log("MODELS CHECK", models)
-  return res.id;
+  return res;
 }
