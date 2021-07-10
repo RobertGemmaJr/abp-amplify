@@ -185,6 +185,13 @@ export const schema = {
                     "isRequired": true,
                     "attributes": []
                 },
+                "createdAt": {
+                    "name": "createdAt",
+                    "isArray": false,
+                    "type": "AWSDateTime",
+                    "isRequired": true,
+                    "attributes": []
+                },
                 "formType": {
                     "name": "formType",
                     "isArray": false,
@@ -225,14 +232,6 @@ export const schema = {
                     "type": "Boolean",
                     "isRequired": true,
                     "attributes": []
-                },
-                "createdAt": {
-                    "name": "createdAt",
-                    "isArray": false,
-                    "type": "AWSDateTime",
-                    "isRequired": false,
-                    "attributes": [],
-                    "isReadOnly": true
                 },
                 "updatedAt": {
                     "name": "updatedAt",
@@ -414,5 +413,5 @@ export const schema = {
         }
     },
     "nonModels": {},
-    "version": "a2fea8f17b43a81885402c671880a714"
+    "version": "9e5d518b636ad9b4cd2df040efa532c2"
 };

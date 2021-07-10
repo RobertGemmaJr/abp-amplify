@@ -57,12 +57,12 @@ export declare class Person {
 export declare class Submission {
   readonly id: string;
   readonly personID: string;
+  readonly createdAt: string;
   readonly formType: Ptype | keyof typeof Ptype;
   readonly time: Time | keyof typeof Time;
   readonly questions: string[];
   readonly responses: string[];
   readonly passed: boolean;
-  readonly createdAt?: string;
   readonly updatedAt?: string;
   constructor(init: ModelInit<Submission>);
   static copyOf(source: Submission, mutator: (draft: MutableModel<Submission>) => MutableModel<Submission> | void): Submission;

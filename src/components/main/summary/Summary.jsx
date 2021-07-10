@@ -11,8 +11,8 @@ const useStyles = makeStyles(theme => ({
   },
 }))
 
-function createRow(index, question, expectedResponse, receivedResponse) {
-  return {index, question, expectedResponse, receivedResponse }
+function createRow(id, index, question, expectedResponse, receivedResponse) {
+  return {id, index, question, expectedResponse, receivedResponse }
 }
 
 // API call for response?
@@ -21,22 +21,30 @@ const rows = []
 export default function Summary(props) {
   const classes = useStyles()
   const { handleResetClick, person, submission } = props
-  console.log(submission)
+  console.log(submission) // This should only log once
 
   React.useEffect(() => {
-    // Temp - use question
-    for(var i=0; i < 10; i++) {
-      rows.push(createRow("Index", "question", "expected", "actual"))
-    }
-  })
+    rows.length = 0; // Reset
+    submission.questions.forEach((qId, idx) => {
+      // Get actual question from qId
+      rows.push(createRow(
+        qId, 
+        "Index", 
+        "question", 
+        "expected", 
+        submission.responses[idx]
+      ))
+
+    })
+  }, [submission])
 
   return (
     <Paper handleResetClick={handleResetClick} person={person}>
       <Text title="Response: " body={submission.id} />
-      <Text title="Submitted On: " body={submission.dateCreated} />
+      <Text title="Submitted On: " body={submission.createdAt} />
       <Text 
         title="Submitted By: "
-        body={person.fName + " " + person.lName}
+        body={person.companyID + ") " + person.fName + " " + person.lName}
       />
       <Text 
         title="Form: " 
@@ -57,7 +65,7 @@ export default function Summary(props) {
           <TableBody>
             {rows.map(row => {
               return (
-                <TableRow key={row.index}> 
+                <TableRow key={row.id}> 
                   <TableCell component="th" scope="row">
                     {row.index}
                   </TableCell>

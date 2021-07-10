@@ -65,25 +65,24 @@ export default function Questionnaire(props) {
 
     // Generate the submission and move to Summary page
     function generateSubmission() {
-      // const strQuestions = []
-      // questions.forEach(q => { strQuestions.push(q.question) })
       const questionIds = []
       questions.forEach(q => { questionIds.push(q.id) })
 
-      // Save submission to database
-      const submissionId = createSubmission({
-      personID: person.id,
-      formType: form.ptype,
-      time: form.time,
-      // questions: strQuestions,
-      questions: questionIds,
-      responses: responses,
-      passed: checkPassed(questions, responses)  
-      })
+      const submission = {
+        personID: person.id,
+        createdAt: new Date().toISOString(),
+        formType: form.ptype,
+        time: form.time,
+        questions: questionIds,
+        responses: responses,
+        passed: checkPassed(questions, responses)  
+      }
 
-      setSubmission(submissionId)
-      setI(0);
-      setContent(Content.SUMMARY)
+      createSubmission(submission).then(res => {
+        setSubmission(res)
+        setI(0);
+        setContent(Content.SUMMARY)
+      }).catch(e => {console.error(e)}); 
     }
 
     // Handle clicks that submits answer to a single question

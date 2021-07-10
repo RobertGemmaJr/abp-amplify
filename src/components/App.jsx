@@ -51,7 +51,6 @@ function App() {
  
       // Get the user's settings, questions, and people when sync is ready
       if (event === "ready") {
-        console.log("Event ready")
         getSettings().then(res => {
           setSettings(res)
         }).catch(e => {console.error(e)})
