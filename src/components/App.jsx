@@ -1,4 +1,6 @@
 import React from "react";
+import { Hub } from "@aws-amplify/core";
+import { DataStore } from "@aws-amplify/datastore";
 import { withAuthenticator } from '@aws-amplify/ui-react'
 import { CssBaseline, Box } from "@material-ui/core"
 import { makeStyles } from "@material-ui/styles";
@@ -42,21 +44,34 @@ function App() {
 
   // DataStore API calls on initial render
   React.useEffect(() => {
-    getSettings().then(res => {
-      setSettings(res)
-    }).catch(e => {console.error(e)})
+    // Listener ensure sync process completes before first query
+    const listener = Hub.listen("datastore", async (capsule) => {
+      const { payload: { event, data } } = capsule;
+      console.log("DataStore event", event, data);
+ 
+      // Get the user's settings, questions, and people when sync is ready
+      if (event === "ready") {
+        console.log("Event ready")
+        getSettings().then(res => {
+          setSettings(res)
+        }).catch(e => {console.error(e)})
+    
+        getPeople().then(res => {
+          allPeople = res;
+          setPeople(res)
+        }).catch(e => {console.error(e)}); 
 
-    getPeople().then(res => {
-      allPeople = res;
-      setPeople(res)
-    }).catch(e => {console.error(e)}); 
+          // getQuestions(); 
+          getQuestions().then(res => {
+            allQuestions = res;
+            setQuestions(res)
+          }).catch(e => { console.error(e)}); 
+      }
+    });
 
-
-    // getQuestions(); 
-    getQuestions().then(res => {
-      allQuestions = res;
-      setQuestions(res)
-    }).catch(e => { console.error(e)}); 
+    // Start the DataStore and call listener
+    DataStore.start();
+    return () => listener();
   }, [])
 
   // Hook for user's settings
@@ -83,8 +98,8 @@ function App() {
   function handleHomeClick() {
     setPeople(allPeople);
     setQuestions(allQuestions);
-    setForm(initialFormState);
     setResponses([]);
+    setForm(initialFormState);
     setContent(Content.HOME);
   }
 

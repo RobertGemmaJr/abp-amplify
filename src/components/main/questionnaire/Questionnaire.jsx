@@ -39,14 +39,14 @@ const useStyles = makeStyles(theme => ({
 }))
 
 // Returns date as a "YYYY/MM/DD" format
-function getDate() {
-  const today = new Date()
-  return (
-    today.getFullYear() + "/" + 
-    String(today.getMonth()+1).padStart(2, "0") + "/" + 
-    String(today.getDate()).padStart(2, "0")
-  );
-}
+// function getDate() {
+//   const today = new Date()
+//   return (
+//     today.getFullYear() + "/" + 
+//     String(today.getMonth()+1).padStart(2, "0") + "/" + 
+//     String(today.getDate()).padStart(2, "0")
+//   );
+// }
 
 
 // Returns true if all of the user responses match the question's expectedResponse
@@ -64,14 +64,14 @@ function checkPassed(questions, responses) {
 
 
 // Submits a response to the database
-function submitResponses(personId, form, questions, responses, setContent) {
+function submitResponses(personId, form, questions, responses, setContent, setI) {
+  setI(0);
   const strQuestions = []
   questions.forEach(q => { strQuestions.push(q.question) })
 
   // Write the response to the database
   const response = {
     personID: personId,
-    dateCreated: getDate(),
     formType: form.ptype,
     time: form.time,
     questions: strQuestions,
@@ -86,7 +86,9 @@ function submitResponses(personId, form, questions, responses, setContent) {
 
 export default function Questionnaire(props) {
     const classes = useStyles();
-    const { setContent, handleResetClick, person, questions, form, responses, setResponses } = props;
+    const { 
+      setContent, handleResetClick, person, questions, form, responses, setResponses
+    } = props;
 
     // Hook for indexing the questions array
     const [i, setI] = React.useState(0);
@@ -108,7 +110,7 @@ export default function Questionnaire(props) {
             handleClick={handleClick}
           />
         : 
-          submitResponses(person.id, form, questions, responses, setContent)
+          submitResponses(person.id, form, questions, responses, setContent, setI)
         }
       </Paper>
     )

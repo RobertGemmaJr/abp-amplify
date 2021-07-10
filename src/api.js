@@ -2,6 +2,8 @@ import { Predicates, SortDirection } from 'aws-amplify';
 import { DataStore } from '@aws-amplify/datastore';
 import { Setting, Person, Question, Response } from './models';
 
+/********* READ **********/
+
 // Returns all models of type Setting
 // There should be exactly 1 per user
 export async function getSettings() {
@@ -42,15 +44,18 @@ export async function getResponses(startDate, endDate) {
   return await DataStore.query(Response)
 }
 
-// Returns the most recently created response
-export async function getNewestResponse() {
-  return
-}
-export async function createResponse(response) {
-  console.log(response)
-  await DataStore.save(response)
+/********** CREATE **********/
 
-  // const models = await DataStore.query(Response);
-  // console.log("Models", models);
+export async function createResponse(response) {
+  await DataStore.save(
+    new Response({
+      "personID": response.personID,
+		  "formType": response.formType,
+		  "time": response.time,
+		  "questions": response.questions,
+		  "responses": response.responses,
+		  "passed": response.passed,
+	  })
+  );
   return
 }
