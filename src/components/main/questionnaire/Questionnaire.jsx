@@ -38,16 +38,6 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-// Returns date as a "YYYY/MM/DD" format
-// function getDate() {
-//   const today = new Date()
-//   return (
-//     today.getFullYear() + "/" + 
-//     String(today.getMonth()+1).padStart(2, "0") + "/" + 
-//     String(today.getDate()).padStart(2, "0")
-//   );
-// }
-
 
 // Returns true if all of the user responses match the question's expectedResponse
 function checkPassed(questions, responses) {
@@ -63,37 +53,37 @@ function checkPassed(questions, responses) {
 }
 
 
-// Submits a response to the database
-function submitResponses(personId, form, questions, responses, setContent, setI) {
-  setI(0);
-  const strQuestions = []
-  questions.forEach(q => { strQuestions.push(q.question) })
-
-  // Write the response to the database
-  const response = {
-    personID: personId,
-    formType: form.ptype,
-    time: form.time,
-    questions: strQuestions,
-    responses: responses,
-    passed: checkPassed(questions, responses)
-  }
-  createResponse(response)
-
-  setContent(Content.SUMMARY)
-}
-
-
 export default function Questionnaire(props) {
     const classes = useStyles();
     const { 
-      setContent, handleResetClick, person, questions, form, responses, setResponses
+      setContent, handleResetClick, person, questions, form, responses, 
+      setResponses, setSubmission,
     } = props;
 
     // Hook for indexing the questions array
     const [i, setI] = React.useState(0);
 
-    // Handle clicks that submit an answer
+    // Generate the submission and move to Summary page
+    function generateSubmission() {
+      const strQuestions = []
+      questions.forEach(q => { strQuestions.push(q.question) })
+
+      // Save submission to database
+      const submissionId = createResponse({
+      personID: person.id,
+      formType: form.ptype,
+      time: form.time,
+      questions: strQuestions,
+      responses: responses,
+      passed: checkPassed(questions, responses)  
+      })
+
+      setSubmission(submissionId)
+      setI(0);
+      setContent(Content.SUMMARY)
+    }
+
+    // Handle clicks that submits answer to a single question
     function handleClick(response) {
       setResponses(responses.concat(response))
       setI(i + 1);
@@ -101,7 +91,7 @@ export default function Questionnaire(props) {
 
     return (
       <Paper handleResetClick={handleResetClick} person={person}>
-        {/* Ask all questions and then submit the responses */}
+        {/* Ask all questions and then generate the submission */}
         {i < questions.length ? 
           <Question 
             className={classes.question}
@@ -110,7 +100,7 @@ export default function Questionnaire(props) {
             handleClick={handleClick}
           />
         : 
-          submitResponses(person.id, form, questions, responses, setContent, setI)
+          generateSubmission()
         }
       </Paper>
     )

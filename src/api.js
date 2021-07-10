@@ -46,16 +46,18 @@ export async function getResponses(startDate, endDate) {
 
 /********** CREATE **********/
 
-export async function createResponse(response) {
-  await DataStore.save(
-    new Response({
-      "personID": response.personID,
-		  "formType": response.formType,
-		  "time": response.time,
-		  "questions": response.questions,
-		  "responses": response.responses,
-		  "passed": response.passed,
-	  })
-  );
-  return
+export async function createResponse(submission) {
+  const res = new Response({
+    "personID": submission.personID,
+    "formType": submission.formType,
+    "time": submission.time,
+    "questions": submission.questions,
+    "responses": submission.responses,
+    "passed": submission.passed,
+  })
+  await DataStore.save(res)
+
+  // const models = await DataStore.query(Response)
+  // console.log("MODELS CHECK", models)
+  return res.id;
 }

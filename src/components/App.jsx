@@ -91,8 +91,11 @@ function App() {
   // Hook for the current person
   const [person, setPerson] = React.useState(null);
 
-  // Hook for person's responses to the questions
+  // Hook for the current person's response
   const [responses, setResponses] = React.useState([]);
+
+  // Hook for the current person's questionnaire submission
+  const [submission, setSubmission] = React.useState(0);
 
   // HandleClick for the home button in the header
   function handleHomeClick() {
@@ -127,6 +130,7 @@ function App() {
         form={form} setForm={setForm}
         person={person} setPerson={setPerson}
         responses={responses} setResponses={setResponses} 
+        submission={submission} setSubmission={setSubmission}
         handleResetClick={handleResetClick}
         allQuestions={allQuestions} allPeople={allPeople}
       />

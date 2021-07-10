@@ -39,8 +39,9 @@ export default function Main(props) {
   const classes = useStyles();
   const {
     settings, setSettings, people, setPeople, questions, setQuestions, 
-    content, setContent, form, setForm, person, setPerson, responses, setResponses, 
-    handleResetClick, allQuestions, allPeople
+    content, setContent, form, setForm, person, setPerson, responses, 
+    setResponses, submission, setSubmission, handleResetClick, 
+    allQuestions, allPeople
   } = props;
 
   // Hook for title
@@ -105,14 +106,17 @@ export default function Main(props) {
               questions={questions}
               form={form}
               responses={responses} setResponses={setResponses}
+              setSubmission={setSubmission}
             />
           );
       case Content.SUMMARY:
           return (
             <Summary 
-              setContent={setContent} 
               handleResetClick={handleResetClick}
               person={person}
+              responses={responses}
+              setContent={setContent} 
+              submission={submission}
             />
           )
       default:

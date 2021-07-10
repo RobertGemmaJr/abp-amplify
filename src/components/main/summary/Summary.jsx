@@ -4,7 +4,6 @@ import { TableContainer, Table, TableHead, TableBody, TableRow, TableCell, Typog
 
 import { res } from "../../../constants/tempDatabase" // TEMP
 
-// import { getNewestResponse } from "../../../api";
 import Paper from "../../Paper";
 import Text from "./Text";
 
@@ -26,17 +25,9 @@ res.questions.forEach((q, idx) => {
 
 export default function Summary(props) {
   const classes = useStyles()
-  const { handleResetClick, person } = props
+  const { handleResetClick, person, submission } = props
 
-  // Hook for response
-  // const [response, setResponse] = React.useState(0);
-
-  // React.useEffect(() => {
-  //   getNewestResponse().then(res => {
-  //     setResponse(res)
-  //     // Check if response is nothing
-  //   }).catch(e => {console.error(e)})
-  // }, [])
+  console.log("Submission", submission)
 
   return (
     <Paper handleResetClick={handleResetClick} person={person}>
