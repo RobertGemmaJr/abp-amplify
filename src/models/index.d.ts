@@ -57,7 +57,6 @@ export declare class Person {
 export declare class Response {
   readonly id: string;
   readonly personID: string;
-  readonly dateCreated: string;
   readonly formType: Ptype | keyof typeof Ptype;
   readonly time: Time | keyof typeof Time;
   readonly questions?: string[];

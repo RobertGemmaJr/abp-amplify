@@ -5,7 +5,6 @@ import { Content } from "../../../models";
 import { createResponse } from "../../../api";
 import Paper from "../../Paper"
 import Question from "./Question";
-import { CompassCalibrationOutlined } from "@material-ui/icons";
 
 const useStyles = makeStyles(theme => ({
   paper: {
@@ -39,29 +38,30 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-// Returns date as a "mm/dd/yyyy" format
+// Returns date as a "YYYY/MM/DD" format
 function getDate() {
   const today = new Date()
   return (
-    today.getFullYear() + "-" + 
-    String(today.getMonth()+1).padStart(2, "0") + "-" + 
+    today.getFullYear() + "/" + 
+    String(today.getMonth()+1).padStart(2, "0") + "/" + 
     String(today.getDate()).padStart(2, "0")
   );
 }
 
+
 // Returns true if all of the user responses match the question's expectedResponse
 function checkPassed(questions, responses) {
   var passed = true;
+
   questions.forEach((q, idx) => {
-    console.log(q.expectedResponse, responses[idx])
     if(q.expectedResponse !== responses[idx]) {
-      console.log("bad response")
-      passed = false;
-      return
+      passed = false; 
+      return;
     }
   })
   return passed;
 }
+
 
 // Submits a response to the database
 function submitResponses(personId, form, questions, responses, setContent) {
@@ -74,14 +74,13 @@ function submitResponses(personId, form, questions, responses, setContent) {
     dateCreated: getDate(),
     formType: form.ptype,
     time: form.time,
-    questions: questions,
+    questions: strQuestions,
     responses: responses,
     passed: checkPassed(questions, responses)
   }
-  console.log(checkPassed(questions, responses), response.passed)
   createResponse(response)
 
-  setContent(Content.SUMMARY);
+  setContent(Content.SUMMARY)
 }
 
 

@@ -48,15 +48,9 @@ export async function getNewestResponse() {
 }
 export async function createResponse(response) {
   console.log(response)
-  // await DataStore.save(
-  //   new Response({
-	// 	"dateCreated": response.dateCreated,
-	// 	"formType": response.formType,
-	// 	"time": response.time,
-	// 	"questions": response.questions,
-	// 	"responses": response.responses,
-	// 	"passed": response.passed
-	//   })
-  // );
+  await DataStore.save(response)
+
+  // const models = await DataStore.query(Response);
+  // console.log("Models", models);
   return
 }

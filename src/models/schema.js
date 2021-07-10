@@ -185,13 +185,6 @@ export const schema = {
                     "isRequired": true,
                     "attributes": []
                 },
-                "dateCreated": {
-                    "name": "dateCreated",
-                    "isArray": false,
-                    "type": "AWSDate",
-                    "isRequired": true,
-                    "attributes": []
-                },
                 "formType": {
                     "name": "formType",
                     "isArray": false,
@@ -421,5 +414,5 @@ export const schema = {
         }
     },
     "nonModels": {},
-    "version": "bbf4a5604e346e05286604efa486eb06"
+    "version": "3d6394084f9238e1d87609069df467b9"
 };
