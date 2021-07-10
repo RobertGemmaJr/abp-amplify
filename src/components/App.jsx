@@ -46,8 +46,8 @@ function App() {
   React.useEffect(() => {
     // Listener ensure sync process completes before first query
     const listener = Hub.listen("datastore", async (capsule) => {
-      const { payload: { event, data } } = capsule;
-      console.log("DataStore event", event, data);
+      const { payload: { event } } = capsule;
+      // console.log("DataStore event", event);
  
       // Get the user's settings, questions, and people when sync is ready
       if (event === "ready") {

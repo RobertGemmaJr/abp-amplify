@@ -2,9 +2,6 @@ import React from "react";
 import { makeStyles } from "@material-ui/styles";
 import { TableContainer, Table, TableHead, TableBody, TableRow, TableCell, Typography } from "@material-ui/core";
 
-import { res } from "../../../constants/tempDatabase" // TEMP
-
-import { getPerson } from "../../../api";
 import Paper from "../../Paper";
 import Text from "./Text";
 
