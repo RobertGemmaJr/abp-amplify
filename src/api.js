@@ -57,7 +57,7 @@ export async function getSubmissions(startDate, endDate) {
 /********** CREATE **********/
 
 export async function createSubmission(submission) {
-  console.log("Creating a response")
+  console.log("Entered function")
   const res = new Submission({
     "personID": submission.personID,
     "createdAt": submission.createdAt,
@@ -67,6 +67,8 @@ export async function createSubmission(submission) {
     "responses": submission.responses,
     "passed": submission.passed,
   })
-  await DataStore.save(res)
+  console.log("Created res")
+  const out = await DataStore.save(res)
+  console.log("Datastore out", out, res)
   return res;
 }
