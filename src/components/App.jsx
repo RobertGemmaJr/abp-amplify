@@ -60,11 +60,10 @@ function App() {
           setPeople(res)
         }).catch(e => {console.error(e)}); 
 
-          // getQuestions(); 
-          getQuestions().then(res => {
-            allQuestions = res;
-            setQuestions(res)
-          }).catch(e => { console.error(e)}); 
+        getQuestions().then(res => {
+          allQuestions = res;
+          setQuestions(res)
+        }).catch(e => { console.error(e)}); 
       }
     });
 

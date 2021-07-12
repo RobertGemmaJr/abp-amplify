@@ -44,6 +44,11 @@ export async function getQuestions() {
   return models
 }
 
+// Returns a single question by id
+export async function getQuestion(id) {
+  return await DataStore.query(Question, id);
+}
+
 // Returns all models of type Response dated between the start and end date
 export async function getSubmissions(startDate, endDate) {
   return await DataStore.query(Submission)
@@ -52,6 +57,7 @@ export async function getSubmissions(startDate, endDate) {
 /********** CREATE **********/
 
 export async function createSubmission(submission) {
+  console.log("Creating a response")
   const res = new Submission({
     "personID": submission.personID,
     "createdAt": submission.createdAt,
@@ -62,8 +68,5 @@ export async function createSubmission(submission) {
     "passed": submission.passed,
   })
   await DataStore.save(res)
-
-  // const models = await DataStore.query(Response)
-  // console.log("MODELS CHECK", models)
   return res;
 }

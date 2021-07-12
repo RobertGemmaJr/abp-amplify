@@ -1,12 +1,15 @@
 import React from "react";
 import { makeStyles } from "@material-ui/styles";
-import { TableContainer, Table, TableHead, TableBody, TableRow, TableCell, Typography } from "@material-ui/core";
+import { Typography } from "@material-ui/core";
+import { DataGrid, } from "@material-ui/data-grid";
 
+import { getQuestion } from "../../../api";
 import Paper from "../../Paper";
 import Text from "./Text";
 
 const useStyles = makeStyles(theme => ({
   table: {
+    width: "100%",
     margin: theme.spacing(1, 0)
   },
 }))
@@ -21,40 +24,83 @@ function readableDateTime(dateTime) {
   
   // Convert to 12 hour time
   let m = "AM"
-  if(hh >= 12) hh = hh-12
+  if(hh >= 12) hh = hh-12; m="PM"
   if(hh === 0 ) hh = 12
-  m = m < 10 ? "0"+m : m;
+  min = min < 10 ? "0"+min : min;
 
   return month + "/" + day + "/" + year + " " + hh + ":" + min + " " + m
 }
 
-function createRow(id, index, question, expectedResponse, receivedResponse) {
-  return {id, index, question, expectedResponse, receivedResponse }
-}
 
-// API call for response?
-const rows = []
+// DataGrid rows and columns
+const columns = [
+  {
+    field: "id", 
+    headerName: "Index",
+    type: "number", 
+  },
+  {
+    field: "question", 
+    headerName: "Question", 
+    type: "string", 
+    sortable: false, 
+    flex: 1
+  },
+  {
+    field: "expectedResponse", 
+    headerName: "Expected",
+    type: "string",  
+    sortable: false
+  },
+  {
+    field: "response", 
+    headerName: "Actual", 
+    type: "string", 
+    sortable: false
+  },
+  {
+    // Make this a check or x?
+    field: "correct", 
+    headerName: "Passed?",  
+    sortable: false,
+    type: "string",
+    valueGetter: (params) => 
+      `${params.getValue(params.id, "expectedResponse") === 
+      params.getValue(params.id, "response")
+    ? "Passed" : "Failed"}`
+  }
+]
 
 export default function Summary(props) {
   const classes = useStyles()
   const { handleResetClick, person, submission } = props
-  console.log(submission) // This should only log once
+
+  // Hook for the DataGrid rows
+  const [rows, setRows] = React.useState([])
 
   React.useEffect(() => {
-    rows.length = 0; // Reset
-    submission.questions.forEach((qId, idx) => {
-      // Get actual question from qId
-      rows.push(createRow(
-        qId, 
-        "Index", 
-        "question", 
-        "expected", 
-        submission.responses[idx]
-      ))
+    async function getRows() {
+      console.log("Submission", submission)
+      const rows = Array(submission.questions.length)
+  
+      await Promise.all(submission.questions.map(async (qId, idx) => {
+        const q = await getQuestion(qId)
+        rows[idx] = {
+          id: q.index,
+          question: q.question,
+          expectedResponse: q.expectedResponse,
+          response: submission.responses[idx]
+        }
+      }))
+      return rows;
+    }
 
-    })
-  }, [submission])
-
+    // Get rows for the DataGrid
+    getRows().then(res => {
+      setRows(res)
+    }).catch(e => {console.error(e)})
+  }, [submission]);
+  
   return (
     <Paper handleResetClick={handleResetClick} person={person}>
       <Text title="Response: " body={submission.id} />
@@ -68,33 +114,15 @@ export default function Summary(props) {
         body={ submission.formType + "-" + submission.time} 
       />
 
-      {/* Table */}
-      <TableContainer>
-        <Table className={classes.table} size="small">
-          <TableHead>
-            <TableRow>
-              <TableCell align="center">Index</TableCell>
-              <TableCell align="center">Question</TableCell>
-              <TableCell align="center">Expected Response</TableCell>
-              <TableCell align="center">Received Response</TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {rows.map(row => {
-              return (
-                <TableRow key={row.id}> 
-                  <TableCell component="th" scope="row">
-                    {row.index}
-                  </TableCell>
-                  <TableCell align="left">{row.question}</TableCell>
-                  <TableCell align="left">{row.expectedResponse}</TableCell>
-                  <TableCell align="left">{row.receivedResponse}</TableCell>
-                </TableRow>
-              )
-            })}
-          </TableBody>
-        </Table>
-      </TableContainer>
+      <DataGrid
+        columns={columns}
+        rows={rows}
+        loading={!rows.length}
+        density="compact"
+        autoHeight autoPageSize
+        disableSelectionOnClick disableColumnMenu
+        className={classes.table}
+      />
 
       {/* Passed? */}
       <Typography 

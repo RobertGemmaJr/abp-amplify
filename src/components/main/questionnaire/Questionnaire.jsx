@@ -64,7 +64,7 @@ export default function Questionnaire(props) {
     const [i, setI] = React.useState(0);
 
     // Generate the submission and move to Summary page
-    function generateSubmission() {
+    async function generateSubmission() {
       const questionIds = []
       questions.forEach(q => { questionIds.push(q.id) })
 
@@ -80,9 +80,24 @@ export default function Questionnaire(props) {
 
       createSubmission(submission).then(res => {
         setSubmission(res)
+        // setI(0);
+        // setContent(Content.SUMMARY)
+      }).catch(e => {console.error(e)}); 
+    }
+
+    // React.useEffect(() => {
+    //   return () => {
+    //     console.log("Cleanup")
+    //     generateSubmission()
+    //   };
+    // }, [])
+
+    function leave() {
+      generateSubmission().then(res => {
+        console.log("Generated submission")
         setI(0);
         setContent(Content.SUMMARY)
-      }).catch(e => {console.error(e)}); 
+      }).catch(e => {console.error(e)})
     }
 
     // Handle clicks that submits answer to a single question
@@ -101,8 +116,8 @@ export default function Questionnaire(props) {
             q={questions[i]}
             handleClick={handleClick}
           />
-        : 
-          generateSubmission()
+        // : generateSubmission()
+        : leave()
         }
       </Paper>
     )
