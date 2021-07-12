@@ -85,16 +85,8 @@ export default function Questionnaire(props) {
       }).catch(e => {console.error(e)}); 
     }
 
-    // React.useEffect(() => {
-    //   return () => {
-    //     console.log("Cleanup")
-    //     generateSubmission()
-    //   };
-    // }, [])
-
     function leave() {
       generateSubmission().then(res => {
-        console.log("Generated submission")
         setI(0);
         setContent(Content.SUMMARY)
       }).catch(e => {console.error(e)})
@@ -109,15 +101,16 @@ export default function Questionnaire(props) {
     return (
       <Paper handleResetClick={handleResetClick} person={person}>
         {/* Ask all questions and then generate the submission */}
-        {i < questions.length ? 
-          <Question 
-            className={classes.question}
-            key={questions[i].index}  
-            q={questions[i]}
-            handleClick={handleClick}
-          />
-        // : generateSubmission()
-        : leave()
+        {
+          i < questions.length ? 
+            <Question 
+              className={classes.question}
+              key={questions[i].index}  
+              q={questions[i]}
+              handleClick={handleClick}
+            />
+          : 
+            leave()
         }
       </Paper>
     )

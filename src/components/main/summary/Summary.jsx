@@ -32,73 +32,50 @@ function readableDateTime(dateTime) {
 }
 
 
-// DataGrid rows and columns
+// DataGrid columns
 const columns = [
-  {
-    field: "id", 
-    headerName: "Index",
-    type: "number", 
-  },
-  {
-    field: "question", 
-    headerName: "Question", 
-    type: "string", 
-    sortable: false, 
-    flex: 1
-  },
-  {
-    field: "expectedResponse", 
-    headerName: "Expected",
-    type: "string",  
-    sortable: false
-  },
-  {
-    field: "response", 
-    headerName: "Actual", 
-    type: "string", 
-    sortable: false
-  },
-  {
+  {field: "id",  headerName: "Index", type: "number"},
+  {field: "question", headerName: "Question", type: "string", sortable: false, flex: 1},
+  {field: "expectedResponse", headerName: "Expected",type: "string",  sortable: false},
+  {field: "response", headerName: "Actual", type: "string", sortable: false},
+  {field: "correct", headerName: "Passed?",  sortable: false, type: "string",
     // Make this a check or x?
-    field: "correct", 
-    headerName: "Passed?",  
-    sortable: false,
-    type: "string",
     valueGetter: (params) => 
-      `${params.getValue(params.id, "expectedResponse") === 
-      params.getValue(params.id, "response")
-    ? "Passed" : "Failed"}`
+      `${params.getValue(params.id, "expectedResponse") === params.getValue(params.id, "response")
+        ? "Passed" : "Failed"}`
   }
 ]
+
+// Get DataGrid rows
+async function getRows(submission) {
+  const rows = Array(submission.questions.length)
+
+  await Promise.all(submission.questions.map(async (qId, idx) => {
+    const q = await getQuestion(qId)
+    rows[idx] = {
+      id: q.index,
+      question: q.question,
+      expectedResponse: q.expectedResponse,
+      response: submission.responses[idx]
+    }
+  }))
+  return rows;
+}
 
 export default function Summary(props) {
   const classes = useStyles()
   const { handleResetClick, person, submission } = props
 
-  // Hook for the DataGrid rows
   const [rows, setRows] = React.useState([])
 
-  React.useEffect(() => {
-    async function getRows() {
-      console.log("Submission", submission)
-      const rows = Array(submission.questions.length)
   
-      await Promise.all(submission.questions.map(async (qId, idx) => {
-        const q = await getQuestion(qId)
-        rows[idx] = {
-          id: q.index,
-          question: q.question,
-          expectedResponse: q.expectedResponse,
-          response: submission.responses[idx]
-        }
-      }))
-      return rows;
+  React.useEffect(() => {
+    // Get rows for the DataGrid when submission is complete
+    if(submission) {
+      getRows(submission).then(res => {
+        setRows(res)
+      }).catch(e => {console.error(e)})
     }
-
-    // Get rows for the DataGrid
-    getRows().then(res => {
-      setRows(res)
-    }).catch(e => {console.error(e)})
   }, [submission]);
   
   return (
