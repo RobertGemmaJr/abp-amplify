@@ -1,22 +1,14 @@
 import React from "react";
 import { AmplifySignOut } from '@aws-amplify/ui-react'
-import { Paper, TextField, Box, Button, Checkbox, FormGroup, FormControlLabel, Typography } from "@material-ui/core";
-import CloudUploadIcon from '@material-ui/icons/CloudUpload';
 import { makeStyles } from "@material-ui/styles";
+import { Paper, TextField, Box, Button } from "@material-ui/core";
+import CloudUploadIcon from '@material-ui/icons/CloudUpload';
 
 import { Content } from "../../../models";
-import MenuQCard from "./Card";
-import AddQButton from "./AddQButton";
-
-// Returns date as a "yyyy-mm-dd" format
-function getDate() {
-  const today = new Date()
-  return (
-    today.getFullYear() + "-" + 
-    String(today.getMonth()+1).padStart(2, "0") + "-" + 
-    String(today.getDate()).padStart(2, "0")
-  );
-}
+// import MenuQCard from "./Card";
+// import AddQButton from "./AddQButton";
+import PeopleGrid from "./PeopleGrid";
+import QuestionsGrid from "./QuestionsGrid";
 
 const useStyles = makeStyles(theme => ({
   box: {
@@ -28,33 +20,44 @@ const useStyles = makeStyles(theme => ({
   hideInput: {
     display: "none"
   },
+  dataGrid: {
+    margin: theme.spacing(2),
+    marginBottom: theme.spacing(4),
+  },
   save: {
     marginTop: theme.spacing(5),
     marginBottom: theme.spacing(3),
   }
 }))
 
+// Returns date as a "yyyy-mm-dd" format
+function getDate() {
+  const today = new Date()
+  return (
+    today.getFullYear() + "-" + 
+    String(today.getMonth()+1).padStart(2, "0") + "-" + 
+    String(today.getDate()).padStart(2, "0")
+  );
+}
+
+
 export default function Menu(props) {
   const classes = useStyles();
-  const {setContent, title, setTitle, randomized, setRandomized, questions} = props;
+  // const {setContent, settings, setSettings, people, setPeople, questions, setQuestions} = props;
+  const {setContent, settings, people, questions, } = props;
+    // people is allPeople and questions is allQuestions - not the hook
 
-  // API call for title abd randomized
   // Hook for menu state
   const [state, setState] = React.useState({
-    newTitle: title,
+    newTitle: settings.title,
     startDate: "2020-01-01",
     endDate: getDate(),
-    randomized: randomized,
+    randomized: settings.randomizeQuestions,
   })
 
   // Handle newTitle change
   const handleNewTitleChange = (event) => {
     setState({...state, [event.target.name]: event.target.value })
-  }
-
-  // Handle randomized change
-  const handleRandomizedChange = (event) => {
-    setState({...state, [event.target.name]: event.target.checked})
   }
 
   // Handle import family button clicked
@@ -65,20 +68,32 @@ export default function Menu(props) {
   function handleImportStaffClick() {
 
   }
+  // Handle import questions button clicked
+  function handleImportQuestionsClick() {
+
+  }
   // Handle export button clicked
   function handleExportClick() {
     
   }
 
   // Handle save button clicked
-  function handleSaveClick(state) {
-    // API call to set title
+  function handleSaveClick() {
+    // Note: May not have to set hook since I reload the website
+
+    // Update settings in database and set hook
+    // setSettings(updateSettings(state.newTitle, state.randomized))
+
+    // Update people in database and set hook
+
+    // Update questions in database and set hook
+
+
     // API call to add/remove questions
     // API call to add/remove people
-    setTitle(state.newTitle);
-    setRandomized(state.randomized)
-    setContent(Content.HOME)
-    // window.location.reload();
+
+    setContent(Content.HOME) // May not need this when I reload the website
+    // window.location.reload(); // Call as a React useEffect on exit?
   }
 
   return (
@@ -125,10 +140,30 @@ export default function Menu(props) {
             Import Staff List
           </Button>
         </label>
+
+        {/* Import Questions */}
+        <input
+          className={classes.hideInput}
+          id="import-questions"
+          single="true"
+          type="file"
+          accept=".csv, .xlsx, .xls"
+        />
+        <label htmlFor="import-questions">
+          <Button 
+            startIcon={<CloudUploadIcon />}
+            variant="contained"
+            color="secondary"
+            component="span"
+            onClick={() => handleImportQuestionsClick()}
+          >
+            Import Staff List
+          </Button>
+        </label>
       </Box>
 
       {/* Export Answers */}
-      <Box className={classes.box} display="flex" justifyContent="space-evenly">
+      <Box className={classes.box} display="flex" justifyContent="center">
         <TextField
           id="start-date"
           name="startDate"
@@ -155,7 +190,7 @@ export default function Menu(props) {
       </Box>
 
       {/* Update Title */}
-      <Box className={classes.box} display="flex" justifyContent="space-evenly" component="form">
+      <Box className={classes.box} component="form">
         <TextField 
           id="new-title" 
           name="newTitle"
@@ -167,34 +202,11 @@ export default function Menu(props) {
         />
       </Box>
 
-      {/* Edit Questions */}
-      <Typography align="center" variant="h4">
-        Questions
-      </Typography>
+      {/* QUESTIONS */}
+      <QuestionsGrid questions={questions} state={state} setState={setState} />
 
-      {/* Randomize Questions */}
-      <FormGroup row>
-        <FormControlLabel
-          control={
-            <Checkbox 
-              color="secondary" 
-              name="randomized"
-              checked={state.randomized}
-              onChange={handleRandomizedChange} 
-            />
-          }
-          label="Randomize Questions?"
-          labelPlacement="start"
-        />
-      </FormGroup>
-
-      {/* Display Questions */}
-      {questions.map(q => {return <MenuQCard key={q.id} q={q}/>})}
-      
-      {/* Question buttons */}
-      <Box className={classes.box} display="flex" justifyContent="space-evenly">
-        <AddQButton/>
-      </Box>
+      {/* PEOPLE */}
+      <PeopleGrid people={people}/>
 
       {/* Save Button */}
       <Box align="center" className={classes.save}>
@@ -202,7 +214,7 @@ export default function Menu(props) {
           variant="contained"
           color="secondary"
           size="large"
-          onClick={() => handleSaveClick(state)}
+          onClick={() => handleSaveClick()}
         >
           Save
         </Button>

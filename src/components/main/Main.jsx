@@ -40,35 +40,28 @@ export default function Main(props) {
   const {
     settings, setSettings, people, setPeople, questions, setQuestions, 
     content, setContent, form, setForm, person, setPerson, responses, 
-    setResponses, submission, setSubmission, handleResetClick, 
+    setResponses, submission, setSubmission, handleResetClick,
     allQuestions, allPeople
   } = props;
-
-  // Hook for title
-    // Just use settings hook from props (menu)
-  const [title, setTitle] = React.useState(settings.title)
-
-  // Hook for isRandomized
-    // Just use settings hook from props (menu)
-  const [randomized, setRandomized] = React.useState(settings.randomizeQuestions);
 
   // Hook for rendering the main content based on program state
   function renderContent() {
     switch(content) {
       case Content.HOME:
         return (
-          <Home setContent={setContent} form={form} setForm={setForm} />
+          <Home 
+            setContent={setContent} 
+            form={form} setForm={setForm}
+          />
         );
       case Content.MENU:
         return (
           <Menu 
             setContent={setContent} 
+            settings={settings}
             setSettings={setSettings}
-            title={title} 
-            setTitle={setTitle}
-            randomized={randomized}
-            setRandomized={setRandomized}
-            questions={allQuestions} people={allPeople}
+            people={allPeople}
+            questions={allQuestions}
           />
         );
       case Content.MANUAL:

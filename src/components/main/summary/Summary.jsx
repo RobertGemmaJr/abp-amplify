@@ -97,6 +97,7 @@ export default function Summary(props) {
         loading={!rows.length}
         density="compact"
         autoHeight autoPageSize
+        hideFooter
         disableSelectionOnClick disableColumnMenu
         className={classes.table}
       />
