@@ -4,9 +4,7 @@ import { makeStyles } from "@material-ui/styles";
 import { Paper, TextField, Box, Button } from "@material-ui/core";
 import CloudUploadIcon from '@material-ui/icons/CloudUpload';
 
-import { Content } from "../../../models";
-// import MenuQCard from "./Card";
-// import AddQButton from "./AddQButton";
+import { Content, Ptype } from "../../../models";
 import PeopleGrid from "./PeopleGrid";
 import QuestionsGrid from "./QuestionsGrid";
 
@@ -61,11 +59,8 @@ export default function Menu(props) {
   }
 
   // Handle import family button clicked
-  function handleImportFamilyClick() {
-
-  }
-  // Handle import staff button clicked
-  function handleImportStaffClick() {
+  function handleImportPeopleClick(type) {
+    console.log("clicked", type)
 
   }
   // Handle import questions button clicked
@@ -96,50 +91,48 @@ export default function Menu(props) {
     // window.location.reload(); // Call as a React useEffect on exit?
   }
 
+  const temp = "file name here"
+
   return (
     <Paper className={classes.menu}>
     
-      {/* Import Buttons */}
+      {/* IMPORT BUTTONS */}
       <Box className={classes.box} display="flex" justifyContent="space-evenly">
         {/* Import Family List */}
-        <input
-          className={classes.hideInput}
-          id="import-family-list"
-          single="true"
-          type="file"
-          accept=".csv, .xlsx, .xls"
-        />
-        <label htmlFor="import-family-list">
-          <Button 
-            startIcon={<CloudUploadIcon />}
-            variant="contained"
-            color="secondary"
-            component="span"
-            onClick={() => handleImportFamilyClick()}
-          >
-            Import Family List
-          </Button>
-        </label>
+        <Button
+          startIcon={<CloudUploadIcon />}
+          variant="contained"
+          color="secondary"
+          component="label"
+          onClick={() => handleImportPeopleClick(Ptype.FAMILY)}
+        >
+          Import Family List<br/>{temp}
+          <input
+            hidden
+            id="import-family-list"
+            single="true"
+            type="file"
+            accept=".csv, .xlsx, .xls"
+          />
+        </Button>
 
         {/* Import Staff List */}
-        <input
-          className={classes.hideInput}
-          id="import-staff-list"
-          single="true"
-          type="file"
-          accept=".csv, .xlsx, .xls"
-        />
-        <label htmlFor="import-staff-list">
-          <Button 
-            startIcon={<CloudUploadIcon />}
-            variant="contained"
-            color="secondary"
-            component="span"
-            onClick={() => handleImportStaffClick()}
-          >
-            Import Staff List
-          </Button>
-        </label>
+        <Button
+          startIcon={<CloudUploadIcon />}
+          variant="contained"
+          color="secondary"
+          component="label"
+          onClick={() => handleImportPeopleClick(Ptype.STAFF)}
+        >
+          Import Staff List<br/>{temp}
+          <input
+            id="import-staff-list"
+            single="true"
+            type="file"
+            accept=".csv, .xlsx, .xls"
+            hidden
+          />
+        </Button>
 
         {/* Import Questions */}
         <input
@@ -157,7 +150,7 @@ export default function Menu(props) {
             component="span"
             onClick={() => handleImportQuestionsClick()}
           >
-            Import Staff List
+            Import Questions<br/>{temp}
           </Button>
         </label>
       </Box>
