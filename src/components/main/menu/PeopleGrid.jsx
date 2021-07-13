@@ -1,6 +1,7 @@
 import { makeStyles } from "@material-ui/styles"
 import { Box, Typography } from "@material-ui/core";
 import { DataGrid } from "@material-ui/data-grid";
+import { Ptype } from "../../../models";
 
 const useStyles = makeStyles(theme => ({
   box: {
@@ -12,12 +13,31 @@ const useStyles = makeStyles(theme => ({
 }))
 
 const columns = [
-  {field: "id", headerName: "Database ID", type: "number", hide: true, flex: 0.5,},
-  {field: "type", headerName: "Type", type: "string", flex: 0.75,},
-  {field: "companyId", headerName: "ID", type: "number", flex: 0.5,},
-  {field: "firstName", headerName: "First Name", type: "string", flex: 1,},
-  {field: "lastName", headerName: "Last Name", type: "string", flex: 1,},
-  {field: "submissions", headerName: "Submissions", type: "number", flex: 0.75,}
+  {
+    field: "id", headerName: "Database ID", type: "number", 
+    headerAlign: 'center', hide: true, flex: 0.5,
+  },
+  {
+    field: "type", headerName: "Type", type: "singleSelect", 
+    valueOptions: [Ptype.FAMILY, Ptype.STAFF, Ptype.MANUAL],
+    headerAlign: 'center', editable: true, flex: 0.75,
+  },
+  {
+    field: "companyId", headerName: "ID", type: "number", 
+    headerAlign: 'center', editable: true, flex: 0.5,
+  },
+  {
+    field: "firstName", headerName: "First Name", type: "string", 
+    headerAlign: 'center', editable: true, flex: 1,
+  },
+  {
+    field: "lastName", headerName: "Last Name", type: "string", 
+    headerAlign: 'center', editable: true, flex: 1,
+  },
+  {
+    field: "submissions", headerName: "Submissions", type: "number", 
+    headerAlign: 'center', editable: true, flex: 0.75,
+  },
 ]
 
 function getRows(people) {
@@ -48,7 +68,7 @@ export default function PeopleGrid(props) {
         density="compact"
         autoHeight
         pageSize={10}
-				sortModel={[ {field: "type", sort: "asc"} ]}        
+				// sortModel={[ {field: "type", sort: "asc"} ]}        
       />
 		</Box>
   )

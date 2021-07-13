@@ -1,6 +1,7 @@
 import { makeStyles } from "@material-ui/styles"
 import { Box, Typography, Checkbox, FormGroup, FormControlLabel } from "@material-ui/core";
 import { DataGrid } from "@material-ui/data-grid";
+import { Qtype } from "../../../models";
 
 const useStyles = makeStyles(theme => ({
   box: {
@@ -12,18 +13,52 @@ const useStyles = makeStyles(theme => ({
 }))
 
 const columns = [
-  {field: "id", headerName: "Database ID", type: "number", hide: true, flex: 0.5,},
-	{field: "index", headerName: "Index", type: "number", flex: 0.5,},
-  {field: "type", headerName: "Type", type: "string", flex: 0.5,},
-	{field: "question", headerName: "Question", type: "string", flex: 2,},
-  {field: "expectedResponse", headerName: "Answer", type: "string", flex: 0.5,},	
+  {
+    field: "id", headerName: "Database ID", type: "number", 
+    headerAlign: 'center', hide: true, flex: 0.5,
+  },
+	{
+    field: "index", headerName: "Index", type: "number", 
+    headerAlign: 'center', editable: true, flex: 0.5,
+  },
+  {
+    field: "type", headerName: "Type", type: "singleSelect",
+    valueOptions: [Qtype.BOOLEAN, Qtype.TEXT, Qtype.TEMP, Qtype.TEMP_CHECKBOX],
+    headerAlign: 'center', editable: true, flex: 0.5,
+  },
+	{
+    field: "question", headerName: "Question", type: "string", 
+    headerAlign: 'center', editable: true, flex: 2,
+  },
+  {
+    field: "expectedResponse", headerName: "Answer", type: "string", 
+    headerAlign: 'center', editable: true, flex: 0.5,
+  },	
 
-  {field: "familyMorning", headerName: "FAMILY-MORNING", type: "boolean", flex: 0.25,},
-  {field: "familyAfternoon", headerName: "FAMILY-AFTERNOON", type: "boolean", flex: 0.25,},
-  {field: "staffMorning", headerName: "STAFF-MORNING", type: "boolean", flex: 0.25,},
-  {field: "staffAfternoon", headerName: "STAFF-AFTERNOON", type: "boolean", flex: 0.25,},
-  {field: "manualMorning", headerName: "MANUAL-MORNING", type: "boolean", flex: 0.25,},
-  {field: "manualAfternoon", headerName: "MANUAL-AFTERNOON", type: "boolean", flex: 0.25,},
+  {
+    field: "familyMorning", headerName: "FAMILY-MORNING", type: "boolean", 
+    headerAlign: 'center', editable: true, flex: 0.25,
+  },
+  {
+    field: "familyAfternoon", headerName: "FAMILY-AFTERNOON", type: "boolean", 
+    headerAlign: 'center', editable: true, flex: 0.25,
+  },
+  {
+    field: "staffMorning", headerName: "STAFF-MORNING", type: "boolean", 
+    headerAlign: 'center', editable: true, flex: 0.25,
+  },
+  {
+    field: "staffAfternoon", headerName: "STAFF-AFTERNOON", type: "boolean", 
+    editable: true, flex: 0.25,
+  },
+  {
+    field: "manualMorning", headerName: "MANUAL-MORNING", type: "boolean", 
+    headerAlign: 'center', editable: true, flex: 0.25,
+  },
+  {
+    field: "manualAfternoon", headerName: "MANUAL-AFTERNOON", type: "boolean", 
+    headerAlign: 'center', editable: true, flex: 0.25,
+  },
 ]
 
 function getRows(questions) {
@@ -49,11 +84,9 @@ function getRows(questions) {
 
 export default function QuestionsGrid(props) {
 	const classes = useStyles();
-
   const {state, setState, questions} = props
 
-  // Handle randomized change
-  const handleRandomizedChange = (event) => {
+  const handleChange = (event) => {
     setState({...state, [event.target.name]: event.target.checked})
   }
 
@@ -69,7 +102,7 @@ export default function QuestionsGrid(props) {
               color="secondary" 
               name="randomized"
               checked={state.randomized}
-              onChange={handleRandomizedChange} 
+              onChange={handleChange} 
             />
           }
           label="Randomize Questions?"
