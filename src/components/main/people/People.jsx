@@ -35,13 +35,12 @@ export default function People(props) {
     const idx = getIndex(form)
 
     // Filter questions by index
+    // Note that this a biased randomization algorithm 
     if(randomizeQuestions)
-      // Note that this a biased randomization algorithm 
       setQuestions(questions.filter(q => q.checkboxes[idx]).sort(() => Math.random() - 0.5))
     else
       setQuestions(questions.filter(q => q.checkboxes[idx]))
 
-    // Render the questionnaire
     setContent(Content.QUESTIONNAIRE)
   }
 

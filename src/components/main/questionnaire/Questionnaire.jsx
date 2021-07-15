@@ -80,8 +80,6 @@ export default function Questionnaire(props) {
 
       createSubmission(submission).then(res => {
         setSubmission(res)
-        // setI(0);
-        // setContent(Content.SUMMARY)
       }).catch(e => {console.error(e)}); 
     }
 
@@ -98,9 +96,9 @@ export default function Questionnaire(props) {
       setI(i + 1);
     }
 
+    // Ask all questions and then create submission
     return (
       <Paper handleResetClick={handleResetClick} person={person}>
-        {/* Ask all questions and then generate the submission */}
         {
           i < questions.length ? 
             <Question 
