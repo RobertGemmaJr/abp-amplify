@@ -11,12 +11,6 @@ import FlexBox from "../../FlexBox";
 import HomeCard from "./Card"
 
 const useStyles = makeStyles(theme => ({
-  outer: {
-    width: "100%",
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-  },
   inner: {
     width: "100%",
     display: "flex",
