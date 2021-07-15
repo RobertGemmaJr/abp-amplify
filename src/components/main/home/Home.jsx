@@ -8,7 +8,7 @@ import thermometerGuy from "../../../media/Thermometer Guy.ico"
 import logo from "../../../media/logos/Apple Blossom logo solid color.png"
 
 import FlexBox from "../../FlexBox";
-import HomeCard from "./Card"
+import Card from "./Card"
 
 const useStyles = makeStyles(theme => ({
   inner: {
@@ -26,7 +26,7 @@ export default function Home(props) {
   return (
     <FlexBox setContent={setContent}>
       <Box className={classes.inner}>
-        <HomeCard 
+        <Card 
           setContent={setContent} 
           form={form} setForm={setForm}
           key={Ptype.FAMILY}
@@ -35,7 +35,7 @@ export default function Home(props) {
           text="Family Form"
           
         />
-        <HomeCard 
+        <Card 
           setContent={setContent} 
           form={form} setForm={setForm}
           key={Ptype.STAFF}
@@ -43,7 +43,7 @@ export default function Home(props) {
           image={thermometerGuy} 
           text="Staff Form"
         />
-        <HomeCard 
+        <Card 
           setContent={setContent} 
           form={form} setForm={setForm}
           key={Ptype.MANUAL}
