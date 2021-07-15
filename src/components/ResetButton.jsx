@@ -21,6 +21,6 @@ export default function ResetButton(props) {
       >
         Reset
       </Button>
-  </Container>
+    </Container>
   )
 }
