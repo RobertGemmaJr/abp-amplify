@@ -83,6 +83,8 @@ function App() {
         DataStore.clear();
         console.log('user signed out');
         break;
+      default: 
+        break;
     }
   }
 
