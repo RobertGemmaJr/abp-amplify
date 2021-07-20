@@ -2,6 +2,7 @@ import React from "react";
 import { Hub } from "@aws-amplify/core";
 import { DataStore } from "@aws-amplify/datastore";
 import { withAuthenticator } from '@aws-amplify/ui-react'
+import { AuthState } from '@aws-amplify/ui-components';
 import { CssBaseline, Box } from "@material-ui/core"
 import { makeStyles } from "@material-ui/styles";
 
@@ -11,10 +12,6 @@ import Header from "./header/Header"
 import Main from "./main/Main"
 import Footer from "./footer/Footer"
 
-// TEMP?
-import { Auth } from "aws-amplify";
-import { AuthState } from '@aws-amplify/ui-components';
-
 const useStyles = makeStyles(theme => ({
   root : {
     display: "flex",
@@ -23,6 +20,7 @@ const useStyles = makeStyles(theme => ({
   },
 }))
 
+/*********** GLOBALS  *********/
 const initialFormState = { time: Time.MORNING, ptype: Ptype.NONE }
 
 // Prevents unnecessary API calls
@@ -45,43 +43,57 @@ var allQuestions = null;
 function App() {
   const classes = useStyles();
 
+  // Listener for DataStore events
+  // Ensures sync process is complete before queries
+  const dataStoreListener = async (data) => {
+    const { payload: { event } } = data;
+    console.log("DataStore event", event);
+
+    // Get user data when synced and signed in
+    if (event === "ready" && AuthState.SignedIn) {
+      getSettings().then(res => {
+        setSettings(res)
+      }).catch(e => {console.error(e)})
+  
+      getPeople().then(res => {
+        allPeople = res;
+        setPeople(res)
+      }).catch(e => {console.error(e)}); 
+
+      getQuestions().then(res => {
+        allQuestions = res;
+        setQuestions(res)
+      }).catch(e => { console.error(e)}); 
+    }
+  };
+
+  // Listener for authentication events
+  const authListener = async (data) => {
+    const { payload: { event } } = data;
+    console.log("Auth event", event);
+
+    switch (event) {
+      case 'signUp':
+        // Create settings here not in query
+        break;
+      case 'signIn':
+        DataStore.start();
+        break;
+      case 'signOut':
+        DataStore.clear();
+        console.log('user signed out');
+        break;
+    }
+  }
+
   // DataStore API calls on initial render
   // Listener ensures sync process completes before first query
   React.useEffect(() => {
-    const listener = Hub.listen("datastore", async (capsule) => {
-      const { payload: { event } } = capsule;
-      // console.log("DataStore event", event);
- 
-      if (event === "ready") {
+    Hub.listen('auth', authListener);
+    Hub.listen("datastore", dataStoreListener);
 
-        // MAKE SURE TO DELETE THIS ON PRODUCTION
-        if(AuthState.SignedIn) console.log("User Signed in: ", await Auth.currentUserInfo())
-
-        // Call these on user sign in, not here
-        getSettings().then(res => {
-          setSettings(res)
-        }).catch(e => {console.error(e)})
-    
-        getPeople().then(res => {
-          allPeople = res;
-          setPeople(res)
-        }).catch(e => {console.error(e)}); 
-
-        getQuestions().then(res => {
-          allQuestions = res;
-          setQuestions(res)
-        }).catch(e => { console.error(e)}); 
-      }
-    });
-
-    // Start the DataStore and call listener
     DataStore.start();
-    return () => listener();
   }, [])
-
-  // Hook for AWS user authentication
-  // const [authState, setAuthState] = React.useState();
-  // const [user, setUser] = React.useState();
 
   // Hook for user's settings
   const [settings, setSettings] = React.useState(0);
