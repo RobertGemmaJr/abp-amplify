@@ -91,8 +91,6 @@ export default function Menu(props) {
     // window.location.reload(); // Call as a React useEffect on exit?
   }
 
-  const temp = "file name here"
-
   return (
     <Paper className={classes.menu}>
     

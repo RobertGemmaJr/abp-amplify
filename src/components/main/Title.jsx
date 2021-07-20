@@ -19,9 +19,7 @@ export default function Title(props) {
   let subtitle = ""
   if (content === Content.MENU) subtitle = "Menu"
   else if (content === Content.SUMMARY) subtitle = "Summary"
-  else {
-    subtitle = (time === Time.MORNING ? "Morning Questions" : "Afternoon Questions")
-  }
+  else subtitle = (time === Time.MORNING ? "Morning Questions" : "Afternoon Questions")
 
   return (
     <Container>
