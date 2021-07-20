@@ -47,7 +47,7 @@ function App() {
   // Ensures sync process is complete before queries
   const dataStoreListener = async (data) => {
     const { payload: { event } } = data;
-    console.log("DataStore event", event);
+    // console.log("DataStore event", event);
 
     // Get user data when synced and signed in
     if (event === "ready" && AuthState.SignedIn) {

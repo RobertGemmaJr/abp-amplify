@@ -9,6 +9,7 @@ import { Setting, Person, Question, Submission } from './models';
 export async function getSettings() {
   var models = await DataStore.query(Setting);
 
+  // Move this to the auth sign-up page
   if (!models.length) {
     // If no settings have been created, make initial one
     await DataStore.save(
@@ -55,6 +56,20 @@ export async function getSubmissions(startDate, endDate) {
 }
 
 /********** CREATE **********/
+
+export async function createPerson(person) {
+  console.log("Entered createPerson()")
+  const res = await DataStore.save(
+    new Person({
+      companyID: person.companyID,
+      type: person.type,
+      fName: person.fName,
+      lName: person.lName,
+    })
+  )
+  console.log("Created person", res)
+  return res;
+}
 
 export async function createSubmission(submission) {
   console.log("Entered createSubmission()")

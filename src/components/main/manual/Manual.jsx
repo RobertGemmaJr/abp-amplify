@@ -4,6 +4,7 @@ import { makeStyles } from "@material-ui/styles";
 
 import { Content, Ptype } from "../../../models"
 import FlexBox from "../../FlexBox";
+import { createPerson } from "../../../api";
 
 const useStyles = makeStyles(theme => ({
   manual: {
@@ -25,22 +26,16 @@ export default function Manual(props) {
       setState({...state, [event.target.name]: event.target.value })
     }
 
-    function manualEntry() {
-      // Check if person already exists by first and last name
-
-      // If exists, use it
-
-      // Otherwise create a new person
-      // THIS IS NOT THE CORRECT FORMAT
+    function handleClick() {
       const person = {
-        id: 0, // Need to make sure I create a unique id
         type: Ptype.MANUAL,
         fName: state.fName,
         lName: state.lName,
-        Responses: [],
       }
-      setPerson(person);
-      setContent(Content.QUESTIONNAIRE)
+      createPerson(person).then(res => {
+        setPerson(res);
+        setContent(Content.QUESTIONNAIRE)
+      }).catch(e => {console.error(e)})
     }
 
     return (
@@ -72,7 +67,7 @@ export default function Manual(props) {
         <Button 
           variant="contained"
           color="secondary"
-          onClick={() => manualEntry()}
+          onClick={() => handleClick()}
           className={classes.manual}
         >
           SUBMIT
