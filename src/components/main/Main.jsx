@@ -107,7 +107,6 @@ export default function Main(props) {
             <Summary 
               handleResetClick={handleResetClick}
               person={person}
-              responses={responses}
               setContent={setContent} 
               submission={submission}
             />

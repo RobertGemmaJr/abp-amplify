@@ -11,6 +11,9 @@ import Header from "./header/Header"
 import Main from "./main/Main"
 import Footer from "./footer/Footer"
 
+// TEMP?
+import { Auth } from "aws-amplify";
+import { AuthState } from '@aws-amplify/ui-components';
 
 const useStyles = makeStyles(theme => ({
   root : {
@@ -50,6 +53,11 @@ function App() {
       // console.log("DataStore event", event);
  
       if (event === "ready") {
+
+        // MAKE SURE TO DELETE THIS ON PRODUCTION
+        if(AuthState.SignedIn) console.log("User Signed in: ", await Auth.currentUserInfo())
+
+        // Call these on user sign in, not here
         getSettings().then(res => {
           setSettings(res)
         }).catch(e => {console.error(e)})
@@ -70,6 +78,10 @@ function App() {
     DataStore.start();
     return () => listener();
   }, [])
+
+  // Hook for AWS user authentication
+  // const [authState, setAuthState] = React.useState();
+  // const [user, setUser] = React.useState();
 
   // Hook for user's settings
   const [settings, setSettings] = React.useState(0);
