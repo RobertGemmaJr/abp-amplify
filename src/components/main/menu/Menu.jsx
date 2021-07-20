@@ -106,7 +106,7 @@ export default function Menu(props) {
           component="label"
           onClick={() => handleImportPeopleClick(Ptype.FAMILY)}
         >
-          Import Family List<br/>{temp}
+          Import Family List
           <input
             hidden
             id="import-family-list"
@@ -124,7 +124,7 @@ export default function Menu(props) {
           component="label"
           onClick={() => handleImportPeopleClick(Ptype.STAFF)}
         >
-          Import Staff List<br/>{temp}
+          Import Staff List
           <input
             id="import-staff-list"
             single="true"
@@ -150,7 +150,7 @@ export default function Menu(props) {
             component="span"
             onClick={() => handleImportQuestionsClick()}
           >
-            Import Questions<br/>{temp}
+            Import Questions
           </Button>
         </label>
       </Box>

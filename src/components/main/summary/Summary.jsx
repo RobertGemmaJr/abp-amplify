@@ -107,7 +107,7 @@ export default function Summary(props) {
         variant="subtitle1" 
         color={submission.passed ? "inherit" : "error"}
       >
-        {submission.passed ? "You passed!" : "Please try again"}
+        {submission.passed ? "You passed!" : "Child not allowed. Ask parent failed question."}
       </Typography>
     </Paper>
   )

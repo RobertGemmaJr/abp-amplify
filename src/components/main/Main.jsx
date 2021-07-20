@@ -120,7 +120,7 @@ export default function Main(props) {
   
   // Change time under certain states
   function handleTitleClick() {
-    if(content === Content.KEYPAD || content === Content.MANUAL || content === Content.PEOPLE) {
+    if(content === Content.HOME) {
       setForm({
         ...form, 
         "time": form.time = (form.time === Time.MORNING ? Time.AFTERNOON : Time.MORNING)
