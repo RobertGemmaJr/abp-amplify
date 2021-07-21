@@ -1,14 +1,15 @@
 import React from "react";
 import { AmplifySignOut } from '@aws-amplify/ui-react'
 import { makeStyles } from "@material-ui/styles";
-import { Paper, TextField, Box, Button, Grid, Checkbox, FormGroup, FormControlLabel, Switch } from "@material-ui/core";
+import { Paper, Typography, TextField, Box, Button, Grid, Checkbox, FormGroup, FormControlLabel, Switch } from "@material-ui/core";
 
 import { Content } from "../../../models";
 import PeopleGrid from "./PeopleGrid";
 import QuestionsGrid from "./QuestionsGrid";
 import Imports from "./Imports";
-import Exports from "./Exports";
+import ExportByDate from "./ExportByDate";
 import NewTitle from "./NewTitle";
+import ExportByName from "./ExportByName";
 
 const useStyles = makeStyles(theme => ({
   box: {
@@ -16,10 +17,6 @@ const useStyles = makeStyles(theme => ({
   },
   menu: {
     width: "100%",
-  },
-  dataGrid: {
-    margin: theme.spacing(2),
-    marginBottom: theme.spacing(4),
   },
   save: {
     marginTop: theme.spacing(5),
@@ -93,17 +90,19 @@ export default function Menu(props) {
     <Paper className={classes.menu}>
     
       {/* IMPORT BUTTONS */}
+      {/* Move each button to the correct section */}
       <Imports className={classes.box} state={state} setState={setState}/>
-
-      {/* Export buttons */}
-      <Exports className={classes.box} state={state} setState={setState}/>
-      <Exports className={classes.box} state={state} setState={setState}/>
 
       {/* Update Title */}
       <NewTitle className={classes.box} state={state} setState={setState}/>
 
+      {/* Export buttons */}
+      <ExportByDate className={classes.box} state={state} setState={setState}/>
+      <ExportByName className={classes.box} state={state} setState={setState}/>
+
 
       {/* Temperature */}
+      <Typography align="center" variant="h4">Temperature</Typography>
       <Box className={classes.box} display="flex" justifyContent="space-evenly">
         {/* Record Temperature? */}
         <FormGroup row>

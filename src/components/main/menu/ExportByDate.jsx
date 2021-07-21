@@ -8,7 +8,7 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-export default function Exports(props) {
+export default function ExportByDate(props) {
   const classes = useStyles();
   const {state, setState} = props;
 
@@ -18,18 +18,12 @@ export default function Exports(props) {
   }
 
   // Handle export button clicked by date
-  function handleExportDateClick() {
+  function handleClick() {
   
   }
 
-  // Handle export button clicked by person
-  function handleExportPersonClick() {
-
-  }
-
   return(
-    <Box display="flex" justifyContent="space-evenly" m={2}>
-      <Box display="flex" justifyContent="center">
+    <Box display="flex" justifyContent="center">
         <TextField
           id="start-date"
           name="startDate"
@@ -51,33 +45,11 @@ export default function Exports(props) {
         <Button 
           variant="contained"
           color="secondary"
-          onClick={() => handleExportDateClick()}
+          onClick={() => handleClick()}
           className={classes.margin}
         >
-          Export Answers
+          Export Submissions
         </Button>
-      </Box>
-
-      <Box display="flex" justifyContent="center">
-        <TextField
-          id="export-name"
-          name="export-name"
-          label="Name"
-          value={state.exportName}
-          onChange={handleTextChange}
-          variant="outlined"
-          noValidate
-          className={classes.margin}
-        />
-        <Button 
-          variant="contained"
-          color="secondary"
-          onClick={() => handleExportPersonClick()}
-          className={classes.margin}
-        >
-          Export Answers
-        </Button>
-      </Box>
     </Box>
   )
 }
