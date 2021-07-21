@@ -1,8 +1,6 @@
 enum QTYPE {
   BOOLEAN
   TEXT
-  TEMP
-  TEMP_CHECKBOX
 }
 
 enum PTYPE {
@@ -30,6 +28,9 @@ type Setting @model @auth(rules: [{allow: owner}]) {
   id: ID!
   title: String!
   randomizeQuestions: Boolean!
+  recordTemperature: Boolean!
+  keepTemperature: Boolean!
+  tempTolerance: Float!
 }
 
 type Person @model @auth(rules: [{allow: owner}]) {
@@ -58,5 +59,6 @@ type Submission @model @auth(rules: [{allow: owner}]) @key(name: "byPerson", fie
   time: TIME!
   questions: [ID!]!
   responses: [String!]!
+  temperature: String!
   passed: Boolean!
 }

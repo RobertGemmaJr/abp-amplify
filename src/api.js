@@ -15,7 +15,10 @@ export async function getSettings() {
     await DataStore.save(
       new Setting({
         "title": "Change Title in Menu",
-        "randomizeQuestions": true
+        "randomizeQuestions": true,
+        "recordTemperature": true,
+        "keepTemperature": true,
+        "tempTolerance": 2,
       })
     );
     models = await DataStore.query(Setting)    
