@@ -26,6 +26,7 @@ export async function getSettings() {
     // TODO: This error is happening
     console.error("Too many settings! Using first object", models)
   }
+  console.log("Settings", models[0]);
   return models[0];
 }
 

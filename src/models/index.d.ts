@@ -2,9 +2,7 @@ import { ModelInit, MutableModel, PersistentModelConstructor } from "@aws-amplif
 
 export enum Qtype {
   BOOLEAN = "BOOLEAN",
-  TEXT = "TEXT",
-  TEMP = "TEMP",
-  TEMP_CHECKBOX = "TEMP_CHECKBOX"
+  TEXT = "TEXT"
 }
 
 export enum Ptype {
@@ -50,6 +48,9 @@ export declare class Setting {
   readonly id: string;
   readonly title: string;
   readonly randomizeQuestions: boolean;
+  readonly recordTemperature: boolean;
+  readonly keepTemperature: boolean;
+  readonly tempTolerance: number;
   readonly createdAt?: string;
   readonly updatedAt?: string;
   constructor(init: ModelInit<Setting, SettingMetaData>);
@@ -77,6 +78,7 @@ export declare class Submission {
   readonly time: Time | keyof typeof Time;
   readonly questions: string[];
   readonly responses: string[];
+  readonly temperature: string;
   readonly passed: boolean;
   readonly updatedAt?: string;
   constructor(init: ModelInit<Submission, SubmissionMetaData>);

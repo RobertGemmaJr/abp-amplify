@@ -24,6 +24,27 @@ export const schema = {
                     "isRequired": true,
                     "attributes": []
                 },
+                "recordTemperature": {
+                    "name": "recordTemperature",
+                    "isArray": false,
+                    "type": "Boolean",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "keepTemperature": {
+                    "name": "keepTemperature",
+                    "isArray": false,
+                    "type": "Boolean",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "tempTolerance": {
+                    "name": "tempTolerance",
+                    "isArray": false,
+                    "type": "Float",
+                    "isRequired": true,
+                    "attributes": []
+                },
                 "createdAt": {
                     "name": "createdAt",
                     "isArray": false,
@@ -226,6 +247,13 @@ export const schema = {
                     "attributes": [],
                     "isArrayNullable": false
                 },
+                "temperature": {
+                    "name": "temperature",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": true,
+                    "attributes": []
+                },
                 "passed": {
                     "name": "passed",
                     "isArray": false,
@@ -378,9 +406,7 @@ export const schema = {
             "name": "Qtype",
             "values": [
                 "BOOLEAN",
-                "TEXT",
-                "TEMP",
-                "TEMP_CHECKBOX"
+                "TEXT"
             ]
         },
         "Ptype": {
@@ -412,5 +438,5 @@ export const schema = {
         }
     },
     "nonModels": {},
-    "version": "9e5d518b636ad9b4cd2df040efa532c2"
+    "version": "9fa43266a246ef7b59654cfcdabb565c"
 };

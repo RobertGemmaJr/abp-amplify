@@ -4,9 +4,7 @@ import { schema } from './schema';
 
 const Qtype = {
   "BOOLEAN": "BOOLEAN",
-  "TEXT": "TEXT",
-  "TEMP": "TEMP",
-  "TEMP_CHECKBOX": "TEMP_CHECKBOX"
+  "TEXT": "TEXT"
 };
 
 const Ptype = {
