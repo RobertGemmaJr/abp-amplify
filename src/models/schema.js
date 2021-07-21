@@ -386,7 +386,6 @@ export const schema = {
         "Ptype": {
             "name": "Ptype",
             "values": [
-                "NONE",
                 "FAMILY",
                 "STAFF",
                 "MANUAL"

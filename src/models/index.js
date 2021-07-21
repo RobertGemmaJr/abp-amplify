@@ -10,7 +10,6 @@ const Qtype = {
 };
 
 const Ptype = {
-  "NONE": "NONE",
   "FAMILY": "FAMILY",
   "STAFF": "STAFF",
   "MANUAL": "MANUAL"
