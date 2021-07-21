@@ -6,7 +6,6 @@ enum QTYPE {
 }
 
 enum PTYPE {
-  NONE
   FAMILY
   STAFF
   MANUAL

@@ -3,9 +3,11 @@ import { makeStyles } from "@material-ui/styles";
 
 const useStyles = makeStyles(theme => ({
   question: {
-
+    width: "100%",
+    height: "100%",
   },
   text: {
+    minHeight: "50%",
     margin: theme.spacing(3),
     fontSize: 30,
     fontWeight: "bold",

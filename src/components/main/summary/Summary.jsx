@@ -91,6 +91,13 @@ export default function Summary(props) {
         body={ submission.formType + "-" + submission.time} 
       />
 
+      {/* Passed? */}
+      <Typography 
+        variant="subtitle1" 
+        color={submission.passed ? "inherit" : "error"}
+      >
+        {submission.passed ? "You passed!" : "Child not allowed. Ask parent failed question."}
+      </Typography>
       <DataGrid
         columns={columns}
         rows={rows}
@@ -101,14 +108,6 @@ export default function Summary(props) {
         disableSelectionOnClick disableColumnMenu
         className={classes.table}
       />
-
-      {/* Passed? */}
-      <Typography 
-        variant="subtitle1" 
-        color={submission.passed ? "inherit" : "error"}
-      >
-        {submission.passed ? "You passed!" : "Child not allowed. Ask parent failed question."}
-      </Typography>
     </Paper>
   )
 }
