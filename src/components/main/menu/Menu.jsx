@@ -8,6 +8,7 @@ import PeopleGrid from "./PeopleGrid";
 import QuestionsGrid from "./QuestionsGrid";
 import Imports from "./Imports";
 import Exports from "./Exports";
+import NewTitle from "./NewTitle";
 
 const useStyles = makeStyles(theme => ({
   box: {
@@ -68,11 +69,6 @@ export default function Menu(props) {
     setState({...state, [event.target.name]: event.target.checked})
   }
 
-  // Handle export button clicked
-  function handleExportClick() {
-    
-  }
-
   // Handle save button clicked
   function handleSaveClick() {
     // Note: May not have to set hook since I reload the website
@@ -101,46 +97,11 @@ export default function Menu(props) {
 
       {/* Export buttons */}
       <Exports className={classes.box} state={state} setState={setState}/>
-
-      {/* Export Answers */}
-      <Box className={classes.box} display="flex" justifyContent="center">
-        <TextField
-          id="start-date"
-          name="startDate"
-          label="Start Date" 
-          type="date"
-          value={state.startDate}
-          onChange={handleTextChange}
-        />
-        <TextField
-          id="end-date"
-          name="endDate"
-          label="End Date" 
-          type="date"
-          value={state.endDate}
-          onChange={handleTextChange}
-        />
-        <Button 
-          variant="contained"
-          color="secondary"
-          onClick={() => handleExportClick()}
-        >
-          Export Answers
-        </Button>
-      </Box>
+      <Exports className={classes.box} state={state} setState={setState}/>
 
       {/* Update Title */}
-      <Box className={classes.box} component="form">
-        <TextField 
-          id="new-title" 
-          name="newTitle"
-          label="App Title" 
-          value={state.newTitle}
-          onChange={handleTextChange}
-          variant="outlined"
-          noValidate fullWidth
-        />
-      </Box>
+      <NewTitle className={classes.box} state={state} setState={setState}/>
+
 
       {/* Temperature */}
       <Box className={classes.box} display="flex" justifyContent="space-evenly">
