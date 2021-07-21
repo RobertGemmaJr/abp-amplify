@@ -84,6 +84,7 @@ export async function createSubmission(submission) {
       "time": submission.time,
       "questions": submission.questions,
       "responses": submission.responses,
+      "temperature": submission.temperature,
       "passed": submission.passed,
     })
   )

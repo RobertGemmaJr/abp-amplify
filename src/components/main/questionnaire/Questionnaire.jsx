@@ -56,7 +56,7 @@ function checkPassed(questions, responses) {
 export default function Questionnaire(props) {
     const classes = useStyles();
     const { 
-      setContent, handleResetClick, person, questions, form, responses, 
+      setContent, handleResetClick, settings, person, questions, form, responses, 
       setResponses, setSubmission,
     } = props;
 
@@ -75,7 +75,8 @@ export default function Questionnaire(props) {
         time: form.time,
         questions: questionIds,
         responses: responses,
-        passed: checkPassed(questions, responses)  
+        temperature: "temp", // "Done" if checkbox, value if keepTemperature
+        passed: checkPassed(questions, responses)  // check for valid temperature
       }
 
       createSubmission(submission).then(res => {

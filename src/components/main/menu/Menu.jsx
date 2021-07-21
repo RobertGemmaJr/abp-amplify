@@ -15,9 +15,6 @@ const useStyles = makeStyles(theme => ({
   menu: {
     width: "100%",
   },
-  hideInput: {
-    display: "none"
-  },
   dataGrid: {
     margin: theme.spacing(2),
     marginBottom: theme.spacing(4),
@@ -47,10 +44,16 @@ export default function Menu(props) {
 
   // Hook for menu state
   const [state, setState] = React.useState({
+    // User settings
     newTitle: settings.title,
+    newRandomizeQuestions: settings.randomizeQuestions,
+    newRecordTemperature: settings.recordTemperature,
+    newKeepTemperature: settings.keepTemperature,
+    newTempTolerance: settings.tempTolerance,
+
+    // Export questions
     startDate: "2020-01-01",
     endDate: getDate(),
-    randomized: settings.randomizeQuestions,
   })
 
   // Handle newTitle change
@@ -77,7 +80,7 @@ export default function Menu(props) {
     // Note: May not have to set hook since I reload the website
 
     // Update settings in database and set hook
-    // setSettings(updateSettings(state.newTitle, state.randomized))
+    // setSettings(updateSettings(state.newTitle, state.newRandomizeQuestions))
 
     // Update people in database and set hook
 
@@ -133,24 +136,22 @@ export default function Menu(props) {
         </Button>
 
         {/* Import Questions */}
-        <input
-          className={classes.hideInput}
-          id="import-questions"
-          single="true"
-          type="file"
-          accept=".csv, .xlsx, .xls"
-        />
-        <label htmlFor="import-questions">
-          <Button 
-            startIcon={<CloudUploadIcon />}
-            variant="contained"
-            color="secondary"
-            component="span"
-            onClick={() => handleImportQuestionsClick()}
-          >
-            Import Questions
-          </Button>
-        </label>
+        <Button 
+          startIcon={<CloudUploadIcon />}
+          variant="contained"
+          color="secondary"
+          component="span"
+          onClick={() => handleImportQuestionsClick()}
+        >
+          Import Questions
+          <input
+            id="import-questions"
+            single="true"
+            type="file"
+            accept=".csv, .xlsx, .xls"
+            hidden
+          />
+        </Button>
       </Box>
 
       {/* Export Answers */}

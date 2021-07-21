@@ -95,6 +95,7 @@ export default function Main(props) {
             <Questionnaire 
               setContent={setContent}
               handleResetClick={handleResetClick}
+              settings={settings}
               person={person} 
               questions={questions}
               form={form}
