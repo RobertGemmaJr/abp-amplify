@@ -6,6 +6,7 @@ const useStyles = makeStyles(theme => ({
   typography: {
     width: "100%",
     textAlign: "left",
+    fontSize: 14,
   },
   bold: {
     fontWeight: "bold"
@@ -19,7 +20,7 @@ export default function Text(props) {
   return (
     <Typography variant="subtitle1" className={classes.typography}>
       <span className={classes.bold}>{title}</span>
-      {body}
+      <span >{body}</span>
     </Typography>
   )
 }

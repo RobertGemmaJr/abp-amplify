@@ -115,6 +115,7 @@ export default function QuestionsGrid(props) {
         columns={columns}
         rows={getRows(questions)}
         density="compact"
+        rowHeight={30}
         autoHeight
         pageSize={20}
 				sortModel={[ {field: "index", sort: "asc"} ]}        

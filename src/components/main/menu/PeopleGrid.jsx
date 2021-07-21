@@ -66,6 +66,7 @@ export default function PeopleGrid(props) {
         columns={columns}
         rows={getRows(props.people)}
         density="compact"
+        rowHeight={30}
         autoHeight
         pageSize={10}
 				// sortModel={[ {field: "type", sort: "asc"} ]}        

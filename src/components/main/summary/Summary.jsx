@@ -10,7 +10,12 @@ import Text from "./Text";
 const useStyles = makeStyles(theme => ({
   table: {
     width: "100%",
-    margin: theme.spacing(1, 0)
+    margin: theme.spacing(1, 0),
+
+    '& .wrong': {
+      fontWeight: "bold",
+      color: "red",
+    }
   },
 }))
 
@@ -80,16 +85,17 @@ export default function Summary(props) {
   
   return (
     <Paper handleResetClick={handleResetClick} person={person}>
-      <Text title="Response: " body={submission.id} />
-      <Text title="Submitted On: " body={readableDateTime(submission.createdAt)} />
-      <Text 
-        title="Submitted By: "
-        body={person.companyID + ") " + person.fName + " " + person.lName}
-      />
+      {/* <Text title="Response: " body={submission.id} /> */}
       <Text 
         title="Form: " 
         body={ submission.formType + "-" + submission.time} 
       />
+      <Text title="Submitted On: " body={readableDateTime(submission.createdAt)} />
+      {/* <Text 
+        title="Submitted By: "
+        body={person.companyID + ") " + person.fName + " " + person.lName}
+      /> */}
+
 
       {/* Passed? */}
       <Typography 
@@ -103,10 +109,14 @@ export default function Summary(props) {
         rows={rows}
         loading={!rows.length}
         density="compact"
+        rowHeight={30}
         autoHeight autoPageSize
         hideFooter
         disableSelectionOnClick disableColumnMenu
         className={classes.table}
+        getRowClassName={
+          (params) => params.getValue(params.id, "correct") === "Failed" && "wrong" 
+        }
       />
     </Paper>
   )
