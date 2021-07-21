@@ -1,12 +1,13 @@
 import React from "react";
 import { AmplifySignOut } from '@aws-amplify/ui-react'
 import { makeStyles } from "@material-ui/styles";
-import { Paper, TextField, Box, Button } from "@material-ui/core";
-import CloudUploadIcon from '@material-ui/icons/CloudUpload';
+import { Paper, TextField, Box, Button, Grid, Checkbox, FormGroup, FormControlLabel, Switch } from "@material-ui/core";
 
-import { Content, Ptype } from "../../../models";
+import { Content } from "../../../models";
 import PeopleGrid from "./PeopleGrid";
 import QuestionsGrid from "./QuestionsGrid";
+import Imports from "./Imports";
+import Exports from "./Exports";
 
 const useStyles = makeStyles(theme => ({
   box: {
@@ -22,7 +23,7 @@ const useStyles = makeStyles(theme => ({
   save: {
     marginTop: theme.spacing(5),
     marginBottom: theme.spacing(3),
-  }
+  },
 }))
 
 // Returns date as a "yyyy-mm-dd" format
@@ -54,22 +55,19 @@ export default function Menu(props) {
     // Export questions
     startDate: "2020-01-01",
     endDate: getDate(),
+    exportName: "",
   })
 
-  // Handle newTitle change
-  const handleNewTitleChange = (event) => {
+  // Handle change for text items
+  const handleTextChange = (event) => {
     setState({...state, [event.target.name]: event.target.value })
   }
 
-  // Handle import family button clicked
-  function handleImportPeopleClick(type) {
-    console.log("clicked", type)
-
+  // Handle change for checkbox items
+  const handleCheckboxChange = (event) => {
+    setState({...state, [event.target.name]: event.target.checked})
   }
-  // Handle import questions button clicked
-  function handleImportQuestionsClick() {
 
-  }
   // Handle export button clicked
   function handleExportClick() {
     
@@ -94,65 +92,15 @@ export default function Menu(props) {
     // window.location.reload(); // Call as a React useEffect on exit?
   }
 
+  // console.log(state)
   return (
     <Paper className={classes.menu}>
     
       {/* IMPORT BUTTONS */}
-      <Box className={classes.box} display="flex" justifyContent="space-evenly">
-        {/* Import Family List */}
-        <Button
-          startIcon={<CloudUploadIcon />}
-          variant="contained"
-          color="secondary"
-          component="label"
-          onClick={() => handleImportPeopleClick(Ptype.FAMILY)}
-        >
-          Import Family List
-          <input
-            hidden
-            id="import-family-list"
-            single="true"
-            type="file"
-            accept=".csv, .xlsx, .xls"
-          />
-        </Button>
+      <Imports className={classes.box} state={state} setState={setState}/>
 
-        {/* Import Staff List */}
-        <Button
-          startIcon={<CloudUploadIcon />}
-          variant="contained"
-          color="secondary"
-          component="label"
-          onClick={() => handleImportPeopleClick(Ptype.STAFF)}
-        >
-          Import Staff List
-          <input
-            id="import-staff-list"
-            single="true"
-            type="file"
-            accept=".csv, .xlsx, .xls"
-            hidden
-          />
-        </Button>
-
-        {/* Import Questions */}
-        <Button 
-          startIcon={<CloudUploadIcon />}
-          variant="contained"
-          color="secondary"
-          component="span"
-          onClick={() => handleImportQuestionsClick()}
-        >
-          Import Questions
-          <input
-            id="import-questions"
-            single="true"
-            type="file"
-            accept=".csv, .xlsx, .xls"
-            hidden
-          />
-        </Button>
-      </Box>
+      {/* Export buttons */}
+      <Exports className={classes.box} state={state} setState={setState}/>
 
       {/* Export Answers */}
       <Box className={classes.box} display="flex" justifyContent="center">
@@ -162,7 +110,7 @@ export default function Menu(props) {
           label="Start Date" 
           type="date"
           value={state.startDate}
-          onChange={handleNewTitleChange}
+          onChange={handleTextChange}
         />
         <TextField
           id="end-date"
@@ -170,7 +118,7 @@ export default function Menu(props) {
           label="End Date" 
           type="date"
           value={state.endDate}
-          onChange={handleNewTitleChange}
+          onChange={handleTextChange}
         />
         <Button 
           variant="contained"
@@ -188,9 +136,54 @@ export default function Menu(props) {
           name="newTitle"
           label="App Title" 
           value={state.newTitle}
-          onChange={handleNewTitleChange}
+          onChange={handleTextChange}
           variant="outlined"
           noValidate fullWidth
+        />
+      </Box>
+
+      {/* Temperature */}
+      <Box className={classes.box} display="flex" justifyContent="space-evenly">
+        {/* Record Temperature? */}
+        <FormGroup row>
+          <FormControlLabel
+            control={
+              <Checkbox 
+                color="secondary" 
+                name="newRecordTemperature"
+                checked={state.newRecordTemperature}
+                onChange={handleCheckboxChange} 
+              />
+            }
+            label="Record Temperature?"
+            labelPlacement="start"
+          />
+        </FormGroup>
+
+        {/* Keep Temperature? */}
+        <Grid component="label" container alignItems="center" spacing={1} xs={3}>
+          <Grid item xs>Checkbox</Grid>
+          <Grid item xs>
+            {/* <AntSwitch checked={state.checkedC} onChange={handleChange} name="checkedC" /> */}
+            <Switch
+              name="newKeepTemperature"
+              checked={state.newKeepTemperature}
+              onChange={handleCheckboxChange}
+            />
+          </Grid>
+          <Grid item xs>Temperature</Grid>
+        </Grid>
+
+        {/* Temperature Tolerance */}
+        <TextField 
+          id="new-temp-tolerance" 
+          name="newTempTolerance"
+          label="Temperature Tolerance" 
+          value={state.newTempTolerance}
+          onChange={handleTextChange}
+          variant="outlined"
+          helperText={"Enter the tolerance +/- 98.6: a tolerance of 2 will pass temperatures from 96.6-100.6"}
+          disabled={!state.newKeepTemperature}
         />
       </Box>
 

@@ -100,8 +100,8 @@ export default function QuestionsGrid(props) {
           control={
             <Checkbox 
               color="secondary" 
-              name="randomized"
-              checked={state.randomized}
+              name="newRandomizeQuestions"
+              checked={state.newRandomizeQuestions}
               onChange={handleChange} 
             />
           }
