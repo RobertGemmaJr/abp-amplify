@@ -1,67 +1,98 @@
 
 import React from "react";
 import { makeStyles } from "@material-ui/styles";
-import { Box, Typography, Button, Checkbox } from "@material-ui/core"; 
+import { Box, Typography, Button, Checkbox, TextField } from "@material-ui/core"; 
 
 const useStyles = makeStyles(theme => ({
-  question: {
+  outer: {
     width: "100%",
     height: "100%",
   },
-  text: {
-    minHeight: "50%",
-    margin: theme.spacing(3),
+  inner: {
+    flexGrow: 1,
+  },
+  temperature: {
     fontSize: 30,
     fontWeight: "bold",
-    alignContent: "center",
   },
-  answer: {
-    width: "100%",
-    display: "flex",
-    justifyContent: "center",
-
-    '& > *': {
-      margin: theme.spacing(2, 5),
-    },
+  submit: {
+    margin: theme.spacing(3),
   },
 }))
 
 export default function TemperatureQuestion(props) {
   const classes = useStyles();
-  const { settings, checked, setChecked, handleClick, } = props;
+  const { settings, temperatureRes, setTemperatureRes, handleClick, } = props;
+
+  // Handle change for text temperature
+  const handleTextChange = (event) => {
+    setTemperatureRes(event.target.value)
+  }
+
+  // Handle change for checkbox temperature
+  const handleCheckChange = (event) => {
+    setTemperatureRes(event.target.checked)
+  }
 
   return (
-    <Box alignContent="center" justifyContent="center" className={classes.question}>
+    <Box 
+      display="flex" 
+      flexDirection="column" 
+      alignContent="center" 
+      className={classes.outer}
+    >
 
+      {/* Temperature Question */}
       {settings.recordTemperature &&
-        <Box className={classes.text}>
-          <Typography align="center" className={classes.text}>
-            Temperature
+        <Box 
+          display="flex" 
+          flexDirection="column" 
+          justifyContent="space-between"
+          alignItems="center"
+          className={classes.inner}
+        >
+          <Typography align="center" className={classes.temperature}>
+            Temperature Check
           </Typography>
-
-          <Typography align="center">
-            Please return this device to the staff member.
-          </Typography>
-
-
-          {settings.keepTemperature ?
+        
+          {!settings.keepTemperature ?
               <Checkbox 
+                checked={temperatureRes}
+                onChange={handleCheckChange}
               />
             :
-              null
+              <TextField 
+                id="temperature-response" 
+                name="temperatureResponse"
+                label="Temperature"
+                value={temperatureRes}
+                onChange={handleTextChange}
+                variant="outlined"
+                helperText="Please enter a valid number"
+              />
           }
-        </Box>
-        
+        </Box> 
       }
       
-      <Box className={classes.answer}>
+      {/* Submit button */}
+      <Box
+        display="flex" 
+        flexDirection="column" 
+        justifyContent="flex-end"
+        alignItems="center"
+        className={classes.inner}
+      >
+        <Typography align="center">
+          Thank you! Please return this device to a staff member.
+        </Typography>
         <Button
-          variant="contained"
-          color="primary" 
-          size="large"
-          onClick={() => handleClick()}
-        >
-          Submit
+            variant="contained"
+            color="primary" 
+            size="large"
+            className={classes.submit}
+            onClick={() => handleClick()}
+          >
+            Submit
         </Button>
       </Box>
     </Box>

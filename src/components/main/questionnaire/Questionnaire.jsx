@@ -65,8 +65,7 @@ export default function Questionnaire(props) {
     // Hook for indexing the questions array
     const [i, setI] = React.useState(0);
 
-    // Hook for determining if checkbox is checked
-    const [checked, setChecked] = React.useState(false)
+    const [temperatureRes, setTemperatureRes] = React.useState(0)
 
     // Generate the submission and move to Summary page
     async function generateSubmission() {
@@ -89,7 +88,7 @@ export default function Questionnaire(props) {
       }).catch(e => {console.error(e)}); 
     }
 
-    function submit() {
+    function submit(temperatureResponse) {
       generateSubmission().then(res => {
         setI(0);
         setContent(Content.SUMMARY)
@@ -120,11 +119,13 @@ export default function Questionnaire(props) {
               handleClick={submit}
             />
         } */}
+
         <TemperatureQuestion 
               settings={settings}
-              checked={checked} setChecked={setChecked}
+              temperatureRes={temperatureRes} 
+              setTemperatureRes={setTemperatureRes}
               handleClick={submit}
-            />
+        />
       </Paper>
     )
 }
