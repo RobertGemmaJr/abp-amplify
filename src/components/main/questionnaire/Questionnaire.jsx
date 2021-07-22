@@ -1,10 +1,12 @@
 import React from "react";
 import { makeStyles } from "@material-ui/styles";
+import { Checkbox } from "@material-ui/core"; 
 
 import { Content } from "../../../models";
 import { createSubmission } from "../../../api";
 import Paper from "../../Paper"
 import Question from "./Question";
+import TemperatureQuestion from "./TemperatureQuestion";
 
 const useStyles = makeStyles(theme => ({
   paper: {
@@ -63,6 +65,9 @@ export default function Questionnaire(props) {
     // Hook for indexing the questions array
     const [i, setI] = React.useState(0);
 
+    // Hook for determining if checkbox is checked
+    const [checked, setChecked] = React.useState(false)
+
     // Generate the submission and move to Summary page
     async function generateSubmission() {
       const questionIds = []
@@ -84,7 +89,7 @@ export default function Questionnaire(props) {
       }).catch(e => {console.error(e)}); 
     }
 
-    function leave() {
+    function submit() {
       generateSubmission().then(res => {
         setI(0);
         setContent(Content.SUMMARY)
@@ -100,7 +105,7 @@ export default function Questionnaire(props) {
     // Ask all questions and then create submission
     return (
       <Paper handleResetClick={handleResetClick} person={person}>
-        {
+        {/* {
           i < questions.length ? 
             <Question 
               className={classes.question}
@@ -109,8 +114,17 @@ export default function Questionnaire(props) {
               handleClick={handleClick}
             />
           : 
-            leave()
-        }
+            <TemperatureQuestion 
+              settings={settings}
+              checked={checked} setChecked={setChecked}
+              handleClick={submit}
+            />
+        } */}
+        <TemperatureQuestion 
+              settings={settings}
+              checked={checked} setChecked={setChecked}
+              handleClick={submit}
+            />
       </Paper>
     )
 }
