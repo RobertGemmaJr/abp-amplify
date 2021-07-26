@@ -75,7 +75,6 @@ export async function createPerson(person) {
 }
 
 export async function createSubmission(submission) {
-  console.log("Entered createSubmission()")
   const res = await DataStore.save(
     new Submission({
       "personID": submission.personID,
@@ -88,6 +87,5 @@ export async function createSubmission(submission) {
       "passed": submission.passed,
     })
   )
-  console.log("Created submission", res)
   return res;
 }

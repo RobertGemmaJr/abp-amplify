@@ -78,7 +78,7 @@ export declare class Submission {
   readonly time: Time | keyof typeof Time;
   readonly questions: string[];
   readonly responses: string[];
-  readonly temperature: string;
+  readonly temperature?: string;
   readonly passed: boolean;
   readonly updatedAt?: string;
   constructor(init: ModelInit<Submission, SubmissionMetaData>);

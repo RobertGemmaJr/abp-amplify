@@ -251,7 +251,7 @@ export const schema = {
                     "name": "temperature",
                     "isArray": false,
                     "type": "String",
-                    "isRequired": true,
+                    "isRequired": false,
                     "attributes": []
                 },
                 "passed": {
@@ -438,5 +438,5 @@ export const schema = {
         }
     },
     "nonModels": {},
-    "version": "9fa43266a246ef7b59654cfcdabb565c"
+    "version": "6d71f4db42355b204b8936236948bdf4"
 };

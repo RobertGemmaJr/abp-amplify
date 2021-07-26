@@ -40,16 +40,16 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
+
 // Determines the value for submission.temperature. Returns null on an invalid temperature.
 function getTemperatureSubmission(settings, temperature) {
   if(settings.recordTemperature) {
+    // TextField or Checkbox response
     if(settings.keepTemperature) {
-      // TextField response
       return isNaN(parseFloat(temperature)) ? "Invalid" : temperature
     } else {
-      // Checkbox response
-      if(temperature === true) return "Checked"
-      else if(temperature === false) return "Not Checked"
+      if(temperature === true) return "Passed"
+      else if(temperature === false) return "Failed"
       else return "Invalid";
     }
   }
@@ -57,25 +57,22 @@ function getTemperatureSubmission(settings, temperature) {
 
 
 // Returns true if all of the user responses match the question's expectedResponse
+// and the temperature is healthy
 function checkPassed(questions, responses, temperature, settings) {
-  questions.forEach((q, idx) => {
-    if(q.expectedResponse !== responses[idx]) {
-      return false;
-    }
-  })
-
-  if(settings.recordTemperature) {
-    if(settings.keepTemperature) {
-      // Check based on temperature offset
-      // Math.abs(temperature - 98.6) < settings.tempTolerance ?
-      // console.log("Passed", Math.abs(temperature - 98.6) < settings.tempTolerance)
-      // :
-      // console.log("Failed", Math.abs(temperature - 98.6) < settings.tempTolerance)
-    } else {
-      if(!temperature) return false;
-    }
+  // Check questionnaire responses
+  if(questions.length != responses.length) return false;
+  for(const [q, i] of questions.entries()) {
+    if(q.expectedResponse !== responses[i]) return false;
   }
 
+  // If recording, check healthy temperature
+  if(settings.recordTemperature) {
+    if(settings.keepTemperature) {
+      if(Math.abs(temperature - 98.6) > settings.tempTolerance) return false;
+    } else { if(!temperature) return false; }
+  }
+
+  // All tests passed
   return true;
 }
 
@@ -96,7 +93,7 @@ export default function Questionnaire(props) {
     // Generate the submission and move to Summary page
     async function generateSubmission() {
       const temperatureRes = getTemperatureSubmission(settings, temperature);
-      console.log("Response:", temperatureRes)
+      console.log(temperatureRes)
 
       if(temperatureRes !== "Invalid") {
         const questionIds = []
@@ -109,25 +106,26 @@ export default function Questionnaire(props) {
           time: form.time,
           questions: questionIds,
           responses: responses,
-          passed: checkPassed(questions, responses, temperature, settings),
+          temperature: temperatureRes,
+          passed: checkPassed(questions, responses, temperatureRes, settings),
         }
 
-        // settings.recordTemperature && submission.temperature = temperature
-
-        console.log(submission)
-      }
-
-      // Create ths submission
-      // ONLY DO THIS IF STATE.TEMPERATURE IS NOT NAN
-      // createSubmission(submission).then(res => {
-      //   setSubmission(res)
-      // }).catch(e => {console.error(e)}); 
+        // Create the submission
+        createSubmission(submission).then(res => {
+          console.log(res)
+          setSubmission(res)
+        }).catch(e => {console.error(e)}); 
+        return true;
+      } else return false; // Invalid temperature - can't submit
     }
 
     function submit(temperatureResponse) {
-      generateSubmission().then(res => {
-        // setI(0);
-        // setContent(Content.SUMMARY)
+      generateSubmission().then(submitted => {
+        if(submitted) {
+          // setI(0);
+          // setContent(Content.SUMMARY)
+        }
+        // Display some error if not submitted
       }).catch(e => {console.error(e)})
     }
 
