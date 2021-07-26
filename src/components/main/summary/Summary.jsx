@@ -53,6 +53,7 @@ const columns = [
 
 // Get DataGrid rows
 async function getRows(submission) {
+  // const rows = Array(submission.questions.length)
   const rows = Array(submission.questions.length)
 
   await Promise.all(submission.questions.map(async (qId, idx) => {
@@ -71,7 +72,12 @@ export default function Summary(props) {
   const classes = useStyles()
   const { handleResetClick, person, submission } = props
 
+  // Hook for summary rows
   const [rows, setRows] = React.useState([])
+  const failedText = submission.formType === "FAMILY" ?
+      "Child not allowed. Ask the parent about the failed question"
+    : 
+      "Entry not allowed. Please see the failed question"
 
   
   React.useEffect(() => {
@@ -95,6 +101,7 @@ export default function Summary(props) {
         title="Submitted By: "
         body={person.companyID + ") " + person.fName + " " + person.lName}
       /> */}
+      <Text title="Temperature: " body={submission.temperature} />
 
 
       {/* Passed? */}
@@ -102,7 +109,7 @@ export default function Summary(props) {
         variant="subtitle1" 
         color={submission.passed ? "inherit" : "error"}
       >
-        {submission.passed ? "You passed!" : "Child not allowed. Ask parent failed question."}
+        {submission.passed ? "You passed!" : failedText}
       </Typography>
       <DataGrid
         columns={columns}

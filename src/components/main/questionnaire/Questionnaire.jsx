@@ -1,6 +1,5 @@
 import React from "react";
 import { makeStyles } from "@material-ui/styles";
-import { Checkbox } from "@material-ui/core"; 
 
 import { Content } from "../../../models";
 import { createSubmission } from "../../../api";
@@ -45,7 +44,7 @@ const useStyles = makeStyles(theme => ({
 function getTemperatureSubmission(settings, temperature) {
   if(settings.recordTemperature) {
     // TextField or Checkbox response
-    if(settings.keepTemperature) {
+    if(!settings.keepTemperature) {
       return isNaN(parseFloat(temperature)) ? "Invalid" : temperature
     } else {
       if(temperature === true) return "Passed"
@@ -60,7 +59,7 @@ function getTemperatureSubmission(settings, temperature) {
 // and the temperature is healthy
 function checkPassed(questions, responses, temperature, settings) {
   // Check questionnaire responses
-  if(questions.length != responses.length) return false;
+  if(questions.length !== responses.length) return false;
   for(const [q, i] of questions.entries()) {
     if(q.expectedResponse !== responses[i]) return false;
   }
@@ -69,7 +68,7 @@ function checkPassed(questions, responses, temperature, settings) {
   if(settings.recordTemperature) {
     if(settings.keepTemperature) {
       if(Math.abs(temperature - 98.6) > settings.tempTolerance) return false;
-    } else { if(!temperature) return false; }
+    } else { if(temperature === "Failed") return false; }
   }
 
   // All tests passed
@@ -93,7 +92,6 @@ export default function Questionnaire(props) {
     // Generate the submission and move to Summary page
     async function generateSubmission() {
       const temperatureRes = getTemperatureSubmission(settings, temperature);
-      console.log(temperatureRes)
 
       if(temperatureRes !== "Invalid") {
         const questionIds = []
@@ -112,7 +110,6 @@ export default function Questionnaire(props) {
 
         // Create the submission
         createSubmission(submission).then(res => {
-          console.log(res)
           setSubmission(res)
         }).catch(e => {console.error(e)}); 
         return true;
@@ -122,8 +119,8 @@ export default function Questionnaire(props) {
     function submit(temperatureResponse) {
       generateSubmission().then(submitted => {
         if(submitted) {
-          // setI(0);
-          // setContent(Content.SUMMARY)
+          setI(0);
+          setContent(Content.SUMMARY)
         }
         // Display some error if not submitted
       }).catch(e => {console.error(e)})
@@ -138,7 +135,7 @@ export default function Questionnaire(props) {
     // Ask all questions and then create submission
     return (
       <Paper handleResetClick={handleResetClick} person={person}>
-        {/* {
+        {
           i < questions.length ? 
             <Question 
               className={classes.question}
@@ -149,17 +146,11 @@ export default function Questionnaire(props) {
           : 
             <TemperatureQuestion 
               settings={settings}
-              checked={checked} setChecked={setChecked}
+              temperature={temperature} 
+              setTemperature={setTemperature}
               handleClick={submit}
             />
-        } */}
-
-        <TemperatureQuestion 
-          settings={settings}
-          temperature={temperature} 
-          setTemperature={setTemperature}
-          handleClick={submit}
-        />
+        }       
       </Paper>
     )
 }
