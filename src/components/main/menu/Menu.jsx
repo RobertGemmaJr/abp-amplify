@@ -139,6 +139,7 @@ export default function Menu(props) {
           id="new-temp-tolerance" 
           name="newTempTolerance"
           label="Temperature Tolerance" 
+          type="number"
           value={state.newTempTolerance}
           onChange={handleTextChange}
           variant="outlined"

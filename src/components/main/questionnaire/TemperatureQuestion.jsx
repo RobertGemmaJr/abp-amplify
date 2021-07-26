@@ -15,6 +15,9 @@ const useStyles = makeStyles(theme => ({
     fontSize: 30,
     fontWeight: "bold",
   },
+  checkbox: {
+    transform: "scale(3)",
+  },
   submit: {
     margin: theme.spacing(3),
   },
@@ -22,18 +25,25 @@ const useStyles = makeStyles(theme => ({
 
 export default function TemperatureQuestion(props) {
   const classes = useStyles();
-  const { settings, temperatureRes, setTemperatureRes, handleClick, } = props;
+  const { settings, temperature, setTemperature, handleClick, } = props;
 
-  // Handle change for text temperature
+  // Handle change for text items
   const handleTextChange = (event) => {
-    setTemperatureRes(event.target.value)
+    setTemperature(event.target.value)
   }
 
-  // Handle change for checkbox temperature
-  const handleCheckChange = (event) => {
-    setTemperatureRes(event.target.checked)
+  // Handle change for checkbox items
+  const handleCheckboxChange = (event) => {
+    setTemperature(event.target.checked)
   }
+  
 
+  const helperText = (
+    <Typography align="center">
+      Thank you! Please return this device to a staff member.
+    </Typography>
+  )
+  
   return (
     <Box 
       display="flex" 
@@ -54,21 +64,28 @@ export default function TemperatureQuestion(props) {
           <Typography align="center" className={classes.temperature}>
             Temperature Check
           </Typography>
-        
-          {!settings.keepTemperature ?
-              <Checkbox 
-                checked={temperatureRes}
-                onChange={handleCheckChange}
-              />
-            :
+          {helperText}
+          
+          {settings.keepTemperature ?
               <TextField 
-                id="temperature-response" 
-                name="temperatureResponse"
+                id="temperatureText" 
+                name="temperature"
                 label="Temperature"
-                value={temperatureRes}
+                type="number"
+                value={ !isNaN(parseFloat(temperature)) ? temperature : "" }
                 onChange={handleTextChange}
                 variant="outlined"
-                helperText="Please enter a valid number"
+                helperText={ isNaN(parseFloat(temperature)) && "Please enter a valid number"}
+                required
+              />
+            :
+              <Checkbox 
+                id="temperatureCheckbox"
+                name="temperature"
+                checked={temperature}
+                onChange={handleCheckboxChange}
+                color="primary"
+                className={classes.checkbox}
               />
           }
         </Box> 
@@ -78,13 +95,11 @@ export default function TemperatureQuestion(props) {
       <Box
         display="flex" 
         flexDirection="column" 
-        justifyContent="flex-end"
+        justifyContent="center"
         alignItems="center"
         className={classes.inner}
       >
-        <Typography align="center">
-          Thank you! Please return this device to a staff member.
-        </Typography>
+        {settings.recordTemperature ? null : helperText}
         <Button
             variant="contained"
             color="primary" 

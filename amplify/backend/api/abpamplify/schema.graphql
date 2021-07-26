@@ -59,6 +59,6 @@ type Submission @model @auth(rules: [{allow: owner}]) @key(name: "byPerson", fie
   time: TIME!
   questions: [ID!]!
   responses: [String!]!
-  temperature: String!
+  temperature: String
   passed: Boolean!
 }
