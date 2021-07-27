@@ -20,7 +20,7 @@ function SwitchGrid(props) {
   return (
     <Grid container item direction="column" xs={6}>
       <Grid item>
-        <Typography className={!state && classes.bold}>
+        <Typography className={!state ? classes.bold : null}>
           {topText}
         </Typography>
       </Grid>
@@ -28,7 +28,7 @@ function SwitchGrid(props) {
         {props.children}
       </Grid>
       <Grid item>
-        <Typography className={state && classes.bold}>
+        <Typography className={state ? classes.bold : null}>
           {bottomText}
         </Typography>
       </Grid>
@@ -57,7 +57,7 @@ export default function Temperature(props) {
       {/* recordTemperature */}
       <Row>
         <Item>
-          <Typography>Record Temperature?</Typography>
+          <Typography variant="h5">Record Temperature?</Typography>
         </Item>
         <Item>
           <SwitchGrid 
@@ -84,7 +84,7 @@ export default function Temperature(props) {
       {/* keepTemperature and tempTolerance */}
       <Row>
         <Item>
-          <Typography>Keep Temperature?</Typography>
+          <Typography variant="h5">Keep Temperature?</Typography>
         </Item>
         <Item>
           <SwitchGrid 

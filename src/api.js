@@ -2,6 +2,37 @@ import { Predicates, SortDirection } from 'aws-amplify';
 import { DataStore } from '@aws-amplify/datastore';
 import { Setting, Person, Question, Submission } from './models';
 
+/********** CREATE **********/
+
+export async function createPerson(person) {
+  const res = await DataStore.save(
+    new Person({
+      companyID: person.companyID,
+      type: person.type,
+      fName: person.fName,
+      lName: person.lName,
+    })
+  )
+  return res;
+}
+
+export async function createSubmission(submission) {
+  const res = await DataStore.save(
+    new Submission({
+      "personID": submission.personID,
+      "createdAt": submission.createdAt,
+      "formType": submission.formType,
+      "time": submission.time,
+      "questions": submission.questions,
+      "responses": submission.responses,
+      "temperature": submission.temperature,
+      "passed": submission.passed,
+    })
+  )
+  return res;
+}
+
+
 /********* READ **********/
 
 // Returns all models of type Setting
@@ -58,34 +89,24 @@ export async function getSubmissions(startDate, endDate) {
   return await DataStore.query(Submission)
 }
 
-/********** CREATE **********/
 
-export async function createPerson(person) {
-  console.log("Entered createPerson()")
-  const res = await DataStore.save(
-    new Person({
-      companyID: person.companyID,
-      type: person.type,
-      fName: person.fName,
-      lName: person.lName,
-    })
-  )
-  console.log("Created person", res)
-  return res;
-}
+/********* UPDATE *********/
 
-export async function createSubmission(submission) {
-  const res = await DataStore.save(
-    new Submission({
-      "personID": submission.personID,
-      "createdAt": submission.createdAt,
-      "formType": submission.formType,
-      "time": submission.time,
-      "questions": submission.questions,
-      "responses": submission.responses,
-      "temperature": submission.temperature,
-      "passed": submission.passed,
-    })
-  )
-  return res;
+export async function updateSettings(newSettings) {
+  const original = await getSettings();
+  console.log("Original", original);
+
+  // This is throwing an error.
+  // createdAt has changed but Amplify is trying to update it
+  await DataStore.save(Setting.copyOf(original, updated => {
+    updated.title = newSettings.title;
+    updated.randomizeQuestions = newSettings.randomizeQuestions;
+    updated.recordTemperature = newSettings.recordTemperature;
+    updated.keepTemperature = newSettings.keepTemperature;
+    updated.tempTolerance = newSettings.tempTolerance;
+  }));
+
+  const after = await DataStore.query(Setting);
+  console.log("Check difference", original, after)
+  return "done" // TEMP
 }

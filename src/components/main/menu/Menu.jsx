@@ -11,6 +11,7 @@ import ExportByDate from "./ExportByDate";
 import NewTitle from "./NewTitle";
 import ExportByName from "./ExportByName";
 import Temperature from "./Temperature";
+import { updateSettings } from "../../../api";
 
 const useStyles = makeStyles(theme => ({
   menu: {
@@ -75,9 +76,20 @@ export default function Menu(props) {
   }
 
   // Handle save button clicked
-  function handleSaveClick() {
+  async function handleSaveClick() {
     // Note: May not have to set hooks since I reload the website
-    console.log(state)
+
+    const newSettings = {
+      title: state.newTitle,
+      randomizeQuestions: state.newRandomizeQuestions,
+      recordTemperature: state.newRecordTemperature,
+      keepTemperature: state.newKeepTemperature,
+      tempTolerance: state.newTempTolerance,
+    }
+    const res = await updateSettings(newSettings);
+    setSettings(settings) // TEMP - update response
+    console.log(res)
+
 
 
     // Update settings in database and set hook
@@ -86,13 +98,16 @@ export default function Menu(props) {
     // Update people in database and set hook
     if(state.newFamily) {
       console.log("Family imported")
+      setPeople() // TEMP
     } else if(state.newStaff) {
       console.log("Staff imported")
+      setPeople() // TEMP
     }
 
     // Update questions in database and set hook
     if(state.newQuestions) {
       console.log("Questions imported")
+      setQuestions() // TEMP
     }
 
 
@@ -100,7 +115,7 @@ export default function Menu(props) {
     // API call to add/remove people
 
     // May not need this when I reload the website
-    // setContent(Content.HOME)
+    setContent(Content.HOME)
 
     // Call as a React useEffect on exit?
     // window.location.reload(); 
