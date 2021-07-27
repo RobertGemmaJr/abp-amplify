@@ -92,7 +92,7 @@ export default function QuestionsGrid(props) {
 
   return (
 		<Box className={classes.box}>
-			<Typography align="center" variant="h4">Questions</Typography>
+			<Typography color="primary" align="center" variant="h4">Questions</Typography>
       
       {/* Randomize Questions */}
       <FormGroup row>

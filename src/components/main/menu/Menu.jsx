@@ -1,7 +1,7 @@
 import React from "react";
 import { AmplifySignOut } from '@aws-amplify/ui-react'
 import { makeStyles } from "@material-ui/styles";
-import { Paper, Typography, TextField, Box, Button, Grid, Checkbox, FormGroup, FormControlLabel, Switch } from "@material-ui/core";
+import { Paper, Box, Button } from "@material-ui/core";
 
 import { Content } from "../../../models";
 import PeopleGrid from "./PeopleGrid";
@@ -10,13 +10,16 @@ import Imports from "./Imports";
 import ExportByDate from "./ExportByDate";
 import NewTitle from "./NewTitle";
 import ExportByName from "./ExportByName";
+import Temperature from "./Temperature";
 
 const useStyles = makeStyles(theme => ({
-  box: {
-    margin: theme.spacing(3),
-  },
   menu: {
     width: "100%",
+    padding: theme.spacing(2),
+
+    "& >*": {
+      margin: theme.spacing(5, 0),
+    }
   },
   save: {
     marginTop: theme.spacing(5),
@@ -37,9 +40,9 @@ function getDate() {
 
 export default function Menu(props) {
   const classes = useStyles();
-  // const {setContent, settings, setSettings, people, setPeople, questions, setQuestions} = props;
-  const {setContent, settings, people, questions, } = props;
+  const {setContent, settings, setSettings, people, setPeople, questions, setQuestions} = props;
     // people is allPeople and questions is allQuestions - not the hook
+    // This is a problem when we make new people
 
   // Hook for menu state
   const [state, setState] = React.useState({
@@ -54,6 +57,11 @@ export default function Menu(props) {
     startDate: "2020-01-01",
     endDate: getDate(),
     exportName: "",
+
+    // Import data
+    newPeople: null,
+    newStaff: null,
+    newQuestions: null,
   })
 
   // Handle change for text items
@@ -91,62 +99,20 @@ export default function Menu(props) {
     
       {/* IMPORT BUTTONS */}
       {/* Move each button to the correct section */}
-      <Imports className={classes.box} state={state} setState={setState}/>
+      <Imports state={state} setState={setState}/>
 
       {/* Update Title */}
-      <NewTitle className={classes.box} state={state} setState={setState}/>
+      <NewTitle state={state} setState={setState} handleChange={handleTextChange}/>
+
+      {/* Temperature Settings */} 
+      <Temperature 
+        state={state} setState={setState} 
+        handleCheckboxChange={handleCheckboxChange} handleTextChange={handleTextChange}
+      />
 
       {/* Export buttons */}
-      <ExportByDate className={classes.box} state={state} setState={setState}/>
-      <ExportByName className={classes.box} state={state} setState={setState}/>
-
-
-      {/* Temperature */}
-      <Typography align="center" variant="h4">Temperature</Typography>
-      <Box className={classes.box} display="flex" justifyContent="space-evenly">
-        {/* Record Temperature? */}
-        <FormGroup row>
-          <FormControlLabel
-            control={
-              <Checkbox 
-                color="secondary" 
-                name="newRecordTemperature"
-                checked={state.newRecordTemperature}
-                onChange={handleCheckboxChange} 
-              />
-            }
-            label="Record Temperature?"
-            labelPlacement="start"
-          />
-        </FormGroup>
-
-        {/* Keep Temperature? */}
-        <Grid component="label" container alignItems="center" spacing={1} xs={3}>
-          <Grid item xs>Checkbox</Grid>
-          <Grid item xs>
-            {/* <AntSwitch checked={state.checkedC} onChange={handleChange} name="checkedC" /> */}
-            <Switch
-              name="newKeepTemperature"
-              checked={state.newKeepTemperature}
-              onChange={handleCheckboxChange}
-            />
-          </Grid>
-          <Grid item xs>Temperature</Grid>
-        </Grid>
-
-        {/* Temperature Tolerance */}
-        <TextField 
-          id="new-temp-tolerance" 
-          name="newTempTolerance"
-          label="Temperature Tolerance" 
-          type="number"
-          value={state.newTempTolerance}
-          onChange={handleTextChange}
-          variant="outlined"
-          helperText={"Enter the tolerance +/- 98.6: a tolerance of 2 will pass temperatures from 96.6-100.6"}
-          disabled={!state.newKeepTemperature}
-        />
-      </Box>
+      <ExportByDate state={state} setState={setState}/>
+      <ExportByName state={state} setState={setState}/>
 
       {/* QUESTIONS */}
       <QuestionsGrid questions={questions} state={state} setState={setState} />

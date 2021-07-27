@@ -60,7 +60,7 @@ export default function PeopleGrid(props) {
 
   return (
 		<Box className={classes.box}>
-			<Typography align="center" variant="h4">People</Typography>
+			<Typography color="primary" align="center" variant="h4">People</Typography>
       <DataGrid
 				className={classes.dataGrid}
         columns={columns}
