@@ -1,69 +1,108 @@
+import { makeStyles } from "@material-ui/styles";
 import { Typography, TextField, Grid, Checkbox, Switch} from "@material-ui/core";
+
+const useStyles = makeStyles(theme => ({
+  bold: {
+    fontWeight: "bold",
+  },
+})) 
 
 function Row(props) {
   return <Grid container item xs={12} justify="center" alignItems="center"> {props.children} </Grid>
 }
 
-function Center(props) {
-  return <Grid item xs={12}> {props.children} </Grid>
-}
-function Left(props) {
+function Item(props) {
   return <Grid item xs={3}> {props.children} </Grid>
 }
 
-function Right(props) {
-  return <Grid item xs={6}> {props.children} </Grid>
+function SwitchGrid(props) {
+  const {state, classes, topText, bottomText} = props;
+  return (
+    <Grid container item direction="column" xs={6}>
+      <Grid item>
+        <Typography className={!state && classes.bold}>
+          {topText}
+        </Typography>
+      </Grid>
+      <Grid item>
+        {props.children}
+      </Grid>
+      <Grid item>
+        <Typography className={state && classes.bold}>
+          {bottomText}
+        </Typography>
+      </Grid>
+    </Grid>
+  )
 }
 
+const helperText = "Helper text"
+
 export default function Temperature(props) {
+  const classes = useStyles();
   const {state, handleCheckboxChange, handleTextChange} = props;
 
+  const toleranceMin = 98.6 - Number(state.newTempTolerance)
+  const toleranceMax = Number(state.newTempTolerance) + 98.6
+
   return (
-    <Grid container align="center">
+    <Grid container align="center" spacing={2}>
+      {/* Heading */}
       <Row>
-        <Center>
-          <Typography color="primary" variant="h4" gutterBottom>
-            Temperature Settings
-          </Typography>
-          <Typography variant="body2">
-            Helper Text
-          </Typography>
-        </Center>
+        <Typography color="primary" variant="h4" gutterBottom>
+          Temperature Settings
+        </Typography>
       </Row>
 
+      {/* recordTemperature */}
       <Row>
-        <Left>
+        <Item>
           <Typography>Record Temperature?</Typography>
-        </Left>
-        <Right>
-          <Checkbox 
-            color="secondary" 
-            name="newRecordTemperature"
-            checked={state.newRecordTemperature}
-            onChange={handleCheckboxChange} 
-          />
-        </Right>
+        </Item>
+        <Item>
+          <SwitchGrid 
+            topText="Yes" 
+            bottomText="No" 
+            state={state.newRecordTemperature} 
+            classes={classes}
+          >
+            <Checkbox 
+              color="secondary" 
+              name="newRecordTemperature"
+              checked={state.newRecordTemperature}
+              onChange={handleCheckboxChange} 
+            />
+          </SwitchGrid>
+        </Item>
+        <Item>
+          <Typography variant="caption">
+            {helperText}
+          </Typography>
+        </Item>
       </Row>
 
+      {/* keepTemperature and tempTolerance */}
       <Row>
-        <Left>
+        <Item>
           <Typography>Keep Temperature?</Typography>
-        </Left>
-        <Right>
-          <Switch
-            name="newKeepTemperature"
-            checked={state.newKeepTemperature}
-            onChange={handleCheckboxChange}
-            disabled={!state.newRecordTemperature}
-          />
-        </Right>
-      </Row>
-
-      <Row>
-        <Left>
-          <Typography>Tolerance</Typography>
-        </Left>
-        <Right>
+        </Item>
+        <Item>
+          <SwitchGrid 
+            topText="Checkbox" 
+            bottomText="Textbox" 
+            state={state.newKeepTemperature} 
+            classes={classes}
+          >
+            <Switch
+              name="newKeepTemperature"
+              checked={state.newKeepTemperature}
+              onChange={handleCheckboxChange}
+              disabled={!state.newRecordTemperature}
+              className={classes.margin}
+            />
+          </SwitchGrid>
+        </Item>
+        <Item>
           <TextField 
             id="new-temp-tolerance" 
             name="newTempTolerance"
@@ -73,17 +112,16 @@ export default function Temperature(props) {
             onChange={handleTextChange}
             variant="outlined"
             color="secondary"
-            helperText={"A tolerance of 2 will pass temperatures from 96.6-100.6"}
+            helperText={
+              "A tolerance of " + Number(state.newTempTolerance) +  
+              " will pass temperatures from " + toleranceMin.toFixed(2) + 
+              " to " + toleranceMax.toFixed(2)
+            }
             disabled={!state.newRecordTemperature || !state.newKeepTemperature}
+            className={classes.margin}
           />
-        </Right>
-      </Row>
-      <Row>
-          <Typography align="center" variant="body2">
-            Helper Text
-          </Typography>
+        </Item>
       </Row>
     </Grid>
   )
-
 }

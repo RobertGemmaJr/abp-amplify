@@ -1,12 +1,7 @@
 import { TextField, Box } from "@material-ui/core";
 
 export default function NewTitle(props) {
-  const {state, setState, handleChange} = props;
-
-  // // Handle change for text items
-  // const handleChange = (event) => {
-  //   setState({...state, [event.target.name]: event.target.value })
-  // }
+  const {state, handleChange} = props;
 
   return (
     <Box component="form" m={2}>

@@ -1,7 +1,7 @@
 import React from "react";
 import { AmplifySignOut } from '@aws-amplify/ui-react'
 import { makeStyles } from "@material-ui/styles";
-import { Paper, Box, Button } from "@material-ui/core";
+import { Paper, Box, Button, Typography } from "@material-ui/core";
 
 import { Content } from "../../../models";
 import PeopleGrid from "./PeopleGrid";
@@ -59,7 +59,7 @@ export default function Menu(props) {
     exportName: "",
 
     // Import data
-    newPeople: null,
+    newFamily: null,
     newStaff: null,
     newQuestions: null,
   })
@@ -76,21 +76,34 @@ export default function Menu(props) {
 
   // Handle save button clicked
   function handleSaveClick() {
-    // Note: May not have to set hook since I reload the website
+    // Note: May not have to set hooks since I reload the website
+    console.log(state)
+
 
     // Update settings in database and set hook
     // setSettings(updateSettings(state.newTitle, state.newRandomizeQuestions))
 
     // Update people in database and set hook
+    if(state.newFamily) {
+      console.log("Family imported")
+    } else if(state.newStaff) {
+      console.log("Staff imported")
+    }
 
     // Update questions in database and set hook
+    if(state.newQuestions) {
+      console.log("Questions imported")
+    }
 
 
     // API call to add/remove questions
     // API call to add/remove people
 
-    setContent(Content.HOME) // May not need this when I reload the website
-    // window.location.reload(); // Call as a React useEffect on exit?
+    // May not need this when I reload the website
+    // setContent(Content.HOME)
+
+    // Call as a React useEffect on exit?
+    // window.location.reload(); 
   }
 
   // console.log(state)
@@ -102,7 +115,7 @@ export default function Menu(props) {
       <Imports state={state} setState={setState}/>
 
       {/* Update Title */}
-      <NewTitle state={state} setState={setState} handleChange={handleTextChange}/>
+      <NewTitle state={state} handleChange={handleTextChange}/>
 
       {/* Temperature Settings */} 
       <Temperature 
@@ -111,6 +124,9 @@ export default function Menu(props) {
       />
 
       {/* Export buttons */}
+      <Typography align="center" color="primary" variant="h4" gutterBottom>
+        Export Submissions
+      </Typography>
       <ExportByDate state={state} setState={setState}/>
       <ExportByName state={state} setState={setState}/>
 
