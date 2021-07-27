@@ -66,7 +66,7 @@ export default function TemperatureQuestion(props) {
           </Typography>
           {helperText}
           
-          {!settings.keepTemperature ?
+          {settings.keepTemperature ?
               <TextField 
                 id="temperatureText" 
                 name="temperature"

@@ -44,7 +44,7 @@ const useStyles = makeStyles(theme => ({
 function getTemperatureSubmission(settings, temperature) {
   if(settings.recordTemperature) {
     // TextField or Checkbox response
-    if(!settings.keepTemperature) {
+    if(settings.keepTemperature) {
       return isNaN(parseFloat(temperature)) ? "Invalid" : temperature
     } else {
       if(temperature === true) return "Passed"
