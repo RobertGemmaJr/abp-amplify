@@ -3,7 +3,6 @@ import { AmplifySignOut } from '@aws-amplify/ui-react'
 import { makeStyles } from "@material-ui/styles";
 import { Paper, Box, Button, Typography } from "@material-ui/core";
 
-import { Content } from "../../../models";
 import PeopleGrid from "./PeopleGrid";
 import QuestionsGrid from "./QuestionsGrid";
 import Imports from "./Imports";
@@ -41,7 +40,7 @@ function getDate() {
 
 export default function Menu(props) {
   const classes = useStyles();
-  const {setContent, settings, setSettings, people, setPeople, questions, setQuestions} = props;
+  const { settings, people, questions } = props;
     // people is allPeople and questions is allQuestions - not the hook
     // This is a problem when we make new people
 
@@ -77,8 +76,7 @@ export default function Menu(props) {
 
   // Handle save button clicked
   async function handleSaveClick() {
-    // Note: May not have to set hooks since I reload the website
-
+    // Update settings
     const newSettings = {
       title: state.newTitle,
       randomizeQuestions: state.newRandomizeQuestions,
@@ -86,39 +84,26 @@ export default function Menu(props) {
       keepTemperature: state.newKeepTemperature,
       tempTolerance: state.newTempTolerance,
     }
-    const res = await updateSettings(newSettings);
-    setSettings(settings) // TEMP - update response
-    console.log(res)
-
-
-
-    // Update settings in database and set hook
-    // setSettings(updateSettings(state.newTitle, state.newRandomizeQuestions))
+    await updateSettings(settings, newSettings);
 
     // Update people in database and set hook
     if(state.newFamily) {
       console.log("Family imported")
-      setPeople() // TEMP
     } else if(state.newStaff) {
       console.log("Staff imported")
-      setPeople() // TEMP
     }
 
     // Update questions in database and set hook
     if(state.newQuestions) {
       console.log("Questions imported")
-      setQuestions() // TEMP
     }
 
 
     // API call to add/remove questions
     // API call to add/remove people
 
-    // May not need this when I reload the website
-    setContent(Content.HOME)
-
-    // Call as a React useEffect on exit?
-    // window.location.reload(); 
+    // Reload will sync DataStore
+    window.location.reload(); 
   }
 
   // console.log(state)

@@ -56,10 +56,8 @@ export default function Main(props) {
         );
       case Content.MENU:
         return (
-          <Menu 
-            setContent={setContent} 
+          <Menu  
             settings={settings}
-            setSettings={setSettings}
             people={allPeople}
             questions={allQuestions}
           />

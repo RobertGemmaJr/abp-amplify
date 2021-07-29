@@ -40,9 +40,8 @@ export async function createSubmission(submission) {
 export async function getSettings() {
   var models = await DataStore.query(Setting);
 
-  // Move this to the auth sign-up page
+  // TODO: Move this to the auth sign-up listener
   if (!models.length) {
-    // If no settings have been created, make initial one
     await DataStore.save(
       new Setting({
         "title": "Change Title in Menu",
@@ -54,7 +53,6 @@ export async function getSettings() {
     );
     models = await DataStore.query(Setting)    
   } else if (models.length > 1) {
-    // TODO: This error is happening
     console.error("Too many settings! Using first object", models)
   }
   return models[0];
@@ -92,21 +90,13 @@ export async function getSubmissions(startDate, endDate) {
 
 /********* UPDATE *********/
 
-export async function updateSettings(newSettings) {
-  const original = await getSettings();
-  console.log("Original", original);
-
-  // This is throwing an error.
-  // createdAt has changed but Amplify is trying to update it
-  await DataStore.save(Setting.copyOf(original, updated => {
+export async function updateSettings(original, newSettings) {
+  return await DataStore.save(Setting.copyOf(original, updated => {
     updated.title = newSettings.title;
     updated.randomizeQuestions = newSettings.randomizeQuestions;
     updated.recordTemperature = newSettings.recordTemperature;
     updated.keepTemperature = newSettings.keepTemperature;
     updated.tempTolerance = newSettings.tempTolerance;
   }));
-
-  const after = await DataStore.query(Setting);
-  console.log("Check difference", original, after)
-  return "done" // TEMP
+  // return res
 }
