@@ -49,18 +49,11 @@ export default function Main(props) {
     switch(content) {
       case Content.HOME:
         return (
-          <Home 
-            setContent={setContent} 
-            form={form} setForm={setForm}
-          />
+          <Home setContent={setContent} form={form} setForm={setForm} />
         );
       case Content.MENU:
         return (
-          <Menu  
-            settings={settings}
-            people={allPeople}
-            questions={allQuestions}
-          />
+          <Menu settings={settings} people={allPeople} questions={allQuestions} />
         );
       case Content.MANUAL:
         return (
