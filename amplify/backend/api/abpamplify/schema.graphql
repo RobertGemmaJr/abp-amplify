@@ -54,7 +54,6 @@ type Question @model @auth(rules: [{allow: owner}]) {
 type Submission @model @auth(rules: [{allow: owner}]) @key(name: "byPerson", fields: ["personID"]) {
   id: ID!
   personID: ID!
-  createdAt: AWSDateTime!
   formType: PTYPE!
   time: TIME!
   questions: [ID!]!

@@ -20,20 +20,22 @@ const useStyles = makeStyles(theme => ({
 }))
 
 function readableDateTime(dateTime) {
-  const date = new Date(dateTime);
-  const year = date.getFullYear();
-  const month = date.getMonth()+1;
-  const day = date.getDate();
-  let hh = date.getHours();
-  let min = date.getMinutes();
+  console.log("datetime", dateTime)
+  return dateTime
+  // const date = new Date(dateTime);
+  // const year = date.getFullYear();
+  // const month = date.getMonth()+1;
+  // const day = date.getDate();
+  // let hh = date.getHours();
+  // let min = date.getMinutes();
   
-  // Convert to 12 hour time
-  let m = "AM"
-  if(hh >= 12) hh = hh-12; m="PM"
-  if(hh === 0 ) hh = 12
-  min = min < 10 ? "0"+min : min;
+  // // Convert to 12 hour time
+  // let m = "AM"
+  // if(hh >= 12) hh = hh-12; m="PM"
+  // if(hh === 0 ) hh = 12
+  // min = min < 10 ? "0"+min : min;
 
-  return month + "/" + day + "/" + year + " " + hh + ":" + min + " " + m
+  // return month + "/" + day + "/" + year + " " + hh + ":" + min + " " + m
 }
 
 
@@ -53,7 +55,6 @@ const columns = [
 
 // Get DataGrid rows
 async function getRows(submission) {
-  // const rows = Array(submission.questions.length)
   const rows = Array(submission.questions.length)
 
   await Promise.all(submission.questions.map(async (qId, idx) => {
@@ -83,12 +84,13 @@ export default function Summary(props) {
   React.useEffect(() => {
     // Get rows for the DataGrid when submission is complete
     if(submission) {
+      console.log(submission)
       getRows(submission).then(res => {
         setRows(res)
       }).catch(e => {console.error(e)})
     }
   }, [submission]);
-  
+
   return (
     <Paper handleResetClick={handleResetClick} person={person}>
       {/* <Text title="Response: " body={submission.id} /> */}

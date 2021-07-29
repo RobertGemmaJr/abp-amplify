@@ -59,7 +59,6 @@ function getTemperatureSubmission(settings, temperature) {
 // and the temperature is healthy
 function checkPassed(questions, responses, temperature, settings) {
   // Check questionnaire responses
-  console.log("Questions: ", questions)
   if(questions.length !== responses.length) return false;
   for(let i = 0; i < questions.length; i++) {
     if(questions[i].expectedResponse !== responses[i]) return false;
@@ -100,7 +99,7 @@ export default function Questionnaire(props) {
   
         const submission = {
           personID: person.id,
-          createdAt: new Date().toISOString(),
+          // createdAt: new Date().toISOString(),
           formType: form.ptype,
           time: form.time,
           questions: questionIds,

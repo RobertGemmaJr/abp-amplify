@@ -20,7 +20,6 @@ export async function createSubmission(submission) {
   const res = await DataStore.save(
     new Submission({
       "personID": submission.personID,
-      "createdAt": submission.createdAt,
       "formType": submission.formType,
       "time": submission.time,
       "questions": submission.questions,
@@ -34,6 +33,7 @@ export async function createSubmission(submission) {
 
 
 /********* READ **********/
+
 
 // Returns all models of type Setting
 // There should be exactly 1 per user
