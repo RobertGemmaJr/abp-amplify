@@ -80,11 +80,10 @@ export default function Summary(props) {
     : 
       "Entry not allowed. Please see the failed question"
 
-  
   React.useEffect(() => {
     // Get rows for the DataGrid when submission is complete
     if(submission) {
-      console.log(submission)
+      console.log(submission) // TEMP
       getRows(submission).then(res => {
         setRows(res)
       }).catch(e => {console.error(e)})

@@ -99,7 +99,6 @@ export default function Questionnaire(props) {
   
         const submission = {
           personID: person.id,
-          // createdAt: new Date().toISOString(),
           formType: form.ptype,
           time: form.time,
           questions: questionIds,

@@ -39,6 +39,7 @@ export async function createSubmission(submission) {
 // There should be exactly 1 per user
 export async function getSettings() {
   var models = await DataStore.query(Setting);
+  
 
   // TODO: Move this to the auth sign-up listener
   if (!models.length) {

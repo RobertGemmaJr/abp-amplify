@@ -11,6 +11,7 @@ import People from "./people/People";
 import Questionnaire from "./questionnaire/Questionnaire"
 import Manual from "./manual/Manual"
 import Summary from "./summary/Summary"
+import { AmplifySignOut } from "@aws-amplify/ui-react";
 
 const useStyles = makeStyles(theme => ({
   main: {
@@ -129,7 +130,7 @@ export default function Main(props) {
         <Title content={content} title={settings.title} time={form.time} />
       </Container>
       <Container className={classes.content}>
-        {renderContent()} 
+        {renderContent()}
       </Container>
     </Container>
   )
