@@ -1,7 +1,9 @@
+import React from "react";
 import { makeStyles } from "@material-ui/styles"
 import { Box, Typography } from "@material-ui/core";
 import { DataGrid } from "@material-ui/data-grid";
 import { Ptype } from "../../../models";
+import { getSubmissionsByPerson } from "../../../api"
 
 const useStyles = makeStyles(theme => ({
   box: {
@@ -40,23 +42,32 @@ const columns = [
   },
 ]
 
-function getRows(people) {
-  const rows = []
-  people.forEach(p => {
-    rows.push({
+async function getRows(people) {
+  const rows = Array(people.length)
+
+  await Promise.all(people.map(async (p, idx) => {
+    const submissions = await getSubmissionsByPerson(p.id)
+    rows[idx] = {
       id: p.id,
       type: p.type,
       companyId: p.companyID,
       firstName: p.fName,
       lastName: p.lName,
-      submissions: 0, // Query submissions by personId
-    })
-  })
-  return rows
+      submissions: submissions.length,
+    }
+  }))
+  return rows;
 }
 
 export default function PeopleGrid(props) {
 	const classes = useStyles();
+
+  const [rows, setRows] = React.useState([])
+  React.useEffect(() => {
+    getRows(props.allPeople).then(res => {
+      setRows(res)
+    }).catch(e => {console.error(e)})
+  }, [props.allPeople]);
 
   return (
 		<Box className={classes.box}>
@@ -64,12 +75,12 @@ export default function PeopleGrid(props) {
       <DataGrid
 				className={classes.dataGrid}
         columns={columns}
-        rows={getRows(props.people)}
+        rows={rows}
         density="compact"
         rowHeight={30}
         autoHeight
         pageSize={10}
-				// sortModel={[ {field: "type", sort: "asc"} ]}        
+        loading={!rows.length}
       />
 		</Box>
   )

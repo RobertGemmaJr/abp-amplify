@@ -40,9 +40,9 @@ function getDate() {
 
 export default function Menu(props) {
   const classes = useStyles();
-  const { settings, people, questions } = props;
-    // people is allPeople and questions is allQuestions - not the hook
-    // This is a problem when we make new people
+  const {settings, allPeople, allQuestions } = props
+
+  
 
   // Hook for menu state
   const [state, setState] = React.useState({
@@ -106,7 +106,6 @@ export default function Menu(props) {
     window.location.reload(); 
   }
 
-  // console.log(state)
   return (
     <Paper className={classes.menu}>
     
@@ -131,10 +130,10 @@ export default function Menu(props) {
       <ExportByName state={state} setState={setState}/>
 
       {/* QUESTIONS */}
-      <QuestionsGrid questions={questions} state={state} setState={setState} />
+      <QuestionsGrid allQuestions={allQuestions} state={state} setState={setState} />
 
       {/* PEOPLE */}
-      <PeopleGrid people={people}/>
+      <PeopleGrid allPeople={allPeople}/>
 
       {/* Save Button */}
       <Box align="center" className={classes.save}>

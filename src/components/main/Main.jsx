@@ -38,10 +38,9 @@ const useStyles = makeStyles(theme => ({
 export default function Main(props) {
   const classes = useStyles();
   const {
-    loading, settings, people, setPeople, questions, setQuestions, 
-    content, setContent, form, setForm, person, setPerson, responses, 
-    setResponses, submission, setSubmission, handleResetClick,
-    allQuestions, allPeople
+    loading, settings, allPeople, allQuestions, people, setPeople, questions, 
+    setQuestions, content, setContent, form, setForm, person, setPerson, 
+    responses, setResponses, submission, setSubmission, handleResetClick,
   } = props;
 
   // Hook for rendering the main content based on program state
@@ -53,7 +52,7 @@ export default function Main(props) {
         );
       case Content.MENU:
         return (
-          <Menu settings={settings} people={allPeople} questions={allQuestions} />
+          <Menu settings={settings} allPeople={allPeople} allQuestions={allQuestions} />
         );
       case Content.MANUAL:
         return (

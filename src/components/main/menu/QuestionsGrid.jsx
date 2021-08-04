@@ -1,3 +1,4 @@
+import React from "react";
 import { makeStyles } from "@material-ui/styles"
 import { Box, Typography, Checkbox, FormGroup, FormControlLabel } from "@material-ui/core";
 import { DataGrid } from "@material-ui/data-grid";
@@ -84,8 +85,15 @@ function getRows(questions) {
 
 export default function QuestionsGrid(props) {
 	const classes = useStyles();
-  const {state, setState, questions} = props
+  const {state, setState, allQuestions} = props
 
+  // Get rows for the DataGrid
+  const [rows, setRows] = React.useState([])
+  React.useEffect(() => {
+    setRows(getRows(allQuestions))
+  }, [allQuestions]);
+
+  // HandleChange for the randomizeQuestions button
   const handleChange = (event) => {
     setState({...state, [event.target.name]: event.target.checked})
   }
@@ -113,12 +121,13 @@ export default function QuestionsGrid(props) {
       <DataGrid
 				className={classes.dataGrid}
         columns={columns}
-        rows={getRows(questions)}
+        rows={rows}
         density="compact"
         rowHeight={30}
         autoHeight
         pageSize={20}
-				sortModel={[ {field: "index", sort: "asc"} ]}        
+        loading={!rows.length}
+				sortModel={[ {field: "index", sort: "asc"} ]}     
       />
 		</Box>
   )

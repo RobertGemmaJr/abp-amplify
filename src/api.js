@@ -83,9 +83,21 @@ export async function getQuestion(id) {
   return await DataStore.query(Question, id);
 }
 
-// Returns all models of type Response dated between the start and end date
-export async function getSubmissions(startDate, endDate) {
-  return await DataStore.query(Submission)
+// Returns all models of type Response dated between the start and end date (inclusive)
+export async function getSubmissionsByDate(startDate, endDate) {
+  return (
+    // Need to filter gt or eq startDate, less than or eq end date
+    await DataStore.query(
+      Submission,
+      // Query here
+      { sort: s => s.createdAt(SortDirection.ASCENDING) }
+    )
+  )
+}
+
+// Returns the submissions belonging to a given person
+export async function getSubmissionsByPerson(personId) {
+  return (await DataStore.query(Submission)).filter(s => s.personID === personId)
 }
 
 
@@ -99,5 +111,4 @@ export async function updateSettings(original, newSettings) {
     updated.keepTemperature = newSettings.keepTemperature;
     updated.tempTolerance = newSettings.tempTolerance;
   }));
-  // return res
 }

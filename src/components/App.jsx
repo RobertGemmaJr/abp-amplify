@@ -24,8 +24,8 @@ const useStyles = makeStyles(theme => ({
 const initialFormState = { time: Time.MORNING, ptype: Ptype.NONE }
 
 // Prevents unnecessary API calls
-var allPeople = null;
-var allQuestions = null;
+// var allPeople = null;
+// var allQuestions = null;
 
 /**
  * 
@@ -57,12 +57,12 @@ function App() {
       }).catch(e => {console.error(e)})
   
       getPeople().then(res => {
-        allPeople = res;
+        setAllPeople(res)
         setPeople(res)
       }).catch(e => {console.error(e)}); 
 
       getQuestions().then(res => {
-        allQuestions = res;
+        setAllQuestions(res)
         setQuestions(res)
       }).catch(e => { console.error(e)}); 
 
@@ -101,14 +101,16 @@ function App() {
   // Hook for app loading state
   const [loading, setLoading] = React.useState(true);
 
-  // Hook for user's settings
+  // Hook for user's data
   const [settings, setSettings] = React.useState(0);
+  const [allPeople, setAllPeople] = React.useState(0);
+  const [allQuestions, setAllQuestions] = React.useState(0);
 
   // Hook for user's people
-  const [people, setPeople] = React.useState(0);
+  const [people, setPeople] = React.useState([]);
 
   // Hook for user's questions
-  const [questions, setQuestions] = React.useState(0);
+  const [questions, setQuestions] = React.useState([]);
 
   // Hook for content to be shown
   const [content, setContent] = React.useState(Content.HOME);
@@ -153,7 +155,7 @@ function App() {
       />
       <Main 
         loading={loading}
-        settings={settings}
+        settings={settings} allPeople={allPeople} allQuestions={allQuestions}
         people={people} setPeople={setPeople}
         questions={questions} setQuestions={setQuestions}
         content={content} setContent={setContent} 
@@ -162,7 +164,6 @@ function App() {
         responses={responses} setResponses={setResponses} 
         submission={submission} setSubmission={setSubmission}
         handleResetClick={handleResetClick}
-        allQuestions={allQuestions} allPeople={allPeople}
       />
       <Footer />
     </Box>
