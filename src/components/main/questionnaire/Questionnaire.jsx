@@ -90,9 +90,8 @@ export default function Questionnaire(props) {
     const [temperature, setTemperature] = React.useState(false);
 
     // Generate the submission and move to Summary page
-    async function generateSubmission() {
+    async function submitQuestionnaire(temper) {
       const temperatureRes = getTemperatureSubmission(settings, temperature);
-
       if(temperatureRes !== "Invalid") {
         const questionIds = []
         questions.forEach(q => { questionIds.push(q.id) })
@@ -107,23 +106,13 @@ export default function Questionnaire(props) {
           passed: checkPassed(questions, responses, temperatureRes, settings),
         }
 
-        // Create the submission
-        createSubmission(submission).then(res => {
-          setSubmission(res)
-          console.log("Submission:", res)
-        }).catch(e => {console.error(e)}); 
-        return true;
-      } else return false; // Invalid temperature - can't submit
-    }
-
-    function submit(temperatureResponse) {
-      generateSubmission().then(submitted => {
-        if(submitted) {
-          setI(0);
-          setContent(Content.SUMMARY)
-        }
-        // Display some error if not submitted
-      }).catch(e => {console.error(e)})
+        const res = await createSubmission(submission)
+        setSubmission(res)
+        setI(0);
+        setContent(Content.SUMMARY)
+      } else {
+        // Add some error to screen if submission fails - Temperature Response is invalid
+      }
     }
 
     // Handle clicks that submits answer to a single question
@@ -148,7 +137,7 @@ export default function Questionnaire(props) {
               settings={settings}
               temperature={temperature} 
               setTemperature={setTemperature}
-              handleClick={submit}
+              handleClick={submitQuestionnaire}
             />
         }       
       </Paper>

@@ -64,9 +64,10 @@ export default function PeopleGrid(props) {
 
   const [rows, setRows] = React.useState([])
   React.useEffect(() => {
-    getRows(props.allPeople).then(res => {
-      setRows(res)
-    }).catch(e => {console.error(e)})
+    (async () => {
+      const people = await getRows(props.allPeople)
+      setRows(people)
+    })()
   }, [props.allPeople]);
 
   return (
