@@ -2,7 +2,7 @@ import React from "react"
 import { Box, Grid, Typography, Switch } from "@material-ui/core";
 import { makeStyles } from "@material-ui/styles";
 
-import { Ptype, Time } from "../../../models";
+import { Content, Ptype, Time } from "../../../models";
 import familyLogo from "../../../media/Health Check Family Logo.png"
 import thermometerGuy from "../../../media/Thermometer Guy.ico"
 import logo from "../../../media/logos/Apple Blossom logo solid color.png"
@@ -32,7 +32,16 @@ export default function Home(props) {
       time: event.target.checked ? Time.MORNING : Time.AFTERNOON
     })
   }
-  
+
+  // Listen for keypress (ctrl+m -> menu)
+  React.useEffect(() => {
+    function handleKeyDown(event) {
+      if(event.ctrlKey && event.code === "KeyM") setContent(Content.MENU)
+    }
+    document.addEventListener('keydown', handleKeyDown)
+
+    return () => document.removeEventListener('keydown', handleKeyDown)
+  }, [setContent])
 
   return (
     <FlexBox justifyContent="space-evenly">

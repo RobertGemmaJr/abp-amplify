@@ -89,7 +89,6 @@ function App() {
   // DataStore API calls on initial render
   // Listener ensures sync process completes before first query
   React.useEffect(() => {
-    // Auth and DataStore listeners
     Hub.listen('auth', authListener);
     Hub.listen("datastore", dataStoreListener);
     DataStore.start();

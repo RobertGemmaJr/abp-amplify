@@ -12,8 +12,24 @@ export default function NewTitle(props) {
         value={state.newTitle}
         onChange={handleChange}
         variant="outlined"
-        noValidate fullWidth
+        fullWidth
       />
+      {/* <TextField 
+            id="new-temp-tolerance" 
+            name="newTempTolerance"
+            label="Tolerance +/- 98.6" 
+            type="number"
+            value={state.newTempTolerance}
+            onChange={handleTextChange}
+            variant="outlined"
+            color="secondary"
+            helperText={
+              "A tolerance of " + Number(state.newTempTolerance) +  
+              " will pass temperatures from " + toleranceMin.toFixed(2) + 
+              " to " + toleranceMax.toFixed(2)
+            }
+            disabled={!state.newRecordTemperature || !state.newKeepTemperature}
+      /> */}
     </Box>
   )
 }
