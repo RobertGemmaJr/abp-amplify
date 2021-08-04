@@ -1,7 +1,7 @@
 import { Box, AppBar, Container, Toolbar, Typography, Button } from "@material-ui/core"
 import { makeStyles } from "@material-ui/styles";
 
-import { Ptype } from "../../models";
+import { Content, Ptype } from "../../models";
 
 const useStyles = makeStyles(theme => ({
   header: {
@@ -18,7 +18,7 @@ const useStyles = makeStyles(theme => ({
 
 export default function Header(props) {
     const classes = useStyles();
-    const { form, homeClick } = props
+    const { content, form, homeClick, menuClick } = props
 
     return (
       <Box component="header" className={classes.header}>
@@ -39,14 +39,16 @@ export default function Header(props) {
                   {form.ptype !== Ptype.NONE && form.ptype}
                 </Typography>
 
-                {/* Home Button */}
+                {/* Header Button */}
                 <Button 
                   variant="contained" 
                   className={classes.hButton}
-                  onClick={() => homeClick()}
+                  onClick={
+                    () => content === Content.HOME ? menuClick() : homeClick()
+                  }
                   color="secondary"
                 >
-                  Home
+                  {content === Content.HOME ? "Menu" : "Home"}
                 </Button>
               </Toolbar>
           </Container>

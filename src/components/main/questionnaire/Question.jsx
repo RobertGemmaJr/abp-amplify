@@ -2,10 +2,6 @@ import { Button, Box, Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/styles";
 
 const useStyles = makeStyles(theme => ({
-  question: {
-    width: "100%",
-    height: "100%",
-  },
   text: {
     minHeight: "50%",
     margin: theme.spacing(3),
@@ -13,14 +9,8 @@ const useStyles = makeStyles(theme => ({
     fontWeight: "bold",
     alignContent: "center",
   },
-  answer: {
-    width: "100%",
-    display: "flex",
-    justifyContent: "center",
-
-    '& > *': {
-      margin: theme.spacing(2, 5),
-    },
+  button: {
+    margin: theme.spacing(2, 5),
   },
 }))
 
@@ -29,16 +19,17 @@ export default function Question(props) {
   const { q, handleClick } = props;
 
   return (
-    <Box alignContent="center" justifyContent="center" className={classes.question}>
+    <Box alignContent="center" justifyContent="center" width={1} height={1}>
       <Typography align="center" className={classes.text}>
         {q.index + ") " + q.question}
       </Typography> 
-      <Box className={classes.answer}>  
+      <Box display="flex" justifyContent="center">  
         <Button
           variant="contained" 
           color="primary"
           size="large"
           onClick={() => handleClick("Yes")}
+          className={classes.button}
         >
           Yes
         </Button>
@@ -47,6 +38,7 @@ export default function Question(props) {
           color="primary" 
           size="large"
           onClick={() => handleClick("No")}
+          className={classes.button}
         >
           No
         </Button>

@@ -14,7 +14,6 @@ const useStyles = makeStyles(theme => ({
     padding: theme.spacing(2),
   },
   header: {
-    width: "100%",
     marginBottom: theme.spacing(2),
     '& > *': {
       fontWeight: "bold",
@@ -38,15 +37,20 @@ export default function MyPaper(props) {
 
     return (
       <Paper className={classes.paper}>
-          <Box display="flex" justifyContent="space-between" className={classes.header}>
-            <Typography variant="h5" component="h5">
-              {getDate()}
-            </Typography>
-            <Typography variant="h5" component="h5"> 
-              {person.fName + " " + person.lName}
-            </Typography>
-          </Box>
-          {props.children} 
+        <Box 
+          display="flex" 
+          justifyContent="space-between" 
+          width={1}
+          className={classes.header}
+        >
+          <Typography variant="h5" component="h5">
+            {getDate()}
+          </Typography>
+          <Typography variant="h5" component="h5"> 
+            {person.fName + " " + person.lName}
+          </Typography>
+        </Box>
+        {props.children} 
         <ResetButton handleResetClick={handleResetClick}/>
       </Paper>
     )

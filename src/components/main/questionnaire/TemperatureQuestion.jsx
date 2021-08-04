@@ -4,10 +4,6 @@ import { makeStyles } from "@material-ui/styles";
 import { Box, Typography, Button, Checkbox, TextField } from "@material-ui/core"; 
 
 const useStyles = makeStyles(theme => ({
-  outer: {
-    width: "100%",
-    height: "100%",
-  },
   inner: {
     flexGrow: 1,
   },
@@ -49,7 +45,7 @@ export default function TemperatureQuestion(props) {
       display="flex" 
       flexDirection="column" 
       alignContent="center" 
-      className={classes.outer}
+      width={1} height={1}
     >
 
       {/* Temperature Question */}

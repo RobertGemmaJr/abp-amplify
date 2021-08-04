@@ -98,7 +98,6 @@ export default function Temperature(props) {
               checked={state.newKeepTemperature}
               onChange={handleCheckboxChange}
               disabled={!state.newRecordTemperature}
-              className={classes.margin}
             />
           </SwitchGrid>
         </Item>
@@ -118,7 +117,6 @@ export default function Temperature(props) {
               " to " + toleranceMax.toFixed(2)
             }
             disabled={!state.newRecordTemperature || !state.newKeepTemperature}
-            className={classes.margin}
           />
         </Item>
       </Row>

@@ -139,10 +139,20 @@ function App() {
     form.ptype === Ptype.MANUAL ? setContent(Content.MANUAL) : setContent(Content.KEYPAD);
   }
 
+  // HandleClick for the menu button
+  function handleMenuClick() {
+    setContent(Content.MENU)
+  }
+
   return (
     <Box className={classes.root}>
       <CssBaseline />
-      <Header content={content} form={form} homeClick={handleHomeClick} />
+      <Header 
+        content={content} 
+        form={form} 
+        homeClick={handleHomeClick} 
+        menuClick={handleMenuClick}
+      />
       <Main 
         loading={loading}
         settings={settings} 

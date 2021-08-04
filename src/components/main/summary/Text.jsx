@@ -5,7 +5,6 @@ import { Typography } from "@material-ui/core";
 const useStyles = makeStyles(theme => ({
   typography: {
     width: "100%",
-    textAlign: "left",
     fontSize: 14,
   },
   bold: {

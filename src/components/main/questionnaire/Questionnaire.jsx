@@ -7,37 +7,7 @@ import Paper from "../../Paper"
 import Question from "./Question";
 import TemperatureQuestion from "./TemperatureQuestion";
 
-const useStyles = makeStyles(theme => ({
-  paper: {
-    width: "100%",
-    display: "flex",
-    flexDirection: "column",
-    justifyContent: "space-between",
-    padding: theme.spacing(2),
-  },
-  header: {
-    display: "flex",
-    justifyContent: "space-between",
-    '& > *': {
-      fontWeight: "bold",
-    },
-    text: {
-      margin: theme.spacing(3),
-      fontSize: 30,
-      fontWeight: "bold",
-      alignContent: "center",
-    },
-    answer: {
-      width: "100%",
-      display: "flex",
-      justifyContent: "center",
-  
-      '& > *': {
-        margin: theme.spacing(2, 5),
-      },
-    },
-  }
-}))
+const useStyles = makeStyles(theme => ({}))
 
 
 // Determines the value for submission.temperature. Returns null on an invalid temperature.
