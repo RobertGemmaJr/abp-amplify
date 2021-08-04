@@ -107,6 +107,8 @@ export default function Questionnaire(props) {
         }
 
         const res = await createSubmission(submission)
+        console.log("Person", person)
+        console.log("Submission", res)
         setSubmission(res)
         setI(0);
         setContent(Content.SUMMARY)

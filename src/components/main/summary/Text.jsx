@@ -11,16 +11,32 @@ const useStyles = makeStyles(theme => ({
   bold: {
     fontWeight: "bold"
   },
+  failed: {
+    fontWeight: "bold",
+    color: "red",
+  }
 }))
 
 export default function Text(props) {
   const classes = useStyles()
-  const { title, body } = props
+  const { title, body, settings } = props
+
+  function checkTemperatureFailed() {
+    if(settings.recordTemperature) {
+      if(settings.keepTemperature) {
+        if(Math.abs(Number.parseFloat(body) - 98.6) > settings.tempTolerance) {
+          return true;
+        }
+      } else { if(body === "Failed") return true; }
+    }
+  }
 
   return (
     <Typography variant="subtitle1" className={classes.typography}>
       <span className={classes.bold}>{title}</span>
-      <span >{body}</span>
+      <span className={(settings && checkTemperatureFailed()) ? classes.failed : null}>
+        {body}
+      </span>
     </Typography>
   )
 }

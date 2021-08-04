@@ -101,6 +101,7 @@ export default function Main(props) {
               person={person}
               setContent={setContent} 
               submission={submission}
+              settings={settings}
             />
           )
       default:

@@ -20,7 +20,7 @@ const useStyles = makeStyles(theme => ({
 }))
 
 function readableDateTime(dateTime) {
-  return dateTime
+  return "Error"
   // const date = new Date(dateTime);
   // const year = date.getFullYear();
   // const month = date.getMonth()+1;
@@ -56,6 +56,7 @@ const columns = [
 async function getRows(submission) {
   const rows = Array(submission.questions.length)
 
+  // Add questionnaire responses
   await Promise.all(submission.questions.map(async (qId, idx) => {
     const q = await getQuestion(qId)
     rows[idx] = {
@@ -70,7 +71,7 @@ async function getRows(submission) {
 
 export default function Summary(props) {
   const classes = useStyles()
-  const { handleResetClick, person, submission } = props
+  const { handleResetClick, person, submission, settings } = props
 
   // Hook for summary rows
   const [rows, setRows] = React.useState([])
@@ -101,7 +102,7 @@ export default function Summary(props) {
         title="Submitted By: "
         body={person.companyID + ") " + person.fName + " " + person.lName}
       /> */}
-      <Text title="Temperature: " body={submission.temperature} />
+      <Text title="Temperature: " body={submission.temperature} settings={settings} />
 
 
       {/* Passed? */}
