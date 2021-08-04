@@ -53,7 +53,7 @@ function App() {
     if (event === "ready" && AuthState.SignedIn) {
       getSettings().then(res => {
         setSettings(res)
-        console.log("Settings", res)
+        console.log("Settings", res) //TEMP
       }).catch(e => {console.error(e)})
   
       getPeople().then(res => {
@@ -65,6 +65,8 @@ function App() {
         allQuestions = res;
         setQuestions(res)
       }).catch(e => { console.error(e)}); 
+
+      setLoading(false)
     }
   };
 
@@ -81,8 +83,7 @@ function App() {
         DataStore.start();
         break;
       case 'signOut':
-        DataStore.clear();
-        console.log('user signed out');
+        await DataStore.clear();
         break;
       default: 
         break;
@@ -96,6 +97,9 @@ function App() {
     Hub.listen("datastore", dataStoreListener);
     DataStore.start();
   }, [])
+
+  // Hook for app loading state
+  const [loading, setLoading] = React.useState(true);
 
   // Hook for user's settings
   const [settings, setSettings] = React.useState(0);
@@ -148,7 +152,8 @@ function App() {
         homeClick={() => handleHomeClick()} 
       />
       <Main 
-        settings={settings} setSettings={setSettings}
+        loading={loading}
+        settings={settings}
         people={people} setPeople={setPeople}
         questions={questions} setQuestions={setQuestions}
         content={content} setContent={setContent} 

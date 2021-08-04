@@ -1,5 +1,5 @@
 import React from "react";
-import { Container } from "@material-ui/core"
+import { Box, CircularProgress, Container } from "@material-ui/core"
 import { makeStyles } from "@material-ui/styles";
 
 import { Content, Time } from "../../models";
@@ -38,7 +38,7 @@ const useStyles = makeStyles(theme => ({
 export default function Main(props) {
   const classes = useStyles();
   const {
-    settings, setSettings, people, setPeople, questions, setQuestions, 
+    loading, settings, people, setPeople, questions, setQuestions, 
     content, setContent, form, setForm, person, setPerson, responses, 
     setResponses, submission, setSubmission, handleResetClick,
     allQuestions, allPeople
@@ -121,16 +121,25 @@ export default function Main(props) {
   
   return (
     <Container component="main" className={classes.main}>
-      <Container 
-        disableGutters
-        className={classes.title} 
-        onClick={() => handleTitleClick()}
-      >
-        <Title content={content} title={settings.title} time={form.time} />
-      </Container>
-      <Container className={classes.content}>
-        {renderContent()}
-      </Container>
+      {
+        loading ? 
+          <Box alignItems="center" className={classes.content}>
+            <CircularProgress size="10rem"/>
+          </Box>
+        :
+          <React.Fragment>
+            <Container 
+              disableGutters
+              className={classes.title} 
+              onClick={() => handleTitleClick()}
+            >
+              <Title content={content} title={settings.title} time={form.time} />
+            </Container>
+            <Container className={classes.content}>
+              {renderContent()}
+            </Container>
+          </React.Fragment>
+      }      
     </Container>
   )
 }
