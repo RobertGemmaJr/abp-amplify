@@ -4,7 +4,7 @@ import { makeStyles } from "@material-ui/styles";
 
 import { Content, Ptype } from "../../../models"
 import FlexBox from "../../FlexBox";
-import { createPerson } from "../../../api";
+import { createPerson, getPeople } from "../../../api";
 
 const useStyles = makeStyles(theme => ({
   manual: {
@@ -14,8 +14,7 @@ const useStyles = makeStyles(theme => ({
 
 export default function Manual(props) {
     const classes = useStyles();
-
-    const { setContent, setPerson } = props;
+    const { setContent, setPerson, setAllPeople } = props;
 
     const [state, setState] = React.useState({
       fName: "",
@@ -32,9 +31,15 @@ export default function Manual(props) {
         fName: state.fName,
         lName: state.lName,
       }
+      
+      // Create person, update form, and update allPeople
       createPerson(person).then(res => {
         setPerson(res);
         setContent(Content.QUESTIONNAIRE)
+        
+        getPeople().then(res => {
+          setAllPeople(res)
+        }).catch(e => {console.error(e)})
       }).catch(e => {console.error(e)})
     }
 

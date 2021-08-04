@@ -38,9 +38,10 @@ const useStyles = makeStyles(theme => ({
 export default function Main(props) {
   const classes = useStyles();
   const {
-    loading, settings, allPeople, allQuestions, people, setPeople, questions, 
-    setQuestions, content, setContent, form, setForm, person, setPerson, 
-    responses, setResponses, submission, setSubmission, handleResetClick,
+    loading, settings, allPeople, setAllPeople, allQuestions, people, 
+    setPeople, questions, setQuestions, content, setContent, form, setForm, 
+    person, setPerson, responses, setResponses, submission, setSubmission, 
+    handleResetClick,
   } = props;
 
   // Hook for rendering the main content based on program state
@@ -56,7 +57,7 @@ export default function Main(props) {
         );
       case Content.MANUAL:
         return (
-          <Manual setContent={setContent} setPerson={setPerson}/>
+          <Manual setContent={setContent} setPerson={setPerson} setAllPeople={setAllPeople}/>
         );
       case Content.KEYPAD:
         return (

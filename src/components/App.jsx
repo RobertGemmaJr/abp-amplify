@@ -21,11 +21,8 @@ const useStyles = makeStyles(theme => ({
 }))
 
 /*********** GLOBALS  *********/
-const initialFormState = { time: Time.MORNING, ptype: Ptype.NONE }
 
-// Prevents unnecessary API calls
-// var allPeople = null;
-// var allQuestions = null;
+const initialFormState = { time: Time.MORNING, ptype: Ptype.NONE }
 
 /**
  * 
@@ -47,24 +44,22 @@ function App() {
   // Ensures sync process is complete before queries
   const dataStoreListener = async (data) => {
     const { payload: { event } } = data;
-    console.log("DataStore event", event);
+    // console.log("DataStore event", event);
 
     // Get user data when synced and signed in
     if (event === "ready" && AuthState.SignedIn) {
-      getSettings().then(res => {
-        setSettings(res)
-        console.log("Settings", res) //TEMP
-      }).catch(e => {console.error(e)})
-  
-      getPeople().then(res => {
-        setAllPeople(res)
-        setPeople(res)
-      }).catch(e => {console.error(e)}); 
+      console.log("DataStore READY");
 
-      getQuestions().then(res => {
-        setAllQuestions(res)
-        setQuestions(res)
-      }).catch(e => { console.error(e)}); 
+      const s = await getSettings()
+      setSettings(s)
+
+      const p = await getPeople()
+      setAllPeople(p)
+      setPeople(p)
+
+      const q = await getQuestions()
+      setAllQuestions(q)
+      setQuestions(q)
 
       setLoading(false)
     }
@@ -80,7 +75,8 @@ function App() {
         // Create settings here not in query
         break;
       case 'signIn':
-        DataStore.start();
+        await DataStore.clear()
+        await DataStore.start();
         break;
       case 'signOut':
         await DataStore.clear();
@@ -93,6 +89,7 @@ function App() {
   // DataStore API calls on initial render
   // Listener ensures sync process completes before first query
   React.useEffect(() => {
+    // Auth and DataStore listeners
     Hub.listen('auth', authListener);
     Hub.listen("datastore", dataStoreListener);
     DataStore.start();
@@ -108,21 +105,18 @@ function App() {
 
   // Hook for user's people
   const [people, setPeople] = React.useState([]);
-
   // Hook for user's questions
   const [questions, setQuestions] = React.useState([]);
 
   // Hook for content to be shown
   const [content, setContent] = React.useState(Content.HOME);
-
+  // Hook for current form
   const [form, setForm] = React.useState(initialFormState)
 
   // Hook for the current person
   const [person, setPerson] = React.useState(null);
-
   // Hook for the current person's response
   const [responses, setResponses] = React.useState([]);
-
   // Hook for the current person's questionnaire submission
   const [submission, setSubmission] = React.useState(0);
 
@@ -148,14 +142,12 @@ function App() {
   return (
     <Box className={classes.root}>
       <CssBaseline />
-      <Header 
-        content={content} 
-        form={form} 
-        homeClick={() => handleHomeClick()} 
-      />
+      <Header content={content} form={form} homeClick={handleHomeClick} />
       <Main 
         loading={loading}
-        settings={settings} allPeople={allPeople} allQuestions={allQuestions}
+        settings={settings} 
+        allPeople={allPeople} setAllPeople={setAllPeople} 
+        allQuestions={allQuestions}
         people={people} setPeople={setPeople}
         questions={questions} setQuestions={setQuestions}
         content={content} setContent={setContent} 

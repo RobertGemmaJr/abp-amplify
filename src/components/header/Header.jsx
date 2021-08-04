@@ -43,7 +43,7 @@ export default function Header(props) {
                 <Button 
                   variant="contained" 
                   className={classes.hButton}
-                  onClick={homeClick}
+                  onClick={() => homeClick()}
                   color="secondary"
                 >
                   Home
