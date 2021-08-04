@@ -23,7 +23,7 @@
             "usetypesgeneratorplugin": true,
             "cleangeneratedmodelsdirectory": true,
             "retaincasestyle": true,
-            "addtimestampfields": true,
+            "addtimestampfields": false,
             "handlelistnullabilitytransparently": true,
             "emitauthprovider": true,
             "generateindexrules": true,

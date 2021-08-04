@@ -11,7 +11,6 @@ import People from "./people/People";
 import Questionnaire from "./questionnaire/Questionnaire"
 import Manual from "./manual/Manual"
 import Summary from "./summary/Summary"
-import { AmplifySignOut } from "@aws-amplify/ui-react";
 
 const useStyles = makeStyles(theme => ({
   main: {
