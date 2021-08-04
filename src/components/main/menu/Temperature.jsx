@@ -61,8 +61,8 @@ export default function Temperature(props) {
         </Item>
         <Item>
           <SwitchGrid 
-            topText="Yes" 
-            bottomText="No" 
+            topText="No" 
+            bottomText="Yes" 
             state={state.newRecordTemperature} 
             classes={classes}
           >

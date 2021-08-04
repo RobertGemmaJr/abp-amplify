@@ -28,6 +28,22 @@ export enum Content {
 
 
 
+type SettingMetaData = {
+  readOnlyFields: 'createdAt' | 'updatedAt';
+}
+
+type PersonMetaData = {
+  readOnlyFields: 'createdAt' | 'updatedAt';
+}
+
+type SubmissionMetaData = {
+  readOnlyFields: 'createdAt' | 'updatedAt';
+}
+
+type QuestionMetaData = {
+  readOnlyFields: 'createdAt' | 'updatedAt';
+}
+
 export declare class Setting {
   readonly id: string;
   readonly title: string;
@@ -35,8 +51,10 @@ export declare class Setting {
   readonly recordTemperature: boolean;
   readonly keepTemperature: boolean;
   readonly tempTolerance: number;
-  constructor(init: ModelInit<Setting>);
-  static copyOf(source: Setting, mutator: (draft: MutableModel<Setting>) => MutableModel<Setting> | void): Setting;
+  readonly createdAt?: string;
+  readonly updatedAt?: string;
+  constructor(init: ModelInit<Setting, SettingMetaData>);
+  static copyOf(source: Setting, mutator: (draft: MutableModel<Setting, SettingMetaData>) => MutableModel<Setting, SettingMetaData> | void): Setting;
 }
 
 export declare class Person {
@@ -46,8 +64,10 @@ export declare class Person {
   readonly fName: string;
   readonly lName: string;
   readonly Submissions?: Submission[];
-  constructor(init: ModelInit<Person>);
-  static copyOf(source: Person, mutator: (draft: MutableModel<Person>) => MutableModel<Person> | void): Person;
+  readonly createdAt?: string;
+  readonly updatedAt?: string;
+  constructor(init: ModelInit<Person, PersonMetaData>);
+  static copyOf(source: Person, mutator: (draft: MutableModel<Person, PersonMetaData>) => MutableModel<Person, PersonMetaData> | void): Person;
 }
 
 export declare class Submission {
@@ -59,8 +79,10 @@ export declare class Submission {
   readonly responses: string[];
   readonly temperature?: string;
   readonly passed: boolean;
-  constructor(init: ModelInit<Submission>);
-  static copyOf(source: Submission, mutator: (draft: MutableModel<Submission>) => MutableModel<Submission> | void): Submission;
+  readonly createdAt?: string;
+  readonly updatedAt?: string;
+  constructor(init: ModelInit<Submission, SubmissionMetaData>);
+  static copyOf(source: Submission, mutator: (draft: MutableModel<Submission, SubmissionMetaData>) => MutableModel<Submission, SubmissionMetaData> | void): Submission;
 }
 
 export declare class Question {
@@ -70,6 +92,8 @@ export declare class Question {
   readonly question: string;
   readonly expectedResponse: string;
   readonly checkboxes: boolean[];
-  constructor(init: ModelInit<Question>);
-  static copyOf(source: Question, mutator: (draft: MutableModel<Question>) => MutableModel<Question> | void): Question;
+  readonly createdAt?: string;
+  readonly updatedAt?: string;
+  constructor(init: ModelInit<Question, QuestionMetaData>);
+  static copyOf(source: Question, mutator: (draft: MutableModel<Question, QuestionMetaData>) => MutableModel<Question, QuestionMetaData> | void): Question;
 }

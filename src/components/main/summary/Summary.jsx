@@ -20,7 +20,6 @@ const useStyles = makeStyles(theme => ({
 }))
 
 function readableDateTime(dateTime) {
-  console.log("datetime", dateTime)
   return dateTime
   // const date = new Date(dateTime);
   // const year = date.getFullYear();
@@ -83,7 +82,6 @@ export default function Summary(props) {
   React.useEffect(() => {
     // Get rows for the DataGrid when submission is complete
     if(submission) {
-      console.log(submission) // TEMP
       getRows(submission).then(res => {
         setRows(res)
       }).catch(e => {console.error(e)})

@@ -110,6 +110,7 @@ export default function Questionnaire(props) {
         // Create the submission
         createSubmission(submission).then(res => {
           setSubmission(res)
+          console.log("Submission:", res)
         }).catch(e => {console.error(e)}); 
         return true;
       } else return false; // Invalid temperature - can't submit

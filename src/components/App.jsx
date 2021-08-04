@@ -53,6 +53,7 @@ function App() {
     if (event === "ready" && AuthState.SignedIn) {
       getSettings().then(res => {
         setSettings(res)
+        console.log("Settings", res)
       }).catch(e => {console.error(e)})
   
       getPeople().then(res => {
