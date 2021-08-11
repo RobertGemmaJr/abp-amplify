@@ -91,6 +91,8 @@ function App() {
   React.useEffect(() => {
     Hub.listen('auth', authListener);
     Hub.listen("datastore", dataStoreListener);
+
+    DataStore.clear();
     DataStore.start();
   }, [])
 

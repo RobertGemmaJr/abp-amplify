@@ -1,32 +1,14 @@
 {
-  "staging": {
+  "production": {
     "awscloudformation": {
-      "AuthRoleName": "amplify-amplify59784320c0054-staging-173118-authRole",
-      "UnauthRoleArn": "arn:aws:iam::494214532833:role/amplify-amplify59784320c0054-staging-173118-unauthRole",
-      "AuthRoleArn": "arn:aws:iam::494214532833:role/amplify-amplify59784320c0054-staging-173118-authRole",
+      "AuthRoleName": "amplify-abpamplify-production-151721-authRole",
+      "UnauthRoleArn": "arn:aws:iam::494214532833:role/amplify-abpamplify-production-151721-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::494214532833:role/amplify-abpamplify-production-151721-authRole",
       "Region": "us-east-1",
-      "DeploymentBucketName": "amplify-amplify59784320c0054-staging-173118-deployment",
-      "UnauthRoleName": "amplify-amplify59784320c0054-staging-173118-unauthRole",
-      "StackName": "amplify-amplify59784320c0054-staging-173118",
-      "StackId": "arn:aws:cloudformation:us-east-1:494214532833:stack/amplify-amplify59784320c0054-staging-173118/23b76400-df49-11eb-ba7c-12dace8e8b83",
-      "AmplifyAppId": "duunanimigbcs"
-    },
-    "categories": {
-      "auth": {
-        "abpamplifya4d0ba8e": {}
-      }
-    }
-  },
-  "dev": {
-    "awscloudformation": {
-      "AuthRoleName": "amplify-abpamplify-dev-140225-authRole",
-      "UnauthRoleArn": "arn:aws:iam::494214532833:role/amplify-abpamplify-dev-140225-unauthRole",
-      "AuthRoleArn": "arn:aws:iam::494214532833:role/amplify-abpamplify-dev-140225-authRole",
-      "Region": "us-east-1",
-      "DeploymentBucketName": "amplify-abpamplify-dev-140225-deployment",
-      "UnauthRoleName": "amplify-abpamplify-dev-140225-unauthRole",
-      "StackName": "amplify-abpamplify-dev-140225",
-      "StackId": "arn:aws:cloudformation:us-east-1:494214532833:stack/amplify-abpamplify-dev-140225/4a55b530-face-11eb-b1d7-0a374cd00e27",
+      "DeploymentBucketName": "amplify-abpamplify-production-151721-deployment",
+      "UnauthRoleName": "amplify-abpamplify-production-151721-unauthRole",
+      "StackName": "amplify-abpamplify-production-151721",
+      "StackId": "arn:aws:cloudformation:us-east-1:494214532833:stack/amplify-abpamplify-production-151721/c1c38bb0-fad8-11eb-b17c-0ae9b001be19",
       "AmplifyAppId": "duunanimigbcs"
     },
     "categories": {
