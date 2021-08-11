@@ -39,7 +39,7 @@ type Person @model @auth(rules: [{allow: owner}]) {
   type: PTYPE!
   fName: String!
   lName: String!
-  Submissions: [Submission!] @connection(keyName: "byPerson", fields: ["id"])
+  Submissions: [Submission]! @connection(keyName: "byPerson", fields: ["id"])
 }
 
 type Question @model @auth(rules: [{allow: owner}]) {

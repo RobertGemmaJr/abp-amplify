@@ -1,12 +1,15 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const getSettings = /* GraphQL */ `
-  query GetSettings($id: ID!) {
-    getSettings(id: $id) {
+export const getSetting = /* GraphQL */ `
+  query GetSetting($id: ID!) {
+    getSetting(id: $id) {
       id
       title
       randomizeQuestions
+      recordTemperature
+      keepTemperature
+      tempTolerance
       _version
       _deleted
       _lastChangedAt
@@ -18,7 +21,7 @@ export const getSettings = /* GraphQL */ `
 `;
 export const listSettings = /* GraphQL */ `
   query ListSettings(
-    $filter: ModelSettingsFilterInput
+    $filter: ModelSettingFilterInput
     $limit: Int
     $nextToken: String
   ) {
@@ -27,6 +30,9 @@ export const listSettings = /* GraphQL */ `
         id
         title
         randomizeQuestions
+        recordTemperature
+        keepTemperature
+        tempTolerance
         _version
         _deleted
         _lastChangedAt
@@ -41,7 +47,7 @@ export const listSettings = /* GraphQL */ `
 `;
 export const syncSettings = /* GraphQL */ `
   query SyncSettings(
-    $filter: ModelSettingsFilterInput
+    $filter: ModelSettingFilterInput
     $limit: Int
     $nextToken: String
     $lastSync: AWSTimestamp
@@ -56,6 +62,9 @@ export const syncSettings = /* GraphQL */ `
         id
         title
         randomizeQuestions
+        recordTemperature
+        keepTemperature
+        tempTolerance
         _version
         _deleted
         _lastChangedAt
@@ -72,6 +81,7 @@ export const getPerson = /* GraphQL */ `
   query GetPerson($id: ID!) {
     getPerson(id: $id) {
       id
+      companyID
       type
       fName
       lName
@@ -81,14 +91,15 @@ export const getPerson = /* GraphQL */ `
       createdAt
       updatedAt
       owner
-      Responses {
+      Submissions {
         items {
           id
           personID
-          date
           formType
           time
+          questions
           responses
+          temperature
           passed
           _version
           _deleted
@@ -112,6 +123,7 @@ export const listPeople = /* GraphQL */ `
     listPeople(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
+        companyID
         type
         fName
         lName
@@ -121,7 +133,7 @@ export const listPeople = /* GraphQL */ `
         createdAt
         updatedAt
         owner
-        Responses {
+        Submissions {
           nextToken
           startedAt
         }
@@ -146,6 +158,7 @@ export const syncPeople = /* GraphQL */ `
     ) {
       items {
         id
+        companyID
         type
         fName
         lName
@@ -155,7 +168,7 @@ export const syncPeople = /* GraphQL */ `
         createdAt
         updatedAt
         owner
-        Responses {
+        Submissions {
           nextToken
           startedAt
         }
@@ -169,6 +182,7 @@ export const getQuestion = /* GraphQL */ `
   query GetQuestion($id: ID!) {
     getQuestion(id: $id) {
       id
+      index
       type
       question
       expectedResponse
@@ -179,19 +193,6 @@ export const getQuestion = /* GraphQL */ `
       createdAt
       updatedAt
       owner
-      responses {
-        items {
-          id
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-          owner
-        }
-        nextToken
-        startedAt
-      }
     }
   }
 `;
@@ -204,6 +205,7 @@ export const listQuestions = /* GraphQL */ `
     listQuestions(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
+        index
         type
         question
         expectedResponse
@@ -214,10 +216,6 @@ export const listQuestions = /* GraphQL */ `
         createdAt
         updatedAt
         owner
-        responses {
-          nextToken
-          startedAt
-        }
       }
       nextToken
       startedAt
@@ -239,6 +237,7 @@ export const syncQuestions = /* GraphQL */ `
     ) {
       items {
         id
+        index
         type
         question
         expectedResponse
@@ -249,25 +248,22 @@ export const syncQuestions = /* GraphQL */ `
         createdAt
         updatedAt
         owner
-        responses {
-          nextToken
-          startedAt
-        }
       }
       nextToken
       startedAt
     }
   }
 `;
-export const getResponse = /* GraphQL */ `
-  query GetResponse($id: ID!) {
-    getResponse(id: $id) {
+export const getSubmission = /* GraphQL */ `
+  query GetSubmission($id: ID!) {
+    getSubmission(id: $id) {
       id
       personID
-      date
       formType
       time
+      questions
       responses
+      temperature
       passed
       _version
       _deleted
@@ -275,36 +271,24 @@ export const getResponse = /* GraphQL */ `
       createdAt
       updatedAt
       owner
-      questions {
-        items {
-          id
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-          owner
-        }
-        nextToken
-        startedAt
-      }
     }
   }
 `;
-export const listResponses = /* GraphQL */ `
-  query ListResponses(
-    $filter: ModelResponseFilterInput
+export const listSubmissions = /* GraphQL */ `
+  query ListSubmissions(
+    $filter: ModelSubmissionFilterInput
     $limit: Int
     $nextToken: String
   ) {
-    listResponses(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    listSubmissions(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
         personID
-        date
         formType
         time
+        questions
         responses
+        temperature
         passed
         _version
         _deleted
@@ -312,24 +296,20 @@ export const listResponses = /* GraphQL */ `
         createdAt
         updatedAt
         owner
-        questions {
-          nextToken
-          startedAt
-        }
       }
       nextToken
       startedAt
     }
   }
 `;
-export const syncResponses = /* GraphQL */ `
-  query SyncResponses(
-    $filter: ModelResponseFilterInput
+export const syncSubmissions = /* GraphQL */ `
+  query SyncSubmissions(
+    $filter: ModelSubmissionFilterInput
     $limit: Int
     $nextToken: String
     $lastSync: AWSTimestamp
   ) {
-    syncResponses(
+    syncSubmissions(
       filter: $filter
       limit: $limit
       nextToken: $nextToken
@@ -338,75 +318,17 @@ export const syncResponses = /* GraphQL */ `
       items {
         id
         personID
-        date
         formType
         time
+        questions
         responses
+        temperature
         passed
         _version
         _deleted
         _lastChangedAt
         createdAt
         updatedAt
-        owner
-        questions {
-          nextToken
-          startedAt
-        }
-      }
-      nextToken
-      startedAt
-    }
-  }
-`;
-export const syncResponseQuestions = /* GraphQL */ `
-  query SyncResponseQuestions(
-    $filter: ModelResponseQuestionFilterInput
-    $limit: Int
-    $nextToken: String
-    $lastSync: AWSTimestamp
-  ) {
-    syncResponseQuestions(
-      filter: $filter
-      limit: $limit
-      nextToken: $nextToken
-      lastSync: $lastSync
-    ) {
-      items {
-        id
-        _version
-        _deleted
-        _lastChangedAt
-        createdAt
-        updatedAt
-        question {
-          id
-          type
-          question
-          expectedResponse
-          checkboxes
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-          owner
-        }
-        response {
-          id
-          personID
-          date
-          formType
-          time
-          responses
-          passed
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-          owner
-        }
         owner
       }
       nextToken

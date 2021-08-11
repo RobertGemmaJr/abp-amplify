@@ -136,9 +136,9 @@ export const schema = {
                     "type": {
                         "model": "Submission"
                     },
-                    "isRequired": true,
+                    "isRequired": false,
                     "attributes": [],
-                    "isArrayNullable": true,
+                    "isArrayNullable": false,
                     "association": {
                         "connectionType": "HAS_MANY",
                         "associatedWith": "personID"
@@ -439,5 +439,5 @@ export const schema = {
         }
     },
     "nonModels": {},
-    "version": "c63105b62a8fa5446f224252ae9ebd11"
+    "version": "1f2f22c24c503e13cdf1f92cfe6c9ee8"
 };

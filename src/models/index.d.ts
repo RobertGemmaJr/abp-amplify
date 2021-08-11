@@ -63,7 +63,7 @@ export declare class Person {
   readonly type: Ptype | keyof typeof Ptype;
   readonly fName: string;
   readonly lName: string;
-  readonly Submissions?: Submission[];
+  readonly Submissions: (Submission | null)[];
   readonly createdAt?: string;
   readonly updatedAt?: string;
   constructor(init: ModelInit<Person, PersonMetaData>);

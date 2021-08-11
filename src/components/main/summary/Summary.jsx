@@ -20,6 +20,7 @@ const useStyles = makeStyles(theme => ({
 }))
 
 function readableDateTime(dateTime) {
+  console.log("DateTime", dateTime)
   return "Error"
   // const date = new Date(dateTime);
   // const year = date.getFullYear();

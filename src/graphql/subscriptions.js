@@ -1,12 +1,15 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const onCreateSettings = /* GraphQL */ `
-  subscription OnCreateSettings($owner: String) {
-    onCreateSettings(owner: $owner) {
+export const onCreateSetting = /* GraphQL */ `
+  subscription OnCreateSetting($owner: String) {
+    onCreateSetting(owner: $owner) {
       id
       title
       randomizeQuestions
+      recordTemperature
+      keepTemperature
+      tempTolerance
       _version
       _deleted
       _lastChangedAt
@@ -16,12 +19,15 @@ export const onCreateSettings = /* GraphQL */ `
     }
   }
 `;
-export const onUpdateSettings = /* GraphQL */ `
-  subscription OnUpdateSettings($owner: String) {
-    onUpdateSettings(owner: $owner) {
+export const onUpdateSetting = /* GraphQL */ `
+  subscription OnUpdateSetting($owner: String) {
+    onUpdateSetting(owner: $owner) {
       id
       title
       randomizeQuestions
+      recordTemperature
+      keepTemperature
+      tempTolerance
       _version
       _deleted
       _lastChangedAt
@@ -31,12 +37,15 @@ export const onUpdateSettings = /* GraphQL */ `
     }
   }
 `;
-export const onDeleteSettings = /* GraphQL */ `
-  subscription OnDeleteSettings($owner: String) {
-    onDeleteSettings(owner: $owner) {
+export const onDeleteSetting = /* GraphQL */ `
+  subscription OnDeleteSetting($owner: String) {
+    onDeleteSetting(owner: $owner) {
       id
       title
       randomizeQuestions
+      recordTemperature
+      keepTemperature
+      tempTolerance
       _version
       _deleted
       _lastChangedAt
@@ -50,6 +59,7 @@ export const onCreatePerson = /* GraphQL */ `
   subscription OnCreatePerson($owner: String) {
     onCreatePerson(owner: $owner) {
       id
+      companyID
       type
       fName
       lName
@@ -59,14 +69,15 @@ export const onCreatePerson = /* GraphQL */ `
       createdAt
       updatedAt
       owner
-      Responses {
+      Submissions {
         items {
           id
           personID
-          date
           formType
           time
+          questions
           responses
+          temperature
           passed
           _version
           _deleted
@@ -85,6 +96,7 @@ export const onUpdatePerson = /* GraphQL */ `
   subscription OnUpdatePerson($owner: String) {
     onUpdatePerson(owner: $owner) {
       id
+      companyID
       type
       fName
       lName
@@ -94,14 +106,15 @@ export const onUpdatePerson = /* GraphQL */ `
       createdAt
       updatedAt
       owner
-      Responses {
+      Submissions {
         items {
           id
           personID
-          date
           formType
           time
+          questions
           responses
+          temperature
           passed
           _version
           _deleted
@@ -120,6 +133,7 @@ export const onDeletePerson = /* GraphQL */ `
   subscription OnDeletePerson($owner: String) {
     onDeletePerson(owner: $owner) {
       id
+      companyID
       type
       fName
       lName
@@ -129,14 +143,15 @@ export const onDeletePerson = /* GraphQL */ `
       createdAt
       updatedAt
       owner
-      Responses {
+      Submissions {
         items {
           id
           personID
-          date
           formType
           time
+          questions
           responses
+          temperature
           passed
           _version
           _deleted
@@ -155,6 +170,7 @@ export const onCreateQuestion = /* GraphQL */ `
   subscription OnCreateQuestion($owner: String) {
     onCreateQuestion(owner: $owner) {
       id
+      index
       type
       question
       expectedResponse
@@ -165,19 +181,6 @@ export const onCreateQuestion = /* GraphQL */ `
       createdAt
       updatedAt
       owner
-      responses {
-        items {
-          id
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-          owner
-        }
-        nextToken
-        startedAt
-      }
     }
   }
 `;
@@ -185,6 +188,7 @@ export const onUpdateQuestion = /* GraphQL */ `
   subscription OnUpdateQuestion($owner: String) {
     onUpdateQuestion(owner: $owner) {
       id
+      index
       type
       question
       expectedResponse
@@ -195,19 +199,6 @@ export const onUpdateQuestion = /* GraphQL */ `
       createdAt
       updatedAt
       owner
-      responses {
-        items {
-          id
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-          owner
-        }
-        nextToken
-        startedAt
-      }
     }
   }
 `;
@@ -215,6 +206,7 @@ export const onDeleteQuestion = /* GraphQL */ `
   subscription OnDeleteQuestion($owner: String) {
     onDeleteQuestion(owner: $owner) {
       id
+      index
       type
       question
       expectedResponse
@@ -225,31 +217,19 @@ export const onDeleteQuestion = /* GraphQL */ `
       createdAt
       updatedAt
       owner
-      responses {
-        items {
-          id
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-          owner
-        }
-        nextToken
-        startedAt
-      }
     }
   }
 `;
-export const onCreateResponse = /* GraphQL */ `
-  subscription OnCreateResponse($owner: String) {
-    onCreateResponse(owner: $owner) {
+export const onCreateSubmission = /* GraphQL */ `
+  subscription OnCreateSubmission($owner: String) {
+    onCreateSubmission(owner: $owner) {
       id
       personID
-      date
       formType
       time
+      questions
       responses
+      temperature
       passed
       _version
       _deleted
@@ -257,31 +237,19 @@ export const onCreateResponse = /* GraphQL */ `
       createdAt
       updatedAt
       owner
-      questions {
-        items {
-          id
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-          owner
-        }
-        nextToken
-        startedAt
-      }
     }
   }
 `;
-export const onUpdateResponse = /* GraphQL */ `
-  subscription OnUpdateResponse($owner: String) {
-    onUpdateResponse(owner: $owner) {
+export const onUpdateSubmission = /* GraphQL */ `
+  subscription OnUpdateSubmission($owner: String) {
+    onUpdateSubmission(owner: $owner) {
       id
       personID
-      date
       formType
       time
+      questions
       responses
+      temperature
       passed
       _version
       _deleted
@@ -289,197 +257,25 @@ export const onUpdateResponse = /* GraphQL */ `
       createdAt
       updatedAt
       owner
-      questions {
-        items {
-          id
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-          owner
-        }
-        nextToken
-        startedAt
-      }
     }
   }
 `;
-export const onDeleteResponse = /* GraphQL */ `
-  subscription OnDeleteResponse($owner: String) {
-    onDeleteResponse(owner: $owner) {
+export const onDeleteSubmission = /* GraphQL */ `
+  subscription OnDeleteSubmission($owner: String) {
+    onDeleteSubmission(owner: $owner) {
       id
       personID
-      date
       formType
       time
+      questions
       responses
+      temperature
       passed
       _version
       _deleted
       _lastChangedAt
       createdAt
       updatedAt
-      owner
-      questions {
-        items {
-          id
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-          owner
-        }
-        nextToken
-        startedAt
-      }
-    }
-  }
-`;
-export const onCreateResponseQuestion = /* GraphQL */ `
-  subscription OnCreateResponseQuestion($owner: String) {
-    onCreateResponseQuestion(owner: $owner) {
-      id
-      _version
-      _deleted
-      _lastChangedAt
-      createdAt
-      updatedAt
-      question {
-        id
-        type
-        question
-        expectedResponse
-        checkboxes
-        _version
-        _deleted
-        _lastChangedAt
-        createdAt
-        updatedAt
-        owner
-        responses {
-          nextToken
-          startedAt
-        }
-      }
-      response {
-        id
-        personID
-        date
-        formType
-        time
-        responses
-        passed
-        _version
-        _deleted
-        _lastChangedAt
-        createdAt
-        updatedAt
-        owner
-        questions {
-          nextToken
-          startedAt
-        }
-      }
-      owner
-    }
-  }
-`;
-export const onUpdateResponseQuestion = /* GraphQL */ `
-  subscription OnUpdateResponseQuestion($owner: String) {
-    onUpdateResponseQuestion(owner: $owner) {
-      id
-      _version
-      _deleted
-      _lastChangedAt
-      createdAt
-      updatedAt
-      question {
-        id
-        type
-        question
-        expectedResponse
-        checkboxes
-        _version
-        _deleted
-        _lastChangedAt
-        createdAt
-        updatedAt
-        owner
-        responses {
-          nextToken
-          startedAt
-        }
-      }
-      response {
-        id
-        personID
-        date
-        formType
-        time
-        responses
-        passed
-        _version
-        _deleted
-        _lastChangedAt
-        createdAt
-        updatedAt
-        owner
-        questions {
-          nextToken
-          startedAt
-        }
-      }
-      owner
-    }
-  }
-`;
-export const onDeleteResponseQuestion = /* GraphQL */ `
-  subscription OnDeleteResponseQuestion($owner: String) {
-    onDeleteResponseQuestion(owner: $owner) {
-      id
-      _version
-      _deleted
-      _lastChangedAt
-      createdAt
-      updatedAt
-      question {
-        id
-        type
-        question
-        expectedResponse
-        checkboxes
-        _version
-        _deleted
-        _lastChangedAt
-        createdAt
-        updatedAt
-        owner
-        responses {
-          nextToken
-          startedAt
-        }
-      }
-      response {
-        id
-        personID
-        date
-        formType
-        time
-        responses
-        passed
-        _version
-        _deleted
-        _lastChangedAt
-        createdAt
-        updatedAt
-        owner
-        questions {
-          nextToken
-          startedAt
-        }
-      }
       owner
     }
   }

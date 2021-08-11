@@ -11,6 +11,20 @@ export async function createPerson(person) {
       type: person.type,
       fName: person.fName,
       lName: person.lName,
+      Submissions: [],
+    })
+  )
+  return res;
+}
+
+export async function createQuestion(question) {
+  const res = await DataStore.save(
+    new Question({
+      index: question.index,
+      type: question.type,
+      question: question.question,
+      expectedResponse: question.expectedResponse,
+      checkboxes: question.checkboxes,
     })
   )
   return res;
@@ -28,6 +42,7 @@ export async function createSubmission(submission) {
       "passed": submission.passed,
     })
   )
+  console.log("Response", res, res.createdAt)
   return res;
 }
 

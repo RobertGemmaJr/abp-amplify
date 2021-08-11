@@ -1,15 +1,18 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const createSettings = /* GraphQL */ `
-  mutation CreateSettings(
-    $input: CreateSettingsInput!
-    $condition: ModelSettingsConditionInput
+export const createSetting = /* GraphQL */ `
+  mutation CreateSetting(
+    $input: CreateSettingInput!
+    $condition: ModelSettingConditionInput
   ) {
-    createSettings(input: $input, condition: $condition) {
+    createSetting(input: $input, condition: $condition) {
       id
       title
       randomizeQuestions
+      recordTemperature
+      keepTemperature
+      tempTolerance
       _version
       _deleted
       _lastChangedAt
@@ -19,15 +22,18 @@ export const createSettings = /* GraphQL */ `
     }
   }
 `;
-export const updateSettings = /* GraphQL */ `
-  mutation UpdateSettings(
-    $input: UpdateSettingsInput!
-    $condition: ModelSettingsConditionInput
+export const updateSetting = /* GraphQL */ `
+  mutation UpdateSetting(
+    $input: UpdateSettingInput!
+    $condition: ModelSettingConditionInput
   ) {
-    updateSettings(input: $input, condition: $condition) {
+    updateSetting(input: $input, condition: $condition) {
       id
       title
       randomizeQuestions
+      recordTemperature
+      keepTemperature
+      tempTolerance
       _version
       _deleted
       _lastChangedAt
@@ -37,15 +43,18 @@ export const updateSettings = /* GraphQL */ `
     }
   }
 `;
-export const deleteSettings = /* GraphQL */ `
-  mutation DeleteSettings(
-    $input: DeleteSettingsInput!
-    $condition: ModelSettingsConditionInput
+export const deleteSetting = /* GraphQL */ `
+  mutation DeleteSetting(
+    $input: DeleteSettingInput!
+    $condition: ModelSettingConditionInput
   ) {
-    deleteSettings(input: $input, condition: $condition) {
+    deleteSetting(input: $input, condition: $condition) {
       id
       title
       randomizeQuestions
+      recordTemperature
+      keepTemperature
+      tempTolerance
       _version
       _deleted
       _lastChangedAt
@@ -62,6 +71,7 @@ export const createPerson = /* GraphQL */ `
   ) {
     createPerson(input: $input, condition: $condition) {
       id
+      companyID
       type
       fName
       lName
@@ -71,14 +81,15 @@ export const createPerson = /* GraphQL */ `
       createdAt
       updatedAt
       owner
-      Responses {
+      Submissions {
         items {
           id
           personID
-          date
           formType
           time
+          questions
           responses
+          temperature
           passed
           _version
           _deleted
@@ -100,6 +111,7 @@ export const updatePerson = /* GraphQL */ `
   ) {
     updatePerson(input: $input, condition: $condition) {
       id
+      companyID
       type
       fName
       lName
@@ -109,14 +121,15 @@ export const updatePerson = /* GraphQL */ `
       createdAt
       updatedAt
       owner
-      Responses {
+      Submissions {
         items {
           id
           personID
-          date
           formType
           time
+          questions
           responses
+          temperature
           passed
           _version
           _deleted
@@ -138,6 +151,7 @@ export const deletePerson = /* GraphQL */ `
   ) {
     deletePerson(input: $input, condition: $condition) {
       id
+      companyID
       type
       fName
       lName
@@ -147,14 +161,15 @@ export const deletePerson = /* GraphQL */ `
       createdAt
       updatedAt
       owner
-      Responses {
+      Submissions {
         items {
           id
           personID
-          date
           formType
           time
+          questions
           responses
+          temperature
           passed
           _version
           _deleted
@@ -176,6 +191,7 @@ export const createQuestion = /* GraphQL */ `
   ) {
     createQuestion(input: $input, condition: $condition) {
       id
+      index
       type
       question
       expectedResponse
@@ -186,19 +202,6 @@ export const createQuestion = /* GraphQL */ `
       createdAt
       updatedAt
       owner
-      responses {
-        items {
-          id
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-          owner
-        }
-        nextToken
-        startedAt
-      }
     }
   }
 `;
@@ -209,6 +212,7 @@ export const updateQuestion = /* GraphQL */ `
   ) {
     updateQuestion(input: $input, condition: $condition) {
       id
+      index
       type
       question
       expectedResponse
@@ -219,19 +223,6 @@ export const updateQuestion = /* GraphQL */ `
       createdAt
       updatedAt
       owner
-      responses {
-        items {
-          id
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-          owner
-        }
-        nextToken
-        startedAt
-      }
     }
   }
 `;
@@ -242,6 +233,7 @@ export const deleteQuestion = /* GraphQL */ `
   ) {
     deleteQuestion(input: $input, condition: $condition) {
       id
+      index
       type
       question
       expectedResponse
@@ -252,34 +244,22 @@ export const deleteQuestion = /* GraphQL */ `
       createdAt
       updatedAt
       owner
-      responses {
-        items {
-          id
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-          owner
-        }
-        nextToken
-        startedAt
-      }
     }
   }
 `;
-export const createResponse = /* GraphQL */ `
-  mutation CreateResponse(
-    $input: CreateResponseInput!
-    $condition: ModelResponseConditionInput
+export const createSubmission = /* GraphQL */ `
+  mutation CreateSubmission(
+    $input: CreateSubmissionInput!
+    $condition: ModelSubmissionConditionInput
   ) {
-    createResponse(input: $input, condition: $condition) {
+    createSubmission(input: $input, condition: $condition) {
       id
       personID
-      date
       formType
       time
+      questions
       responses
+      temperature
       passed
       _version
       _deleted
@@ -287,34 +267,22 @@ export const createResponse = /* GraphQL */ `
       createdAt
       updatedAt
       owner
-      questions {
-        items {
-          id
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-          owner
-        }
-        nextToken
-        startedAt
-      }
     }
   }
 `;
-export const updateResponse = /* GraphQL */ `
-  mutation UpdateResponse(
-    $input: UpdateResponseInput!
-    $condition: ModelResponseConditionInput
+export const updateSubmission = /* GraphQL */ `
+  mutation UpdateSubmission(
+    $input: UpdateSubmissionInput!
+    $condition: ModelSubmissionConditionInput
   ) {
-    updateResponse(input: $input, condition: $condition) {
+    updateSubmission(input: $input, condition: $condition) {
       id
       personID
-      date
       formType
       time
+      questions
       responses
+      temperature
       passed
       _version
       _deleted
@@ -322,209 +290,28 @@ export const updateResponse = /* GraphQL */ `
       createdAt
       updatedAt
       owner
-      questions {
-        items {
-          id
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-          owner
-        }
-        nextToken
-        startedAt
-      }
     }
   }
 `;
-export const deleteResponse = /* GraphQL */ `
-  mutation DeleteResponse(
-    $input: DeleteResponseInput!
-    $condition: ModelResponseConditionInput
+export const deleteSubmission = /* GraphQL */ `
+  mutation DeleteSubmission(
+    $input: DeleteSubmissionInput!
+    $condition: ModelSubmissionConditionInput
   ) {
-    deleteResponse(input: $input, condition: $condition) {
+    deleteSubmission(input: $input, condition: $condition) {
       id
       personID
-      date
       formType
       time
+      questions
       responses
+      temperature
       passed
       _version
       _deleted
       _lastChangedAt
       createdAt
       updatedAt
-      owner
-      questions {
-        items {
-          id
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-          owner
-        }
-        nextToken
-        startedAt
-      }
-    }
-  }
-`;
-export const createResponseQuestion = /* GraphQL */ `
-  mutation CreateResponseQuestion(
-    $input: CreateResponseQuestionInput!
-    $condition: ModelResponseQuestionConditionInput
-  ) {
-    createResponseQuestion(input: $input, condition: $condition) {
-      id
-      _version
-      _deleted
-      _lastChangedAt
-      createdAt
-      updatedAt
-      question {
-        id
-        type
-        question
-        expectedResponse
-        checkboxes
-        _version
-        _deleted
-        _lastChangedAt
-        createdAt
-        updatedAt
-        owner
-        responses {
-          nextToken
-          startedAt
-        }
-      }
-      response {
-        id
-        personID
-        date
-        formType
-        time
-        responses
-        passed
-        _version
-        _deleted
-        _lastChangedAt
-        createdAt
-        updatedAt
-        owner
-        questions {
-          nextToken
-          startedAt
-        }
-      }
-      owner
-    }
-  }
-`;
-export const updateResponseQuestion = /* GraphQL */ `
-  mutation UpdateResponseQuestion(
-    $input: UpdateResponseQuestionInput!
-    $condition: ModelResponseQuestionConditionInput
-  ) {
-    updateResponseQuestion(input: $input, condition: $condition) {
-      id
-      _version
-      _deleted
-      _lastChangedAt
-      createdAt
-      updatedAt
-      question {
-        id
-        type
-        question
-        expectedResponse
-        checkboxes
-        _version
-        _deleted
-        _lastChangedAt
-        createdAt
-        updatedAt
-        owner
-        responses {
-          nextToken
-          startedAt
-        }
-      }
-      response {
-        id
-        personID
-        date
-        formType
-        time
-        responses
-        passed
-        _version
-        _deleted
-        _lastChangedAt
-        createdAt
-        updatedAt
-        owner
-        questions {
-          nextToken
-          startedAt
-        }
-      }
-      owner
-    }
-  }
-`;
-export const deleteResponseQuestion = /* GraphQL */ `
-  mutation DeleteResponseQuestion(
-    $input: DeleteResponseQuestionInput!
-    $condition: ModelResponseQuestionConditionInput
-  ) {
-    deleteResponseQuestion(input: $input, condition: $condition) {
-      id
-      _version
-      _deleted
-      _lastChangedAt
-      createdAt
-      updatedAt
-      question {
-        id
-        type
-        question
-        expectedResponse
-        checkboxes
-        _version
-        _deleted
-        _lastChangedAt
-        createdAt
-        updatedAt
-        owner
-        responses {
-          nextToken
-          startedAt
-        }
-      }
-      response {
-        id
-        personID
-        date
-        formType
-        time
-        responses
-        passed
-        _version
-        _deleted
-        _lastChangedAt
-        createdAt
-        updatedAt
-        owner
-        questions {
-          nextToken
-          startedAt
-        }
-      }
       owner
     }
   }

@@ -16,5 +16,23 @@
         "abpamplifya4d0ba8e": {}
       }
     }
+  },
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-abpamplify-dev-140225-authRole",
+      "UnauthRoleArn": "arn:aws:iam::494214532833:role/amplify-abpamplify-dev-140225-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::494214532833:role/amplify-abpamplify-dev-140225-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-abpamplify-dev-140225-deployment",
+      "UnauthRoleName": "amplify-abpamplify-dev-140225-unauthRole",
+      "StackName": "amplify-abpamplify-dev-140225",
+      "StackId": "arn:aws:cloudformation:us-east-1:494214532833:stack/amplify-abpamplify-dev-140225/4a55b530-face-11eb-b1d7-0a374cd00e27",
+      "AmplifyAppId": "duunanimigbcs"
+    },
+    "categories": {
+      "auth": {
+        "abpamplifya4d0ba8e": {}
+      }
+    }
   }
 }
