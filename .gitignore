@@ -26,7 +26,6 @@ yarn-error.log*
 # My ignores
 /.vscode
 .eslintcache
-./package-lock.json
 
 #amplify
 amplify/\#current-cloud-backend
