@@ -101,10 +101,10 @@ export async function getQuestion(id) {
 // Returns all models of type Response dated between the start and end date (inclusive)
 export async function getSubmissionsByDate(startDate, endDate) {
   return (
-    // Need to filter gt or eq startDate, less than or eq end date
+    // TODO: Need to filter gt or eq startDate, less than or eq end date
     await DataStore.query(
       Submission,
-      // Query here
+      // TODO: Query here
       { sort: s => s.createdAt(SortDirection.ASCENDING) }
     )
   )
