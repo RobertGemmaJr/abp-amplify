@@ -11,6 +11,7 @@ import NewTitle from "./NewTitle";
 import ExportByName from "./ExportByName";
 import Temperature from "./Temperature";
 import { updateSettings } from "../../../api";
+import SubmissionsExportDialog from "./SubmissionsExportDialog";
 
 const useStyles = makeStyles(theme => ({
   menu: {
@@ -57,6 +58,8 @@ export default function Menu(props) {
     startDate: "2020-01-01",
     endDate: getDate(),
     exportName: "",
+    exportMatchedSubmissions: [],
+    exportModalOpen: false,
 
     // Import data
     newFamily: null,
@@ -126,8 +129,12 @@ export default function Menu(props) {
       <Typography align="center" color="primary" variant="h4" gutterBottom>
         Export Submissions
       </Typography>
-      <ExportByDate state={state} setState={setState}/>
-      <ExportByName state={state} setState={setState}/>
+      <Typography align="center" color="primary" variant="h5" gutterBottom>
+        Matched Submissions for export: {state.exportMatchedSubmissions.length}
+      </Typography>
+      <ExportByDate state={state} setState={setState} />
+      <ExportByName state={state} setState={setState} allPeople={allPeople}/>
+      <SubmissionsExportDialog state={state} setState={setState} />
 
       {/* QUESTIONS */}
       <QuestionsGrid allQuestions={allQuestions} state={state} setState={setState} />
