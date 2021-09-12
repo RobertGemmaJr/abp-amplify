@@ -15,7 +15,6 @@ export default function ExportByName(props) {
 
   // Handle change for text items
   const handleTextChange = (event) => {
-    console.log("Change: ", event.target.name);
     setState({ ...state, [event.target.name]: event.target.value });
   };
 
@@ -25,9 +24,6 @@ export default function ExportByName(props) {
     await Promise.all(
       people.map(async (p, idx) => {
         const submissions = await getSubmissionsByPerson(p.id);
-        console.log("PERSON: ", p);
-        console.log("SUBMISSIONs: ", submissions);
-        // rows[idx] = submissions;
 
         submissions.forEach((sub) => {
           rows.push({
@@ -41,7 +37,6 @@ export default function ExportByName(props) {
         });
       })
     );
-    console.log("Rows: ", rows)
     return rows;
   }
 
@@ -54,10 +49,8 @@ export default function ExportByName(props) {
           ?.toLowerCase()
           .includes(state.exportName?.toLowerCase())
       );
-      console.log("Matched people: ", matchedPeople);
       matchedSubmissions = await getSubmissions(matchedPeople);
     }
-    console.log("Matched submissions: ", matchedSubmissions);
     setState({
       ...state,
       exportMatchedSubmissions: matchedSubmissions,

@@ -1,28 +1,27 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import Button from "@material-ui/core/Button";
 import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
-import { CSVDownload, CSVLink } from "react-csv";
+import { CSVLink } from "react-csv";
 
 export default function SubmissionsExportDialog(props) {
-  const [exportLink, setExportLink] = useState(false);
   const { state, setState } = props;
-  const keys = [
-    "date",
-    "firstName",
-    "lastName",
-    "questions",
-    "responses",
-    "passed",
-  ];
+  const keys = useMemo(
+    () => ["date", "firstName", "lastName", "questions", "responses", "passed"],
+    []
+  );
 
   const [exportCSV, setExportCSV] = useState([keys]);
 
   const handleClose = () => {
-    setState({ ...state, exportModalOpen: false });
+    setState({
+      ...state,
+      exportModalOpen: false,
+      exportMatchedSubmissions: [],
+    });
   };
 
   const matchingSubmissionsCount = state.exportMatchedSubmissions?.length;
@@ -34,18 +33,10 @@ export default function SubmissionsExportDialog(props) {
       keys.forEach((k) => {
         newSub.push(sub[k]);
       });
-
-      // Object.keys(sub2).forEach((key) => {
-      //   if (keys.findIndex((k) => k.includes(key)) !== -1)
-      //     newSub.push(sub2[key]);
-      // });
       CSVdata.push(newSub);
-      console.log("CSV DATA: ", CSVdata);
     });
-    setExportCSV([...exportCSV, ...CSVdata]);
-  }, [state.exportMatchedSubmissions]);
-
-  console.log("EXPORT CSV: ", exportCSV);
+    setExportCSV((st) => [...st, ...CSVdata]);
+  }, [state.exportMatchedSubmissions, keys]);
 
   return (
     <div>
@@ -83,7 +74,7 @@ export default function SubmissionsExportDialog(props) {
                 }}
               >
                 <Button
-                  onClick={() => setExportLink(true)}
+                  onClick={handleClose}
                   color="primary"
                   variant="contained"
                   autoFocus
