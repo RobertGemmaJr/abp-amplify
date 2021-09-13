@@ -1,13 +1,14 @@
 import { Predicates, SortDirection } from "aws-amplify";
 import { DataStore } from "@aws-amplify/datastore";
-import { Setting, Person, Question, Submission } from "./models";
+import { Setting, Person, Question, Submission, Ptype } from "./models";
 
 /********** CREATE **********/
 
 export async function createPerson(person) {
   const res = await DataStore.save(
     new Person({
-      companyID: person.companyID,
+      id: person.id ? person.id : undefined,
+      companyID: person.companyID ? person.companyID : undefined,
       type: person.type,
       fName: person.fName,
       lName: person.lName,
@@ -127,6 +128,17 @@ export async function updateSettings(original, newSettings) {
       updated.recordTemperature = newSettings.recordTemperature;
       updated.keepTemperature = newSettings.keepTemperature;
       updated.tempTolerance = newSettings.tempTolerance;
+    })
+  );
+}
+
+/********* REPLACE STAFF *********/
+
+export async function replacePeople(newPeople, type) {
+  await DataStore.delete(Person, (p) => p.type("eq", type));
+  return await Promise.all(
+    newPeople.map(async (st) => {
+      await createPerson({ ...st, type });
     })
   );
 }

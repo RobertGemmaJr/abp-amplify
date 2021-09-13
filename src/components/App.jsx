@@ -11,6 +11,8 @@ import { getSettings, getPeople, getQuestions } from "../api";
 import Header from "./header/Header"
 import Main from "./main/Main"
 import Footer from "./footer/Footer"
+import { ToastContainer } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 const useStyles = makeStyles(theme => ({
   root : {
@@ -147,7 +149,10 @@ function App() {
 
   return (
     <Box className={classes.root}>
+      
       <CssBaseline />
+      {/* Toast for errors */}
+      <ToastContainer />
       <Header 
         content={content} 
         form={form} 

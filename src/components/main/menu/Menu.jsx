@@ -2,6 +2,7 @@ import React from "react";
 import { AmplifySignOut } from "@aws-amplify/ui-react";
 import { makeStyles } from "@material-ui/styles";
 import { Paper, Box, Button, Typography } from "@material-ui/core";
+import { toast } from "react-toastify";
 
 import PeopleGrid from "./PeopleGrid";
 import QuestionsGrid from "./QuestionsGrid";
@@ -10,8 +11,10 @@ import ExportByDate from "./ExportByDate";
 import NewTitle from "./NewTitle";
 import ExportByName from "./ExportByName";
 import Temperature from "./Temperature";
-import { updateSettings } from "../../../api";
+import { replacePeople, updateSettings } from "../../../api";
 import SubmissionsExportDialog from "./SubmissionsExportDialog";
+import ImportGrid from "./ImportGrid";
+import { Ptype } from "../../../models";
 
 const useStyles = makeStyles((theme) => ({
   menu: {
@@ -64,7 +67,18 @@ export default function Menu(props) {
     newFamily: null,
     newStaff: null,
     newQuestions: null,
+    importError: null,
   });
+
+  React.useEffect(() => {
+    console.error("Import error: ", state.importError)
+    if (state.importError) {
+      toast.error(state.importError.message ? "Unable to process CSV file." : state.importError, {
+        position: toast.POSITION.TOP_CENTER,
+      });
+      setState((st) => ({ ...st, importError: null }));
+    }
+  }, [state.importError]);
 
   // Handle change for text items
   const handleTextChange = (event) => {
@@ -90,9 +104,11 @@ export default function Menu(props) {
 
     // Update people in database and set hook
     if (state.newFamily) {
-      console.log("Family imported");
+      console.log("Family imported", state.newFamily);
+      await replacePeople(state.newFamily, Ptype.FAMILY);
     } else if (state.newStaff) {
-      console.log("Staff imported");
+      console.log("Staff imported", state.newStaff);
+      await replacePeople(state.newStaff, Ptype.STAFF);
     }
 
     // Update questions in database and set hook
@@ -113,6 +129,25 @@ export default function Menu(props) {
       {/* Move each button to the correct section */}
       <Imports state={state} setState={setState} />
 
+      {/* IMPORT TABLE FOR FAMILY */}
+      {state?.newFamily?.length > 0 && (
+        <ImportGrid
+          data={state.newFamily}
+          type={"FAMILY"}
+          state={state}
+          setState={setState}
+        />
+      )}
+      {/* IMPORT TABLE FOR STAFF */}
+      {state?.newStaff?.length > 0 && (
+        <ImportGrid
+          data={state.newStaff}
+          type={"STAFF"}
+          state={state}
+          setState={setState}
+        />
+      )}
+
       {/* Update Title */}
       <NewTitle state={state} handleChange={handleTextChange} />
 
@@ -127,9 +162,6 @@ export default function Menu(props) {
       {/* Export buttons */}
       <Typography align="center" color="primary" variant="h4" gutterBottom>
         Export Submissions
-      </Typography>
-      <Typography align="center" color="primary" variant="h5" gutterBottom>
-        Matched Submissions for export: {state.exportMatchedSubmissions.length}
       </Typography>
       <ExportByDate state={state} setState={setState} allPeople={allPeople} />
       <ExportByName state={state} setState={setState} allPeople={allPeople} />
