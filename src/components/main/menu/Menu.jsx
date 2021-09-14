@@ -80,10 +80,6 @@ export default function Menu(props) {
     }
   }, [state.importError]);
 
-  React.useEffect(() => {
-    console.log("NEW QUESTIONS: ", state.newQuestions)
-  }, [state.newQuestions])
-
   // Handle change for text items
   const handleTextChange = (event) => {
     setState({ ...state, [event.target.name]: event.target.value });

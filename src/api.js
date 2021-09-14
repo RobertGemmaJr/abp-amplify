@@ -1,19 +1,27 @@
 import { Predicates, SortDirection } from "aws-amplify";
 import { DataStore } from "@aws-amplify/datastore";
-import { Setting, Person, Question, Submission, Ptype, Qtype } from "./models";
+import { Setting, Person, Question, Submission, Qtype } from "./models";
 
 /********** CREATE **********/
 
 export async function createPerson(person) {
   const res = await DataStore.save(
-    new Person({
-      id: person.id ? person.id : undefined,
-      companyID: person.companyID ? person.companyID : undefined,
-      type: person.type,
-      fName: person.fName,
-      lName: person.lName,
-      Submissions: [],
-    })
+    person.id
+      ? new Person({
+          id: person.id,
+          companyID: person.companyID ? person.companyID : undefined,
+          type: person.type,
+          fName: person.fName,
+          lName: person.lName,
+          Submissions: [],
+        })
+      : new Person({
+          companyID: person.companyID ? person.companyID : undefined,
+          type: person.type,
+          fName: person.fName,
+          lName: person.lName,
+          Submissions: [],
+        })
   );
   return res;
 }
@@ -32,7 +40,7 @@ export async function createQuestion(question) {
 }
 
 export async function createSubmission(submission) {
-  const res = await DataStore.save(
+  let res = await DataStore.save(
     new Submission({
       personID: submission.personID,
       formType: submission.formType,
@@ -44,7 +52,7 @@ export async function createSubmission(submission) {
     })
   );
   console.log("Response", res, res.createdAt);
-  return res;
+  return { ...res, createdAt: new Date() };
 }
 
 /********* READ **********/
@@ -147,8 +155,6 @@ export async function replacePeople(newPeople, type) {
 
 export async function replaceQuestions(newQuestions) {
   try {
-    
-
     await DataStore.delete(Question, Predicates.ALL);
     return await Promise.all(
       newQuestions.map(async (q) => {
@@ -157,8 +163,8 @@ export async function replaceQuestions(newQuestions) {
           ...q,
           index: Number(q.index),
           checkboxes: chk,
-          type: Qtype[q.type]
-        })
+          type: Qtype[q.type],
+        });
       })
     );
   } catch (error) {

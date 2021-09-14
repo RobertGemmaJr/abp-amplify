@@ -117,9 +117,9 @@ export default function ImportGrid(props) {
   const [newData, setNewData] = React.useState(null);
 
   React.useEffect(() => {
-    if (type === Ptype.STAFF || type === Ptype.FAMILY) {
+    if (data && data.length > 0 && (type === Ptype.STAFF || type === Ptype.FAMILY)) {
       setNewData(data);
-    } else {
+    } else if (data && data.length > 0) {
       let rows = data.map((q) => {
         let chk = q.checkboxes.split(",").map(Number).map(Boolean);
         return {
@@ -139,7 +139,7 @@ export default function ImportGrid(props) {
       console.log("NEW ROWS: ", rows);
       setNewData(rows);
     }
-  }, [data]);
+  }, [data, type]);
 
   return (
     <Box className={classes.box}>
