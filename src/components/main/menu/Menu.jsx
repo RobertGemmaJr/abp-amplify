@@ -11,7 +11,7 @@ import ExportByDate from "./ExportByDate";
 import NewTitle from "./NewTitle";
 import ExportByName from "./ExportByName";
 import Temperature from "./Temperature";
-import { replacePeople, updateSettings } from "../../../api";
+import { replacePeople, replaceQuestions, updateSettings } from "../../../api";
 import SubmissionsExportDialog from "./SubmissionsExportDialog";
 import ImportGrid from "./ImportGrid";
 import { Ptype } from "../../../models";
@@ -113,6 +113,7 @@ export default function Menu(props) {
 
     // Update questions in database and set hook
     if (state.newQuestions) {
+      await replaceQuestions(state.newQuestions);
       console.log("Questions imported");
     }
 
@@ -143,6 +144,15 @@ export default function Menu(props) {
         <ImportGrid
           data={state.newStaff}
           type={"STAFF"}
+          state={state}
+          setState={setState}
+        />
+      )}
+      {/* IMPORT TABLE FOR QUESTIONS */}
+      {state?.newQuestions?.length > 0 && (
+        <ImportGrid
+          data={state.newQuestions}
+          type={"QUESTIONS"}
           state={state}
           setState={setState}
         />
