@@ -1,6 +1,6 @@
 import { Predicates, SortDirection } from "aws-amplify";
 import { DataStore } from "@aws-amplify/datastore";
-import { Setting, Person, Question, Submission, Ptype } from "./models";
+import { Setting, Person, Question, Submission, Ptype, Qtype } from "./models";
 
 /********** CREATE **********/
 
@@ -132,7 +132,7 @@ export async function updateSettings(original, newSettings) {
   );
 }
 
-/********* REPLACE STAFF *********/
+/********* REPLACE STAFF/FAMILY WITH CSV *********/
 
 export async function replacePeople(newPeople, type) {
   await DataStore.delete(Person, (p) => p.type("eq", type));
@@ -141,4 +141,27 @@ export async function replacePeople(newPeople, type) {
       await createPerson({ ...st, type });
     })
   );
+}
+
+/********* REPLACE QUESTIONS WITH CSV *********/
+
+export async function replaceQuestions(newQuestions) {
+  try {
+    
+
+    await DataStore.delete(Question, Predicates.ALL);
+    return await Promise.all(
+      newQuestions.map(async (q) => {
+        let chk = q.checkboxes.split(",").map(Number).map(Boolean);
+        await createQuestion({
+          ...q,
+          index: Number(q.index),
+          checkboxes: chk,
+          type: Qtype[q.type]
+        })
+      })
+    );
+  } catch (error) {
+    return error;
+  }
 }

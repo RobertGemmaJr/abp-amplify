@@ -5,7 +5,14 @@ import CloudUploadIcon from "@material-ui/icons/CloudUpload";
 
 import { Ptype } from "../../../models";
 
-const importKeys = ["id", "fName", "lName"];
+const personKeys = ["id", "fName", "lName"];
+const questionKeys = [
+  "index",
+  "type",
+  "question",
+  "expectedResponse",
+  "checkboxes",
+];
 
 export default function Imports(props) {
   const [uploadedFile, setUploadedFile] = React.useState(null);
@@ -20,9 +27,13 @@ export default function Imports(props) {
 
     if (results.errors.length > 0) importError = results.errors[0];
     if (results?.data?.length > 0) {
+      const keysToTest =
+        uploadedFile.type === "Question" ? questionKeys : personKeys;
       Object.keys(results.data[0]).forEach((key) => {
-        if (importKeys.findIndex((k) => k === key) === -1)
-          importError = "Incorrect headers in CSV file.";
+        if (keysToTest.findIndex((k) => k === key) === -1)
+          importError = `Incorrect headers in CSV file. Expected ${keysToTest.join(
+            ", "
+          )}`;
       });
     }
 
@@ -32,6 +43,8 @@ export default function Imports(props) {
       setState((st) => ({ ...st, newFamily: results.data }));
     else if (uploadedFile.type === Ptype.STAFF && !importError)
       setState((st) => ({ ...st, newStaff: results.data }));
+    else if (uploadedFile.type === "Question" && !importError)
+      setState((st) => ({ ...st, newQuestions: results.data }));
   };
 
   React.useEffect(() => {
@@ -41,9 +54,6 @@ export default function Imports(props) {
       setUploadedFile((f) => ({ ...f, file: null }));
     }
   }, [uploadedFile, setState, reader]);
-
-  // Handle import questions button clicked
-  function handleImportQuestionsClick() {}
 
   return (
     <Box display="flex" justifyContent="space-evenly" m={2}>
@@ -102,7 +112,6 @@ export default function Imports(props) {
         variant="contained"
         color="secondary"
         component="label"
-        onClick={() => handleImportQuestionsClick()}
       >
         Import Questions
         <input
@@ -111,6 +120,15 @@ export default function Imports(props) {
           type="file"
           accept=".csv, .xlsx, .xls"
           hidden
+          onChange={(e) =>
+            setUploadedFile({
+              file: e.target.files[0],
+              type: "Question",
+            })
+          }
+          onClick={(event) => {
+            event.target.value = null;
+          }}
         />
       </Button>
     </Box>
