@@ -3,12 +3,12 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 import Amplify from 'aws-amplify';
-import config from './aws-exports';
+// import config from './aws-exports';
 
 import theme from "./theme"
 import App from './components/App';
 
-Amplify.configure(config);
+// Amplify.configure(config);
 
 ReactDOM.render(
   <React.StrictMode>
