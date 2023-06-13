@@ -2,10 +2,10 @@ import { ThemeProvider } from '@material-ui/core';
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import Amplify from 'aws-amplify';
+import { Amplify } from 'aws-amplify';
 import config from './aws-exports';
 
-import theme from "./theme"
+import theme from './theme';
 import App from './components/App';
 
 Amplify.configure(config);
